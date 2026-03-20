@@ -34,11 +34,11 @@ Construir un portal web interactivo que visualice el mercado laboral dominicano 
 |---|-------|---------|------------|
 | 0.1 | Confirmar participantes y asignar roles | Gestión | Lista de equipo con roles asignados |
 | 0.2 | Crear grupo de trabajo (WhatsApp/Discord) | Gestión | Canal activo con todos los participantes |
-| 0.3 | Compartir este plan y el documento de investigación | Gestión / Contenido | Todos leen el plan antes del lunes |
-| 0.4 | Inventariar fuentes de datos disponibles | Investigación | Lista priorizada de fuentes con URLs y formatos |
-| 0.5 | Definir la taxonomía de sectores (basada en CNO) | Investigación / Analytics | Borrador de categorías para el treemap |
+| 0.3 | ~~Compartir este plan y el documento de investigación~~ | Gestión / Contenido | **COMPLETADO** — Plan publicado en landing con overlay |
+| 0.4 | ~~Inventariar fuentes de datos disponibles~~ | Investigación | **COMPLETADO** — `DATA_SOURCES.md` con 6 fuentes priorizadas + muestras descargadas en `data/raw/` |
+| 0.5 | ~~Definir la taxonomía de sectores (basada en CNO)~~ | Investigación / Analytics | **COMPLETADO** — `SECTOR_TAXONOMY.md` con 12 sectores basados en CIUO-08 |
 
-**Decisión clave:** ¿Cuántos sectores/categorías vamos a visualizar? (Recomendación: 8-12 sectores de primer nivel, con sub-sectores expandibles)
+**Decisión clave:** ~~¿Cuántos sectores/categorías vamos a visualizar?~~ **DECIDIDO: 12 sectores de primer nivel** (ver `SECTOR_TAXONOMY.md`)
 
 ---
 

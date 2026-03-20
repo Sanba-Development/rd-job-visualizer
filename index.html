@@ -53,6 +53,38 @@
         #plan-content a { color: #059669; text-decoration: underline; }
         #plan-content blockquote { border-left: 4px solid #10b981; padding: 0.75rem 1rem; margin: 1rem 0; background: #f0fdf4; color: #475569; }
         #plan-content hr { border: none; border-top: 2px solid #e2e8f0; margin: 2rem 0; }
+        /* Datos overlay markdown styles */
+        #datos-content h1 { font-size: 1.75rem; font-weight: 800; color: #0f172a; margin: 2rem 0 1rem; line-height: 1.3; }
+        #datos-content h2 { font-size: 1.35rem; font-weight: 700; color: #1e293b; margin: 1.75rem 0 0.75rem; }
+        #datos-content h3 { font-size: 1.1rem; font-weight: 600; color: #334155; margin: 1.5rem 0 0.5rem; }
+        #datos-content p { color: #475569; line-height: 1.8; margin-bottom: 1rem; }
+        #datos-content strong { color: #1e293b; }
+        #datos-content ul, #datos-content ol { color: #475569; margin: 0.75rem 0 1rem 1.5rem; line-height: 1.8; }
+        #datos-content li { margin-bottom: 0.4rem; }
+        #datos-content table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+        #datos-content th { background: #fffbeb; color: #92400e; font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid #fde68a; }
+        #datos-content td { padding: 0.75rem 1rem; border: 1px solid #e2e8f0; color: #475569; }
+        #datos-content tr:nth-child(even) { background: #fffbeb; }
+        #datos-content code { background: #fffbeb; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; color: #b45309; }
+        #datos-content pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin: 1rem 0; }
+        #datos-content pre code { background: none; color: #e2e8f0; }
+        #datos-content a { color: #d97706; text-decoration: underline; }
+        #datos-content hr { border: none; border-top: 2px solid #fde68a; margin: 2rem 0; }
+        /* Taxonomy overlay markdown styles */
+        #taxonomy-content h1 { font-size: 1.75rem; font-weight: 800; color: #0f172a; margin: 2rem 0 1rem; line-height: 1.3; }
+        #taxonomy-content h2 { font-size: 1.35rem; font-weight: 700; color: #1e293b; margin: 1.75rem 0 0.75rem; }
+        #taxonomy-content h3 { font-size: 1.1rem; font-weight: 600; color: #334155; margin: 1.5rem 0 0.5rem; }
+        #taxonomy-content p { color: #475569; line-height: 1.8; margin-bottom: 1rem; }
+        #taxonomy-content strong { color: #1e293b; }
+        #taxonomy-content ul, #taxonomy-content ol { color: #475569; margin: 0.75rem 0 1rem 1.5rem; line-height: 1.8; }
+        #taxonomy-content li { margin-bottom: 0.4rem; }
+        #taxonomy-content table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+        #taxonomy-content th { background: #f1f5f9; color: #1e293b; font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid #e2e8f0; }
+        #taxonomy-content td { padding: 0.75rem 1rem; border: 1px solid #e2e8f0; color: #475569; }
+        #taxonomy-content tr:nth-child(even) { background: #f8fafc; }
+        #taxonomy-content code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; color: #334155; }
+        #taxonomy-content a { color: #475569; text-decoration: underline; }
+        #taxonomy-content hr { border: none; border-top: 2px solid #e2e8f0; margin: 2rem 0; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-700">
@@ -70,6 +102,7 @@
                 <a href="#roles" class="text-sm font-medium hover:text-blue-600 transition-colors">Roles</a>
                 <a href="#tech" class="text-sm font-medium hover:text-blue-600 transition-colors">Tecnología</a>
                 <a href="#plan" class="text-sm font-medium hover:text-blue-600 transition-colors">Plan</a>
+                <a href="#datos" class="text-sm font-medium hover:text-blue-600 transition-colors">Datos</a>
                 <a href="#investigacion" class="text-sm font-medium hover:text-blue-600 transition-colors">Investigación</a>
             </div>
             <button onclick="openSignupForm()" class="rounded-full bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2">
@@ -402,6 +435,69 @@
         </div>
     </div>
 
+    <!-- Datos Section -->
+    <section id="datos" class="bg-slate-50 py-24 px-6">
+        <div class="mx-auto max-w-4xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 mb-8">
+                <i data-lucide="database" class="h-4 w-4"></i>
+                <span>Fuentes de Datos</span>
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Inventario de Datos Abiertos</h2>
+            <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+                Fuentes de datos reales del gobierno dominicano, priorizadas y validadas para alimentar el visualizador. Transparencia total sobre de dónde vienen los datos.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm text-slate-500">
+                <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="h-4 w-4 text-green-500"></i> 6 fuentes identificadas</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="download" class="h-4 w-4"></i> 3 con descarga directa</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="layers" class="h-4 w-4"></i> 12 sectores definidos</span>
+            </div>
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <button onclick="openDatosOverlay()" class="inline-flex items-center gap-3 rounded-2xl bg-amber-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-amber-200 hover:bg-amber-700 transition-all hover:scale-105 active:scale-95">
+                    <i data-lucide="database" class="h-5 w-5"></i>
+                    Ver Inventario de Fuentes
+                </button>
+                <button onclick="openTaxonomyOverlay()" class="inline-flex items-center gap-3 rounded-2xl bg-slate-800 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-slate-200 hover:bg-slate-900 transition-all hover:scale-105 active:scale-95">
+                    <i data-lucide="git-branch" class="h-5 w-5"></i>
+                    Ver Taxonomía de Sectores
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Datos Overlay -->
+    <div id="datos-overlay" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeDatosOverlay()"></div>
+        <div class="relative z-10 mx-auto flex h-full max-w-4xl flex-col p-4 sm:p-8">
+            <div class="flex items-center justify-between rounded-t-2xl bg-white px-6 py-4 border-b border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="database" class="h-5 w-5 text-amber-600"></i>
+                    Inventario de Fuentes de Datos
+                </h3>
+                <button onclick="closeDatosOverlay()" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+            <div id="datos-content" class="flex-1 overflow-y-auto rounded-b-2xl bg-white px-6 py-8 sm:px-10"></div>
+        </div>
+    </div>
+
+    <!-- Taxonomy Overlay -->
+    <div id="taxonomy-overlay" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeTaxonomyOverlay()"></div>
+        <div class="relative z-10 mx-auto flex h-full max-w-4xl flex-col p-4 sm:p-8">
+            <div class="flex items-center justify-between rounded-t-2xl bg-white px-6 py-4 border-b border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="git-branch" class="h-5 w-5 text-slate-700"></i>
+                    Taxonomía de Sectores
+                </h3>
+                <button onclick="closeTaxonomyOverlay()" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+            <div id="taxonomy-content" class="flex-1 overflow-y-auto rounded-b-2xl bg-white px-6 py-8 sm:px-10"></div>
+        </div>
+    </div>
+
     <!-- Investigación Section -->
     <section id="investigacion" class="bg-slate-50 py-24 px-6">
         <div class="mx-auto max-w-4xl text-center">
@@ -602,10 +698,51 @@
             document.body.style.overflow = '';
         }
 
+        // Datos overlay
+        let datosRendered = false;
+        function openDatosOverlay() {
+            if (!datosRendered) {
+                fetch('DATA_SOURCES.md')
+                    .then(r => r.text())
+                    .then(md => {
+                        document.getElementById('datos-content').innerHTML = marked.parse(md);
+                        datosRendered = true;
+                    });
+            }
+            document.getElementById('datos-overlay').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+        function closeDatosOverlay() {
+            document.getElementById('datos-overlay').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        // Taxonomy overlay
+        let taxonomyRendered = false;
+        function openTaxonomyOverlay() {
+            if (!taxonomyRendered) {
+                fetch('SECTOR_TAXONOMY.md')
+                    .then(r => r.text())
+                    .then(md => {
+                        document.getElementById('taxonomy-content').innerHTML = marked.parse(md);
+                        taxonomyRendered = true;
+                    });
+            }
+            document.getElementById('taxonomy-overlay').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+        function closeTaxonomyOverlay() {
+            document.getElementById('taxonomy-overlay').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeResearchOverlay();
                 closePlanOverlay();
+                closeDatosOverlay();
+                closeTaxonomyOverlay();
                 closeSignupForm();
             }
         });

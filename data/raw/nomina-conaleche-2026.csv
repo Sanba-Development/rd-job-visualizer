@@ -1,0 +1,796 @@
+﻿Nº,Nombre y Apellido,Departamento,Cargo,Designacion,Genero,Sueldo Bruto,Mes,Año 
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Enero,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Enero,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Enero,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Enero,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Enero,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Enero,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Enero,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Enero,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Enero,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Enero,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Enero,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Enero,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Enero,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Enero,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Enero,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Enero,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Enero,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Enero,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Enero,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Enero,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Enero,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Enero,2025
+0164,JOSE ALEJANDRO  BAUTISTA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Enero,2025
+0259,JOSE FELIPE  PEÑA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Enero,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Enero,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Enero,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Enero,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Enero,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Enero,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Enero,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Enero,2025
+0034,LUIS OMAR FERNANDEZ MENA,Departamento de Contabilidad, ENCARGADO DE COBROS EN EL DEPARTAMENTO DE CONTABILIDAD,Personal de carácter temporal,Masculino,"60,000.00",Enero,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Enero,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Enero,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Enero,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Enero,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Enero,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Personal de carácter temporal,Femenino,"85,000.00",Enero,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Enero,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Enero,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Enero,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Enero,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Enero,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Enero,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Tecnología de la Información y Comunicaciones,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Enero,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Enero,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"13,000.00",Enero,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"9,000.00",Enero,2025
+0255,VICTOR MANUEL  MALENO,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"9,000.00",Enero,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"9,000.00",Enero,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Febrero,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Febrero,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Febrero,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Febrero,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Febrero,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Febrero,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Febrero,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Febrero,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Febrero,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Febrero,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Febrero,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Febrero,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Febrero,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Febrero,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Febrero,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Febrero,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Febrero,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Febrero,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Febrero,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Febrero,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Febrero,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Febrero,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Febrero,2025
+0164,JOSE ALEJANDRO  BAUTISTA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Febrero,2025
+0259,JOSE FELIPE  PEÑA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Febrero,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Febrero,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Febrero,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Febrero,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Febrero,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Febrero,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Febrero,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Febrero,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Febrero,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Febrero,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Febrero,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Febrero,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Febrero,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Febrero,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Febrero,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Febrero,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Febrero,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Febrero,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Febrero,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Tecnología de la Información y Comunicaciones,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Febrero,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Febrero,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Febrero,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Febrero,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Febrero,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Febrero,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Marzo,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Marzo,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Marzo,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Marzo,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Marzo,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Marzo,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Marzo,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Marzo,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Marzo,2025
+0274,DIANA DE PEÑA QUEVEDO,Dirección Administrativa y Financiera,Recepcionista,Sueldos fijos,Femenino,"23,000.00",Marzo,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Marzo,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Marzo,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Marzo,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Marzo,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Marzo,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Marzo,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Marzo,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Marzo,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Marzo,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Marzo,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Marzo,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Marzo,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Marzo,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Marzo,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Marzo,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Marzo,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Marzo,2025
+0164,JOSE ALEJANDRO  BAUTISTA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Marzo,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Marzo,2025
+0259,JOSE FELIPE  PEÑA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Marzo,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Marzo,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Marzo,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Marzo,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Marzo,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Marzo,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Marzo,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Marzo,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Marzo,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Marzo,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Marzo,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Marzo,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Marzo,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Marzo,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Marzo,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Marzo,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Marzo,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Marzo,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Marzo,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Marzo,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Marzo,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Tecnología de la Información y Comunicaciones,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Marzo,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Marzo,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Marzo,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Marzo,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Marzo,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Marzo,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Abril,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Abril,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Abril,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Abril,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Abril,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Abril,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Abril,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Abril,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Abril,2025
+0274,DIANA DE PEÑA QUEVEDO,Dirección Administrativa y Financiera,Recepcionista,Sueldos fijos,Femenino,"23,000.00",Abril,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Abril,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Abril,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Abril,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Abril,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Abril,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Abril,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Abril,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Abril,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Abril,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Abril,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Abril,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Abril,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Abril,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Abril,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Abril,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Abril,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Abril,2025
+0164,JOSE ALEJANDRO  BAUTISTA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Abril,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Abril,2025
+0259,JOSE FELIPE  PEÑA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Abril,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Abril,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Abril,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Abril,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Abril,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Abril,2025
+0276,PAOLA DIVINA PEGUERO GARCIA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"25,000.00",Abril,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Abril,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Abril,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Abril,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Abril,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Abril,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Abril,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Abril,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Abril,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Abril,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Abril,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Abril,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Abril,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Abril,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Abril,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Abril,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Abril,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Tecnología de la Información y Comunicaciones,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Abril,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Abril,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Abril,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Abril,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Abril,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Abril,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Mayo,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Mayo,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Mayo,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Mayo,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Mayo,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Mayo,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Mayo,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Mayo,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Mayo,2025
+0274,DIANA DE PEÑA QUEVEDO,Dirección Administrativa y Financiera,Recepcionista,Sueldos fijos,Femenino,"23,000.00",Mayo,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Mayo,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Mayo,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Mayo,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Mayo,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Mayo,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Mayo,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Mayo,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Mayo,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Mayo,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Mayo,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Mayo,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Mayo,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Mayo,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Mayo,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Mayo,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Mayo,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Mayo,2025
+0164,JOSE ALEJANDRO  BAUTISTA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Mayo,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Mayo,2025
+0259,JOSE FELIPE  PEÑA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Mayo,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Mayo,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Mayo,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Mayo,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Mayo,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Mayo,2025
+0276,PAOLA DIVINA PEGUERO GARCIA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"25,000.00",Mayo,2025
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Mayo,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Mayo,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Mayo,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Mayo,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Mayo,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Mayo,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Mayo,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Mayo,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Mayo,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Mayo,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Mayo,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Mayo,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Mayo,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Mayo,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Mayo,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Mayo,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Mayo,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Tecnología de la Información y Comunicaciones,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Mayo,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Mayo,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Mayo,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Mayo,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Mayo,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Mayo,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Junio,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Junio,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Junio,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Junio,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Junio,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Junio,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Junio,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Junio,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Junio,2025
+0274,DIANA DE PEÑA QUEVEDO,Dirección Administrativa y Financiera,Recepcionista,Sueldos fijos,Femenino,"23,000.00",Junio,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Junio,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Junio,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Junio,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Junio,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Junio,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Junio,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Junio,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Junio,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Junio,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Junio,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Junio,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Junio,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Junio,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Junio,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Junio,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Junio,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Junio,2025
+0164,JOSE ALEJANDRO  BAUTISTA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Junio,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Junio,2025
+0259,JOSE FELIPE  PEÑA,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Junio,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Junio,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Junio,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Junio,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Junio,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Junio,2025
+0276,PAOLA DIVINA PEGUERO GARCIA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"25,000.00",Junio,2025
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Junio,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Junio,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Junio,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Junio,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Junio,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Junio,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Junio,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Junio,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Junio,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Junio,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Junio,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Junio,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Junio,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Junio,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Junio,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Junio,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Junio,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Tecnología de la Información y Comunicaciones,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Junio,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Junio,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Junio,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Junio,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Junio,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Junio,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Julio,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Julio,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Julio,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Julio,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Julio,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Julio,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Julio,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Julio,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Julio,2025
+0274,DIANA DE PEÑA QUEVEDO,Dirección Administrativa y Financiera,Recepcionista,Sueldos fijos,Femenino,"23,000.00",Julio,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Julio,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Julio,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Julio,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Julio,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Julio,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Julio,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Julio,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Julio,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Julio,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Julio,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Julio,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Julio,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Julio,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Julio,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Julio,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Julio,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Julio,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Julio,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Julio,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Julio,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Julio,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Julio,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Julio,2025
+0276,PAOLA DIVINA PEGUERO GARCIA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"25,000.00",Julio,2025
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Julio,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Julio,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Julio,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Julio,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Julio,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Julio,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Julio,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Julio,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Julio,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Julio,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Julio,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Dirección Administrativa y Financiera,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Julio,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Julio,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Julio,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Julio,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Julio,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Julio,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Julio,2025
+0279,IVANNA MAITE GOICO NOLASCO,Pasante Departamento Tecnico Lacteo,Tecnico Pasante,Personal de carácter temporal,Femenino,"10,000.00",Julio,2520
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Julio,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Julio,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Julio,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Julio,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Julio,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Agosto,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Agosto,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Agosto,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Agosto,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Agosto,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Agosto,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Agosto,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Agosto,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Agosto,2025
+0274,DIANA DE PEÑA QUEVEDO,Dirección Administrativa y Financiera,Recepcionista,Sueldos fijos,Femenino,"23,000.00",Agosto,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Agosto,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Agosto,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Agosto,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Agosto,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Agosto,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Agosto,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Agosto,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Agosto,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Agosto,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Agosto,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Agosto,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Agosto,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Agosto,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Agosto,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Agosto,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Agosto,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Agosto,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Agosto,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Agosto,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Agosto,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Agosto,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Agosto,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Agosto,2025
+0276,PAOLA DIVINA PEGUERO GARCIA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"25,000.00",Agosto,2025
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Agosto,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Agosto,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Agosto,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Agosto,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Agosto,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Agosto,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Agosto,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Agosto,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Agosto,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Agosto,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Agosto,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Dirección Administrativa y Financiera,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Agosto,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Agosto,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Agosto,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Agosto,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Agosto,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Agosto,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Agosto,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Agosto,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Agosto,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Agosto,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Agosto,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Agosto,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Septiembre,2025
+0067,KARLA INMACULADA  DURAN GARCIA,Dirección Ejecutiva,Encargada de  Relaciones Publicas  Disenadora Grafica,Sueldos fijos,Femenino,"60,000.00",Septiembre,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Septiembre,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Septiembre,2025
+0070,JONATHAN RAFAEL  QUIROZ HENRIQUEZ,Dirección Ejecutiva,SUPERVISOR DE EVENTOS,Sueldos fijos,Masculino,"35,000.00",Septiembre,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Septiembre,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Septiembre,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Septiembre,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Septiembre,2025
+0274,DIANA DE PEÑA QUEVEDO,Dirección Administrativa y Financiera,Recepcionista,Sueldos fijos,Femenino,"23,000.00",Septiembre,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Septiembre,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Septiembre,2025
+0282,DIOSMERY INMACULADA NOVAS,Departamento de Captación y Fiscalización,SECRETARIA,Sueldos fijos,Femenino,"32,000.00",Septiembre,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Septiembre,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Septiembre,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Septiembre,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Septiembre,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Septiembre,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Septiembre,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Septiembre,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Septiembre,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Septiembre,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Septiembre,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Septiembre,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Septiembre,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Septiembre,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Septiembre,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Septiembre,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Septiembre,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Septiembre,2025
+0283,JOSE GUADALUPE BELEN DE LA CRUZ,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Septiembre,2025
+0281,MANUEL EMILIO  AQUINO,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Septiembre,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Septiembre,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Septiembre,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Septiembre,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Septiembre,2025
+0276,PAOLA DIVINA PEGUERO GARCIA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"25,000.00",Septiembre,2025
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Septiembre,2025
+0280,HEDYNA ARVELO RANCIER,Dirección Administrativa y Financiera,ANALISTA,Personal de carácter temporal,Femenino,"55,000.00",Septiembre,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Septiembre,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Septiembre,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Septiembre,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Septiembre,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Septiembre,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Septiembre,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Septiembre,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Septiembre,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Septiembre,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Septiembre,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Dirección Administrativa y Financiera,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Septiembre,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Septiembre,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Septiembre,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Septiembre,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Septiembre,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Septiembre,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Septiembre,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Septiembre,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Septiembre,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Septiembre,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Septiembre,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Septiembre,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Octubre,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Octubre,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Octubre,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Octubre,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Octubre,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Octubre,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Octubre,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Octubre,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Octubre,2025
+0282,DIOSMERY INMACULADA NOVAS,Departamento de Captación y Fiscalización,SECRETARIA,Sueldos fijos,Femenino,"32,000.00",Octubre,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Octubre,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Octubre,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Octubre,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Octubre,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Octubre,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Octubre,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Octubre,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Octubre,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Octubre,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Octubre,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Octubre,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Octubre,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Octubre,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Octubre,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Octubre,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Octubre,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Octubre,2025
+0283,JOSE GUADALUPE BELEN DE LA CRUZ,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Octubre,2025
+0281,MANUEL EMILIO  AQUINO,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Octubre,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Octubre,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Octubre,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Octubre,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Octubre,2025
+0276,PAOLA DIVINA PEGUERO GARCIA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"25,000.00",Octubre,2025
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Octubre,2025
+0280,HEDYNA ARVELO RANCIER,Dirección Administrativa y Financiera,ANALISTA,Personal de carácter temporal,Femenino,"55,000.00",Octubre,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Octubre,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Octubre,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Octubre,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Octubre,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Octubre,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Octubre,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Octubre,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Octubre,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Octubre,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Octubre,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Dirección Administrativa y Financiera,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Octubre,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Octubre,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Octubre,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Octubre,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Octubre,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Octubre,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Octubre,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Octubre,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Octubre,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Octubre,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Octubre,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Octubre,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Noviembre,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Noviembre,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Noviembre,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Dirección Ejecutiva,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Noviembre,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Noviembre,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Noviembre,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Noviembre,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Dirección Administrativa y Financiera,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Noviembre,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Noviembre,2025
+0285,GALIA VENECIA RODRIGUEZ CROISIER,Departamento de Captación y Fiscalización,SECRETARIA,Sueldos fijos,Femenino,"35,000.00",Noviembre,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Noviembre,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Noviembre,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Noviembre,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Noviembre,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Noviembre,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Noviembre,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Noviembre,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Noviembre,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Noviembre,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Noviembre,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Noviembre,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Noviembre,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Noviembre,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Noviembre,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Noviembre,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Noviembre,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Noviembre,2025
+0283,JOSE GUADALUPE BELEN DE LA CRUZ,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Noviembre,2025
+0281,MANUEL EMILIO  AQUINO,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Noviembre,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Noviembre,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Noviembre,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Noviembre,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Noviembre,2025
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Noviembre,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Noviembre,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Noviembre,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Noviembre,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Noviembre,2025
+0152,NANCY ELIZABET SANCHEZ RIVERA,Departamento de Captación y Fiscalización,SECRETARIA,Personal de carácter temporal,Femenino,"36,000.00",Noviembre,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Noviembre,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Noviembre,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Noviembre,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Noviembre,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Noviembre,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Dirección Administrativa y Financiera,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Noviembre,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Noviembre,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Noviembre,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Noviembre,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Noviembre,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Noviembre,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Noviembre,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Noviembre,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Noviembre,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Noviembre,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Noviembre,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Noviembre,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Diciembre,2025
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Diciembre,2025
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Diciembre,2025
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Diciembre,2025
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Diciembre,2025
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Diciembre,2025
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Diciembre,2025
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Comunicación y Publiciad,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Diciembre,2025
+0268,YENSER  LISANDRO TURBI BERIGUETE,Comunicación y Publiciad,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Diciembre,2025
+0285,GALIA VENECIA RODRIGUEZ CROISIER,Departamento de Captación y Fiscalización,SECRETARIA,Sueldos fijos,Femenino,"35,000.00",Diciembre,2025
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Diciembre,2025
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Diciembre,2025
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Diciembre,2025
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Diciembre,2025
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Diciembre,2025
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Diciembre,2025
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Diciembre,2025
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Diciembre,2025
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Diciembre,2025
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Diciembre,2025
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Diciembre,2025
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Diciembre,2025
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Diciembre,2025
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Diciembre,2025
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Diciembre,2025
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Diciembre,2025
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Diciembre,2025
+0283,JOSE GUADALUPE BELEN DE LA CRUZ,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Diciembre,2025
+0281,MANUEL EMILIO  AQUINO,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Diciembre,2025
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Diciembre,2025
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Diciembre,2025
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Diciembre,2025
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Diciembre,2025
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Diciembre,2025
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Diciembre,2025
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Diciembre,2025
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Diciembre,2025
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Diciembre,2025
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Diciembre,2025
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Diciembre,2025
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Diciembre,2025
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Diciembre,2025
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Diciembre,2025
+0280,HEDYNA ARVELO RANCIER,Dirección Administrativa y Financiera,Analista,Personal de carácter temporal,Femenino,"55,000.00",Diciembre,2025
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Dirección Administrativa y Financiera,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Diciembre,2025
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Diciembre,2025
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Diciembre,2025
+0284,CRISTAL LIZARDO REYES,Division de Tesoreria,Tecnico de tesoreria,Personal de carácter temporal,Femenino,"40,000.00",Diciembre,2025
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Diciembre,2025
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Diciembre,2025
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Diciembre,2025
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Diciembre,2025
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Diciembre,2025
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Diciembre,2025
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Diciembre,2025
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Diciembre,2025
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Diciembre,2025
+0063,MIGUEL ENRIQUE LAUREANO NOVA,Dirección Ejecutiva,DIRECTOR EJECUTIVO,Sueldos fijos,Masculino,"190,000.00",Enero,2026
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Enero,2026
+0095,MAYERI  VICTORIANO ROSADO,Dirección Ejecutiva,Encargada de Servicios Generales,Sueldos fijos,Femenino,"60,000.00",Enero,2026
+0096,VISKARLIS ROSA POLANCO,Dirección Administrativa y Financiera,Asesora Direccion Ejecutiva,Sueldos fijos,Femenino,"85,000.00",Enero,2026
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Enero,2026
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Enero,2026
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Enero,2026
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Comunicación y Publiciad,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Enero,2026
+0268,YENSER  LISANDRO TURBI BERIGUETE,Comunicación y Publiciad,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Enero,2026
+0285,GALIA VENECIA RODRIGUEZ CROISIER,Departamento de Captación y Fiscalización,SECRETARIA,Sueldos fijos,Femenino,"35,000.00",Enero,2026
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Enero,2026
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Enero,2026
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Enero,2026
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Enero,2026
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Enero,2026
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Enero,2026
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Enero,2026
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Enero,2026
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Enero,2026
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Enero,2026
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Enero,2026
+0094,JUAN IGNACIO  HERNANDEZ CRUZ,Direccion Tecnico Operativo,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2026
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Enero,2026
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2026
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Enero,2026
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Enero,2026
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2026
+0283,JOSE GUADALUPE BELEN DE LA CRUZ,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2026
+0281,MANUEL EMILIO  AQUINO,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Enero,2026
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Enero,2026
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Enero,2026
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Enero,2026
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Enero,2026
+0278,JULIO CESAR REYES CHAVEZ,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Enero,2026
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Enero,2026
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Enero,2026
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Enero,2026
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Enero,2026
+0090,RANDOL JEREMIAS TEJEDA VILORIO,Departamento de Crédito y Cobros,Encargado Departamento de Credito,Personal de carácter temporal,Masculino,"85,000.00",Enero,2026
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Enero,2026
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Enero,2026
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Enero,2026
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Enero,2026
+0280,HEDYNA ARVELO RANCIER,Dirección Administrativa y Financiera,Analista,Personal de carácter temporal,Femenino,"55,000.00",Enero,2026
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Dirección Administrativa y Financiera,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Enero,2026
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Enero,2026
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Enero,2026
+0284,CRISTAL LIZARDO REYES,Division de Tesoreria,Tecnico de tesoreria,Personal de carácter temporal,Femenino,"40,000.00",Enero,2026
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Enero,2026
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Enero,2026
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Enero,2026
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Enero,2026
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Enero,2026
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Enero,2026
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Enero,2026
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Enero,2026
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Enero,2026
+0275,LEONARDO MANUEL TINEO ESPINAL,Dirección Ejecutiva,Responsable de Libre acceso a la informacion,Sueldos fijos,Masculino,"55,000.00",Febrero,2026
+0005,CARLOS ALFONSO MEDINA MEDINA,Dirección Administrativa y Financiera,Encargado de compras,Sueldos fijos,Masculino,"60,000.00",Febrero,2026
+0151,HELEN CESARINA  CASTILLO CUEVAS,Dirección Administrativa y Financiera,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Femenino,"38,500.00",Febrero,2026
+0019,ANGEL ALBERTO  SANCHEZ DIAZ,Dirección Administrativa y Financiera,MENSAJERO,Sueldos fijos,Masculino,"22,000.00",Febrero,2026
+0251,NICOLE ALEXANDRA ZAPATA SORIANO,Comunicación y Publiciad,DISEÑADORA  GRAFICA,Sueldos fijos,Femenino,"35,000.00",Febrero,2026
+0268,YENSER  LISANDRO TURBI BERIGUETE,Comunicación y Publiciad,FOTOGRAFO,Sueldos fijos,Masculino,"35,000.00",Febrero,2026
+0285,GALIA VENECIA RODRIGUEZ CROISIER,Departamento de Captación y Fiscalización,SECRETARIA,Sueldos fijos,Femenino,"35,000.00",Febrero,2026
+0038,MIGUEL  CASILLA REYES,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Febrero,2026
+0036,RAFAEL ALEJANDRO MERCEDES RIVAS,Departamento de Captación y Fiscalización,AGENTE DE CAPTACION,Sueldos fijos,Masculino,"40,000.00",Febrero,2026
+0025,SERGIA LIDIA CAROLINA  SANTANA CASTILLO,Departamento de Contabilidad,ENCARGADA DIVISION DE CONTABILIDAD,Sueldos fijos,Femenino,"73,000.00",Febrero,2026
+0027,JORGE BENJAMIN,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Febrero,2026
+0026,MANUEL ALEJANDRO  SANCHEZ MARTE,Departamento de Contabilidad,TECNICO CONTABILIDAD,Sueldos fijos,Masculino,"40,000.00",Febrero,2026
+0032,BERNARDO EDUARDO  SANTANA DANDRADE,Departamento de Planificación y Desarrollo,ENCARGADO DEPARTAMENTO DE PLANIFICACION Y DESARROLLO,Sueldos fijos,Masculino,"85,000.00",Febrero,2026
+0028,CANDIDA DEL ROSARIO  ACOSTA MORETA,Departamento Legal,SECRETARIA LEGAL,Sueldos fijos,Femenino,"36,500.00",Febrero,2026
+0040,MARIANA  FURAKIS NOVA,Departamento Técnico Lácteo,ENCARGADA DEPARTAMENTO TECNICO LACTEO,Sueldos fijos,Femenino,"85,000.00",Febrero,2026
+0041,LEANDRO VARGAS,Departamento Técnico Lácteo,"ENCARGADO SECCION DE CALIDAD, HIGIENE E INOCUIDAD DE LA LECHE (TECNICO II)",Sueldos fijos,Masculino,"60,000.00",Febrero,2026
+0043,YUDERKY GISSELLE  PEREZ MATOS,Departamento Técnico Lácteo,ANALISTA DE LA LECHE (TECNICO II),Sueldos fijos,Femenino,"55,000.00",Febrero,2026
+0003,PABLO ANTONIO CONTRERAS PEÑA,Direccion Tecnico Operativo,DIRECTOR TECNICO OPERATIVO,Sueldos fijos,Masculino,"112,000.00",Febrero,2026
+0252,LELIN ALTAGRACIA MOLINA CAMACHO,Division de Tesoreria,AUXILIAR ADMINISTRATIVA,Sueldos fijos,Femenino,"35,000.00",Febrero,2026
+0010,ADOLFO ALIX FORTUNA VENTURA,Seccion de Comunicaciones,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2026
+0021,JOSE MANUEL  BAEZ FERNANDEZ,Seccion de Servicios Generales,ENCARGADO SERVICIOS GENERALES,Sueldos fijos,Masculino,"50,000.00",Febrero,2026
+0018,NATIVIDAD MANZUETA MORLA,Seccion de Servicios Generales,JARDINERO,Sueldos fijos,Masculino,"16,000.00",Febrero,2026
+0170,VICTOR  NUÑEZ PAREDES,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2026
+0283,JOSE GUADALUPE BELEN DE LA CRUZ,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2026
+0281,MANUEL EMILIO  AQUINO,Seccion de Servicios Generales,CHOFER,Sueldos fijos,Masculino,"23,500.00",Febrero,2026
+0100,ALVARO ANTONIO EMETERIO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Masculino,"16,000.00",Febrero,2026
+0082,NOEMI KING FLORENTINO,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Febrero,2026
+0058,YANETT ALTAGRACIA MARTINEZ CABRERA,Seccion de Servicios Generales,CONSERJE,Sueldos fijos,Femenino,"16,000.00",Febrero,2026
+0277,JUANFRY BLADYMIR VALERIO SERRATA,Departametno de Credito,AUXILIAR ADMINISTRATIVO,Sueldos fijos,Masculino,"25,000.00",Febrero,2026
+0071,MIGUEL ADALBERTO  MEJIA RODRIGUEZ,Departamento de Captación y Fiscalización,ENCARGADO DE LA DIVISION CAPTACION YFISCALIZACION,Personal de carácter temporal,Masculino,"70,000.00",Febrero,2026
+0102,DARWIN OVIDIO RODRIGUEZ DISLA,Departamento de Captación y Fiscalización,CAPTADOR ZONA ESTE,Personal de carácter temporal,Masculino,"40,000.00",Febrero,2026
+0066,GERMAN ALEXIS MARTINEZ UREÑA,Departamento de Captación y Fiscalización,Agente de Captacion,Personal de carácter temporal,Masculino,"40,000.00",Febrero,2026
+0121,JUANA PAULA  ECHAVARRIA CORONA,Departamento de Captación y Fiscalización,CAPTADOR Y FISCALIZADOR ZONA NOROESTE,Personal de carácter temporal,Femenino,"40,000.00",Febrero,2026
+0029,VIERKA DEL CARMEN SOTO ANTONIO,Departamento de Crédito y Cobros,Analista de Credito,Personal de carácter temporal,Femenino,"50,000.00",Febrero,2026
+0091,CYNTHIA TEJADA PEREZ,Departamento Legal,ENCARGADA,Personal de carácter temporal,Femenino,"70,000.00",Febrero,2026
+0097,RAMFIS DE JESUS PAULINO FABIAN,Departamento Técnico Lácteo,TECNICO,Personal de carácter temporal,Masculino,"25,000.00",Febrero,2026
+0065,YESENIA  RODRIGUEZ PEÑA,Dirección Administrativa y Financiera,ENCARGADA DEPTO. ADMINISTRATIVO Y FINANCIERO,Personal de carácter temporal,Femenino,"90,000.00",Febrero,2026
+0280,HEDYNA ARVELO RANCIER,Dirección Administrativa y Financiera,Analista,Personal de carácter temporal,Femenino,"55,000.00",Febrero,2026
+0086,ENMANUEL ALEJANDRO  PEREZ JUSTO,Dirección Administrativa y Financiera,MENSAJERO EXTERNO,Personal de carácter temporal,Masculino,"20,000.00",Febrero,2026
+0079,CARMEN MANNOLIA  BAUTISTA COLON,Division de Recursos Humanos,ENCARGADA DE GESTION HUMANA (RRHH),Personal de carácter temporal,Femenino,"70,000.00",Febrero,2026
+0073,VIKMARY MEDINA D ORBE,Division de Recursos Humanos,ANALISTA DE RECURSOS HUMANOS,Personal de carácter temporal,Femenino,"50,000.00",Febrero,2026
+0048,DIANA YARIZA  SORIANO MARTE,Division de Tesoreria,Encargada de la Division de Tesoreria,Personal de carácter temporal,Femenino,"70,000.00",Febrero,2026
+0126,DEBBY SHENAI  ACOSTA ARIAS,Division de Tesoreria,TECNICO DE TESORERIA,Personal de carácter temporal,Femenino,"40,000.00",Febrero,2026
+0089,MAGLOIRY PAOLA MEDRANO SANLATE,Tecnología de la Información y Comunicaciones,ENCARGADA DE TECNOLOGIA DE LA INFORMACION,Personal de carácter temporal,Femenino,"70,000.00",Febrero,2026
+0171,WESTER JAMIL  PEREZ MEDRANO,Tecnología de la Información y Comunicaciones,SOPORTE TECNICO,Personal de carácter temporal,Masculino,"40,000.00",Febrero,2026
+0168,JULIO FLORENCIO  SOTO PERALTA,Seccion de Servicios Generales,CHOFER,Compensación servicios de seguridad,Masculino,"23,500.00",Febrero,2026
+0272,REYNALDO GOMERA GONZALEZ,Seccion de Servicios Generales,COORDINADOR  SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Febrero,2026
+0258,JHORDYS MANUEL  PEREZ MATOS,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Febrero,2026
+0273,CARLOS MONTERO MESA,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Febrero,2026
+0260,WANDER MIGELY  GUZMAN GUZMAN,Seccion de Servicios Generales,SEGURIDAD,Compensación servicios de seguridad,Masculino,"15,000.00",Febrero,2026
