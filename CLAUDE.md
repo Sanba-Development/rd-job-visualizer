@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-RD Job Visualizer is an MVP to visualize AI exposure across Dominican Republic job sectors, inspired by [Andrej Karpathy's US Job Market Visualizer](https://karpathy.ai/jobs/). The goal is to scrape DR job portals (RD Trabaja, Aldaba RSS, datos.gob.do), score occupations for AI exposure using LLMs, and render an interactive D3.js treemap.
+RD Job Visualizer is a 7-day challenge organized by **Sanba Development** to visualize AI exposure across Dominican Republic job sectors, inspired by [Andrej Karpathy's US Job Market Visualizer](https://karpathy.ai/jobs/). The goal is to scrape DR job portals (RD Trabaja, Aldaba RSS, datos.gob.do) as data sources, score occupations for AI exposure using LLMs, and render an interactive D3.js treemap. Note: RD Trabaja is one of several data sources — not the identity of the project.
 
 ## Current State
 
