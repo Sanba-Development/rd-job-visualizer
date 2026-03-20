@@ -10,6 +10,24 @@ RD Job Visualizer is a 7-day challenge organized by **Sanba Development** to bui
 
 The project is currently a **single static HTML file** (`index.html`) serving as a recruitment/landing page for the hackathon sprint, plus a research document (`RD Job Visualizer Research.md`) detailing the data architecture plan. There is no build system, package manager, or framework installed yet.
 
+Key documents completed:
+- `DATA_SOURCES.md` — Inventario de 6 fuentes de datos priorizadas con URLs y formatos
+- `SECTOR_TAXONOMY.md` — 12 sectores basados en CIUO-08 adaptados a RD
+- `data/raw/` — Muestras de datos reales descargadas (nóminas CONALECHE, ASDE, CKAN metadata)
+
+## Backlog Management
+
+**`BACKLOG.md` is the single source of truth for task tracking.** Follow these rules:
+
+1. **Always read `BACKLOG.md` at the start of a work session** to understand current state.
+2. **After completing any task**, update `BACKLOG.md` immediately:
+   - Change `[ ]` to `[x]` for completed tasks
+   - Change `[ ]` to `[~]` for in-progress tasks
+   - Add a brief note of what was delivered after the `→`
+3. **When adding new tasks**, add them to the "Tareas Adicionales" section with the next `X.N` number.
+4. **When a blocked task is unblocked**, change `[!]` to `[ ]` and remove the blocker note.
+5. Tasks from `PROJECT_PLAN.md` are mirrored in the backlog — the backlog is the live tracker, the plan is the reference document.
+
 ## Development
 
 Open `index.html` in a browser directly — no build step needed. Any static file server works (`npx serve .`, `python -m http.server`, etc.).
@@ -19,17 +37,27 @@ Open `index.html` in a browser directly — no build step needed. Any static fil
 - **Tailwind CSS** via CDN script tag
 - **Lucide Icons** via unpkg
 - **Plus Jakarta Sans** via Google Fonts
+- **Marked.js** via CDN for rendering markdown overlays
 
 All JS is inline at the bottom of `index.html`.
 
 ## Planned Architecture (from research doc)
 
 The full MVP pipeline follows Karpathy's pattern:
-1. **Ingestion** — Playwright scrapers for RD Trabaja (SPA), RSS parser for Aldaba, CSV/JSON downloads from ONE/MAP via datos.gob.do
-2. **Processing** — BeautifulSoup HTML→Markdown cleanup, normalization to CNO (Clasificación Nacional de Ocupaciones)
-3. **AI Scoring** — LLM-based 0-10 AI exposure scoring per occupation, adapted for DR context (informalidad, brecha digital/lingüística)
-4. **Visualization** — React + D3.js interactive treemap with layers: sector, geography, AI risk
-5. **Storage** — JSON/SQLite for MVP simplicity
+1. **Ingestion** — Playwright scrapers for RD Trabaja (SPA), CSV/JSON downloads from MAP/TSS/ENCFT via datos.gob.do and CKAN API
+2. **Processing** — Normalization to CIUO-08 sectors (see `SECTOR_TAXONOMY.md`)
+3. **Visualization** — D3.js interactive treemap with layers: sector, geography, salary
+4. **Storage** — JSON for MVP simplicity
+
+## Data Sources (see DATA_SOURCES.md for full details)
+
+Priority sources for MVP:
+- **P0:** MAP Nómina Pública (JSON API — currently 403, needs investigation), datos.gob.do CKAN API (working)
+- **P0:** TSS Empleos Cotizantes (CSV)
+- **P1:** ENCFT Banco Central (XLSX)
+- **P2:** RD Trabaja (Playwright scraping), CNZFE Zonas Francas
+
+Discarded: Aldaba (403/auth required), Portal Concursa (down), LinkedIn (paywall).
 
 ## Language
 
