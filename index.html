@@ -74,7 +74,7 @@
                 <span class="gradient-text italic">Empleo en RD</span>
             </h1>
             <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Basándonos en la arquitectura de <strong>Andrej Karpathy</strong>, estamos construyendo el visualizador de empleos definitivo para la República Dominicana. Necesitamos tu talento — sea técnico, creativo, investigativo o estratégico — para llegar a la meta el viernes 27 de marzo.
+                Basándonos en la arquitectura de <strong>Andrej Karpathy</strong>, estamos construyendo un portal interactivo para explorar el mercado laboral dominicano — empleos por sector, salarios, tendencias y más. Necesitamos tu talento — sea técnico, creativo, investigativo o estratégico — para llegar a la meta el viernes 27 de marzo.
             </p>
 
             <!-- Countdown Timer -->
@@ -122,10 +122,10 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-16 md:grid-cols-2 items-center">
                 <div>
-                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">La Misión: El Mapa de Exposición a la IA en RD</h2>
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">La Misión: El Mapa del Empleo en RD</h2>
                     <p class="mt-6 text-lg text-slate-600 leading-relaxed">
-                        Queremos responder: ¿Cómo afectará la IA a un abogado en Santo Domingo frente a un agrónomo en La Vega? 
-                        Usaremos los datos de la <strong>ONE</strong>, <strong>Cámara TIC</strong> y el portal <strong>RD Trabaja</strong> para crear un Treemap interactivo que puntúe cada profesión dominicana.
+                        Queremos construir el portal definitivo para explorar el mercado laboral dominicano: ¿cuántos empleos hay por sector? ¿Cuál es el salario promedio? ¿Dónde están las oportunidades?
+                        Usaremos los datos de la <strong>ONE</strong>, <strong>Cámara TIC</strong> y el portal <strong>RD Trabaja</strong> para crear un Treemap interactivo con la metadata de cada profesión.
                     </p>
                     <ul class="mt-8 space-y-4">
                         <li class="flex items-start gap-3 text-slate-700">
@@ -134,11 +134,11 @@
                         </li>
                         <li class="flex items-start gap-3 text-slate-700">
                             <i data-lucide="check-circle-2" class="mt-1 h-5 w-5 text-green-500 flex-shrink-0"></i>
-                            <span>Scoring de IA usando Claude 3.5 Sonnet</span>
+                            <span>Salario promedio, rango salarial y volumen de empleos por sector</span>
                         </li>
                         <li class="flex items-start gap-3 text-slate-700">
                             <i data-lucide="check-circle-2" class="mt-1 h-5 w-5 text-green-500 flex-shrink-0"></i>
-                            <span>Métricas locales (Sector Informal y Pymes)</span>
+                            <span>Desglose geográfico y por tipo de empresa</span>
                         </li>
                         <li class="flex items-start gap-3 text-slate-700">
                             <i data-lucide="check-circle-2" class="mt-1 h-5 w-5 text-green-500 flex-shrink-0"></i>
@@ -150,10 +150,10 @@
                     <div class="aspect-video rounded-xl bg-slate-900 p-6 flex flex-col shadow-2xl">
                         <div class="h-2 w-1/4 bg-slate-700 rounded mb-6"></div>
                         <div class="flex-1 grid grid-cols-6 grid-rows-4 gap-3">
-                            <div class="col-span-4 row-span-3 bg-blue-500/40 rounded border border-blue-400/30 flex items-center justify-center text-[10px] text-white font-bold p-2 text-center uppercase">Servicios Administrativos (8.9 Score)</div>
-                            <div class="col-span-2 row-span-2 bg-indigo-500/30 rounded border border-indigo-400/30"></div>
+                            <div class="col-span-4 row-span-3 bg-blue-500/40 rounded border border-blue-400/30 flex items-center justify-center text-[10px] text-white font-bold p-2 text-center uppercase">Servicios Administrativos (12,400 empleos)</div>
+                            <div class="col-span-2 row-span-2 bg-indigo-500/30 rounded border border-indigo-400/30 flex items-center justify-center text-[10px] text-white font-bold p-2 text-center uppercase">TIC (RD$85k avg)</div>
                             <div class="col-span-2 bg-slate-800 rounded"></div>
-                            <div class="col-span-6 bg-emerald-500/40 rounded border border-emerald-400/30 flex items-center justify-center text-[10px] text-white font-bold uppercase">Turismo & Hostelería (2.4 Score)</div>
+                            <div class="col-span-6 bg-emerald-500/40 rounded border border-emerald-400/30 flex items-center justify-center text-[10px] text-white font-bold uppercase">Turismo & Hostelería (8,200 empleos)</div>
                         </div>
                     </div>
                     <div class="mt-6 text-center text-xs font-mono text-slate-500 uppercase tracking-[0.2em]">
@@ -354,11 +354,11 @@
             </div>
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Análisis Técnico del Mercado Laboral RD</h2>
             <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Investigación profunda sobre las fuentes de datos de empleo dominicanas, obstáculos institucionales y la arquitectura propuesta para replicar el modelo de Karpathy en el contexto local.
+                Investigación profunda sobre las fuentes de datos de empleo dominicanas, obstáculos institucionales y la arquitectura propuesta para visualizar el mercado laboral al estilo Karpathy.
             </p>
             <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm text-slate-500">
                 <span class="flex items-center gap-1.5"><i data-lucide="database" class="h-4 w-4"></i> Fuentes de datos ONE, MAP, TSS</span>
-                <span class="flex items-center gap-1.5"><i data-lucide="bot" class="h-4 w-4"></i> Pipeline de IA scoring</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="briefcase" class="h-4 w-4"></i> Empleos, salarios y sectores</span>
                 <span class="flex items-center gap-1.5"><i data-lucide="layout" class="h-4 w-4"></i> Arquitectura del MVP</span>
             </div>
             <button onclick="openResearchOverlay()" class="mt-10 inline-flex items-center gap-3 rounded-2xl bg-indigo-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95">
