@@ -2,7 +2,7 @@
 
 > Fuente de verdad para tareas pendientes, en progreso y completadas.
 > Se actualiza cada vez que se ejecuta o añade una tarea.
-> Última actualización: 20 de marzo de 2026
+> Última actualización: 20 de marzo de 2026 (X.1 completado)
 
 ---
 
@@ -87,9 +87,9 @@
 
 ## Tareas Adicionales (Sin Día Asignado)
 
-- [ ] **X.1** — **Participant Intake Skill** — Crear un skill de Claude Code que al recibir información de un participante (nombre, LinkedIn, GitHub, website, línea de trabajo, puesto actual, empresas, etc.) lo registre en una base de datos de participantes (`data/participants.json`). Si ya existe, actualizarlo. Debe poder extraer info de perfiles de LinkedIn u otras fuentes.
-  - _Participantes conocidos pendientes de intake:_
-    - **Erick Santana** — LinkedIn: https://www.linkedin.com/in/ericksantana/ (resto TBD)
-    - **Jonathan Ovalley** — Interesado, pendiente email/GitHub/LinkedIn
+- [x] **X.1** — **Participant Intake Skill** — Skill `/participant-intake` creado en `.claude/commands/participant-intake.md`. Base de datos en `data/participants.json`. Uso: `/participant-intake <info del participante>`.
+  - _Participantes registrados:_
+    - **Erick Santana** — `confirmed`, Gestión de Proyecto. Perfil completo con foto, headline, skills, email.
+    - **Jonathan Ovalley** — `interested`, rol pendiente. (email, GitHub, LinkedIn: TBD)
 
-- [ ] **X.2** — **Sección "Equipo" en la landing** — Agregar segmento en `index.html` para mostrar los participantes del challenge: foto, nombre, rol asignado, breve bio, y links a socials (LinkedIn, GitHub, website). Datos consumidos desde `data/participants.json`.
+- [x] **X.2** — **Sección "Equipo" en la landing** — Sección dinámica agregada entre Roles y Tech Stack. Carga `data/participants.json`, muestra foto/iniciales, nombre, rol, bio, skills, socials. Nav link "Equipo" agregado.

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "erick-santana",
+    "name": "Erick Santana",
+    "headline": "Senior Product & Digital Transformation Leader | Fintech/Crypto/Payments | AI-Enabled Strategy & Delivery",
+    "current_role": "Product Development Consultant",
+    "current_company": "BairesDev",
+    "location": "Punta Cana, República Dominicana",
+    "bio": "Líder de producto y transformación digital con 15+ años de experiencia en fintech, datos y plataformas API. Organizador del challenge RD Job Visualizer por Sanba Development.",
+    "challenge_role": "Gestión de Proyecto",
+    "status": "confirmed",
+    "skills": ["Product Management", "Agile/Scrum", "Digital Transformation", "API Platforms", "Data Strategy", "Fintech", "AI Tooling", "Cross-functional Leadership"],
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/ericksantana/",
+      "github": null,
+      "twitter": null,
+      "website": null,
+      "email": "erickesteban.santanadiaz@gmail.com"
+    },
+    "photo_url": "assets/team/erick-santana.png",
+    "joined_at": "2026-03-20",
+    "updated_at": "2026-03-20"
+  },
+  {
+    "id": "jonathan-ovalley",
+    "name": "Jonathan Ovalley",
+    "headline": null,
+    "current_role": null,
+    "current_company": null,
+    "location": null,
+    "bio": "Aporte en analítica, diseño y desarrollo con IA, integraciones y evaluación del mercado.",
+    "challenge_role": null,
+    "status": "interested",
+    "skills": ["analítica", "diseño", "desarrollo con IA", "integraciones", "evaluación de mercado"],
+    "socials": {
+      "linkedin": null,
+      "github": null,
+      "twitter": null,
+      "website": null,
+      "email": null
+    },
+    "photo_url": null,
+    "joined_at": "2026-03-20",
+    "updated_at": "2026-03-20"
+  }
+]
