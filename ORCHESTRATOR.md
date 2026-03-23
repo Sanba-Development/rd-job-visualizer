@@ -2,7 +2,7 @@
 
 > This file is maintained by the orchestrator thread. It preserves architecture,
 > conventions, decisions, and risks so context survives compaction.
-> Last updated: 2026-03-20
+> Last updated: 2026-03-23 (session-save)
 
 ---
 
@@ -12,12 +12,20 @@
 
 ```
 index.html              ← Main entry. 78KB. All JS inline. Spanish UI.
+explorer.html           ← Interactive Data Explorer (PapaParse CSV preview, 15 datasets)
 promo.html              ← Promotional image generator (Instagram/WhatsApp)
 data/
   participants.json     ← Team registry (source of truth for Equipo section)
-  raw/                  ← Sample government payroll data (CSV/JSON, ~2.7MB)
-assets/team/            ← Team member photos (erick-santana.png)
-.claude/commands/       ← Custom slash commands (participant-intake.md)
+  raw/                  ← Government payroll/employment data (15 files, 436k+ rows, ~25MB)
+  raw/MANIFEST.md       ← Inventory of all downloaded files with metadata
+  processed/            ← (empty) For normalized output
+  schemas/              ← normalized-job.schema.json + README.md
+scripts/
+  scrapers/             ← (empty) For Playwright/web scrapers
+  processors/           ← (empty) For data normalization scripts
+src/                    ← (empty) For frontend source code (React/D3.js)
+assets/team/            ← Team member photos (erick-santana.png, jonathan-ovalley.png)
+.claude/commands/       ← Custom slash commands (participant-intake.md, session-save.md)
 .vercel/                ← Vercel project config (prj_vDKsKAllXVHViCpF1NQvlAhonjZC)
 ```
 
@@ -40,6 +48,7 @@ assets/team/            ← Team member photos (erick-santana.png)
 | Tailwind CSS (`cdn.tailwindcss.com`) | Utility CSS |
 | Lucide Icons (`unpkg.com/lucide@latest`) | Icons |
 | Marked.js (`cdn.jsdelivr.net/npm/marked/marked.min.js`) | Markdown rendering |
+| PapaParse (`cdn.jsdelivr.net/npm/papaparse@5.4.1`) | CSV parsing (explorer.html) |
 | Plus Jakarta Sans (Google Fonts) | Typography |
 
 ---
@@ -97,10 +106,19 @@ All overlays follow same pattern:
 }
 ```
 
-### Raw Data Samples (in data/raw/)
-- `nomina-conaleche-2026.csv` — 796 rows. Cols: Nº, Nombre, Departamento, Cargo, Designacion, Genero, Sueldo Bruto, Mes, Año
-- `nomina-asde-2020-2023.csv` — 11,460 rows. Municipality payroll with monthly salary breakdown.
-- `datos-gob-ckan-nomina-search.json` — CKAN API metadata for 167 government payroll datasets.
+### Raw Data (in data/raw/ — see MANIFEST.md for full details)
+**15 files, 436,000+ rows total.** Key datasets:
+- `nomina-propeep-2018-2025.csv` — 90,921 rows (PROPEEP social programs)
+- `nomina-mivhed-2022-2026.csv` — 78,828 rows (Min. Vivienda)
+- `nomina-mapre-2017-2026.csv` — 68,471 rows (Min. Adm. Presidencia)
+- `retencion-isr-salarios-dgii-2017-2025.csv` — 174,042 rows (DGII salary ISR)
+- `empleos-cotizantes-tss-2003-2026.csv` — 272 rows (TSS 23-year employment series)
+- `salario-minimo-hacienda-2000-2025.csv` — 2,862 rows (minimum wage by sector)
+- Plus: CONALECHE, ASDE, INESDYC, CORAABO, zonas francas, CKAN metadata
+
+### Normalized Schema (data/schemas/)
+- `normalized-job.schema.json` — JSON Schema draft-07, 22 fields, 7 required
+- `README.md` — Spanish docs with field-by-field mapping from each source
 
 ---
 
@@ -127,6 +145,11 @@ All overlays follow same pattern:
 | BACKLOG.md is live tracker | 2026-03-20 | PROJECT_PLAN.md is reference, BACKLOG.md is the working tracker |
 | participants.json as team DB | 2026-03-20 | Simple JSON, no backend needed for MVP |
 | PR workflow preferred | 2026-03-20 | User prefers PRs over direct push to master |
+| Data transparency via explorer | 2026-03-22 | User values making raw data browsable publicly — created explorer.html |
+| Orchestrator mode persisted | 2026-03-23 | Added to CLAUDE.md so new sessions auto-start in orchestrator mode |
+| /session-save skill created | 2026-03-23 | Captures session learnings before closing; updates ORCHESTRATOR.md + memories |
+| Small changes direct to master | 2026-03-22 | Config/participant updates go direct; features go via PR |
+| CSV delimiter varies | 2026-03-23 | Many govt CSVs use semicolons, not commas. PapaParse auto-detects. |
 
 ---
 
@@ -141,23 +164,31 @@ All overlays follow same pattern:
 
 ---
 
-## Current State (as of 2026-03-20)
+## Current State (as of 2026-03-23)
 
 ### Completed
 - [x] 0.3 — Plan + research shared (overlays on landing)
 - [x] 0.4 — Data sources inventoried (DATA_SOURCES.md + samples downloaded)
 - [x] 0.5 — Sector taxonomy defined (SECTOR_TAXONOMY.md, 12 sectors)
-- [x] X.1 — Participant intake skill (`/participant-intake`)
+- [x] X.1 — Participant intake skill + participant DB
 - [x] X.2 — Team section on landing (dynamic from participants.json)
+- [x] 1.1 — Downloaded 15 datasets (436k+ rows) from datos.gob.do CKAN
+- [x] 1.4 — Normalized schema (22 fields, JSON Schema draft-07)
+- [x] 1.6 — Repo structure (scripts/, src/, data/processed/, data/schemas/)
+- [x] 1.1b — Data Explorer (explorer.html) with interactive CSV preview
 
 ### Blocked
-- [!] 0.1 — Confirm participants (external dependency)
-- [!] 0.2 — Create group (needs confirmed participants)
+- [!] 0.1 — Confirm participants (Jonathan confirmed, need more)
+- [!] 0.2 — Create group (needs more participants)
 
-### Next Up (Day 1 — Mon Mar 23)
-- 1.1 — Download datasets from datos.gob.do
-- 1.4 — Define normalized data schema
-- 1.6 — Setup repo structure (/data, /scripts, /src)
+### Discarded
+- 1.3 — Aldaba RSS (no API, returns 403)
+
+### Next Up
+- 1.2 — Explore RD Trabaja DOM/endpoints
+- 1.5 — Wireframe del treemap
+- 2.3 — Script de normalización (raw → schema)
+- 2.5 — Prototipo treemap con datos dummy (D3.js)
 
 ---
 

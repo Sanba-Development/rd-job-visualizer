@@ -2,7 +2,7 @@
 
 > Fuente de verdad para tareas pendientes, en progreso y completadas.
 > Se actualiza cada vez que se ejecuta o añade una tarea.
-> Última actualización: 20 de marzo de 2026 (X.1 completado)
+> Última actualización: 23 de marzo de 2026 (session-save: 1.1, 1.4, 1.6, 1.1b completados)
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## Día 0 — Jueves 20 de Marzo (Pre-Sprint)
 
-- [!] **0.1** — Confirmar participantes y asignar roles → _Bloqueado: depende de confirmaciones externas. Jonathan Ovalley interesado (pendiente datos)._
+- [!] **0.1** — Confirmar participantes y asignar roles → _Jonathan confirmado (2h/día). Necesitamos más participantes._
 - [!] **0.2** — Crear grupo de trabajo (WhatsApp/Discord) → _Bloqueado: necesita participantes confirmados._
 - [x] **0.3** — Compartir plan e investigación → Plan publicado en landing con overlay.
 - [x] **0.4** — Inventariar fuentes de datos → `DATA_SOURCES.md` con 6 fuentes priorizadas + muestras en `data/raw/`.

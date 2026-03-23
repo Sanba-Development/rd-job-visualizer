@@ -10,10 +10,13 @@ RD Job Visualizer is a 7-day challenge organized by **Sanba Development** to bui
 
 The project is currently a **single static HTML file** (`index.html`) serving as a recruitment/landing page for the hackathon sprint, plus a research document (`RD Job Visualizer Research.md`) detailing the data architecture plan. There is no build system, package manager, or framework installed yet.
 
-Key documents completed:
+Key documents and artifacts:
 - `DATA_SOURCES.md` — Inventario de 6 fuentes de datos priorizadas con URLs y formatos
 - `SECTOR_TAXONOMY.md` — 12 sectores basados en CIUO-08 adaptados a RD
-- `data/raw/` — Muestras de datos reales descargadas (nóminas CONALECHE, ASDE, CKAN metadata)
+- `data/raw/` — 15 datasets gubernamentales (436k+ filas). Ver `data/raw/MANIFEST.md`.
+- `data/schemas/normalized-job.schema.json` — Schema normalizado (22 campos, JSON Schema draft-07)
+- `explorer.html` — Data Explorer interactivo para navegar los datasets
+- `ORCHESTRATOR.md` — Living architecture summary (read this first in new sessions)
 
 ## Working Mode — Orchestrator
 
