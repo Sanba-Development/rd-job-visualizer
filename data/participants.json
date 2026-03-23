@@ -30,17 +30,18 @@
     "location": null,
     "bio": "Aporte en analítica, diseño y desarrollo con IA, integraciones y evaluación del mercado.",
     "challenge_role": null,
-    "status": "interested",
+    "status": "confirmed",
+    "availability": "2 horas/día",
     "skills": ["analítica", "diseño", "desarrollo con IA", "integraciones", "evaluación de mercado"],
     "socials": {
       "linkedin": null,
-      "github": null,
+      "github": "jovalleyz",
       "twitter": null,
       "website": null,
-      "email": null
+      "email": "jonathanvallezamora@gmail.com"
     },
-    "photo_url": null,
+    "photo_url": "assets/team/jonathan-ovalley.png",
     "joined_at": "2026-03-20",
-    "updated_at": "2026-03-20"
+    "updated_at": "2026-03-22"
   }
 ]

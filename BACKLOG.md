@@ -90,6 +90,6 @@
 - [x] **X.1** — **Participant Intake Skill** — Skill `/participant-intake` creado en `.claude/commands/participant-intake.md`. Base de datos en `data/participants.json`. Uso: `/participant-intake <info del participante>`.
   - _Participantes registrados:_
     - **Erick Santana** — `confirmed`, Gestión de Proyecto. Perfil completo con foto, headline, skills, email.
-    - **Jonathan Ovalley** — `interested`, rol pendiente. (email, GitHub, LinkedIn: TBD)
+    - **Jonathan Ovalley** — `confirmed`, 2h/día. GitHub: jovalleyz, email: jonathanvallezamora@gmail.com, foto guardada.
 
 - [x] **X.2** — **Sección "Equipo" en la landing** — Sección dinámica agregada entre Roles y Tech Stack. Carga `data/participants.json`, muestra foto/iniciales, nombre, rol, bio, skills, socials. Nav link "Equipo" agregado.
