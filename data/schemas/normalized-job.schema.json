@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sanba.dev/rd-job-visualizer/schemas/normalized-job.schema.json",
+  "title": "Registro de Empleo Normalizado",
+  "description": "Schema unificado para todos los registros de empleo/puesto del RD Job Visualizer. Todas las fuentes (MAP, TSS, ENCFT, CKAN, RD Trabaja, CNZFE) se normalizan a este formato.",
+  "type": "object",
+  "required": [
+    "id",
+    "source",
+    "sector",
+    "job_title",
+    "employment_type",
+    "period_year",
+    "extracted_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Identificador único del registro. Formato: {source}_{source_record_id|hash}",
+      "pattern": "^(map|tss|encft|ckan|rdtrabaja|cnzfe)_.+$",
+      "examples": ["map_00123_2025_01", "ckan_conaleche_0063"]
+    },
+    "source": {
+      "type": "string",
+      "description": "Fuente de datos de origen.",
+      "enum": ["map", "tss", "encft", "ckan", "rdtrabaja", "cnzfe"]
+    },
+    "source_record_id": {
+      "type": ["string", "null"],
+      "description": "Identificador original del registro en la fuente. Ej: número de empleado en nómina MAP, ID de vacante en RD Trabaja.",
+      "default": null
+    },
+    "sector": {
+      "type": "string",
+      "description": "Sector económico según la taxonomía de 12 sectores del proyecto.",
+      "enum": [
+        "administracion_publica_y_defensa",
+        "turismo_y_hosteleria",
+        "comercio",
+        "construccion",
+        "manufactura_y_zonas_francas",
+        "tecnologia_y_telecomunicaciones",
+        "salud",
+        "educacion",
+        "servicios_financieros",
+        "transporte_y_logistica",
+        "agricultura_y_agroindustria",
+        "otros_servicios"
+      ]
+    },
+    "job_title": {
+      "type": "string",
+      "description": "Título del puesto normalizado (lowercase, sin acentos extra, trimmed). Ej: 'director ejecutivo', 'analista de sistemas'.",
+      "minLength": 1
+    },
+    "institution": {
+      "type": ["string", "null"],
+      "description": "Nombre de la institución o empresa empleadora. Para MAP: nombre de la institución pública. Para RD Trabaja: empresa que publica la vacante. Para CKAN: institución del dataset.",
+      "default": null
+    },
+    "salary_gross": {
+      "type": ["number", "null"],
+      "description": "Salario bruto mensual en DOP (pesos dominicanos). Null si la fuente no provee este dato.",
+      "minimum": 0,
+      "default": null
+    },
+    "salary_net": {
+      "type": ["number", "null"],
+      "description": "Salario neto mensual en DOP. Null si la fuente no provee este dato.",
+      "minimum": 0,
+      "default": null
+    },
+    "salary_min": {
+      "type": ["number", "null"],
+      "description": "Salario mínimo del rango publicado (para vacantes con rango salarial). En DOP mensual.",
+      "minimum": 0,
+      "default": null
+    },
+    "salary_max": {
+      "type": ["number", "null"],
+      "description": "Salario máximo del rango publicado. En DOP mensual.",
+      "minimum": 0,
+      "default": null
+    },
+    "employee_count": {
+      "type": ["integer", "null"],
+      "description": "Cantidad de empleos que representa este registro. Para TSS/ENCFT que reportan conteos agregados. 1 por defecto para registros individuales (MAP, CKAN).",
+      "minimum": 1,
+      "default": 1
+    },
+    "location_province": {
+      "type": ["string", "null"],
+      "description": "Provincia de RD donde se ubica el empleo. Ej: 'Distrito Nacional', 'Santiago', 'La Altagracia'.",
+      "default": null
+    },
+    "location_city": {
+      "type": ["string", "null"],
+      "description": "Ciudad o municipio. Ej: 'Santo Domingo', 'Santiago de los Caballeros'.",
+      "default": null
+    },
+    "employment_type": {
+      "type": "string",
+      "description": "Tipo de empleo según el sector empleador.",
+      "enum": ["publico", "privado", "zona_franca"]
+    },
+    "gender": {
+      "type": ["string", "null"],
+      "description": "Género del empleado si está disponible en la fuente.",
+      "enum": ["M", "F", null],
+      "default": null
+    },
+    "period_year": {
+      "type": "integer",
+      "description": "Año del período al que corresponde el dato.",
+      "minimum": 2000,
+      "maximum": 2030
+    },
+    "period_month": {
+      "type": ["integer", "null"],
+      "description": "Mes del período (1-12). Null para datos anuales (CNZFE, ENCFT trimestral).",
+      "minimum": 1,
+      "maximum": 12,
+      "default": null
+    },
+    "period_quarter": {
+      "type": ["integer", "null"],
+      "description": "Trimestre del período (1-4). Útil para datos ENCFT que son trimestrales.",
+      "minimum": 1,
+      "maximum": 4,
+      "default": null
+    },
+    "raw_department": {
+      "type": ["string", "null"],
+      "description": "Departamento/área original tal como aparece en la fuente, sin normalizar. Ej: 'Dirección Ejecutiva', 'Departamento de Recursos Humanos'.",
+      "default": null
+    },
+    "raw_title": {
+      "type": ["string", "null"],
+      "description": "Título del puesto original tal como aparece en la fuente, antes de normalización. Ej: 'DIRECTOR EJECUTIVO', 'Encargada de Relaciones Publicas Disenadora Grafica'.",
+      "default": null
+    },
+    "raw_institution": {
+      "type": ["string", "null"],
+      "description": "Nombre de la institución tal como aparece en la fuente original, sin normalizar.",
+      "default": null
+    },
+    "extracted_at": {
+      "type": "string",
+      "description": "Timestamp ISO 8601 de cuando se extrajo el dato de la fuente.",
+      "format": "date-time",
+      "examples": ["2026-03-22T14:30:00Z"]
+    },
+    "metadata": {
+      "type": ["object", "null"],
+      "description": "Campos adicionales específicos de cada fuente que no encajan en el schema principal. Ej: tipo_empleado de MAP, tasa_informalidad de ENCFT.",
+      "default": null,
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

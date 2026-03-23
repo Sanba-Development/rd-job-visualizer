@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador de Datos | RD Job Visualizer</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' x2='18' y1='20' y2='10'/%3E%3Cline x1='12' x2='12' y1='20' y2='4'/%3E%3Cline x1='6' x2='6' y1='20' y2='14'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .data-table th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-700">
+
+    <!-- Navegacion -->
+    <nav class="sticky top-0 z-50 border-b border-slate-200 glass">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+            <a href="index.html" class="flex items-center gap-2 font-bold text-blue-700 hover:text-blue-800 transition-colors">
+                <i data-lucide="bar-chart-3" class="h-6 w-6"></i>
+                <span class="text-xl tracking-tight">RD Job Visualizer</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <span class="text-sm font-semibold text-slate-500 hidden sm:inline">Explorador de Datos</span>
+                <a href="index.html" class="rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2">
+                    <i data-lucide="arrow-left" class="h-4 w-4"></i>
+                    <span class="hidden sm:inline">Volver</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="px-6 pt-12 pb-8">
+        <div class="mx-auto max-w-7xl text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+                Explorador de <span class="gradient-text">Datos Abiertos</span>
+            </h1>
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+                Navega los datasets gubernamentales descargados de datos.gob.do y otras fuentes oficiales de la Republica Dominicana.
+            </p>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="px-6 pb-8">
+        <div class="mx-auto max-w-7xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
+                    <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
+                        <i data-lucide="database" class="h-5 w-5"></i>
+                    </div>
+                    <p class="text-3xl font-extrabold text-slate-900">15</p>
+                    <p class="text-sm text-slate-500 mt-1">Datasets totales</p>
+                </div>
+                <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
+                    <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
+                        <i data-lucide="rows-3" class="h-5 w-5"></i>
+                    </div>
+                    <p class="text-3xl font-extrabold text-slate-900">436K+</p>
+                    <p class="text-sm text-slate-500 mt-1">Filas de datos</p>
+                </div>
+                <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
+                    <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
+                        <i data-lucide="building-2" class="h-5 w-5"></i>
+                    </div>
+                    <p class="text-3xl font-extrabold text-slate-900">11</p>
+                    <p class="text-sm text-slate-500 mt-1">Instituciones fuente</p>
+                </div>
+                <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
+                    <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
+                        <i data-lucide="calendar-range" class="h-5 w-5"></i>
+                    </div>
+                    <p class="text-3xl font-extrabold text-slate-900">2000-2026</p>
+                    <p class="text-sm text-slate-500 mt-1">Periodo cubierto</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search & Filter -->
+    <section class="px-6 pb-6" id="search-section">
+        <div class="mx-auto max-w-7xl">
+            <div class="relative">
+                <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400"></i>
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Buscar datasets por nombre, institucion o tipo..."
+                    class="w-full rounded-xl border border-slate-200 bg-white py-3 pl-12 pr-4 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                >
+            </div>
+        </div>
+    </section>
+
+    <!-- Dataset Grid -->
+    <section class="px-6 pb-16" id="grid-section">
+        <div class="mx-auto max-w-7xl">
+            <div id="dataset-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Cards rendered by JS -->
+            </div>
+            <p id="no-results" class="hidden text-center text-slate-400 py-12 text-lg">No se encontraron datasets con ese criterio.</p>
+        </div>
+    </section>
+
+    <!-- Data Preview Panel (hidden by default) -->
+    <section class="px-6 pb-16 hidden" id="preview-section">
+        <div class="mx-auto max-w-7xl">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <!-- Preview Header -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 border-b border-slate-100">
+                    <div>
+                        <h2 id="preview-title" class="text-xl font-bold text-slate-900"></h2>
+                        <p id="preview-meta" class="text-sm text-slate-500 mt-1"></p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span id="preview-row-count" class="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full"></span>
+                        <button onclick="closePreview()" class="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-200 transition-colors flex items-center gap-2">
+                            <i data-lucide="x" class="h-4 w-4"></i>
+                            Cerrar preview
+                        </button>
+                    </div>
+                </div>
+                <!-- Loading indicator -->
+                <div id="preview-loading" class="hidden p-12 text-center">
+                    <div class="inline-flex items-center gap-3 text-slate-500">
+                        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                        </svg>
+                        <span>Cargando datos...</span>
+                    </div>
+                </div>
+                <!-- Error message -->
+                <div id="preview-error" class="hidden p-12 text-center">
+                    <div class="inline-flex flex-col items-center gap-2 text-red-500">
+                        <i data-lucide="alert-circle" class="h-8 w-8"></i>
+                        <p class="font-semibold">Error al cargar el archivo</p>
+                        <p id="preview-error-msg" class="text-sm text-slate-500"></p>
+                    </div>
+                </div>
+                <!-- Table container -->
+                <div id="preview-table-wrapper" class="overflow-x-auto max-h-[70vh] overflow-y-auto">
+                    <table class="data-table w-full text-sm">
+                        <thead id="preview-thead" class="bg-slate-50 text-left"></thead>
+                        <tbody id="preview-tbody" class="divide-y divide-slate-100"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 px-6 border-t border-slate-200">
+        <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2 font-bold text-slate-400">
+                <i data-lucide="bar-chart-3" class="h-5 w-5"></i>
+                <span>RD Job Visualizer</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1 transition-colors">
+                    <i data-lucide="arrow-left" class="h-4 w-4"></i>
+                    Volver a la pagina principal
+                </a>
+            </div>
+            <p class="text-sm text-slate-400 text-center md:text-right">
+                Un proyecto de <strong class="text-slate-700">Sanba Development</strong> | Datos abiertos de RD
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== Dataset Definitions ==========
+        const datasets = [
+            {
+                id: 'nomina-mapre',
+                name: 'Nomina MAPRE',
+                description: 'Nomina del Ministerio Administrativo de la Presidencia',
+                institution: 'MAPRE',
+                rows: 68471,
+                dateRange: '2017-2026',
+                file: 'data/raw/nomina-mapre-2017-2026.csv',
+                format: 'CSV',
+                columns: 'Ano, Mes, Nombre, Posicion, Salario',
+                category: 'nomina'
+            },
+            {
+                id: 'nomina-mivhed',
+                name: 'Nomina MIVHED',
+                description: 'Nomina del Ministerio de la Vivienda, Habitat y Edificaciones',
+                institution: 'MIVHED',
+                rows: 78828,
+                dateRange: '2022-2026',
+                file: 'data/raw/nomina-mivhed-2022-2026.csv',
+                format: 'CSV',
+                columns: 'NOMBRE, PUESTO, SUELDO, MES, ANO',
+                category: 'nomina'
+            },
+            {
+                id: 'nomina-propeep',
+                name: 'Nomina PROPEEP',
+                description: 'Nomina de la Dir. Gral. de Proyectos Estrategicos y Especiales',
+                institution: 'PROPEEP',
+                rows: 90921,
+                dateRange: '2018-2025',
+                file: 'data/raw/nomina-propeep-2018-2025.csv',
+                format: 'CSV',
+                columns: 'Nombre, Funcion, Honorarios, Movilidad, Sueldo Neto, Nomina, Tipo Nomina, Mes, Ano',
+                category: 'nomina'
+            },
+            {
+                id: 'nomina-asde',
+                name: 'Nomina ASDE',
+                description: 'Nomina del Ayuntamiento Santo Domingo Este',
+                institution: 'ASDE',
+                rows: 11460,
+                dateRange: '2020-2023',
+                file: 'data/raw/nomina-asde-2020-2023.csv',
+                format: 'CSV',
+                columns: 'Campos mixtos de nomina',
+                category: 'nomina'
+            },
+            {
+                id: 'nomina-conaleche',
+                name: 'Nomina CONALECHE',
+                description: 'Nomina del Consejo Nacional de la Industria Lechera',
+                institution: 'CONALECHE',
+                rows: 796,
+                dateRange: '2026',
+                file: 'data/raw/nomina-conaleche-2026.csv',
+                format: 'CSV',
+                columns: 'Nombre, Departamento, Cargo, Genero, Sueldo Bruto, Mes, Ano',
+                category: 'nomina'
+            },
+            {
+                id: 'nomina-coraabo',
+                name: 'Nomina CORAABO',
+                description: 'Nomina de la Corp. Acueducto y Alcantarillado Boca Chica',
+                institution: 'CORAABO',
+                rows: 1654,
+                dateRange: '2021-2025',
+                file: 'data/raw/nomina-coraabo-2021-2025.csv',
+                format: 'CSV',
+                columns: 'Fecha, Nombre, Cargo, Genero, Ingreso Bruto, Neto',
+                category: 'nomina'
+            },
+            {
+                id: 'nomina-inesdyc',
+                name: 'Nomina INESDYC',
+                description: 'Nomina del Instituto de Educacion Superior en Formacion Diplomatica',
+                institution: 'INESDYC',
+                rows: 3910,
+                dateRange: '2023-2026',
+                file: 'data/raw/nomina-inesdyc-2023-2026.csv',
+                format: 'CSV',
+                columns: 'Nombre, Departamento, Funcion, Estatus, Sueldo Bruto, Mes, Ano',
+                category: 'nomina'
+            },
+            {
+                id: 'empleos-tss',
+                name: 'Empleos Cotizantes TSS',
+                description: 'Conteos mensuales de empleo por sector (privado, publico centralizado, descentralizado)',
+                institution: 'TSS',
+                rows: 272,
+                dateRange: '2003-2026',
+                file: 'data/raw/empleos-cotizantes-tss-2003-2026.csv',
+                format: 'CSV',
+                columns: 'MES, ANO, EMPRESA_PRIVADA, PUBLICA_CENTRALIZADA, PUBLICA_DESCENTRALIZADA, TOTAL',
+                category: 'estadisticas'
+            },
+            {
+                id: 'empleadores-tss',
+                name: 'Empleadores Cotizantes TSS',
+                description: 'Conteo mensual de empleadores cotizantes',
+                institution: 'TSS',
+                rows: 272,
+                dateRange: '2003-2026',
+                file: 'data/raw/empleadores-cotizantes-tss-2003-2026.csv',
+                format: 'CSV',
+                columns: 'MES, ANO, EMPLEADORES_COTIZANTES',
+                category: 'estadisticas'
+            },
+            {
+                id: 'isr-dgii',
+                name: 'Retencion ISR Salarios DGII',
+                description: 'Tabla de retencion ISR de salarios de la Direccion General de Impuestos Internos',
+                institution: 'DGII',
+                rows: 174042,
+                dateRange: '2017-2025',
+                file: 'data/raw/retencion-isr-salarios-dgii-2017-2025.csv',
+                format: 'CSV',
+                columns: 'ANO FISCAL, SALARIO MENSUAL, RETENCION MENSUAL',
+                category: 'estadisticas'
+            },
+            {
+                id: 'salario-minimo-hacienda',
+                name: 'Salario Minimo (Hacienda)',
+                description: 'Salario minimo promedio por sectores segun Ministerio de Hacienda',
+                institution: 'Hacienda',
+                rows: 2862,
+                dateRange: '2000-2025',
+                file: 'data/raw/salario-minimo-hacienda-2000-2025.csv',
+                format: 'CSV',
+                columns: 'SECTOR, TAMANO EMPRESA, AREAS, MES, ANO, SALARIO MINIMO',
+                category: 'estadisticas'
+            },
+            {
+                id: 'salario-minimo-mepyd',
+                name: 'Salario Minimo (MEPyD)',
+                description: 'Salario minimo promedio por sectores segun MEPyD',
+                institution: 'MEPyD',
+                rows: 2592,
+                dateRange: '2000-2023',
+                file: 'data/raw/salario-minimo-mepyd-2000-2023.csv',
+                format: 'CSV',
+                columns: 'SECTOR, TAMANO EMPRESA, AREAS, MES, ANO, SALARIO MINIMO',
+                category: 'estadisticas'
+            },
+            {
+                id: 'zf-textil',
+                name: 'Zonas Francas - Textil',
+                description: 'Evolucion del sector textil en Zonas Francas',
+                institution: 'CNZFE',
+                rows: 21,
+                dateRange: '2003-2023',
+                file: 'data/raw/zonas-francas-textil-2003-2023.csv',
+                format: 'CSV',
+                columns: 'Anos, Empresas, Empleos, Export Millones US, Salario Prom Tecnicos, Salario Prom Operarios',
+                category: 'zonas-francas'
+            },
+            {
+                id: 'zf-electronicos',
+                name: 'Zonas Francas - Electronicos',
+                description: 'Evolucion del sector electricos y electronicos en Zonas Francas',
+                institution: 'CNZFE',
+                rows: 21,
+                dateRange: '2003-2023',
+                file: 'data/raw/zonas-francas-electronicos-2003-2023.csv',
+                format: 'CSV',
+                columns: 'Anos, Empresas, Empleos, Export Millones US, Salario Prom Tecnicos, Salario Prom Operarios',
+                category: 'zonas-francas'
+            },
+            {
+                id: 'ckan-metadata',
+                name: 'Metadatos CKAN (datos.gob.do)',
+                description: '167 registros de metadatos de datasets de nomina del portal CKAN',
+                institution: 'datos.gob.do',
+                rows: 167,
+                dateRange: '2026',
+                file: 'data/raw/datos-gob-ckan-nomina-search.json',
+                format: 'JSON',
+                columns: 'Metadatos de paquetes CKAN',
+                category: 'metadata'
+            }
+        ];
+
+        // ========== Category Labels ==========
+        const categoryLabels = {
+            'nomina': 'Nomina',
+            'estadisticas': 'Estadisticas',
+            'zonas-francas': 'Zonas Francas',
+            'metadata': 'Metadatos'
+        };
+
+        const categoryColors = {
+            'nomina': 'bg-blue-100 text-blue-700',
+            'estadisticas': 'bg-emerald-100 text-emerald-700',
+            'zonas-francas': 'bg-amber-100 text-amber-700',
+            'metadata': 'bg-purple-100 text-purple-700'
+        };
+
+        // ========== Format Row Count ==========
+        function formatNumber(n) {
+            return n.toLocaleString('es-DO');
+        }
+
+        // ========== Render Dataset Cards ==========
+        function renderCards(filter = '') {
+            const grid = document.getElementById('dataset-grid');
+            const noResults = document.getElementById('no-results');
+            const lowerFilter = filter.toLowerCase();
+
+            const filtered = datasets.filter(d => {
+                if (!lowerFilter) return true;
+                return (
+                    d.name.toLowerCase().includes(lowerFilter) ||
+                    d.institution.toLowerCase().includes(lowerFilter) ||
+                    d.description.toLowerCase().includes(lowerFilter) ||
+                    d.category.toLowerCase().includes(lowerFilter) ||
+                    d.format.toLowerCase().includes(lowerFilter) ||
+                    (categoryLabels[d.category] || '').toLowerCase().includes(lowerFilter)
+                );
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            grid.innerHTML = filtered.map(d => `
+                <div class="group rounded-2xl bg-white border border-slate-200 p-6 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-200">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${categoryColors[d.category] || 'bg-slate-100 text-slate-600'}">
+                            ${categoryLabels[d.category] || d.category}
+                        </span>
+                        <span class="inline-flex items-center rounded-md px-2 py-0.5 text-xs font-mono font-bold ${d.format === 'JSON' ? 'bg-purple-50 text-purple-600' : 'bg-blue-50 text-blue-600'}">
+                            ${d.format}
+                        </span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-700 transition-colors">${d.name}</h3>
+                    <p class="text-sm text-slate-500 mb-4 leading-relaxed">${d.description}</p>
+                    <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+                        <div class="rounded-lg bg-slate-50 py-2 px-1">
+                            <p class="text-xs text-slate-400">Filas</p>
+                            <p class="text-sm font-bold text-slate-700">${formatNumber(d.rows)}</p>
+                        </div>
+                        <div class="rounded-lg bg-slate-50 py-2 px-1">
+                            <p class="text-xs text-slate-400">Periodo</p>
+                            <p class="text-sm font-bold text-slate-700">${d.dateRange}</p>
+                        </div>
+                        <div class="rounded-lg bg-slate-50 py-2 px-1">
+                            <p class="text-xs text-slate-400">Fuente</p>
+                            <p class="text-sm font-bold text-slate-700 truncate" title="${d.institution}">${d.institution}</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4 truncate" title="${d.columns}">
+                        <span class="font-semibold">Columnas:</span> ${d.columns}
+                    </p>
+                    <button
+                        onclick="openPreview('${d.id}')"
+                        class="w-full rounded-xl bg-blue-600 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                    >
+                        <i data-lucide="table-2" class="h-4 w-4"></i>
+                        Ver datos
+                    </button>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // ========== Preview Logic ==========
+        function openPreview(datasetId) {
+            const dataset = datasets.find(d => d.id === datasetId);
+            if (!dataset) return;
+
+            // Show preview, hide grid
+            document.getElementById('grid-section').classList.add('hidden');
+            document.getElementById('search-section').classList.add('hidden');
+            document.getElementById('preview-section').classList.remove('hidden');
+
+            // Set header
+            document.getElementById('preview-title').textContent = dataset.name;
+            document.getElementById('preview-meta').textContent = `${dataset.institution} | ${dataset.dateRange} | ${dataset.format}`;
+
+            // Reset state
+            document.getElementById('preview-loading').classList.remove('hidden');
+            document.getElementById('preview-error').classList.add('hidden');
+            document.getElementById('preview-table-wrapper').classList.add('hidden');
+            document.getElementById('preview-row-count').textContent = '';
+            document.getElementById('preview-thead').innerHTML = '';
+            document.getElementById('preview-tbody').innerHTML = '';
+
+            // Handle JSON separately
+            if (dataset.format === 'JSON') {
+                loadJSON(dataset);
+                return;
+            }
+
+            // Load CSV with PapaParse
+            Papa.parse(dataset.file, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                preview: 101, // header + 100 rows
+                complete: function(results) {
+                    document.getElementById('preview-loading').classList.add('hidden');
+
+                    if (results.errors.length > 0 && results.data.length === 0) {
+                        showPreviewError(results.errors[0].message);
+                        return;
+                    }
+
+                    const headers = results.meta.fields || [];
+                    const rows = results.data.slice(0, 100);
+                    const totalRows = dataset.rows;
+
+                    renderTable(headers, rows, totalRows);
+                },
+                error: function(err) {
+                    document.getElementById('preview-loading').classList.add('hidden');
+                    showPreviewError(err.message || 'No se pudo cargar el archivo');
+                }
+            });
+        }
+
+        function loadJSON(dataset) {
+            fetch(dataset.file)
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('preview-loading').classList.add('hidden');
+
+                    // Handle CKAN API response structure
+                    let items = data;
+                    if (data.result && data.result.results) {
+                        items = data.result.results;
+                    } else if (Array.isArray(data)) {
+                        items = data;
+                    }
+
+                    if (!Array.isArray(items) || items.length === 0) {
+                        showPreviewError('El archivo JSON no contiene datos tabulares');
+                        return;
+                    }
+
+                    const preview = items.slice(0, 100);
+                    // Flatten top-level keys only
+                    const headers = Object.keys(preview[0]).filter(k => {
+                        const v = preview[0][k];
+                        return typeof v !== 'object' || v === null;
+                    });
+
+                    const rows = preview.map(item => {
+                        const row = {};
+                        headers.forEach(h => {
+                            row[h] = item[h] != null ? String(item[h]) : '';
+                        });
+                        return row;
+                    });
+
+                    renderTable(headers, rows, items.length);
+                })
+                .catch(err => {
+                    document.getElementById('preview-loading').classList.add('hidden');
+                    showPreviewError(err.message || 'No se pudo cargar el archivo JSON');
+                });
+        }
+
+        function renderTable(headers, rows, totalRows) {
+            const displayCount = rows.length;
+            document.getElementById('preview-row-count').textContent =
+                `Mostrando ${formatNumber(displayCount)} de ${formatNumber(totalRows)} filas`;
+
+            // Render headers
+            const thead = document.getElementById('preview-thead');
+            thead.innerHTML = `<tr>${headers.map(h =>
+                `<th class="px-4 py-3 text-xs font-semibold text-slate-600 uppercase tracking-wider whitespace-nowrap border-b border-slate-200 bg-slate-50">${escapeHtml(h)}</th>`
+            ).join('')}</tr>`;
+
+            // Render rows
+            const tbody = document.getElementById('preview-tbody');
+            tbody.innerHTML = rows.map((row, i) =>
+                `<tr class="${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'} hover:bg-blue-50/50 transition-colors">${
+                    headers.map(h =>
+                        `<td class="px-4 py-2.5 text-sm text-slate-600 whitespace-nowrap max-w-xs truncate" title="${escapeHtml(row[h] || '')}">${escapeHtml(row[h] || '')}</td>`
+                    ).join('')
+                }</tr>`
+            ).join('');
+
+            document.getElementById('preview-table-wrapper').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function showPreviewError(msg) {
+            document.getElementById('preview-error').classList.remove('hidden');
+            document.getElementById('preview-error-msg').textContent = msg;
+            lucide.createIcons();
+        }
+
+        function closePreview() {
+            document.getElementById('preview-section').classList.add('hidden');
+            document.getElementById('grid-section').classList.remove('hidden');
+            document.getElementById('search-section').classList.remove('hidden');
+            // Scroll to top of grid
+            document.getElementById('search-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ========== Search ==========
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            renderCards(e.target.value);
+        });
+
+        // ========== Init ==========
+        renderCards();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
