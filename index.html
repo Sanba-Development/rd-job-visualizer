@@ -132,14 +132,14 @@
                 <span class="text-xl tracking-tight">RD Job Visualizer</span>
             </div>
             <div class="hidden space-x-8 md:flex">
+                <a href="#datos" class="text-sm font-medium hover:text-blue-600 transition-colors">Progreso</a>
+                <a href="#contribuir" class="text-sm font-medium hover:text-teal-600 transition-colors">Contribuir</a>
                 <a href="#vision" class="text-sm font-medium hover:text-blue-600 transition-colors">Visión</a>
                 <a href="#roadmap" class="text-sm font-medium hover:text-blue-600 transition-colors">Roadmap</a>
                 <a href="#roles" class="text-sm font-medium hover:text-blue-600 transition-colors">Roles</a>
                 <a href="#equipo" class="text-sm font-medium hover:text-blue-600 transition-colors">Equipo</a>
                 <a href="#tech" class="text-sm font-medium hover:text-blue-600 transition-colors">Tecnología</a>
-                <a href="#datos" class="text-sm font-medium hover:text-blue-600 transition-colors">Progreso</a>
                 <a href="#plan" class="text-sm font-medium hover:text-blue-600 transition-colors">Plan</a>
-                <a href="#contribuir" class="text-sm font-medium hover:text-teal-600 transition-colors">Contribuir</a>
                 <a href="#investigacion" class="text-sm font-medium hover:text-blue-600 transition-colors">Investigación</a>
             </div>
             <button onclick="openSignupForm()" class="rounded-full bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2">
@@ -271,8 +271,100 @@
                     </div>
                 </button>
             </div>
+
+            <!-- Día 2 En Progreso -->
+            <div class="text-center mb-12 mt-16">
+                <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 mb-4">
+                    <i data-lucide="clock" class="h-4 w-4"></i>
+                    <span>Día 2 En Progreso</span>
+                </div>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Tareas de Hoy</h2>
+                <p class="mx-auto mt-3 max-w-xl text-slate-500">Pipeline de datos y primer prototipo del treemap.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                        <i data-lucide="download" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">API Fetch</p>
+                        <p class="text-xs text-slate-500">249 vacantes</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                        <i data-lucide="shuffle" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Normalizar</p>
+                        <p class="text-xs text-slate-500">CSV → Schema</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                        <i data-lucide="check-square" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Validar</p>
+                        <p class="text-xs text-slate-500">Sectores vs fuentes</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                        <i data-lucide="bar-chart-3" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Treemap</p>
+                        <p class="text-xs text-slate-500">Prototipo D3.js</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                        <i data-lucide="palette" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Colores</p>
+                        <p class="text-xs text-slate-500">12 sectores</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- Contribuir Section -->
+    <section id="contribuir" class="bg-slate-50 py-24 px-6">
+        <div class="mx-auto max-w-4xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-1.5 text-sm font-medium text-cyan-700 ring-1 ring-inset ring-cyan-700/10 mb-8">
+                <i data-lucide="rocket" class="h-4 w-4"></i>
+                <span>Nuevo Contribuyente?</span>
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Únete al Equipo</h2>
+            <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+                Configura tu ambiente, elige una tarea y empieza a contribuir en minutos.
+            </p>
+            <button onclick="openOnboardingOverlay()" class="mt-10 inline-flex items-center gap-3 rounded-2xl bg-cyan-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-cyan-200 hover:bg-cyan-700 transition-all hover:scale-105 active:scale-95">
+                <i data-lucide="book-open" class="h-5 w-5"></i>
+                Ver Guía para Contribuyentes
+            </button>
+        </div>
+    </section>
+
+    <!-- Onboarding Overlay -->
+    <div id="onboarding-overlay" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeOnboardingOverlay()"></div>
+        <div class="relative z-10 mx-auto flex h-full max-w-4xl flex-col p-4 sm:p-8">
+            <div class="flex items-center justify-between rounded-t-2xl bg-white px-6 py-4 border-b border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="rocket" class="h-5 w-5 text-cyan-600"></i>
+                    Guía para Contribuyentes
+                </h3>
+                <button onclick="closeOnboardingOverlay()" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+            <div id="onboarding-content" class="flex-1 overflow-y-auto rounded-b-2xl bg-white px-6 py-8 sm:px-10"></div>
+        </div>
+    </div>
 
     <!-- Vision Section -->
     <section id="vision" class="bg-slate-50 py-24 px-6">
@@ -562,40 +654,7 @@
         </div>
     </div>
 
-    <!-- Contribuir Section -->
-    <section id="contribuir" class="bg-slate-50 py-24 px-6">
-        <div class="mx-auto max-w-4xl text-center">
-            <div class="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-1.5 text-sm font-medium text-cyan-700 ring-1 ring-inset ring-cyan-700/10 mb-8">
-                <i data-lucide="rocket" class="h-4 w-4"></i>
-                <span>Nuevo Contribuyente?</span>
-            </div>
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Únete al Equipo</h2>
-            <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Configura tu ambiente, elige una tarea y empieza a contribuir en minutos.
-            </p>
-            <button onclick="openOnboardingOverlay()" class="mt-10 inline-flex items-center gap-3 rounded-2xl bg-cyan-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-cyan-200 hover:bg-cyan-700 transition-all hover:scale-105 active:scale-95">
-                <i data-lucide="book-open" class="h-5 w-5"></i>
-                Ver Guía de Contribución
-            </button>
-        </div>
-    </section>
-
-    <!-- Onboarding Overlay -->
-    <div id="onboarding-overlay" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeOnboardingOverlay()"></div>
-        <div class="relative z-10 mx-auto flex h-full max-w-4xl flex-col p-4 sm:p-8">
-            <div class="flex items-center justify-between rounded-t-2xl bg-white px-6 py-4 border-b border-slate-200">
-                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <i data-lucide="rocket" class="h-5 w-5 text-cyan-600"></i>
-                    Guía de Contribución — Día 2
-                </h3>
-                <button onclick="closeOnboardingOverlay()" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors">
-                    <i data-lucide="x" class="h-5 w-5"></i>
-                </button>
-            </div>
-            <div id="onboarding-content" class="flex-1 overflow-y-auto rounded-b-2xl bg-white px-6 py-8 sm:px-10"></div>
-        </div>
-    </div>
+    <!-- (Contribuir section moved to after Progress) -->
 
     <!-- (Datos section moved to after Hero) -->
 

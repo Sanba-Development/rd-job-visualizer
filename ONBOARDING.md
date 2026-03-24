@@ -1,34 +1,6 @@
-# Guía de Contribución — Día 2
+# Guía para Contribuyentes
 
 > RD Job Visualizer | Challenge de 7 Días | jobs.sanba.dev
-
----
-
-## Tareas Técnicas del Día 2
-
-Estas son las tareas del backlog para hoy. Puedes tomar cualquiera:
-
-| # | Tarea | Descripción |
-|---|-------|-------------|
-| 2.1 | **Fetch de RD Trabaja API** | Descargar las 249 vacantes activas desde `empleateya.mt.gob.do/api/puestos?PageSize=500`. Simple script de fetch. |
-| 2.3 | **Script de normalización** | Tomar los CSV crudos (436K filas) y convertirlos al schema en `data/schemas/normalized-job.schema.json`. |
-| 2.4 | **Validación cruzada** | ¿Los sectores de las fuentes coinciden con nuestra taxonomía de 12 sectores? |
-| 2.5 | **Prototipo del treemap** | Primer treemap D3.js con datos dummy. Ya tenemos el wireframe en `wireframes/treemap-wireframe.html`. |
-| 2.6 | **Paleta de colores** | Los colores están en `SECTOR_TAXONOMY.md` — integrarlos al código D3.js. |
-
----
-
-## Contribuciones No-Técnicas
-
-No necesitas escribir código para aportar. Ideas:
-
-- **Contenido para redes** — Post del Día 2, stories, hilos explicativos
-- **Narrativa del proyecto** — ¿Por qué importa visualizar el empleo en RD? Nota de prensa, artículo
-- **Análisis sectorial** — ¿Tienen sentido los 12 sectores? ¿Falta alguno? ¿Sobra alguno?
-- **Perspectiva de política pública** — ¿Cómo se usa esta data en decisiones de gobierno?
-- **Perspectiva educativa** — ¿Qué habilidades demanda el mercado? ¿Qué brechas hay?
-- **Conexiones** — ¿Conoces a alguien que debería estar en este challenge?
-- **Revisión** — Entra a jobs.sanba.dev, navega, y danos feedback
 
 ---
 
@@ -56,11 +28,35 @@ Si tienes Claude Code instalado ([claude.ai/code](https://claude.ai/code)), ábr
 
 - "Muéstrame las tareas pendientes del backlog"
 - "¿En qué puedo aportar hoy?"
-- "Quiero trabajar en la tarea 2.3"
+- "Quiero trabajar en una tarea del backlog"
 - "Crea un branch y ayúdame con el PR"
 - "Ayúdame a escribir un post para redes sobre el proyecto"
 - "Dame contexto sobre los datos que tenemos"
 - "Quiero revisar el treemap wireframe"
+
+---
+
+## Cómo Contribuir
+
+1. **Revisa el backlog** — Abre `BACKLOG.md` para ver las tareas disponibles
+2. **Crea un branch** — Usa el prefijo correcto: `feat/`, `fix/`, o `data/`
+3. **Haz tu trabajo** — Implementa, investiga, crea contenido, lo que sea tu aporte
+4. **Crea un PR** — Siempre vía Pull Request, nunca push directo a master
+5. **Pide revisión** — Cualquier miembro del equipo puede aprobar
+
+---
+
+## Contribuciones No-Técnicas
+
+No necesitas escribir código para aportar. Ideas:
+
+- **Contenido para redes** — Posts, stories, hilos explicativos sobre el proyecto
+- **Narrativa del proyecto** — ¿Por qué importa visualizar el empleo en RD? Nota de prensa, artículo
+- **Análisis sectorial** — ¿Tienen sentido los 12 sectores? ¿Falta alguno? ¿Sobra alguno?
+- **Perspectiva de política pública** — ¿Cómo se usa esta data en decisiones de gobierno?
+- **Perspectiva educativa** — ¿Qué habilidades demanda el mercado? ¿Qué brechas hay?
+- **Conexiones** — ¿Conoces a alguien que debería estar en este challenge?
+- **Revisión** — Entra a jobs.sanba.dev, navega, y danos feedback
 
 ---
 
