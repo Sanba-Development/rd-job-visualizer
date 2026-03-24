@@ -282,51 +282,51 @@
                 <p class="mx-auto mt-3 max-w-xl text-slate-500">Pipeline de datos y primer prototipo del treemap.</p>
             </div>
             <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                <button onclick="openTaskModal('2.1')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="download" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">API Fetch</p>
                         <p class="text-xs text-slate-500">249 vacantes</p>
                     </div>
-                </div>
-                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                </button>
+                <button onclick="openTaskModal('2.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="shuffle" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Normalizar</p>
                         <p class="text-xs text-slate-500">CSV → Schema</p>
                     </div>
-                </div>
-                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                </button>
+                <button onclick="openTaskModal('2.4')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="check-square" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Validar</p>
                         <p class="text-xs text-slate-500">Sectores vs fuentes</p>
                     </div>
-                </div>
-                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                </button>
+                <button onclick="openTaskModal('2.5')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="bar-chart-3" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Treemap</p>
                         <p class="text-xs text-slate-500">Prototipo D3.js</p>
                     </div>
-                </div>
-                <div class="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 text-center">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md">
+                </button>
+                <button onclick="openTaskModal('2.6')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="palette" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Colores</p>
                         <p class="text-xs text-slate-500">12 sectores</p>
                     </div>
-                </div>
+                </button>
             </div>
         </div>
     </section>
@@ -808,6 +808,22 @@
         </div>
     </div>
 
+    <!-- Task Detail Modal -->
+    <div id="task-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeTaskModal()"></div>
+        <div class="relative z-10 mx-auto flex h-full items-center justify-center p-4">
+            <div class="w-full max-w-2xl rounded-2xl bg-white shadow-2xl max-h-[85vh] flex flex-col">
+                <div class="flex items-center justify-between px-6 py-4 border-b border-amber-200 bg-amber-50 rounded-t-2xl">
+                    <h3 id="task-modal-title" class="text-lg font-bold text-amber-900 flex items-center gap-2"></h3>
+                    <button onclick="closeTaskModal()" class="flex h-9 w-9 items-center justify-center rounded-lg text-amber-400 hover:bg-amber-100 hover:text-amber-600 transition-colors">
+                        <i data-lucide="x" class="h-5 w-5"></i>
+                    </button>
+                </div>
+                <div id="task-modal-body" class="overflow-y-auto px-6 py-6 space-y-5 text-sm text-slate-700"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-white py-12 px-6 border-t border-slate-200">
         <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
@@ -1035,8 +1051,180 @@
             document.body.style.overflow = '';
         }
 
+        // Day 2 Task Modal
+        const day2Tasks = {
+            '2.1': {
+                numero: '2.1',
+                titulo: 'Fetch de RD Trabaja API',
+                objetivo: 'Descargar las vacantes activas de RD Trabaja y guardarlas como JSON.',
+                contexto: 'API descubierta en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">empleateya.mt.gob.do/api/</code>. Ver <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">data/raw/rdtrabaja-exploration.md</code> para endpoints completos. No requiere autenticaci\u00f3n.',
+                plan: [
+                    'Crear <code>scripts/scrapers/fetch-rdtrabaja.js</code>',
+                    'Fetch <code>GET /api/puestos?PageSize=500</code> para vacantes',
+                    'Fetch <code>GET /api/conceptos</code> para tablas de lookup (sectores, salarios, educaci\u00f3n)',
+                    'Fetch <code>GET /api/conceptos/regionesFlat</code> para provincias',
+                    'Guardar todo en <code>data/raw/rdtrabaja/</code>'
+                ],
+                archivos: 'Crear <code>scripts/scrapers/fetch-rdtrabaja.js</code>, <code>data/raw/rdtrabaja/*.json</code>',
+                criterios: [
+                    'Script ejecutable con <code>node scripts/scrapers/fetch-rdtrabaja.js</code>',
+                    'Archivos JSON v\u00e1lidos en <code>data/raw/rdtrabaja/</code>',
+                    'Al menos vacantes + conceptos descargados'
+                ],
+                dificultad: 'F\u00e1cil',
+                dificultadColor: 'bg-green-100 text-green-700',
+                branch: 'feat/rdtrabaja-fetch'
+            },
+            '2.3': {
+                numero: '2.3',
+                titulo: 'Script de Normalizaci\u00f3n',
+                objetivo: 'Convertir los CSV crudos al schema normalizado de 22 campos.',
+                contexto: '15 CSVs en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">data/raw/</code> (436K+ filas). Schema en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">data/schemas/normalized-job.schema.json</code>. Mapping por fuente en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">data/schemas/README.md</code>. Ojo: algunos CSVs usan punto y coma como delimitador.',
+                plan: [
+                    'Crear <code>scripts/processors/normalize.js</code>',
+                    'Usar PapaParse (o csv-parse) para leer CSVs',
+                    'Mapear campos de cada fuente al schema (ver README.md del schema)',
+                    'Clasificar por sector usando mapping de instituci\u00f3n \u2192 sector (ver SECTOR_TAXONOMY.md)',
+                    'Guardar output en <code>data/processed/normalized.json</code>'
+                ],
+                archivos: 'Crear <code>scripts/processors/normalize.js</code>. Leer <code>data/raw/*.csv</code>, <code>data/schemas/</code>. Escribir <code>data/processed/normalized.json</code>',
+                criterios: [
+                    'Script ejecutable',
+                    'Output JSON v\u00e1lido con estructura del schema',
+                    'Al menos 2 fuentes normalizadas',
+                    'Conteo de registros por sector'
+                ],
+                dificultad: 'Medio',
+                dificultadColor: 'bg-amber-100 text-amber-700',
+                branch: 'feat/normalize-data'
+            },
+            '2.4': {
+                numero: '2.4',
+                titulo: 'Validaci\u00f3n Cruzada de Sectores',
+                objetivo: 'Verificar que los datos de cada fuente se mapean correctamente a los 12 sectores del treemap.',
+                contexto: '12 sectores definidos en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">SECTOR_TAXONOMY.md</code> con mapping de instituciones MAP. Necesitamos verificar que los t\u00edtulos de puestos y departamentos se clasifican bien.',
+                plan: [
+                    'Revisar los valores \u00fanicos de "Departamento" y "Cargo" en cada CSV',
+                    'Comparar contra el mapping instituci\u00f3n \u2192 sector de SECTOR_TAXONOMY.md',
+                    'Identificar casos ambiguos o sin clasificar',
+                    'Proponer reglas de clasificaci\u00f3n para casos edge',
+                    'Documentar en <code>data/schemas/sector-validation.md</code>'
+                ],
+                archivos: 'Leer <code>data/raw/*.csv</code>, <code>SECTOR_TAXONOMY.md</code>. Crear <code>data/schemas/sector-validation.md</code>',
+                criterios: [
+                    'Documento con tabla de cobertura por sector',
+                    'Lista de casos ambiguos',
+                    'Propuesta de reglas',
+                    'Porcentaje de registros clasificables'
+                ],
+                dificultad: 'Medio',
+                dificultadColor: 'bg-amber-100 text-amber-700',
+                branch: 'feat/sector-validation'
+            },
+            '2.5': {
+                numero: '2.5',
+                titulo: 'Prototipo Treemap D3.js',
+                objetivo: 'Crear el primer treemap interactivo con D3.js usando datos dummy.',
+                contexto: 'Wireframe en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">wireframes/treemap-wireframe.html</code>. 12 sectores con colores en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">SECTOR_TAXONOMY.md</code>. El treemap debe mostrar sectores con tama\u00f1o proporcional al volumen de empleo.',
+                plan: [
+                    'Crear <code>src/treemap.html</code> (o modificar la secci\u00f3n del treemap en index.html)',
+                    'Cargar D3.js v7 via CDN',
+                    'Crear datos dummy en formato jer\u00e1rquico (sector \u2192 subsector \u2192 conteo)',
+                    'Renderizar treemap con colores del taxonomy',
+                    'Agregar hover tooltips con nombre del sector y conteo'
+                ],
+                archivos: 'Crear <code>src/treemap.html</code>. Leer <code>SECTOR_TAXONOMY.md</code> para colores. Leer <code>wireframes/treemap-wireframe.html</code> para referencia de dise\u00f1o.',
+                criterios: [
+                    'Treemap visible con 12 sectores coloreados',
+                    'Hover muestra tooltip',
+                    'Tama\u00f1os proporcionales',
+                    'Responsive (al menos desktop)'
+                ],
+                dificultad: 'Avanzado',
+                dificultadColor: 'bg-red-100 text-red-700',
+                branch: 'feat/treemap-prototype'
+            },
+            '2.6': {
+                numero: '2.6',
+                titulo: 'Paleta de Colores por Sector',
+                objetivo: 'Integrar los colores definidos en la taxonom\u00eda al c\u00f3digo y crear un m\u00f3dulo reutilizable.',
+                contexto: 'Los 12 colores ya est\u00e1n definidos en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">SECTOR_TAXONOMY.md</code> (hex codes). Necesitamos un archivo JS/JSON que el treemap y otras visualizaciones puedan importar.',
+                plan: [
+                    'Crear <code>src/sector-colors.json</code> con mapping sector \u2192 color hex',
+                    'Incluir nombre, c\u00f3digo CIIU, color, y emoji/icon por sector',
+                    'Verificar contraste WCAG AA de cada color contra blanco y negro',
+                    'Crear una p\u00e1gina de preview <code>src/color-palette.html</code> para visualizar'
+                ],
+                archivos: 'Crear <code>src/sector-colors.json</code>, <code>src/color-palette.html</code>. Leer <code>SECTOR_TAXONOMY.md</code>.',
+                criterios: [
+                    'JSON con los 12 sectores y colores',
+                    'Preview visual funcional',
+                    'Colores consistentes con SECTOR_TAXONOMY.md'
+                ],
+                dificultad: 'F\u00e1cil',
+                dificultadColor: 'bg-green-100 text-green-700',
+                branch: 'feat/sector-colors'
+            }
+        };
+
+        function openTaskModal(taskId) {
+            const task = day2Tasks[taskId];
+            if (!task) return;
+
+            const titleEl = document.getElementById('task-modal-title');
+            titleEl.innerHTML = '<i data-lucide="clipboard-list" class="h-5 w-5 text-amber-600"></i> Task ' + task.numero + ' \u2014 ' + task.titulo;
+
+            const planHtml = task.plan.map(function(step, i) {
+                return '<li class="flex gap-2"><span class="font-bold text-amber-600 flex-shrink-0">' + (i + 1) + '.</span><span>' + step + '</span></li>';
+            }).join('');
+
+            const criteriosHtml = task.criterios.map(function(c) {
+                return '<li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0"></i><span>' + c + '</span></li>';
+            }).join('');
+
+            const bodyEl = document.getElementById('task-modal-body');
+            bodyEl.innerHTML =
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">Objetivo</h4>' +
+                    '<p class="text-slate-800">' + task.objetivo + '</p>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">Contexto</h4>' +
+                    '<p class="text-slate-600 leading-relaxed">' + task.contexto + '</p>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-2">Plan sugerido</h4>' +
+                    '<ol class="space-y-1.5 text-slate-700">' + planHtml + '</ol>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">Archivos involucrados</h4>' +
+                    '<p class="text-slate-600">' + task.archivos + '</p>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-2">Criterios de aceptaci\u00f3n</h4>' +
+                    '<ul class="space-y-1.5 text-slate-700">' + criteriosHtml + '</ul>' +
+                '</div>' +
+                '<div class="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-100">' +
+                    '<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Dificultad</span>' +
+                    '<span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ' + task.dificultadColor + '">' + task.dificultad + '</span>' +
+                    '<span class="text-xs text-slate-300">|</span>' +
+                    '<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Branch</span>' +
+                    '<code class="rounded bg-slate-100 px-2 py-1 text-xs font-mono text-slate-700">' + task.branch + '</code>' +
+                '</div>';
+
+            document.getElementById('task-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeTaskModal() {
+            document.getElementById('task-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
+                closeTaskModal();
                 closeResearchOverlay();
                 closePlanOverlay();
                 closeDatosOverlay();
