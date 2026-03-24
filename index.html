@@ -102,6 +102,24 @@
         #rdtrabaja-content pre code { background: none; color: #e2e8f0; }
         #rdtrabaja-content a { color: #2563eb; text-decoration: underline; }
         #rdtrabaja-content hr { border: none; border-top: 2px solid #bfdbfe; margin: 2rem 0; }
+        /* Onboarding overlay markdown styles */
+        #onboarding-content h1 { font-size: 1.75rem; font-weight: 800; color: #0f172a; margin: 2rem 0 1rem; line-height: 1.3; }
+        #onboarding-content h2 { font-size: 1.35rem; font-weight: 700; color: #1e293b; margin: 1.75rem 0 0.75rem; }
+        #onboarding-content h3 { font-size: 1.1rem; font-weight: 600; color: #334155; margin: 1.5rem 0 0.5rem; }
+        #onboarding-content p { color: #475569; line-height: 1.8; margin-bottom: 1rem; }
+        #onboarding-content strong { color: #1e293b; }
+        #onboarding-content ul, #onboarding-content ol { color: #475569; margin: 0.75rem 0 1rem 1.5rem; line-height: 1.8; }
+        #onboarding-content li { margin-bottom: 0.4rem; }
+        #onboarding-content table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+        #onboarding-content th { background: #ecfeff; color: #0e7490; font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid #cffafe; }
+        #onboarding-content td { padding: 0.75rem 1rem; border: 1px solid #e2e8f0; color: #475569; }
+        #onboarding-content tr:nth-child(even) { background: #ecfeff; }
+        #onboarding-content code { background: #ecfeff; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; color: #0e7490; }
+        #onboarding-content pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin: 1rem 0; }
+        #onboarding-content pre code { background: none; color: #e2e8f0; }
+        #onboarding-content a { color: #0891b2; text-decoration: underline; }
+        #onboarding-content blockquote { border-left: 4px solid #06b6d4; padding: 0.75rem 1rem; margin: 1rem 0; background: #ecfeff; color: #475569; }
+        #onboarding-content hr { border: none; border-top: 2px solid #cffafe; margin: 2rem 0; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-700">
@@ -114,12 +132,13 @@
                 <span class="text-xl tracking-tight">RD Job Visualizer</span>
             </div>
             <div class="hidden space-x-8 md:flex">
+                <a href="#datos" class="text-sm font-medium hover:text-blue-600 transition-colors">Progreso</a>
+                <a href="#contribuir" class="text-sm font-medium hover:text-teal-600 transition-colors">Contribuir</a>
                 <a href="#vision" class="text-sm font-medium hover:text-blue-600 transition-colors">Visión</a>
                 <a href="#roadmap" class="text-sm font-medium hover:text-blue-600 transition-colors">Roadmap</a>
                 <a href="#roles" class="text-sm font-medium hover:text-blue-600 transition-colors">Roles</a>
                 <a href="#equipo" class="text-sm font-medium hover:text-blue-600 transition-colors">Equipo</a>
                 <a href="#tech" class="text-sm font-medium hover:text-blue-600 transition-colors">Tecnología</a>
-                <a href="#datos" class="text-sm font-medium hover:text-blue-600 transition-colors">Progreso</a>
                 <a href="#plan" class="text-sm font-medium hover:text-blue-600 transition-colors">Plan</a>
                 <a href="#investigacion" class="text-sm font-medium hover:text-blue-600 transition-colors">Investigación</a>
             </div>
@@ -252,8 +271,100 @@
                     </div>
                 </button>
             </div>
+
+            <!-- Día 2 En Progreso -->
+            <div class="text-center mb-12 mt-16">
+                <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 mb-4">
+                    <i data-lucide="clock" class="h-4 w-4"></i>
+                    <span>Día 2 En Progreso</span>
+                </div>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Tareas de Hoy</h2>
+                <p class="mx-auto mt-3 max-w-xl text-slate-500">Pipeline de datos y primer prototipo del treemap.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                <button onclick="openTaskModal('2.1')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="download" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">API Fetch</p>
+                        <p class="text-xs text-slate-500">249 vacantes</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('2.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="shuffle" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Normalizar</p>
+                        <p class="text-xs text-slate-500">CSV → Schema</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('2.4')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="check-square" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Validar</p>
+                        <p class="text-xs text-slate-500">Sectores vs fuentes</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('2.5')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="bar-chart-3" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Treemap</p>
+                        <p class="text-xs text-slate-500">Prototipo D3.js</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('2.6')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="palette" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Colores</p>
+                        <p class="text-xs text-slate-500">12 sectores</p>
+                    </div>
+                </button>
+            </div>
         </div>
     </section>
+
+    <!-- Contribuir Section -->
+    <section id="contribuir" class="bg-slate-50 py-24 px-6">
+        <div class="mx-auto max-w-4xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-1.5 text-sm font-medium text-cyan-700 ring-1 ring-inset ring-cyan-700/10 mb-8">
+                <i data-lucide="rocket" class="h-4 w-4"></i>
+                <span>Nuevo Contribuyente?</span>
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Únete al Equipo</h2>
+            <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+                Configura tu ambiente, elige una tarea y empieza a contribuir en minutos.
+            </p>
+            <button onclick="openOnboardingOverlay()" class="mt-10 inline-flex items-center gap-3 rounded-2xl bg-cyan-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-cyan-200 hover:bg-cyan-700 transition-all hover:scale-105 active:scale-95">
+                <i data-lucide="book-open" class="h-5 w-5"></i>
+                Ver Guía para Contribuyentes
+            </button>
+        </div>
+    </section>
+
+    <!-- Onboarding Overlay -->
+    <div id="onboarding-overlay" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeOnboardingOverlay()"></div>
+        <div class="relative z-10 mx-auto flex h-full max-w-4xl flex-col p-4 sm:p-8">
+            <div class="flex items-center justify-between rounded-t-2xl bg-white px-6 py-4 border-b border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="rocket" class="h-5 w-5 text-cyan-600"></i>
+                    Guía para Contribuyentes
+                </h3>
+                <button onclick="closeOnboardingOverlay()" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+            <div id="onboarding-content" class="flex-1 overflow-y-auto rounded-b-2xl bg-white px-6 py-8 sm:px-10"></div>
+        </div>
+    </div>
 
     <!-- Vision Section -->
     <section id="vision" class="bg-slate-50 py-24 px-6">
@@ -543,6 +654,8 @@
         </div>
     </div>
 
+    <!-- (Contribuir section moved to after Progress) -->
+
     <!-- (Datos section moved to after Hero) -->
 
     <!-- Datos Overlay -->
@@ -695,6 +808,22 @@
         </div>
     </div>
 
+    <!-- Task Detail Modal -->
+    <div id="task-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeTaskModal()"></div>
+        <div class="relative z-10 mx-auto flex h-full items-center justify-center p-4">
+            <div class="w-full max-w-2xl rounded-2xl bg-white shadow-2xl max-h-[85vh] flex flex-col">
+                <div class="flex items-center justify-between px-6 py-4 border-b border-amber-200 bg-amber-50 rounded-t-2xl">
+                    <h3 id="task-modal-title" class="text-lg font-bold text-amber-900 flex items-center gap-2"></h3>
+                    <button onclick="closeTaskModal()" class="flex h-9 w-9 items-center justify-center rounded-lg text-amber-400 hover:bg-amber-100 hover:text-amber-600 transition-colors">
+                        <i data-lucide="x" class="h-5 w-5"></i>
+                    </button>
+                </div>
+                <div id="task-modal-body" class="overflow-y-auto px-6 py-6 space-y-5 text-sm text-slate-700"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-white py-12 px-6 border-t border-slate-200">
         <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
@@ -812,7 +941,7 @@
                     if (p.socials.email) socials.push(`<a href="mailto:${p.socials.email}" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-colors" title="Email"><i data-lucide="mail" class="h-4 w-4"></i></a>`);
 
                     const photoHtml = p.photo_url
-                        ? `<img src="${p.photo_url}" alt="${p.name}" class="h-20 w-20 rounded-2xl object-cover shadow-md border-2 border-white">`
+                        ? `<img src="${p.photo_url}" alt="${p.name}" class="h-20 w-20 rounded-2xl object-cover object-top shadow-md border-2 border-white">`
                         : `<div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-2xl font-bold text-white shadow-md border-2 border-white">${p.name.split(' ').map(n => n[0]).join('').slice(0,2)}</div>`;
 
                     const skills = (p.skills || []).slice(0, 3).map(s => `<span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-medium text-slate-600">${s}</span>`).join('');
@@ -902,13 +1031,206 @@
             document.body.style.overflow = '';
         }
 
+        // Onboarding overlay
+        let onboardingRendered = false;
+        function openOnboardingOverlay() {
+            if (!onboardingRendered) {
+                fetch('ONBOARDING.md')
+                    .then(r => r.text())
+                    .then(md => {
+                        document.getElementById('onboarding-content').innerHTML = marked.parse(md);
+                        onboardingRendered = true;
+                    });
+            }
+            document.getElementById('onboarding-overlay').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+        function closeOnboardingOverlay() {
+            document.getElementById('onboarding-overlay').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Day 2 Task Modal
+        const day2Tasks = {
+            '2.1': {
+                numero: '2.1',
+                titulo: 'Fetch de RD Trabaja API',
+                objetivo: 'Descargar las vacantes activas de RD Trabaja y guardarlas como JSON.',
+                contexto: 'API descubierta en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">empleateya.mt.gob.do/api/</code>. Ver <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">data/raw/rdtrabaja-exploration.md</code> para endpoints completos. No requiere autenticaci\u00f3n.',
+                plan: [
+                    'Crear <code>scripts/scrapers/fetch-rdtrabaja.js</code>',
+                    'Fetch <code>GET /api/puestos?PageSize=500</code> para vacantes',
+                    'Fetch <code>GET /api/conceptos</code> para tablas de lookup (sectores, salarios, educaci\u00f3n)',
+                    'Fetch <code>GET /api/conceptos/regionesFlat</code> para provincias',
+                    'Guardar todo en <code>data/raw/rdtrabaja/</code>'
+                ],
+                archivos: 'Crear <code>scripts/scrapers/fetch-rdtrabaja.js</code>, <code>data/raw/rdtrabaja/*.json</code>',
+                criterios: [
+                    'Script ejecutable con <code>node scripts/scrapers/fetch-rdtrabaja.js</code>',
+                    'Archivos JSON v\u00e1lidos en <code>data/raw/rdtrabaja/</code>',
+                    'Al menos vacantes + conceptos descargados'
+                ],
+                dificultad: 'F\u00e1cil',
+                dificultadColor: 'bg-green-100 text-green-700',
+                branch: 'feat/rdtrabaja-fetch'
+            },
+            '2.3': {
+                numero: '2.3',
+                titulo: 'Script de Normalizaci\u00f3n',
+                objetivo: 'Convertir los CSV crudos al schema normalizado de 22 campos.',
+                contexto: '15 CSVs en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">data/raw/</code> (436K+ filas). Schema en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">data/schemas/normalized-job.schema.json</code>. Mapping por fuente en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">data/schemas/README.md</code>. Ojo: algunos CSVs usan punto y coma como delimitador.',
+                plan: [
+                    'Crear <code>scripts/processors/normalize.js</code>',
+                    'Usar PapaParse (o csv-parse) para leer CSVs',
+                    'Mapear campos de cada fuente al schema (ver README.md del schema)',
+                    'Clasificar por sector usando mapping de instituci\u00f3n \u2192 sector (ver SECTOR_TAXONOMY.md)',
+                    'Guardar output en <code>data/processed/normalized.json</code>'
+                ],
+                archivos: 'Crear <code>scripts/processors/normalize.js</code>. Leer <code>data/raw/*.csv</code>, <code>data/schemas/</code>. Escribir <code>data/processed/normalized.json</code>',
+                criterios: [
+                    'Script ejecutable',
+                    'Output JSON v\u00e1lido con estructura del schema',
+                    'Al menos 2 fuentes normalizadas',
+                    'Conteo de registros por sector'
+                ],
+                dificultad: 'Medio',
+                dificultadColor: 'bg-amber-100 text-amber-700',
+                branch: 'feat/normalize-data'
+            },
+            '2.4': {
+                numero: '2.4',
+                titulo: 'Validaci\u00f3n Cruzada de Sectores',
+                objetivo: 'Verificar que los datos de cada fuente se mapean correctamente a los 12 sectores del treemap.',
+                contexto: '12 sectores definidos en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">SECTOR_TAXONOMY.md</code> con mapping de instituciones MAP. Necesitamos verificar que los t\u00edtulos de puestos y departamentos se clasifican bien.',
+                plan: [
+                    'Revisar los valores \u00fanicos de "Departamento" y "Cargo" en cada CSV',
+                    'Comparar contra el mapping instituci\u00f3n \u2192 sector de SECTOR_TAXONOMY.md',
+                    'Identificar casos ambiguos o sin clasificar',
+                    'Proponer reglas de clasificaci\u00f3n para casos edge',
+                    'Documentar en <code>data/schemas/sector-validation.md</code>'
+                ],
+                archivos: 'Leer <code>data/raw/*.csv</code>, <code>SECTOR_TAXONOMY.md</code>. Crear <code>data/schemas/sector-validation.md</code>',
+                criterios: [
+                    'Documento con tabla de cobertura por sector',
+                    'Lista de casos ambiguos',
+                    'Propuesta de reglas',
+                    'Porcentaje de registros clasificables'
+                ],
+                dificultad: 'Medio',
+                dificultadColor: 'bg-amber-100 text-amber-700',
+                branch: 'feat/sector-validation'
+            },
+            '2.5': {
+                numero: '2.5',
+                titulo: 'Prototipo Treemap D3.js',
+                objetivo: 'Crear el primer treemap interactivo con D3.js usando datos dummy.',
+                contexto: 'Wireframe en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">wireframes/treemap-wireframe.html</code>. 12 sectores con colores en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">SECTOR_TAXONOMY.md</code>. El treemap debe mostrar sectores con tama\u00f1o proporcional al volumen de empleo.',
+                plan: [
+                    'Crear <code>src/treemap.html</code> (o modificar la secci\u00f3n del treemap en index.html)',
+                    'Cargar D3.js v7 via CDN',
+                    'Crear datos dummy en formato jer\u00e1rquico (sector \u2192 subsector \u2192 conteo)',
+                    'Renderizar treemap con colores del taxonomy',
+                    'Agregar hover tooltips con nombre del sector y conteo'
+                ],
+                archivos: 'Crear <code>src/treemap.html</code>. Leer <code>SECTOR_TAXONOMY.md</code> para colores. Leer <code>wireframes/treemap-wireframe.html</code> para referencia de dise\u00f1o.',
+                criterios: [
+                    'Treemap visible con 12 sectores coloreados',
+                    'Hover muestra tooltip',
+                    'Tama\u00f1os proporcionales',
+                    'Responsive (al menos desktop)'
+                ],
+                dificultad: 'Avanzado',
+                dificultadColor: 'bg-red-100 text-red-700',
+                branch: 'feat/treemap-prototype'
+            },
+            '2.6': {
+                numero: '2.6',
+                titulo: 'Paleta de Colores por Sector',
+                objetivo: 'Integrar los colores definidos en la taxonom\u00eda al c\u00f3digo y crear un m\u00f3dulo reutilizable.',
+                contexto: 'Los 12 colores ya est\u00e1n definidos en <code class="bg-amber-50 px-1.5 py-0.5 rounded text-amber-800 text-xs">SECTOR_TAXONOMY.md</code> (hex codes). Necesitamos un archivo JS/JSON que el treemap y otras visualizaciones puedan importar.',
+                plan: [
+                    'Crear <code>src/sector-colors.json</code> con mapping sector \u2192 color hex',
+                    'Incluir nombre, c\u00f3digo CIIU, color, y emoji/icon por sector',
+                    'Verificar contraste WCAG AA de cada color contra blanco y negro',
+                    'Crear una p\u00e1gina de preview <code>src/color-palette.html</code> para visualizar'
+                ],
+                archivos: 'Crear <code>src/sector-colors.json</code>, <code>src/color-palette.html</code>. Leer <code>SECTOR_TAXONOMY.md</code>.',
+                criterios: [
+                    'JSON con los 12 sectores y colores',
+                    'Preview visual funcional',
+                    'Colores consistentes con SECTOR_TAXONOMY.md'
+                ],
+                dificultad: 'F\u00e1cil',
+                dificultadColor: 'bg-green-100 text-green-700',
+                branch: 'feat/sector-colors'
+            }
+        };
+
+        function openTaskModal(taskId) {
+            const task = day2Tasks[taskId];
+            if (!task) return;
+
+            const titleEl = document.getElementById('task-modal-title');
+            titleEl.innerHTML = '<i data-lucide="clipboard-list" class="h-5 w-5 text-amber-600"></i> Task ' + task.numero + ' \u2014 ' + task.titulo;
+
+            const planHtml = task.plan.map(function(step, i) {
+                return '<li class="flex gap-2"><span class="font-bold text-amber-600 flex-shrink-0">' + (i + 1) + '.</span><span>' + step + '</span></li>';
+            }).join('');
+
+            const criteriosHtml = task.criterios.map(function(c) {
+                return '<li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0"></i><span>' + c + '</span></li>';
+            }).join('');
+
+            const bodyEl = document.getElementById('task-modal-body');
+            bodyEl.innerHTML =
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">Objetivo</h4>' +
+                    '<p class="text-slate-800">' + task.objetivo + '</p>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">Contexto</h4>' +
+                    '<p class="text-slate-600 leading-relaxed">' + task.contexto + '</p>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-2">Plan sugerido</h4>' +
+                    '<ol class="space-y-1.5 text-slate-700">' + planHtml + '</ol>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">Archivos involucrados</h4>' +
+                    '<p class="text-slate-600">' + task.archivos + '</p>' +
+                '</div>' +
+                '<div>' +
+                    '<h4 class="text-xs font-bold uppercase tracking-wider text-amber-600 mb-2">Criterios de aceptaci\u00f3n</h4>' +
+                    '<ul class="space-y-1.5 text-slate-700">' + criteriosHtml + '</ul>' +
+                '</div>' +
+                '<div class="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-100">' +
+                    '<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Dificultad</span>' +
+                    '<span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ' + task.dificultadColor + '">' + task.dificultad + '</span>' +
+                    '<span class="text-xs text-slate-300">|</span>' +
+                    '<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Branch</span>' +
+                    '<code class="rounded bg-slate-100 px-2 py-1 text-xs font-mono text-slate-700">' + task.branch + '</code>' +
+                '</div>';
+
+            document.getElementById('task-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeTaskModal() {
+            document.getElementById('task-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
+                closeTaskModal();
                 closeResearchOverlay();
                 closePlanOverlay();
                 closeDatosOverlay();
                 closeTaxonomyOverlay();
                 closeRdTrabajaOverlay();
+                closeOnboardingOverlay();
                 closeSignupForm();
             }
         });
