@@ -116,20 +116,21 @@
     "name": "José D'Andrade",
     "headline": null,
     "current_role": null,
-    "current_company": null,
+    "current_company": "Legal Design DO",
     "location": null,
     "bio": "Experiencia en AI, Deep Learning, Machine Learning, LLM finetuning y Data Science.",
     "challenge_role": null,
-    "status": "interested",
+    "status": "confirmed",
+    "availability": "variable",
     "skills": ["AI", "Deep Learning", "Machine Learning", "LLM Finetuning", "Data Science"],
     "socials": {
-      "linkedin": null,
-      "github": null,
+      "linkedin": "https://www.linkedin.com/in/josedandrade",
+      "github": "13g4d0",
       "twitter": null,
       "website": null,
-      "email": null
+      "email": "dandrade@legaldesign.do"
     },
-    "photo_url": null,
+    "photo_url": "assets/team/jose-dandrade.jpeg",
     "joined_at": "2026-03-24",
     "updated_at": "2026-03-24"
   },
