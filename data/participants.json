@@ -53,14 +53,15 @@
     "location": null,
     "bio": "Interrelaciones sectoriales, impactos socioeconómicos, reconversión de competencias y prospectiva.",
     "challenge_role": null,
-    "status": "interested",
+    "status": "confirmed",
+    "availability": "digital",
     "skills": ["interrelaciones sectoriales", "impactos socioeconómicos", "reconversión de competencias", "prospectiva"],
     "socials": {
       "linkedin": null,
       "github": null,
       "twitter": null,
       "website": "https://thesocialentrepreneur.com",
-      "email": null
+      "email": "carlosmirandalevy@gmail.com"
     },
     "photo_url": "assets/team/carlos-miranda-levy.jpeg",
     "joined_at": "2026-03-24",
