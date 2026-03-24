@@ -72,6 +72,17 @@ Priority sources for MVP:
 
 Discarded: Aldaba (403/auth required), Portal Concursa (down), LinkedIn (paywall).
 
+## Contributing Rules
+
+See `CONTRIBUTING.md` for full details. Key rules:
+
+- **Master is protected** — requires PR + 1 approval to merge. No direct push.
+- **One branch per task** — `feat/`, `fix/`, or `data/` prefix.
+- **Update BACKLOG.md** after completing any task.
+- **Don't modify CLAUDE.md or ORCHESTRATOR.md** without Erick's approval.
+- **Don't delete raw data** — only add to `data/raw/`.
+- **Test locally** with `npx serve .` before creating a PR.
+
 ## Language
 
 All UI and content is in **Spanish**. Comments and code may mix Spanish and English.
