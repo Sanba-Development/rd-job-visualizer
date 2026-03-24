@@ -63,7 +63,7 @@
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="database" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">15</p>
+                    <p class="text-3xl font-extrabold text-slate-900">20</p>
                     <p class="text-sm text-slate-500 mt-1">Datasets totales</p>
                 </div>
                 <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
@@ -77,7 +77,7 @@
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="building-2" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">11</p>
+                    <p class="text-3xl font-extrabold text-slate-900">12</p>
                     <p class="text-sm text-slate-500 mt-1">Instituciones fuente</p>
                 </div>
                 <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
@@ -354,6 +354,66 @@
                 category: 'zonas-francas'
             },
             {
+                id: 'rdtrabaja-puestos',
+                name: 'RD Trabaja — Vacantes Activas',
+                description: '256 vacantes activas del sector privado con título, sector, salario (rango), provincia, tipo de contrato',
+                institution: 'Ministerio de Trabajo',
+                rows: 256,
+                dateRange: '2026 (tiempo real)',
+                file: 'data/raw/rdtrabaja/puestos.json',
+                format: 'JSON',
+                columns: 'titulo, descripcion, idSectorEconomico, idRangoSalarial, idProvincia, idTipoContrato',
+                category: 'rdtrabaja'
+            },
+            {
+                id: 'rdtrabaja-conceptos',
+                name: 'RD Trabaja — Tablas de Lookup',
+                description: '46 tablas de referencia: sectores económicos, rangos salariales, niveles educativos, tipos de contrato',
+                institution: 'Ministerio de Trabajo',
+                rows: 46,
+                dateRange: '2026',
+                file: 'data/raw/rdtrabaja/conceptos.json',
+                format: 'JSON',
+                columns: 'Categorías con subcategorías (sectores, salarios, educación, contratos)',
+                category: 'rdtrabaja'
+            },
+            {
+                id: 'rdtrabaja-regiones',
+                name: 'RD Trabaja — Regiones Geográficas',
+                description: '19,825 entidades geográficas: regiones, provincias y municipios de RD',
+                institution: 'Ministerio de Trabajo',
+                rows: 19825,
+                dateRange: '2026',
+                file: 'data/raw/rdtrabaja/regiones.json',
+                format: 'JSON',
+                columns: 'id, nombre, tipo, padre (jerárquico)',
+                category: 'rdtrabaja'
+            },
+            {
+                id: 'rdtrabaja-metadata',
+                name: 'RD Trabaja — Estadísticas del Portal',
+                description: 'Stats agregados: 13,276 empresas, 691,435 candidatos, 36,163 vacantes históricas',
+                institution: 'Ministerio de Trabajo',
+                rows: 1,
+                dateRange: '2026',
+                file: 'data/raw/rdtrabaja/metadata.json',
+                format: 'JSON',
+                columns: 'empresas, candidatos, puestos totales',
+                category: 'rdtrabaja'
+            },
+            {
+                id: 'rdtrabaja-categorias',
+                name: 'RD Trabaja — Sectores por Demanda',
+                description: '30 sectores económicos rankeados por cantidad de vacantes publicadas',
+                institution: 'Ministerio de Trabajo',
+                rows: 30,
+                dateRange: '2026',
+                file: 'data/raw/rdtrabaja/categorias-destacadas.json',
+                format: 'JSON',
+                columns: 'sector, cantidad de puestos',
+                category: 'rdtrabaja'
+            },
+            {
                 id: 'ckan-metadata',
                 name: 'Metadatos CKAN (datos.gob.do)',
                 description: '167 registros de metadatos de datasets de nomina del portal CKAN',
@@ -369,9 +429,10 @@
 
         // ========== Category Labels ==========
         const categoryLabels = {
-            'nomina': 'Nomina',
-            'estadisticas': 'Estadisticas',
+            'nomina': 'Nómina',
+            'estadisticas': 'Estadísticas',
             'zonas-francas': 'Zonas Francas',
+            'rdtrabaja': 'RD Trabaja',
             'metadata': 'Metadatos'
         };
 
@@ -379,6 +440,7 @@
             'nomina': 'bg-blue-100 text-blue-700',
             'estadisticas': 'bg-emerald-100 text-emerald-700',
             'zonas-francas': 'bg-amber-100 text-amber-700',
+            'rdtrabaja': 'bg-green-100 text-green-700',
             'metadata': 'bg-purple-100 text-purple-700'
         };
 
