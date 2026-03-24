@@ -28,10 +28,10 @@
 ## Día 1 — Lunes 23 de Marzo
 
 - [x] **1.1** — Descargar datasets estáticos de datos.gob.do → **15 datasets, 436k+ filas** en `/data/raw/`. Incluye nóminas (PROPEEP, MIVHED, MAPRE, DGII), TSS empleos/empleadores, salario mínimo, zonas francas. MAP API sigue 403. `MANIFEST.md` creado.
-- [ ] **1.2** — Explorar estructura de RD Trabaja (inspeccionar DOM, endpoints) → Documento con selectores CSS
+- [x] **1.2** — Explorar estructura de RD Trabaja → **API REST abierta descubierta** en `empleateya.mt.gob.do/api/`. 249 vacantes activas, sin auth, JSON directo. No necesita Playwright. Ver `data/raw/rdtrabaja-exploration.md`.
 - [ ] **1.3** — ~~Probar feed RSS de Aldaba~~ → _Descartado: Aldaba no tiene RSS/API, devuelve 403._
 - [x] **1.4** — Definir schema de datos normalizado → `data/schemas/normalized-job.schema.json` (22 campos, 7 requeridos) + `data/schemas/README.md` con mapping por fuente.
-- [ ] **1.5** — Crear wireframe del treemap (desktop + móvil) → Mockup visual
+- [x] **1.5** — Crear wireframe del treemap (desktop + móvil) → `wireframes/treemap-wireframe.html` con 12 sectores, tooltips, panel de detalle, vista móvil, datos dummy realistas.
 - [x] **1.6** — Setup del repo → Estructura creada: `scripts/scrapers/`, `scripts/processors/`, `src/`, `data/processed/`, `data/schemas/`
 - [ ] **1.7** — Post de arranque en redes → Post "Día 1"
 - [x] **1.1b** — **Data Explorer** → `explorer.html` con preview interactivo de todos los datasets. Link agregado en sección Datos de la landing.

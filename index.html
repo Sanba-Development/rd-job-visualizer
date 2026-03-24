@@ -85,6 +85,23 @@
         #taxonomy-content code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; color: #334155; }
         #taxonomy-content a { color: #475569; text-decoration: underline; }
         #taxonomy-content hr { border: none; border-top: 2px solid #e2e8f0; margin: 2rem 0; }
+        /* RD Trabaja overlay markdown styles */
+        #rdtrabaja-content h1 { font-size: 1.75rem; font-weight: 800; color: #0f172a; margin: 2rem 0 1rem; line-height: 1.3; }
+        #rdtrabaja-content h2 { font-size: 1.35rem; font-weight: 700; color: #1e293b; margin: 1.75rem 0 0.75rem; }
+        #rdtrabaja-content h3 { font-size: 1.1rem; font-weight: 600; color: #334155; margin: 1.5rem 0 0.5rem; }
+        #rdtrabaja-content p { color: #475569; line-height: 1.8; margin-bottom: 1rem; }
+        #rdtrabaja-content strong { color: #1e293b; }
+        #rdtrabaja-content ul, #rdtrabaja-content ol { color: #475569; margin: 0.75rem 0 1rem 1.5rem; line-height: 1.8; }
+        #rdtrabaja-content li { margin-bottom: 0.4rem; }
+        #rdtrabaja-content table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+        #rdtrabaja-content th { background: #eff6ff; color: #1e40af; font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid #bfdbfe; }
+        #rdtrabaja-content td { padding: 0.75rem 1rem; border: 1px solid #e2e8f0; color: #475569; }
+        #rdtrabaja-content tr:nth-child(even) { background: #f8fafc; }
+        #rdtrabaja-content code { background: #eff6ff; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; color: #2563eb; }
+        #rdtrabaja-content pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin: 1rem 0; }
+        #rdtrabaja-content pre code { background: none; color: #e2e8f0; }
+        #rdtrabaja-content a { color: #2563eb; text-decoration: underline; }
+        #rdtrabaja-content hr { border: none; border-top: 2px solid #bfdbfe; margin: 2rem 0; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-700">
@@ -472,6 +489,7 @@
                 <span class="flex items-center gap-1.5"><i data-lucide="download" class="h-4 w-4"></i> 15 datasets descargados</span>
                 <span class="flex items-center gap-1.5"><i data-lucide="table" class="h-4 w-4"></i> 436,000+ filas de datos reales</span>
                 <span class="flex items-center gap-1.5"><i data-lucide="layers" class="h-4 w-4"></i> 12 sectores definidos</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="wifi" class="h-4 w-4 text-green-500"></i> API de RD Trabaja descubierta</span>
             </div>
             <div class="mt-10 flex flex-wrap justify-center gap-4">
                 <button onclick="openDatosOverlay()" class="inline-flex items-center gap-3 rounded-2xl bg-amber-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-amber-200 hover:bg-amber-700 transition-all hover:scale-105 active:scale-95">
@@ -485,6 +503,16 @@
                 <a href="explorer.html" class="inline-flex items-center gap-3 rounded-2xl bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95">
                     <i data-lucide="table" class="h-5 w-5"></i>
                     Explorar Datos Descargados
+                </a>
+            </div>
+            <div class="mt-4 flex flex-wrap justify-center gap-4">
+                <button onclick="openRdTrabajaOverlay()" class="inline-flex items-center gap-3 rounded-2xl border-2 border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 hover:border-blue-300 hover:shadow-lg transition-all hover:scale-105 active:scale-95">
+                    <i data-lucide="search" class="h-4 w-4 text-blue-600"></i>
+                    Análisis RD Trabaja API
+                </button>
+                <a href="wireframes/treemap-wireframe.html" class="inline-flex items-center gap-3 rounded-2xl border-2 border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 hover:border-blue-300 hover:shadow-lg transition-all hover:scale-105 active:scale-95">
+                    <i data-lucide="layout" class="h-4 w-4 text-indigo-600"></i>
+                    Wireframe del Treemap
                 </a>
             </div>
         </div>
@@ -521,6 +549,23 @@
                 </button>
             </div>
             <div id="taxonomy-content" class="flex-1 overflow-y-auto rounded-b-2xl bg-white px-6 py-8 sm:px-10"></div>
+        </div>
+    </div>
+
+    <!-- RD Trabaja Overlay -->
+    <div id="rdtrabaja-overlay" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeRdTrabajaOverlay()"></div>
+        <div class="relative z-10 mx-auto flex h-full max-w-4xl flex-col p-4 sm:p-8">
+            <div class="flex items-center justify-between rounded-t-2xl bg-white px-6 py-4 border-b border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="search" class="h-5 w-5 text-blue-600"></i>
+                    Análisis Técnico: API de RD Trabaja
+                </h3>
+                <button onclick="closeRdTrabajaOverlay()" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+            <div id="rdtrabaja-content" class="flex-1 overflow-y-auto rounded-b-2xl bg-white px-6 py-8 sm:px-10"></div>
         </div>
     </div>
 
@@ -810,12 +855,33 @@
             document.body.style.overflow = '';
         }
 
+        // RD Trabaja overlay
+        let rdtrabajaRendered = false;
+        function openRdTrabajaOverlay() {
+            if (!rdtrabajaRendered) {
+                fetch('data/raw/rdtrabaja-exploration.md')
+                    .then(r => r.text())
+                    .then(md => {
+                        document.getElementById('rdtrabaja-content').innerHTML = marked.parse(md);
+                        rdtrabajaRendered = true;
+                    });
+            }
+            document.getElementById('rdtrabaja-overlay').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+        function closeRdTrabajaOverlay() {
+            document.getElementById('rdtrabaja-overlay').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeResearchOverlay();
                 closePlanOverlay();
                 closeDatosOverlay();
                 closeTaxonomyOverlay();
+                closeRdTrabajaOverlay();
                 closeSignupForm();
             }
         });

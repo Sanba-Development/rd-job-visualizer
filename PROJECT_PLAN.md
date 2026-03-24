@@ -47,15 +47,15 @@ Construir un portal web interactivo que visualice el mercado laboral dominicano 
 
 | # | Tarea | Rol(es) | Entregable |
 |---|-------|---------|------------|
-| 1.1 | Descargar datasets estáticos de datos.gob.do (ONE, MAP, TSS) | Ing. Datos | Archivos CSV/JSON en `/data/raw/` |
-| 1.2 | Explorar estructura de RD Trabaja (inspeccionar DOM, endpoints) | Ing. Datos | Documento con selectores CSS y estructura de datos |
-| 1.3 | Probar feed RSS de Aldaba | Ing. Datos | Script funcional que parsea vacantes |
-| 1.4 | Definir schema de datos normalizado | Analytics / Ing. Datos | Schema JSON con campos: sector, título, salario_min, salario_max, ubicación, fuente, fecha |
-| 1.5 | Crear wireframe del treemap (desktop + móvil) | Diseño UX/UI | Mockup visual con jerarquía de datos |
-| 1.6 | Setup del repo: estructura de carpetas, README actualizado | Frontend | Estructura `/data`, `/scripts`, `/src` lista |
-| 1.7 | Post de arranque en redes | Contenido | Post "Día 1" documentando el inicio |
+| 1.1 | ~~Descargar datasets estáticos de datos.gob.do~~ | Ing. Datos | **COMPLETADO** — 15 datasets, 436k+ filas en `/data/raw/`. `MANIFEST.md` creado. |
+| 1.2 | ~~Explorar estructura de RD Trabaja~~ | Ing. Datos | **COMPLETADO** — API REST pública descubierta en `empleateya.mt.gob.do/api/`. No necesita Playwright. |
+| 1.3 | ~~Probar feed RSS de Aldaba~~ | Ing. Datos | **DESCARTADO** — Aldaba no tiene RSS/API, devuelve 403. |
+| 1.4 | ~~Definir schema de datos normalizado~~ | Analytics / Ing. Datos | **COMPLETADO** — `data/schemas/normalized-job.schema.json` (22 campos) + README con mapping. |
+| 1.5 | ~~Crear wireframe del treemap (desktop + móvil)~~ | Diseño UX/UI | **COMPLETADO** — `wireframes/treemap-wireframe.html` con 12 sectores, tooltips, detalle, vista móvil. |
+| 1.6 | ~~Setup del repo~~ | Frontend | **COMPLETADO** — `scripts/`, `src/`, `data/processed/`, `data/schemas/` |
+| 1.7 | Post de arranque en redes | Contenido | Pendiente |
 
-**Decisión clave:** ¿Qué campos de metadata son viables con los datos disponibles? (salario, volumen, ubicación — ¿cuáles realmente están en las fuentes?)
+**Decisión clave:** ~~¿Qué campos de metadata son viables?~~ **RESPONDIDO:** título, sector, salario (bruto o rango), ubicación (provincia), tipo de empleo, género — todos disponibles entre MAP nóminas y RD Trabaja API.
 
 ---
 
