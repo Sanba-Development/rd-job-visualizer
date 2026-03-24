@@ -63,28 +63,28 @@
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="database" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">20</p>
+                    <p id="stat-datasets" class="text-3xl font-extrabold text-slate-900">—</p>
                     <p class="text-sm text-slate-500 mt-1">Datasets totales</p>
                 </div>
                 <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="rows-3" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">436K+</p>
+                    <p id="stat-rows" class="text-3xl font-extrabold text-slate-900">—</p>
                     <p class="text-sm text-slate-500 mt-1">Filas de datos</p>
                 </div>
                 <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="building-2" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">12</p>
+                    <p id="stat-institutions" class="text-3xl font-extrabold text-slate-900">—</p>
                     <p class="text-sm text-slate-500 mt-1">Instituciones fuente</p>
                 </div>
                 <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="calendar-range" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">2000-2026</p>
+                    <p id="stat-period" class="text-3xl font-extrabold text-slate-900">—</p>
                     <p class="text-sm text-slate-500 mt-1">Periodo cubierto</p>
                 </div>
             </div>
@@ -445,6 +445,21 @@
         };
 
         // ========== Format Row Count ==========
+        // ========== Compute Stats Dynamically ==========
+        (function computeStats() {
+            const totalDatasets = datasets.length;
+            const totalRows = datasets.reduce((sum, d) => sum + d.rows, 0);
+            const institutions = new Set(datasets.map(d => d.institution)).size;
+            const years = datasets.flatMap(d => d.dateRange.match(/\d{4}/g) || []).map(Number);
+            const minYear = Math.min(...years);
+            const maxYear = Math.max(...years);
+
+            document.getElementById('stat-datasets').textContent = totalDatasets;
+            document.getElementById('stat-rows').textContent = totalRows >= 1000 ? Math.round(totalRows / 1000) + 'K+' : totalRows;
+            document.getElementById('stat-institutions').textContent = institutions;
+            document.getElementById('stat-period').textContent = minYear + '-' + maxYear;
+        })();
+
         function formatNumber(n) {
             return n.toLocaleString('es-DO');
         }
