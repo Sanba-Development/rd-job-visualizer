@@ -2,7 +2,7 @@
 
 > Fuente de verdad para tareas pendientes, en progreso y completadas.
 > Se actualiza cada vez que se ejecuta o añade una tarea.
-> Última actualización: 23 de marzo de 2026 (session-save: 1.1, 1.4, 1.6, 1.1b completados)
+> Última actualización: 24 de marzo de 2026 (session-save: Day 1 completo, 4 participantes, master protegido)
 
 ---
 
@@ -40,7 +40,7 @@
 
 ## Día 2 — Martes 24 de Marzo
 
-- [ ] **2.1** — Scraper Playwright para RD Trabaja (modo no-headless)
+- [ ] **2.1** — ~~Scraper Playwright para RD Trabaja~~ → _Reemplazado: API REST descubierta en `empleateya.mt.gob.do/api/`. Crear script de fetch directo._
 - [ ] **2.2** — Parser de datasets ONE (ENFT, demografía empresarial)
 - [ ] **2.3** — Script de normalización: raw → cleaned → normalized JSON
 - [ ] **2.4** — Validación cruzada: sectores de fuentes vs taxonomía
@@ -92,5 +92,13 @@
   - _Participantes registrados:_
     - **Erick Santana** — `confirmed`, Gestión de Proyecto. Perfil completo con foto, headline, skills, email.
     - **Jonathan Ovalley** — `confirmed`, 2h/día. GitHub: jovalleyz, email: jonathanvallezamora@gmail.com, foto guardada.
+    - **Carlos Miranda Levy** — `interested`. Pendiente: email, GitHub, disponibilidad, foto.
+    - **Victor Corniel** — `interested`. Dev, gestión de proyecto, integración. Pendiente: email, GitHub, foto.
 
 - [x] **X.2** — **Sección "Equipo" en la landing** — Sección dinámica agregada entre Roles y Tech Stack. Carga `data/participants.json`, muestra foto/iniciales, nombre, rol, bio, skills, socials. Nav link "Equipo" agregado.
+
+- [x] **X.3** — **Contributing guide + branch protection** — `CONTRIBUTING.md`, `README.md`, master protegido (1 approval), CLAUDE.md actualizado con reglas.
+
+- [x] **X.4** — **Dominio y deploy** — `jobs.sanba.dev` configurado via Vercel. Auto-deploy on merge.
+
+- [x] **X.5** — **Progreso above the fold** — Sección "Lo Que Ya Tenemos" con 6 tarjetas coloridas movida debajo del hero.

@@ -45,19 +45,32 @@ Claude operates as an **orchestrator** for this repo:
 
 Open `index.html` in a browser directly — no build step needed. Any static file server works (`npx serve .`, `python -m http.server`, etc.).
 
+## Deployment
+
+- **Vercel Git Integration** — merges to `master` auto-deploy to `jobs.sanba.dev`. Do NOT run `vercel --prod` manually.
+- Preview deployments are generated for each PR automatically.
+- Domain: `jobs.sanba.dev` (production), `sanba.dev` (future company landing, separate repo).
+
 ## Stack & Dependencies (CDN-loaded, no local install)
 
 - **Tailwind CSS** via CDN script tag
 - **Lucide Icons** via unpkg
 - **Plus Jakarta Sans** via Google Fonts
 - **Marked.js** via CDN for rendering markdown overlays
+- **PapaParse** via CDN for CSV parsing (explorer.html)
 
 All JS is inline at the bottom of `index.html`.
+
+## UI Patterns
+
+- **Overlays:** All follow the same pattern — `<div id="*-overlay" class="fixed inset-0 z-[100] hidden">`, fetch .md file, render with `marked.parse()`, lazy-load with `*Rendered` flag. Copy existing when adding new.
+- **Team cards:** Loaded dynamically from `data/participants.json` via `fetch()`. Photos in `assets/team/`.
+- **Progress section:** 6 colored card grid below hero — links to all key artifacts.
 
 ## Planned Architecture (from research doc)
 
 The full MVP pipeline follows Karpathy's pattern:
-1. **Ingestion** — Playwright scrapers for RD Trabaja (SPA), CSV/JSON downloads from MAP/TSS/ENCFT via datos.gob.do and CKAN API
+1. **Ingestion** — RD Trabaja REST API at `empleateya.mt.gob.do/api/` (open, no auth), CSV/JSON downloads from datos.gob.do CKAN API. Playwright NOT needed.
 2. **Processing** — Normalization to CIUO-08 sectors (see `SECTOR_TAXONOMY.md`)
 3. **Visualization** — D3.js interactive treemap with layers: sector, geography, salary
 4. **Storage** — JSON for MVP simplicity
@@ -68,7 +81,7 @@ Priority sources for MVP:
 - **P0:** MAP Nómina Pública (JSON API — currently 403, needs investigation), datos.gob.do CKAN API (working)
 - **P0:** TSS Empleos Cotizantes (CSV)
 - **P1:** ENCFT Banco Central (XLSX)
-- **P2:** RD Trabaja (Playwright scraping), CNZFE Zonas Francas
+- **P2:** RD Trabaja (REST API — `empleateya.mt.gob.do/api/puestos?PageSize=500`), CNZFE Zonas Francas
 
 Discarded: Aldaba (403/auth required), Portal Concursa (down), LinkedIn (paywall).
 
@@ -76,6 +89,7 @@ Discarded: Aldaba (403/auth required), Portal Concursa (down), LinkedIn (paywall
 
 See `CONTRIBUTING.md` for full details. Key rules:
 
+- **Never run `vercel --prod` manually** — deploy is automatic on merge to master.
 - **Master is protected** — requires PR + 1 approval to merge. No direct push.
 - **One branch per task** — `feat/`, `fix/`, or `data/` prefix.
 - **Update BACKLOG.md** after completing any task.
