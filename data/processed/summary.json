@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-03-25T03:27:07.996Z",
+  "total_records": 262154,
+  "date_range": {
+    "min_year": 2000,
+    "max_year": 2026
+  },
+  "by_source": {
+    "ckan": 261296,
+    "tss": 816,
+    "cnzfe": 42
+  },
+  "by_sector": {
+    "agricultura_y_agroindustria": 794,
+    "administracion_publica_y_defensa": 171927,
+    "construccion": 78828,
+    "educacion": 3910,
+    "otros_servicios": 6653,
+    "manufactura_y_zonas_francas": 42
+  },
+  "by_record_type": {
+    "position": 255833,
+    "aggregate": 6321
+  }
+}

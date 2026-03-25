@@ -63,28 +63,28 @@
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="database" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">15</p>
+                    <p id="stat-datasets" class="text-3xl font-extrabold text-slate-900">—</p>
                     <p class="text-sm text-slate-500 mt-1">Datasets totales</p>
                 </div>
                 <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="rows-3" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">436K+</p>
+                    <p id="stat-rows" class="text-3xl font-extrabold text-slate-900">—</p>
                     <p class="text-sm text-slate-500 mt-1">Filas de datos</p>
                 </div>
                 <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="building-2" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">11</p>
+                    <p id="stat-institutions" class="text-3xl font-extrabold text-slate-900">—</p>
                     <p class="text-sm text-slate-500 mt-1">Instituciones fuente</p>
                 </div>
                 <div class="rounded-2xl bg-white border border-slate-200 p-5 text-center shadow-sm">
                     <div class="flex items-center justify-center gap-2 text-blue-600 mb-2">
                         <i data-lucide="calendar-range" class="h-5 w-5"></i>
                     </div>
-                    <p class="text-3xl font-extrabold text-slate-900">2000-2026</p>
+                    <p id="stat-period" class="text-3xl font-extrabold text-slate-900">—</p>
                     <p class="text-sm text-slate-500 mt-1">Periodo cubierto</p>
                 </div>
             </div>
@@ -354,6 +354,66 @@
                 category: 'zonas-francas'
             },
             {
+                id: 'rdtrabaja-puestos',
+                name: 'RD Trabaja — Vacantes Activas',
+                description: '256 vacantes activas del sector privado con título, sector, salario (rango), provincia, tipo de contrato',
+                institution: 'Ministerio de Trabajo',
+                rows: 256,
+                dateRange: '2026 (tiempo real)',
+                file: 'data/raw/rdtrabaja/puestos.json',
+                format: 'JSON',
+                columns: 'titulo, descripcion, idSectorEconomico, idRangoSalarial, idProvincia, idTipoContrato',
+                category: 'rdtrabaja'
+            },
+            {
+                id: 'rdtrabaja-conceptos',
+                name: 'RD Trabaja — Tablas de Lookup',
+                description: '46 tablas de referencia: sectores económicos, rangos salariales, niveles educativos, tipos de contrato',
+                institution: 'Ministerio de Trabajo',
+                rows: 46,
+                dateRange: '2026',
+                file: 'data/raw/rdtrabaja/conceptos.json',
+                format: 'JSON',
+                columns: 'Categorías con subcategorías (sectores, salarios, educación, contratos)',
+                category: 'rdtrabaja'
+            },
+            {
+                id: 'rdtrabaja-regiones',
+                name: 'RD Trabaja — Regiones Geográficas',
+                description: '19,825 entidades geográficas: regiones, provincias y municipios de RD',
+                institution: 'Ministerio de Trabajo',
+                rows: 19825,
+                dateRange: '2026',
+                file: 'data/raw/rdtrabaja/regiones.json',
+                format: 'JSON',
+                columns: 'id, nombre, tipo, padre (jerárquico)',
+                category: 'rdtrabaja'
+            },
+            {
+                id: 'rdtrabaja-metadata',
+                name: 'RD Trabaja — Estadísticas del Portal',
+                description: 'Stats agregados: 13,276 empresas, 691,435 candidatos, 36,163 vacantes históricas',
+                institution: 'Ministerio de Trabajo',
+                rows: 1,
+                dateRange: '2026',
+                file: 'data/raw/rdtrabaja/metadata.json',
+                format: 'JSON',
+                columns: 'empresas, candidatos, puestos totales',
+                category: 'rdtrabaja'
+            },
+            {
+                id: 'rdtrabaja-categorias',
+                name: 'RD Trabaja — Sectores por Demanda',
+                description: '30 sectores económicos rankeados por cantidad de vacantes publicadas',
+                institution: 'Ministerio de Trabajo',
+                rows: 30,
+                dateRange: '2026',
+                file: 'data/raw/rdtrabaja/categorias-destacadas.json',
+                format: 'JSON',
+                columns: 'sector, cantidad de puestos',
+                category: 'rdtrabaja'
+            },
+            {
                 id: 'ckan-metadata',
                 name: 'Metadatos CKAN (datos.gob.do)',
                 description: '167 registros de metadatos de datasets de nomina del portal CKAN',
@@ -369,9 +429,10 @@
 
         // ========== Category Labels ==========
         const categoryLabels = {
-            'nomina': 'Nomina',
-            'estadisticas': 'Estadisticas',
+            'nomina': 'Nómina',
+            'estadisticas': 'Estadísticas',
             'zonas-francas': 'Zonas Francas',
+            'rdtrabaja': 'RD Trabaja',
             'metadata': 'Metadatos'
         };
 
@@ -379,10 +440,26 @@
             'nomina': 'bg-blue-100 text-blue-700',
             'estadisticas': 'bg-emerald-100 text-emerald-700',
             'zonas-francas': 'bg-amber-100 text-amber-700',
+            'rdtrabaja': 'bg-green-100 text-green-700',
             'metadata': 'bg-purple-100 text-purple-700'
         };
 
         // ========== Format Row Count ==========
+        // ========== Compute Stats Dynamically ==========
+        (function computeStats() {
+            const totalDatasets = datasets.length;
+            const totalRows = datasets.reduce((sum, d) => sum + d.rows, 0);
+            const institutions = new Set(datasets.map(d => d.institution)).size;
+            const years = datasets.flatMap(d => d.dateRange.match(/\d{4}/g) || []).map(Number);
+            const minYear = Math.min(...years);
+            const maxYear = Math.max(...years);
+
+            document.getElementById('stat-datasets').textContent = totalDatasets;
+            document.getElementById('stat-rows').textContent = totalRows >= 1000 ? Math.round(totalRows / 1000) + 'K+' : totalRows;
+            document.getElementById('stat-institutions').textContent = institutions;
+            document.getElementById('stat-period').textContent = minYear + '-' + maxYear;
+        })();
+
         function formatNumber(n) {
             return n.toLocaleString('es-DO');
         }
@@ -509,27 +586,135 @@
             });
         }
 
-        function loadJSON(dataset) {
-            fetch(dataset.file)
+        // Cache for resolving concept IDs to names
+        let conceptosCache = null;
+        function loadConceptos() {
+            if (conceptosCache) return Promise.resolve(conceptosCache);
+            return fetch('data/raw/rdtrabaja/conceptos.json')
                 .then(r => r.json())
                 .then(data => {
+                    conceptosCache = {};
+                    const cats = data.conceptos || data;
+                    Object.keys(cats).forEach(key => {
+                        if (Array.isArray(cats[key])) {
+                            cats[key].forEach(item => {
+                                conceptosCache[key + ':' + item.codigo] = item.descripcion;
+                            });
+                        }
+                    });
+                    return conceptosCache;
+                })
+                .catch(() => ({}));
+        }
+
+        function flattenObject(obj, prefix) {
+            const flat = {};
+            Object.keys(obj).forEach(k => {
+                const v = obj[k];
+                if (v === null || v === undefined) flat[k] = '';
+                else if (typeof v === 'object' && !Array.isArray(v)) {
+                    const sub = flattenObject(v, k);
+                    Object.assign(flat, sub);
+                } else if (Array.isArray(v)) flat[k] = '[' + v.length + ' items]';
+                else flat[k] = String(v);
+            });
+            return flat;
+        }
+
+        function loadJSON(dataset) {
+            const filePromise = fetch(dataset.file).then(r => r.json());
+            const conceptosPromise = dataset.category === 'rdtrabaja' ? loadConceptos() : Promise.resolve({});
+
+            Promise.all([filePromise, conceptosPromise])
+                .then(([data, conceptos]) => {
                     document.getElementById('preview-loading').classList.add('hidden');
 
-                    // Handle CKAN API response structure
-                    let items = data;
-                    if (data.result && data.result.results) {
+                    let items, totalCount;
+
+                    // RD Trabaja puestos: unwrap data[].puesto and flatten
+                    if (dataset.id === 'rdtrabaja-puestos' && data.data) {
+                        items = data.data.map(d => {
+                            const flat = flattenObject(d.puesto || d, '');
+                            // Resolve IDs to names
+                            if (flat.actividadEconomica && conceptos['actividadEconomica:' + flat.actividadEconomica])
+                                flat.actividadEconomica = conceptos['actividadEconomica:' + flat.actividadEconomica] + ' (' + flat.actividadEconomica + ')';
+                            if (flat.rangoSalarial && conceptos['rangoSalarial:' + flat.rangoSalarial])
+                                flat.rangoSalarial = conceptos['rangoSalarial:' + flat.rangoSalarial] + ' (' + flat.rangoSalarial + ')';
+                            if (flat.disponibilidadHorario && conceptos['disponibilidadHorario:' + flat.disponibilidadHorario])
+                                flat.disponibilidadHorario = conceptos['disponibilidadHorario:' + flat.disponibilidadHorario];
+                            if (flat.nivelAcademico && conceptos['nivelAcademico:' + flat.nivelAcademico])
+                                flat.nivelAcademico = conceptos['nivelAcademico:' + flat.nivelAcademico];
+                            return flat;
+                        });
+                        totalCount = items.length;
+                    }
+                    // RD Trabaja conceptos: show category list with item counts
+                    else if (dataset.id === 'rdtrabaja-conceptos') {
+                        const cats = data.conceptos || data;
+                        items = Object.keys(cats).filter(k => Array.isArray(cats[k])).map(k => ({
+                            categoría: k,
+                            cantidad: cats[k].length,
+                            ejemplo: cats[k][0] ? cats[k][0].descripcion || '' : ''
+                        }));
+                        totalCount = items.length;
+                    }
+                    // RD Trabaja metadata: show as key-value
+                    else if (dataset.id === 'rdtrabaja-metadata') {
+                        items = Object.keys(data).map(k => ({
+                            métrica: k.replace(/^count/, '').replace(/([A-Z])/g, ' $1').trim(),
+                            valor: typeof data[k] === 'number' ? data[k].toLocaleString('es-DO') : String(data[k])
+                        }));
+                        totalCount = items.length;
+                    }
+                    // RD Trabaja regiones: it's a nested structure
+                    else if (dataset.id === 'rdtrabaja-regiones') {
+                        let flat = [];
+                        (Array.isArray(data) ? data : [data]).forEach(region => {
+                            if (region.provincias) {
+                                region.provincias.forEach(prov => {
+                                    flat.push({ región: region.nombre || '', provincia: prov.nombre || '', municipios: prov.municipios ? prov.municipios.length : 0 });
+                                });
+                            } else {
+                                flat.push(flattenObject(region, ''));
+                            }
+                        });
+                        items = flat;
+                        totalCount = items.length;
+                    }
+                    // RD Trabaja categorías: resolve IDs
+                    else if (dataset.id === 'rdtrabaja-categorias' && Array.isArray(data)) {
+                        items = data.map(d => ({
+                            sector: conceptos['actividadEconomica:' + d.actividadEconomica] || 'ID: ' + d.actividadEconomica,
+                            código: d.actividadEconomica,
+                            vacantes: d.cantidad
+                        }));
+                        totalCount = items.length;
+                    }
+                    // CKAN API response
+                    else if (data.result && data.result.results) {
                         items = data.result.results;
-                    } else if (Array.isArray(data)) {
+                        totalCount = items.length;
+                    }
+                    // Plain array
+                    else if (Array.isArray(data)) {
                         items = data;
+                        totalCount = items.length;
+                    }
+                    else {
+                        // Generic object — show as key-value
+                        items = Object.keys(data).map(k => ({
+                            campo: k,
+                            valor: typeof data[k] === 'object' ? JSON.stringify(data[k]).slice(0, 100) + '...' : String(data[k])
+                        }));
+                        totalCount = items.length;
                     }
 
-                    if (!Array.isArray(items) || items.length === 0) {
-                        showPreviewError('El archivo JSON no contiene datos tabulares');
+                    if (!items || items.length === 0) {
+                        showPreviewError('El archivo JSON no contiene datos visualizables');
                         return;
                     }
 
                     const preview = items.slice(0, 100);
-                    // Flatten top-level keys only
                     const headers = Object.keys(preview[0]).filter(k => {
                         const v = preview[0][k];
                         return typeof v !== 'object' || v === null;
@@ -543,7 +728,7 @@
                         return row;
                     });
 
-                    renderTable(headers, rows, items.length);
+                    renderTable(headers, rows, totalCount);
                 })
                 .catch(err => {
                     document.getElementById('preview-loading').classList.add('hidden');
