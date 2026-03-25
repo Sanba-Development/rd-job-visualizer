@@ -42,7 +42,7 @@
 
 - [ ] **2.1** — ~~Scraper Playwright para RD Trabaja~~ → _Reemplazado: API REST descubierta en `empleateya.mt.gob.do/api/`. Crear script de fetch directo._
 - [ ] **2.2** — Parser de datasets ONE (ENFT, demografía empresarial)
-- [ ] **2.3** — Script de normalización: raw → cleaned → normalized JSON
+- [x] **2.3** — Script de normalización → `scripts/processors/normalize.js` (262,154 registros de 13 fuentes). Output: `data/processed/normalized.json` (197MB, gitignored) + `data/processed/summary.json`. Ejecutar: `node scripts/processors/normalize.js`
 - [ ] **2.4** — Validación cruzada: sectores de fuentes vs taxonomía
 - [ ] **2.5** — Prototipo del treemap con datos dummy (D3.js)
 - [ ] **2.6** — Definir paleta de colores por sector
