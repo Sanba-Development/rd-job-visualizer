@@ -43,7 +43,7 @@
 - [x] **2.1** — Fetch RD Trabaja API → `scripts/scrapers/fetch-rdtrabaja.js` + 5 JSON files en `data/raw/rdtrabaja/` (256 vacantes, conceptos, regiones, metadata, categorías). Script ejecutable con `node`.
 - [ ] **2.2** — Parser de datasets ONE (ENFT, demografía empresarial)
 - [x] **2.3** — Script de normalización → `scripts/processors/normalize.js` (262,154 registros de 13 fuentes). Output: `data/processed/normalized.json` (197MB, gitignored) + `data/processed/summary.json`. Ejecutar: `node scripts/processors/normalize.js`
-- [ ] **2.4** — Validación cruzada: sectores de fuentes vs taxonomía
+- [x] **2.4** — Validación cruzada → `data/schemas/sector-validation.md` + `scripts/processors/validate-sectors.js`. Hallazgos: 6/12 sectores sin datos, bug en normalización RD Trabaja, MIVHED mal clasificado.
 - [x] **2.5** — Prototipo treemap D3.js → `src/treemap.html` con 12 sectores, tooltips, panel de detalle, responsive, datos reales del summary.
 - [x] **2.6** — Paleta de colores por sector → `src/sector-colors.json` (12 sectores con hex, CIIU, icon, shortName) + `src/color-palette.html` preview con contraste WCAG.
   - **Variante Abel López** (PR #18, rama `feat/abel-color-review`) → `src/sector-colors-abel.json` con paleta alternativa: colores referenciales (rojo MICM, RAL 4008, ámbar Lynda.com, etc.) + campo `rationale` por sector + 0 Fail WCAG en los 12 sectores.
