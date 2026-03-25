@@ -43,12 +43,36 @@
   <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
     <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
-      Colores asignados a cada sector económico del treemap. Basados en CIIU Rev.4 adaptados al contexto dominicano.
-      Verifica el contraste del texto blanco y negro sobre cada color.
+      Comparación de paletas de colores por sector. Edita <code class="font-mono text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">sector-colors-abel.json</code> para experimentar con cambios.
     </p>
 
-    <div id="sectors-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Cards rendered by JS -->
+    <!-- Two-column comparison -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+
+      <!-- Paleta original -->
+      <section>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="inline-block w-3 h-3 rounded-full bg-gray-400"></span>
+          <h2 class="text-lg font-bold">Paleta Original</h2>
+          <span class="text-xs text-gray-400 font-mono">sector-colors.json</span>
+        </div>
+        <div id="grid-original" class="grid grid-cols-1 gap-4">
+          <!-- Cards rendered by JS -->
+        </div>
+      </section>
+
+      <!-- Paleta Abel -->
+      <section>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span>
+          <h2 class="text-lg font-bold">Paleta Abel</h2>
+          <span class="text-xs text-gray-400 font-mono">sector-colors-abel.json</span>
+        </div>
+        <div id="grid-abel" class="grid grid-cols-1 gap-4">
+          <!-- Cards rendered by JS -->
+        </div>
+      </section>
+
     </div>
   </main>
 
@@ -87,12 +111,9 @@
       lucide.createIcons();
     });
 
-    // Restore saved theme
-    if (localStorage.getItem('theme') === 'dark') {
-      setTheme(true);
-    }
+    if (localStorage.getItem('theme') === 'dark') setTheme(true);
 
-    // Relative luminance for contrast calculation
+    // Contrast helpers
     function luminance(hex) {
       const rgb = [
         parseInt(hex.slice(1, 3), 16) / 255,
@@ -103,79 +124,67 @@
     }
 
     function contrastRatio(hex1, hex2) {
-      const l1 = luminance(hex1);
-      const l2 = luminance(hex2);
-      const lighter = Math.max(l1, l2);
-      const darker = Math.min(l1, l2);
-      return ((lighter + 0.05) / (darker + 0.05)).toFixed(2);
+      const l1 = luminance(hex1), l2 = luminance(hex2);
+      return (((Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05))).toFixed(2);
     }
 
     function wcagLevel(ratio) {
-      if (ratio >= 7) return { label: 'AAA', cls: 'text-green-700 dark:text-green-400' };
-      if (ratio >= 4.5) return { label: 'AA', cls: 'text-green-700 dark:text-green-400' };
-      if (ratio >= 3) return { label: 'AA Large', cls: 'text-yellow-700 dark:text-yellow-400' };
+      if (ratio >= 7)   return { label: 'AAA', cls: 'text-green-700 dark:text-green-400' };
+      if (ratio >= 4.5) return { label: 'AA',  cls: 'text-green-700 dark:text-green-400' };
+      if (ratio >= 3)   return { label: 'AA Large', cls: 'text-yellow-700 dark:text-yellow-400' };
       return { label: 'Fail', cls: 'text-red-700 dark:text-red-400' };
     }
 
-    // Load sectors and render
-    fetch('sector-colors.json')
-      .then(r => r.json())
-      .then(sectors => {
-        const grid = document.getElementById('sectors-grid');
+    function buildCard(s) {
+      const whiteRatio = contrastRatio(s.color, '#FFFFFF');
+      const blackRatio = contrastRatio(s.color, '#000000');
+      const whiteWcag  = wcagLevel(whiteRatio);
+      const blackWcag  = wcagLevel(blackRatio);
 
-        sectors.forEach((s, i) => {
-          const whiteRatio = contrastRatio(s.color, '#FFFFFF');
-          const blackRatio = contrastRatio(s.color, '#000000');
-          const whiteWcag = wcagLevel(whiteRatio);
-          const blackWcag = wcagLevel(blackRatio);
-
-          const card = document.createElement('div');
-          card.className = 'bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow';
-          card.innerHTML = `
-            <!-- Color swatch -->
-            <div class="h-32 flex items-center justify-center relative" style="background-color: ${s.color}">
-              <i data-lucide="${s.icon}" class="w-12 h-12 text-white opacity-90"></i>
-              <span class="absolute top-2 right-2 text-xs font-mono px-2 py-0.5 rounded bg-black/20 text-white">${s.color}</span>
-              <span class="absolute top-2 left-2 text-xs font-bold px-2 py-0.5 rounded bg-black/20 text-white">CIIU ${s.ciiu}</span>
+      const card = document.createElement('div');
+      card.className = 'bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow';
+      card.innerHTML = `
+        <div class="h-24 flex items-center justify-center relative" style="background-color: ${s.color}">
+          <i data-lucide="${s.icon}" class="w-10 h-10 text-white opacity-90"></i>
+          <span class="absolute top-2 right-2 text-xs font-mono px-2 py-0.5 rounded bg-black/20 text-white">${s.color}</span>
+          <span class="absolute top-2 left-2 text-xs font-bold px-2 py-0.5 rounded bg-black/20 text-white">CIIU ${s.ciiu}</span>
+        </div>
+        <div class="p-3">
+          <h3 class="font-bold text-sm mb-2">${s.name}</h3>
+          <div class="flex gap-1.5">
+            <div class="flex-1 rounded-lg px-2 py-1.5 text-center text-xs font-bold text-white" style="background-color: ${s.color}">
+              Blanco
+              <span class="block text-xs font-normal opacity-90">${whiteRatio}:1 <span class="${whiteWcag.cls}">${whiteWcag.label}</span></span>
             </div>
-
-            <!-- Sector info -->
-            <div class="p-4">
-              <h3 class="font-bold text-base mb-0.5">${s.name}</h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                <span class="font-mono text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">${s.id}</span>
-                &middot; ${s.shortName}
-              </p>
-
-              <!-- Contrast check -->
-              <div class="space-y-2">
-                <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Contraste</p>
-                <div class="flex gap-2">
-                  <div class="flex-1 rounded-lg px-3 py-2 text-center text-sm font-bold text-white" style="background-color: ${s.color}">
-                    Blanco
-                    <span class="block text-xs font-normal opacity-90 mt-0.5">${whiteRatio}:1 <span class="${whiteWcag.cls}">${whiteWcag.label}</span></span>
-                  </div>
-                  <div class="flex-1 rounded-lg px-3 py-2 text-center text-sm font-bold text-black" style="background-color: ${s.color}">
-                    Negro
-                    <span class="block text-xs font-normal opacity-90 mt-0.5">${blackRatio}:1 <span class="${blackWcag.cls}">${blackWcag.label}</span></span>
-                  </div>
-                </div>
-              </div>
+            <div class="flex-1 rounded-lg px-2 py-1.5 text-center text-xs font-bold text-black" style="background-color: ${s.color}">
+              Negro
+              <span class="block text-xs font-normal opacity-90">${blackRatio}:1 <span class="${blackWcag.cls}">${blackWcag.label}</span></span>
             </div>
-          `;
-          grid.appendChild(card);
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    function renderGrid(file, gridId) {
+      fetch(file)
+        .then(r => r.json())
+        .then(sectors => {
+          const grid = document.getElementById(gridId);
+          sectors.forEach(s => grid.appendChild(buildCard(s)));
+          lucide.createIcons();
+        })
+        .catch(err => {
+          document.getElementById(gridId).innerHTML = `
+            <div class="col-span-full text-center py-8 text-red-500 text-sm">
+              <p class="font-bold">Error cargando ${file}</p>
+              <p class="mt-1">${err.message}</p>
+            </div>`;
         });
+    }
 
-        // Render Lucide icons after DOM update
-        lucide.createIcons();
-      })
-      .catch(err => {
-        document.getElementById('sectors-grid').innerHTML = `
-          <div class="col-span-full text-center py-12 text-red-500">
-            <p class="font-bold">Error cargando sector-colors.json</p>
-            <p class="text-sm mt-2">${err.message}</p>
-          </div>`;
-      });
+    renderGrid('sector-colors.json',      'grid-original');
+    renderGrid('sector-colors-abel.json', 'grid-abel');
   </script>
 </body>
 </html>
