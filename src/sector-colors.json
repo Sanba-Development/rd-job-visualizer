@@ -1,0 +1,98 @@
+[
+  {
+    "id": "admin-publica",
+    "name": "Administración Pública y Defensa",
+    "shortName": "Admin. Pública",
+    "color": "#3B82F6",
+    "ciiu": "O",
+    "icon": "landmark"
+  },
+  {
+    "id": "turismo",
+    "name": "Turismo y Hostelería",
+    "shortName": "Turismo",
+    "color": "#F59E0B",
+    "ciiu": "I",
+    "icon": "palm-tree"
+  },
+  {
+    "id": "comercio",
+    "name": "Comercio",
+    "shortName": "Comercio",
+    "color": "#8B5CF6",
+    "ciiu": "G",
+    "icon": "shopping-cart"
+  },
+  {
+    "id": "construccion",
+    "name": "Construcción",
+    "shortName": "Construcción",
+    "color": "#F97316",
+    "ciiu": "F",
+    "icon": "hard-hat"
+  },
+  {
+    "id": "manufactura",
+    "name": "Manufactura y Zonas Francas",
+    "shortName": "Manufactura",
+    "color": "#EF4444",
+    "ciiu": "C",
+    "icon": "factory"
+  },
+  {
+    "id": "tecnologia",
+    "name": "Tecnología y Telecomunicaciones",
+    "shortName": "Tecnología",
+    "color": "#06B6D4",
+    "ciiu": "J",
+    "icon": "cpu"
+  },
+  {
+    "id": "salud",
+    "name": "Salud",
+    "shortName": "Salud",
+    "color": "#10B981",
+    "ciiu": "Q",
+    "icon": "heart-pulse"
+  },
+  {
+    "id": "educacion",
+    "name": "Educación",
+    "shortName": "Educación",
+    "color": "#6366F1",
+    "ciiu": "P",
+    "icon": "graduation-cap"
+  },
+  {
+    "id": "financiero",
+    "name": "Servicios Financieros",
+    "shortName": "Financiero",
+    "color": "#14B8A6",
+    "ciiu": "K",
+    "icon": "banknote"
+  },
+  {
+    "id": "transporte",
+    "name": "Transporte y Logística",
+    "shortName": "Transporte",
+    "color": "#A855F7",
+    "ciiu": "H",
+    "icon": "truck"
+  },
+  {
+    "id": "agricultura",
+    "name": "Agricultura y Agroindustria",
+    "shortName": "Agricultura",
+    "color": "#22C55E",
+    "ciiu": "A",
+    "icon": "wheat"
+  },
+  {
+    "id": "otros-servicios",
+    "name": "Otros Servicios",
+    "shortName": "Otros Serv.",
+    "color": "#64748B",
+    "ciiu": "R,S,T,U",
+    "icon": "ellipsis"
+  }
+]

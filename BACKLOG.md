@@ -45,7 +45,7 @@
 - [ ] **2.3** — Script de normalización: raw → cleaned → normalized JSON
 - [ ] **2.4** — Validación cruzada: sectores de fuentes vs taxonomía
 - [ ] **2.5** — Prototipo del treemap con datos dummy (D3.js)
-- [ ] **2.6** — Definir paleta de colores por sector
+- [x] **2.6** — Paleta de colores por sector → `src/sector-colors.json` (12 sectores con hex, CIIU, icon, shortName) + `src/color-palette.html` preview con contraste WCAG.
 - [ ] **2.7** — Post de progreso "Día 2"
 
 ---
