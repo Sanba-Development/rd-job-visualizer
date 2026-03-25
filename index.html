@@ -272,14 +272,14 @@
                 </button>
             </div>
 
-            <!-- Día 2 En Progreso -->
+            <!-- Día 2 Completado -->
             <div class="text-center mb-12 mt-16">
-                <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 mb-4">
-                    <i data-lucide="clock" class="h-4 w-4"></i>
-                    <span>Día 2 En Progreso</span>
+                <div class="inline-flex items-center gap-2 rounded-full bg-green-50 px-4 py-1.5 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-700/10 mb-4">
+                    <i data-lucide="check-circle-2" class="h-4 w-4"></i>
+                    <span>Día 2 Completado</span>
                 </div>
-                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Tareas de Hoy</h2>
-                <p class="mx-auto mt-3 max-w-xl text-slate-500">Pipeline de datos y primer prototipo del treemap.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Pipeline de Datos + Treemap</h2>
+                <p class="mx-auto mt-3 max-w-xl text-slate-500">262K registros normalizados de 13 fuentes. Primer treemap interactivo listo.</p>
             </div>
             <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                 <button onclick="openTaskModal('2.1')" class="group flex flex-col items-center gap-3 rounded-2xl bg-green-50 border-2 border-green-300 p-5 hover:border-green-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
@@ -291,13 +291,13 @@
                         <p class="text-xs text-green-600">256 vacantes ✓</p>
                     </div>
                 </button>
-                <button onclick="openTaskModal('2.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
-                        <i data-lucide="shuffle" class="h-6 w-6"></i>
+                <button onclick="openTaskModal('2.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-green-50 border-2 border-green-300 p-5 hover:border-green-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="check" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Normalizar</p>
-                        <p class="text-xs text-slate-500">CSV → Schema</p>
+                        <p class="text-xs text-green-600">262K registros ✓</p>
                     </div>
                 </button>
                 <button onclick="openTaskModal('2.4')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
@@ -306,27 +306,27 @@
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Validar</p>
-                        <p class="text-xs text-slate-500">Sectores vs fuentes</p>
+                        <p class="text-xs text-slate-500">Pendiente</p>
                     </div>
                 </button>
-                <button onclick="openTaskModal('2.5')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                <a href="src/treemap.html" class="group flex flex-col items-center gap-3 rounded-2xl bg-green-50 border-2 border-green-300 p-5 hover:border-green-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="bar-chart-3" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Treemap</p>
-                        <p class="text-xs text-slate-500">Prototipo D3.js</p>
+                        <p class="text-xs text-green-600">Ver mapa ↗</p>
                     </div>
-                </button>
-                <button onclick="openTaskModal('2.6')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
-                        <i data-lucide="palette" class="h-6 w-6"></i>
+                </a>
+                <a href="src/color-palette.html" class="group flex flex-col items-center gap-3 rounded-2xl bg-green-50 border-2 border-green-300 p-5 hover:border-green-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="check" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Colores</p>
-                        <p class="text-xs text-slate-500">12 sectores</p>
+                        <p class="text-xs text-green-600">12 sectores ✓</p>
                     </div>
-                </button>
+                </a>
             </div>
         </div>
     </section>
