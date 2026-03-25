@@ -44,7 +44,7 @@
 - [ ] **2.2** — Parser de datasets ONE (ENFT, demografía empresarial)
 - [ ] **2.3** — Script de normalización: raw → cleaned → normalized JSON
 - [ ] **2.4** — Validación cruzada: sectores de fuentes vs taxonomía
-- [ ] **2.5** — Prototipo del treemap con datos dummy (D3.js)
+- [x] **2.5** — Prototipo treemap D3.js → `src/treemap.html` con 12 sectores, tooltips, panel de detalle, responsive, datos reales del summary.
 - [ ] **2.6** — Definir paleta de colores por sector
 - [ ] **2.7** — Post de progreso "Día 2"
 

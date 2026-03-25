@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa del Empleo en RD | Sanba Development</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' x2='18' y1='20' y2='10'/%3E%3Cline x1='12' x2='12' y1='20' y2='4'/%3E%3Cline x1='6' x2='6' y1='20' y2='14'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+        /* Tooltip */
+        .treemap-tooltip {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+            z-index: 1000;
+        }
+        .treemap-tooltip.visible { opacity: 1; }
+
+        /* Detail panel */
+        .detail-panel {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .detail-panel.panel-hidden {
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            max-height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Mobile bottom sheet */
+        .bottom-sheet-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .bottom-sheet {
+            transition: transform 0.3s ease;
+            transform: translateY(100%);
+        }
+        .bottom-sheet.open { transform: translateY(0); }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- ============ NAVBAR ============ -->
+    <nav class="glass sticky top-0 z-50 border-b border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Volver al inicio
+            </a>
+            <div class="flex items-center gap-2">
+                <i data-lucide="bar-chart-3" class="w-5 h-5 text-blue-600"></i>
+                <span class="font-bold text-slate-900 text-sm">RD Job Visualizer</span>
+            </div>
+            <a href="https://github.com/Sanba-Development/rd-job-visualizer" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-600 transition-colors">
+                <i data-lucide="github" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ============ HEADER ============ -->
+    <header class="bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-10">
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">Mapa del Empleo en RD</h1>
+            <p class="text-slate-400 text-sm mt-2 max-w-2xl">Distribucion del empleo formal por sector economico. Visualizacion interactiva basada en datos de fuentes publicas dominicanas.</p>
+            <!-- Stats bar -->
+            <div class="flex flex-wrap gap-x-6 gap-y-2 mt-5">
+                <div class="flex items-center gap-2 text-sm">
+                    <i data-lucide="users" class="w-4 h-4 text-blue-400"></i>
+                    <span class="text-slate-300">Total empleos:</span>
+                    <span id="stat-total" class="font-bold text-white">—</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                    <i data-lucide="layers" class="w-4 h-4 text-amber-400"></i>
+                    <span class="text-slate-300">Sectores:</span>
+                    <span class="font-bold text-white">12</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                    <i data-lucide="calendar" class="w-4 h-4 text-emerald-400"></i>
+                    <span class="text-slate-300">Periodo:</span>
+                    <span class="font-bold text-white">2000–2026</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                    <i data-lucide="database" class="w-4 h-4 text-purple-400"></i>
+                    <span class="text-slate-300 text-xs">Datos parciales — Fuentes: MAP, TSS, DGII, CNZFE</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ MAIN ============ -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 md:py-8">
+
+        <!-- Treemap container -->
+        <div id="treemap-container" class="w-full bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div id="treemap" class="w-full" style="min-height: 400px;"></div>
+        </div>
+
+        <!-- Detail Panel (below treemap, click to show) -->
+        <div id="detail-panel" class="detail-panel panel-hidden mt-6">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+                <div id="detail-header" class="p-5 flex items-center justify-between" style="background:#3B82F6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+                            <i id="detail-icon" data-lucide="landmark" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 id="detail-name" class="text-white font-bold text-lg leading-tight">Sector</h3>
+                            <p class="text-white/70 text-xs mt-0.5">Detalle del sector</p>
+                        </div>
+                    </div>
+                    <button id="detail-close" class="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors" onclick="closeDetail()">
+                        <i data-lucide="x" class="w-4 h-4 text-white"></i>
+                    </button>
+                </div>
+                <div class="p-5">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-slate-50 rounded-xl p-3">
+                            <p class="text-xs text-slate-400 font-medium">Total Empleos</p>
+                            <p id="detail-empleos" class="text-xl font-bold text-slate-900 mt-1">0</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-3">
+                            <p class="text-xs text-slate-400 font-medium">Salario Promedio</p>
+                            <p id="detail-salario" class="text-xl font-bold text-slate-900 mt-1">RD$0</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-3 col-span-2">
+                            <p class="text-xs text-slate-400 font-medium">Participacion del Mercado</p>
+                            <div class="flex items-center gap-3 mt-2">
+                                <div class="flex-1 bg-slate-200 rounded-full h-2">
+                                    <div id="detail-bar" class="h-2 rounded-full transition-all duration-500" style="width:0%; background:#3B82F6"></div>
+                                </div>
+                                <span id="detail-pct" class="text-sm font-bold text-slate-700">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-100">
+                        <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Fuentes de Datos</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="inline-block bg-blue-50 text-blue-700 text-xs font-medium px-2 py-0.5 rounded-full">MAP Nomina</span>
+                            <span class="inline-block bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded-full">TSS Cotizantes</span>
+                            <span class="inline-block bg-amber-50 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">ENCFT</span>
+                            <span class="inline-block bg-purple-50 text-purple-700 text-xs font-medium px-2 py-0.5 rounded-full">DGII</span>
+                            <span class="inline-block bg-red-50 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">CNZFE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="mt-6 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 md:p-5">
+            <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-3">Sectores</p>
+            <div id="legend" class="flex flex-wrap gap-x-5 gap-y-2"></div>
+        </div>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="border-t border-slate-200 bg-white mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-400">
+            <p>Datos: MAP, TSS, ENCFT, DGII, CNZFE &mdash; Periodo 2000&ndash;2026</p>
+            <a href="https://jobs.sanba.dev" class="text-blue-600 hover:text-blue-700 font-medium transition-colors">jobs.sanba.dev</a>
+        </div>
+    </footer>
+
+    <!-- ============ TOOLTIP ============ -->
+    <div id="tooltip" class="treemap-tooltip bg-slate-900 text-white rounded-xl px-4 py-3 shadow-xl text-sm max-w-[260px]">
+        <p id="tooltip-name" class="font-bold text-sm"></p>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-xs text-slate-300">
+            <span>Empleos:</span>
+            <span id="tooltip-empleos" class="font-semibold text-white"></span>
+            <span>Salario prom.:</span>
+            <span id="tooltip-salario" class="font-semibold text-white"></span>
+            <span>Participacion:</span>
+            <span id="tooltip-pct" class="font-semibold text-white"></span>
+        </div>
+        <div class="mt-2">
+            <div class="bg-slate-700 rounded-full h-1.5 w-full">
+                <div id="tooltip-bar" class="h-1.5 rounded-full bg-blue-400 transition-all duration-200"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ MOBILE BOTTOM SHEET ============ -->
+    <div id="mobile-sheet-overlay" class="hidden fixed inset-0 bg-black/40 z-[60] bottom-sheet-overlay" onclick="closeDetail()"></div>
+    <div id="mobile-sheet" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-[70] bottom-sheet max-h-[70vh] overflow-y-auto">
+        <div class="flex justify-center pt-2 pb-1">
+            <div class="w-10 h-1 rounded-full bg-slate-300"></div>
+        </div>
+        <div id="mobile-sheet-content" class="px-5 pb-6 pt-2"></div>
+    </div>
+
+    <!-- ============ DATA + JAVASCRIPT ============ -->
+    <script>
+    // ---- SECTOR DATA ----
+    const sectorData = {
+        name: "Empleo en RD",
+        children: [
+            { name: "Administracion Publica", shortName: "Admin. Publica", value: 171927, color: "#3B82F6", salary: "RD$35,000", icon: "landmark" },
+            { name: "Construccion", shortName: "Construccion", value: 78828, color: "#F97316", salary: "RD$20,000", icon: "hard-hat" },
+            { name: "Turismo y Hosteleria", shortName: "Turismo", value: 45000, color: "#F59E0B", salary: "RD$28,000", icon: "palmtree" },
+            { name: "Comercio", shortName: "Comercio", value: 38000, color: "#8B5CF6", salary: "RD$22,000", icon: "shopping-bag" },
+            { name: "Manufactura y Zonas Francas", shortName: "Manufactura", value: 25000, color: "#EF4444", salary: "RD$25,000", icon: "factory" },
+            { name: "Educacion", shortName: "Educacion", value: 16500, color: "#6366F1", salary: "RD$32,000", icon: "graduation-cap" },
+            { name: "Otros Servicios", shortName: "Otros", value: 6653, color: "#64748B", salary: "RD$18,000", icon: "briefcase" },
+            { name: "Tecnologia y Telecomunicaciones", shortName: "Tecnologia", value: 6500, color: "#06B6D4", salary: "RD$65,000", icon: "cpu" },
+            { name: "Transporte y Logistica", shortName: "Transporte", value: 5000, color: "#A855F7", salary: "RD$24,000", icon: "truck" },
+            { name: "Salud", shortName: "Salud", value: 4500, color: "#10B981", salary: "RD$40,000", icon: "heart-pulse" },
+            { name: "Servicios Financieros", shortName: "Financiero", value: 3500, color: "#14B8A6", salary: "RD$55,000", icon: "landmark" },
+            { name: "Agricultura y Agroindustria", shortName: "Agricultura", value: 794, color: "#22C55E", salary: "RD$15,000", icon: "wheat" }
+        ]
+    };
+
+    const totalEmpleos = sectorData.children.reduce((s, d) => s + d.value, 0);
+
+    // ---- HELPERS ----
+    function fmt(n) {
+        return n.toLocaleString('es-DO');
+    }
+
+    function fmtCompact(n) {
+        if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+        if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+        return n.toString();
+    }
+
+    function pctOf(v) {
+        return ((v / totalEmpleos) * 100).toFixed(1);
+    }
+
+    // ---- POPULATE STATS ----
+    document.getElementById('stat-total').textContent = fmt(totalEmpleos);
+
+    // ---- LEGEND ----
+    const legendEl = document.getElementById('legend');
+    sectorData.children.forEach(d => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center gap-1.5 text-sm text-slate-600 cursor-pointer hover:text-slate-900 transition-colors';
+        item.innerHTML = `<span class="w-3 h-3 rounded-full shrink-0" style="background:${d.color}"></span><span class="text-xs">${d.shortName}</span>`;
+        item.addEventListener('click', () => {
+            if (isMobile()) {
+                openMobileSheet(d);
+            } else {
+                showDetail(d);
+            }
+        });
+        legendEl.appendChild(item);
+    });
+
+    // ---- RESPONSIVE CHECK ----
+    function isMobile() {
+        return window.innerWidth < 768;
+    }
+
+    // ---- D3 TREEMAP ----
+    let svg, treemapLayout, root;
+
+    function buildTreemap() {
+        const container = document.getElementById('treemap');
+        container.innerHTML = '';
+
+        const width = container.clientWidth;
+        const height = Math.max(400, Math.min(550, width * 0.45));
+        container.style.height = height + 'px';
+
+        // Create hierarchy
+        root = d3.hierarchy(sectorData)
+            .sum(d => d.value)
+            .sort((a, b) => b.value - a.value);
+
+        // Create treemap layout
+        treemapLayout = d3.treemap()
+            .size([width, height])
+            .tile(d3.treemapSquarify.ratio(1.2))
+            .paddingOuter(3)
+            .paddingInner(3)
+            .round(true);
+
+        treemapLayout(root);
+
+        // Create SVG
+        svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .attr('viewBox', `0 0 ${width} ${height}`)
+            .style('display', 'block');
+
+        // Defs for rounded corners clip paths
+        const defs = svg.append('defs');
+
+        const leaves = root.leaves();
+
+        leaves.forEach((leaf, i) => {
+            const w = leaf.x1 - leaf.x0;
+            const h = leaf.y1 - leaf.y0;
+            const r = 8;
+            defs.append('clipPath')
+                .attr('id', `clip-${i}`)
+                .append('rect')
+                .attr('x', leaf.x0)
+                .attr('y', leaf.y0)
+                .attr('width', w)
+                .attr('height', h)
+                .attr('rx', r)
+                .attr('ry', r);
+        });
+
+        // Draw cells
+        const cell = svg.selectAll('g')
+            .data(leaves)
+            .join('g')
+            .attr('clip-path', (d, i) => `url(#clip-${i})`)
+            .style('cursor', 'pointer');
+
+        // Background rect
+        cell.append('rect')
+            .attr('x', d => d.x0)
+            .attr('y', d => d.y0)
+            .attr('width', d => d.x1 - d.x0)
+            .attr('height', d => d.y1 - d.y0)
+            .attr('fill', d => d.data.color)
+            .attr('class', 'treemap-rect')
+            .style('transition', 'filter 0.15s ease');
+
+        // Gradient overlay for depth
+        cell.append('rect')
+            .attr('x', d => d.x0)
+            .attr('y', d => d.y0)
+            .attr('width', d => d.x1 - d.x0)
+            .attr('height', d => d.y1 - d.y0)
+            .attr('fill', 'url(#cellGradient)')
+            .style('pointer-events', 'none');
+
+        // Add gradient def
+        const grad = defs.append('linearGradient')
+            .attr('id', 'cellGradient')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '0%').attr('y2', '100%');
+        grad.append('stop').attr('offset', '0%').attr('stop-color', 'rgba(255,255,255,0.08)');
+        grad.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(0,0,0,0.15)');
+
+        // Labels — only show if cell is large enough
+        cell.each(function(d) {
+            const w = d.x1 - d.x0;
+            const h = d.y1 - d.y0;
+            const g = d3.select(this);
+
+            // Short name label
+            if (w > 60 && h > 35) {
+                g.append('text')
+                    .attr('x', d.x0 + 10)
+                    .attr('y', d.y0 + (h > 60 ? 24 : h / 2 - 2))
+                    .attr('fill', 'white')
+                    .attr('font-size', w > 140 ? '14px' : w > 90 ? '12px' : '10px')
+                    .attr('font-weight', '700')
+                    .attr('font-family', 'Plus Jakarta Sans, sans-serif')
+                    .style('pointer-events', 'none')
+                    .text(d.data.shortName);
+            }
+
+            // Value label
+            if (w > 60 && h > 55) {
+                g.append('text')
+                    .attr('x', d.x0 + 10)
+                    .attr('y', d.y0 + (h > 60 ? 42 : h / 2 + 14))
+                    .attr('fill', 'rgba(255,255,255,0.75)')
+                    .attr('font-size', w > 140 ? '12px' : '10px')
+                    .attr('font-weight', '500')
+                    .attr('font-family', 'Plus Jakarta Sans, sans-serif')
+                    .style('pointer-events', 'none')
+                    .text(fmtCompact(d.data.value) + ' empleos');
+            }
+
+            // Salary label for large cells
+            if (w > 130 && h > 75) {
+                g.append('text')
+                    .attr('x', d.x0 + 10)
+                    .attr('y', d.y0 + 58)
+                    .attr('fill', 'rgba(255,255,255,0.55)')
+                    .attr('font-size', '10px')
+                    .attr('font-weight', '500')
+                    .attr('font-family', 'Plus Jakarta Sans, sans-serif')
+                    .style('pointer-events', 'none')
+                    .text(d.data.salary + ' prom.');
+            }
+        });
+
+        // Interaction: hover
+        cell.on('mouseenter', function(event, d) {
+            d3.select(this).select('.treemap-rect')
+                .style('filter', 'brightness(1.12)');
+            showTooltip(event, d.data);
+        })
+        .on('mousemove', function(event) {
+            moveTooltip(event);
+        })
+        .on('mouseleave', function() {
+            d3.select(this).select('.treemap-rect')
+                .style('filter', 'brightness(1)');
+            hideTooltip();
+        })
+        .on('click', function(event, d) {
+            if (isMobile()) {
+                openMobileSheet(d.data);
+            } else {
+                showDetail(d.data);
+            }
+        });
+    }
+
+    // ---- TOOLTIP ----
+    const tooltipEl = document.getElementById('tooltip');
+
+    function showTooltip(event, data) {
+        document.getElementById('tooltip-name').textContent = data.name;
+        document.getElementById('tooltip-empleos').textContent = fmt(data.value);
+        document.getElementById('tooltip-salario').textContent = data.salary;
+        const pct = pctOf(data.value);
+        document.getElementById('tooltip-pct').textContent = pct + '%';
+        document.getElementById('tooltip-bar').style.width = pct + '%';
+        document.getElementById('tooltip-bar').style.background = data.color;
+        tooltipEl.classList.add('visible');
+        moveTooltip(event);
+    }
+
+    function moveTooltip(event) {
+        const x = event.clientX + 16;
+        const y = event.clientY - 12;
+        // Keep tooltip on screen
+        const tw = 260;
+        const adjustedX = (x + tw > window.innerWidth) ? event.clientX - tw - 10 : x;
+        tooltipEl.style.left = adjustedX + 'px';
+        tooltipEl.style.top = y + 'px';
+    }
+
+    function hideTooltip() {
+        tooltipEl.classList.remove('visible');
+    }
+
+    // ---- DETAIL PANEL (DESKTOP) ----
+    function showDetail(data) {
+        const panel = document.getElementById('detail-panel');
+        panel.classList.remove('panel-hidden');
+
+        document.getElementById('detail-header').style.background = data.color;
+        document.getElementById('detail-name').textContent = data.name;
+        document.getElementById('detail-empleos').textContent = fmt(data.value);
+        document.getElementById('detail-salario').textContent = data.salary;
+
+        const pct = pctOf(data.value);
+        document.getElementById('detail-bar').style.width = pct + '%';
+        document.getElementById('detail-bar').style.background = data.color;
+        document.getElementById('detail-pct').textContent = pct + '%';
+
+        // Update icon
+        const iconEl = document.getElementById('detail-icon');
+        iconEl.setAttribute('data-lucide', data.icon);
+        lucide.createIcons();
+
+        // Scroll to panel
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function closeDetail() {
+        document.getElementById('detail-panel').classList.add('panel-hidden');
+        // Also close mobile sheet
+        closeMobileSheet();
+    }
+
+    // ---- MOBILE BOTTOM SHEET ----
+    function openMobileSheet(data) {
+        const pct = pctOf(data.value);
+        document.getElementById('mobile-sheet-content').innerHTML = `
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:${data.color}">
+                    <i data-lucide="${data.icon}" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">${data.name}</h3>
+                    <p class="text-xs text-slate-500">${pct}% del empleo formal</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <p class="text-[10px] text-slate-400 font-medium uppercase">Empleos</p>
+                    <p class="text-lg font-bold text-slate-900">${fmt(data.value)}</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <p class="text-[10px] text-slate-400 font-medium uppercase">Salario Prom.</p>
+                    <p class="text-lg font-bold text-slate-900">${data.salary}</p>
+                </div>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-3 mb-4">
+                <p class="text-[10px] text-slate-400 font-medium uppercase mb-2">Participacion</p>
+                <div class="flex items-center gap-3">
+                    <div class="flex-1 bg-slate-200 rounded-full h-2">
+                        <div class="h-2 rounded-full" style="width:${pct}%; background:${data.color}"></div>
+                    </div>
+                    <span class="text-sm font-bold text-slate-700">${pct}%</span>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100">
+                <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-2">Fuentes de Datos</p>
+                <div class="flex flex-wrap gap-1.5">
+                    <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded-full">MAP</span>
+                    <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-medium px-2 py-0.5 rounded-full">TSS</span>
+                    <span class="inline-block bg-amber-50 text-amber-700 text-[10px] font-medium px-2 py-0.5 rounded-full">ENCFT</span>
+                    <span class="inline-block bg-purple-50 text-purple-700 text-[10px] font-medium px-2 py-0.5 rounded-full">DGII</span>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('mobile-sheet-overlay').classList.remove('hidden');
+        requestAnimationFrame(() => {
+            document.getElementById('mobile-sheet').classList.add('open');
+        });
+        lucide.createIcons();
+    }
+
+    function closeMobileSheet() {
+        document.getElementById('mobile-sheet').classList.remove('open');
+        setTimeout(() => {
+            document.getElementById('mobile-sheet-overlay').classList.add('hidden');
+        }, 300);
+    }
+
+    // ---- RESPONSIVE RESIZE ----
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            buildTreemap();
+        }, 200);
+    });
+
+    // ---- INIT ----
+    document.addEventListener('DOMContentLoaded', () => {
+        buildTreemap();
+        lucide.createIcons();
+    });
+    </script>
+</body>
+</html>
