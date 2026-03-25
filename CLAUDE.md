@@ -8,7 +8,7 @@ RD Job Visualizer is a 7-day challenge organized by **Sanba Development** to bui
 
 ## Current State
 
-The project is currently a **single static HTML file** (`index.html`) serving as a recruitment/landing page for the hackathon sprint, plus a research document (`RD Job Visualizer Research.md`) detailing the data architecture plan. There is no build system, package manager, or framework installed yet.
+The project has a landing page (`index.html`), interactive data explorer (`explorer.html`), D3.js treemap (`src/treemap.html`), and a data pipeline (fetch + normalize scripts). No build system — all static HTML with CDN deps.
 
 Key documents and artifacts:
 - `DATA_SOURCES.md` — Inventario de 6 fuentes de datos priorizadas con URLs y formatos
@@ -17,6 +17,11 @@ Key documents and artifacts:
 - `data/schemas/normalized-job.schema.json` — Schema normalizado (22 campos, JSON Schema draft-07)
 - `explorer.html` — Data Explorer interactivo para navegar los datasets
 - `ORCHESTRATOR.md` — Living architecture summary (read this first in new sessions)
+- `src/treemap.html` — Treemap D3.js interactivo con 12 sectores
+- `src/sector-colors.json` — Paleta de colores WCAG por sector (fuente de verdad)
+- `scripts/scrapers/fetch-rdtrabaja.js` — Fetch de API RD Trabaja (`node scripts/scrapers/fetch-rdtrabaja.js`)
+- `scripts/processors/normalize.js` — Normaliza 262K registros (`node scripts/processors/normalize.js`)
+- `ONBOARDING.md` — Guía para nuevos contribuyentes
 
 ## Working Mode — Orchestrator
 
@@ -51,6 +56,13 @@ Open `index.html` in a browser directly — no build step needed. Any static fil
 - Preview deployments are generated for each PR automatically.
 - Domain: `jobs.sanba.dev` (production), `sanba.dev` (future company landing, separate repo).
 
+## Daily Branch Pattern
+
+- Each day uses a `dayN/working` branch as integration target
+- Feature branches (`feat/*`, `fix/*`) PR into `dayN/working`
+- At end of day, `dayN/working` PRs into `master` → auto-deploy
+- Clean up merged branches after each PR merge
+
 ## Stack & Dependencies (CDN-loaded, no local install)
 
 - **Tailwind CSS** via CDN script tag
@@ -58,6 +70,7 @@ Open `index.html` in a browser directly — no build step needed. Any static fil
 - **Plus Jakarta Sans** via Google Fonts
 - **Marked.js** via CDN for rendering markdown overlays
 - **PapaParse** via CDN for CSV parsing (explorer.html)
+- **D3.js v7** via CDN for treemap visualization (src/treemap.html)
 
 All JS is inline at the bottom of `index.html`.
 

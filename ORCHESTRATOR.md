@@ -2,7 +2,7 @@
 
 > This file is maintained by the orchestrator thread. It preserves architecture,
 > conventions, decisions, and risks so context survives compaction.
-> Last updated: 2026-03-24 (session-save)
+> Last updated: 2026-03-25 (session-save)
 
 ---
 
@@ -161,6 +161,13 @@ All overlays follow same pattern:
 | Domain: jobs.sanba.dev | 2026-03-24 | Production domain. sanba.dev reserved for future company landing. |
 | Progress section above fold | 2026-03-24 | 6 card grid moved below hero for immediate visibility of achievements. |
 | Nanobanana MCP for images | 2026-03-24 | Use `gemini_generate_image` with conversation_id for consistent style. Reference images for real photos. |
+| dayN/working branch pattern | 2026-03-25 | Feature branches PR into dayN/working, then dayN/working PRs into master at end of day |
+| Treemap data is hardcoded | 2026-03-25 | src/treemap.html has inline data — must manually update when normalization changes. Task 3.1 will fix this. |
+| Explorer datasets hardcoded | 2026-03-25 | explorer.html JS array must be updated when new data files are added |
+| Mix real + estimated data | 2026-03-25 | Treemap shows real data (solid) + estimates (dashed border, 70% opacity) with visual distinction |
+| Abel López owns color palette | 2026-03-25 | sector-colors.json maintained by Abel. WCAG-compliant. Treemap must sync colors from this file. |
+| MIVHED = Admin Pública | 2026-03-25 | Ministry of Housing employees are govt workers, not construction. Fixed in normalize.js. |
+| RD Trabaja nested JSON | 2026-03-25 | API returns data[].puesto.titulo (nested), not data[].titulo. Fixed in normalize.js. |
 
 ---
 
@@ -175,9 +182,9 @@ All overlays follow same pattern:
 
 ---
 
-## Current State (as of 2026-03-24)
+## Current State (as of 2026-03-25)
 
-### Completed (Day 0 + Day 1)
+### Completed (Day 0 + Day 1 + Day 2)
 - [x] 0.3 — Plan + research shared (overlays on landing)
 - [x] 0.4 — Data sources inventoried (DATA_SOURCES.md + samples downloaded)
 - [x] 0.5 — Sector taxonomy defined (SECTOR_TAXONOMY.md, 12 sectors)
@@ -190,24 +197,29 @@ All overlays follow same pattern:
 - [x] 1.6 — Repo structure (scripts/, src/, data/processed/, data/schemas/)
 - [x] 1.1b — Data Explorer (explorer.html) with interactive CSV preview
 - [x] Contributing guide + master branch protection + README
+- [x] 2.1 — Fetch RD Trabaja API (256 vacantes, conceptos, regiones, metadata)
+- [x] 2.3 — Normalización 262K registros de 13 fuentes + bugs fixed (MIVHED, RD Trabaja)
+- [x] 2.4 — Validación cruzada (6/12 gaps identified, bugs found and fixed)
+- [x] 2.5 — Treemap D3.js interactivo con mix real/estimado + visual distinction
+- [x] 2.6 — Paleta colores WCAG (Abel López) + preview page
+- [x] Treemap showcase section on landing
+- [x] Day 2 + Day 3 task cards with detail modals
+- [x] Onboarding guide (ONBOARDING.md)
 
 ### Blocked
-- [!] 0.1 — Confirm participants (4 total: 2 confirmed, 2 interested)
-- [!] 0.2 — Create group (coordination via WhatsApp direct for now)
+- [!] 0.1 — Confirm participants (9 total: 7 confirmed, 2 interested)
+- [!] 0.2 — WhatsApp group active
 
 ### Discarded
 - 1.3 — Aldaba RSS (no API, returns 403)
-- 2.1 — Playwright scraper (replaced by direct API call to empleateya.mt.gob.do)
 
-### Pending / Next Up (Day 2 — Tue Mar 24)
-- 2.3 — Script de normalización (raw → schema)
-- 2.5 — Prototipo treemap con datos dummy (D3.js)
-- 2.4 — Validación cruzada: sectores de fuentes vs taxonomía
-- 2.6 — Paleta de colores por sector (already in SECTOR_TAXONOMY.md, needs D3 integration)
-
-### Uncommitted local changes (need PR)
-- CLAUDE.md updates (deployment, UI patterns, RD Trabaja API, contributing rules)
-- ORCHESTRATOR.md updates (this session-save)
+### Pending / Next Up (Day 3 — Wed Mar 25)
+- 3.1 — Integrar datos reales al treemap (replace hardcoded data)
+- 3.2 — Mejorar tooltips con datos reales
+- 3.3 — Completar ingesta (fill 6 empty sectors)
+- 3.4 — Métricas agregadas + análisis Pareto 80/20 salarial
+- 3.5 — Validar datos vs fuentes oficiales
+- 3.6 — Diseño página contenedora (header, filtros, leyenda)
 
 ---
 
@@ -217,5 +229,10 @@ All overlays follow same pattern:
 |------|--------|---------------|----------|
 | Erick Santana | confirmed | Gestión de Proyecto | Product leader, BairesDev, Punta Cana. Full profile + photo. |
 | Jonathan Ovalley | confirmed | TBD | Analytics, design, AI dev. GitHub: jovalleyz. 2h/día. |
-| Carlos Miranda Levy | interested | TBD | Pending: email, GitHub, availability, photo. |
-| Victor Corniel | interested | TBD | Dev, project mgmt, integration. Pending: email, GitHub, photo. |
+| Carlos Miranda Levy | confirmed | TBD | Interrelaciones sectoriales, prospectiva. thesocialentrepreneur.com. Photo. |
+| Victor Corniel | confirmed | TBD | Dirección de proyecto, BI, UX/UI. 6h/día. Photo. |
+| Abel López | confirmed | TBD | ENIA, Envision Innovation Labs. GitHub: jabelg. 3h/día. Owns color palette. |
+| José D'Andrade | confirmed | TBD | AI/ML/Data Science. Legal Design DO. GitHub: 13g4d0. Photo. |
+| Arlette Palacio | confirmed | TBD | EdTech (Educology). 2h/día. Photo. |
+| Angelino | interested | TBD | Comunicación, diseño, marketing. Pending details. |
+| (unnamed) | interested | TBD | Pending info. |
