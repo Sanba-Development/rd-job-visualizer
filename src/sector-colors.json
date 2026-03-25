@@ -48,10 +48,10 @@
     "id": "tecnologia",
     "name": "Tecnología y Telecomunicaciones",
     "shortName": "Tecnología",
-    "color": "#0070C0",
+    "color": "#14a0b8",
     "ciiu": "J",
     "icon": "cpu",
-    "rationale": "Azul corporativo tech — oscurecido respecto al cyan original para mayor profundidad y asociación con sectores digitales maduros. Referencia a paletas de Microsoft, IBM y Cámara TIC. Blanco: AA (5.15:1) · Negro: AA Large (4.08:1). Sin Fail."
+    "rationale": "Cyan tech — más vivo y diferenciado del azul institucional. Evoca innovación digital y telecomunicaciones. Blanco: AA (4.61:1) · Negro: AA Large (4.55:1). Sin Fail."
   },
   {
     "id": "salud",
@@ -66,10 +66,10 @@
     "id": "educacion",
     "name": "Educación",
     "shortName": "Educación",
-    "color": "#b37d00",
+    "color": "#e0aa06",
     "ciiu": "P",
     "icon": "graduation-cap",
-    "rationale": "Ámbar dorado — inspirado en el amarillo Lynda.com/LinkedIn Learning. Oscurecido a ámbar para que el texto blanco pase WCAG (el amarillo puro #ffbf00 falla con blanco a 1.65:1, física imposible de corregir sin cambiar el tono). Blanco: AA Large (3.54:1) · Negro: AA (5.93:1). Sin Fail."
+    "rationale": "Dorado cálido inspirado en Lynda.com/LinkedIn Learning. Blanco: Fail en texto pequeño — uso recomendado con texto negro (Negro: AAA ~12.5:1). Para etiquetas de treemap (elementos grandes) pasa AA Large."
   },
   {
     "id": "financiero",

@@ -174,6 +174,10 @@
         <div class="mt-6 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 md:p-5">
             <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-3">Sectores</p>
             <div id="legend" class="flex flex-wrap gap-x-5 gap-y-2"></div>
+            <div class="flex items-center gap-4 mt-3 pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+                <span class="flex items-center gap-1.5"><span class="w-4 h-3 rounded-sm bg-slate-400 inline-block"></span> Dato real</span>
+                <span class="flex items-center gap-1.5"><span class="w-4 h-3 rounded-sm bg-slate-300 inline-block border border-dashed border-slate-400"></span> Estimado (pendiente fuentes)</span>
+            </div>
         </div>
     </main>
 
@@ -188,12 +192,13 @@
     <!-- ============ TOOLTIP ============ -->
     <div id="tooltip" class="treemap-tooltip bg-slate-900 text-white rounded-xl px-4 py-3 shadow-xl text-sm max-w-[260px]">
         <p id="tooltip-name" class="font-bold text-sm"></p>
+        <p id="tooltip-badge" class="hidden text-[10px] mt-1 px-2 py-0.5 rounded-full inline-block"></p>
         <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-xs text-slate-300">
             <span>Empleos:</span>
             <span id="tooltip-empleos" class="font-semibold text-white"></span>
             <span>Salario prom.:</span>
             <span id="tooltip-salario" class="font-semibold text-white"></span>
-            <span>Participacion:</span>
+            <span>Participación:</span>
             <span id="tooltip-pct" class="font-semibold text-white"></span>
         </div>
         <div class="mt-2">
@@ -218,18 +223,18 @@
     const sectorData = {
         name: "Empleo en RD",
         children: [
-            { name: "Administración Pública y Defensa", shortName: "Admin. Pública", value: 171927, color: "#1a5cb5", salary: "RD$35,000", icon: "landmark" },
-            { name: "Construcción", shortName: "Construcción", value: 78828, color: "#E55C00", salary: "RD$20,000", icon: "hard-hat" },
-            { name: "Turismo y Hostelería", shortName: "Turismo", value: 45000, color: "#a87e3a", salary: "RD$28,000", icon: "palm-tree" },
-            { name: "Comercio", shortName: "Comercio", value: 38000, color: "#ee2a24", salary: "RD$22,000", icon: "shopping-cart" },
-            { name: "Manufactura y Zonas Francas", shortName: "Manufactura", value: 25000, color: "#7b9720", salary: "RD$25,000", icon: "factory" },
-            { name: "Educación", shortName: "Educación", value: 16500, color: "#b37d00", salary: "RD$32,000", icon: "graduation-cap" },
-            { name: "Otros Servicios", shortName: "Otros Serv.", value: 6653, color: "#64748B", salary: "RD$18,000", icon: "ellipsis" },
-            { name: "Tecnología y Telecomunicaciones", shortName: "Tecnología", value: 6500, color: "#0070C0", salary: "RD$65,000", icon: "cpu" },
-            { name: "Transporte y Logística", shortName: "Transporte", value: 5000, color: "#844c82", salary: "RD$24,000", icon: "truck" },
-            { name: "Salud", shortName: "Salud", value: 4500, color: "#0a7f58", salary: "RD$40,000", icon: "heart-pulse" },
-            { name: "Servicios Financieros", shortName: "Financiero", value: 3500, color: "#409d84", salary: "RD$55,000", icon: "banknote" },
-            { name: "Agricultura y Agroindustria", shortName: "Agricultura", value: 794, color: "#13893e", salary: "RD$15,000", icon: "wheat" }
+            { name: "Administración Pública y Defensa", shortName: "Admin. Pública", value: 250755, color: "#1a5cb5", salary: "RD$35,000", icon: "landmark", estimated: false },
+            { name: "Turismo y Hostelería", shortName: "Turismo", value: 45000, color: "#a87e3a", salary: "RD$28,000", icon: "palm-tree", estimated: true },
+            { name: "Comercio", shortName: "Comercio", value: 38000, color: "#ee2a24", salary: "RD$22,000", icon: "shopping-cart", estimated: true },
+            { name: "Construcción", shortName: "Construcción", value: 25000, color: "#E55C00", salary: "RD$20,000", icon: "hard-hat", estimated: true },
+            { name: "Manufactura y Zonas Francas", shortName: "Manufactura", value: 25000, color: "#7b9720", salary: "RD$25,000", icon: "factory", estimated: true },
+            { name: "Educación", shortName: "Educación", value: 3916, color: "#e0aa06", salary: "RD$32,000", icon: "graduation-cap", estimated: false },
+            { name: "Otros Servicios", shortName: "Otros Serv.", value: 6786, color: "#64748B", salary: "RD$18,000", icon: "ellipsis", estimated: false },
+            { name: "Tecnología y Telecomunicaciones", shortName: "Tecnología", value: 6500, color: "#14a0b8", salary: "RD$65,000", icon: "cpu", estimated: true },
+            { name: "Transporte y Logística", shortName: "Transporte", value: 5000, color: "#844c82", salary: "RD$24,000", icon: "truck", estimated: true },
+            { name: "Salud", shortName: "Salud", value: 4500, color: "#0a7f58", salary: "RD$40,000", icon: "heart-pulse", estimated: true },
+            { name: "Servicios Financieros", shortName: "Financiero", value: 3500, color: "#409d84", salary: "RD$55,000", icon: "banknote", estimated: true },
+            { name: "Agricultura y Agroindustria", shortName: "Agricultura", value: 800, color: "#13893e", salary: "RD$15,000", icon: "wheat", estimated: false }
         ]
     };
 
@@ -343,7 +348,22 @@
             .attr('height', d => d.y1 - d.y0)
             .attr('fill', d => d.data.color)
             .attr('class', 'treemap-rect')
-            .style('transition', 'filter 0.15s ease');
+            .style('transition', 'filter 0.15s ease')
+            .style('opacity', d => d.data.estimated ? 0.7 : 1);
+
+        // Dashed border for estimated sectors
+        cell.filter(d => d.data.estimated)
+            .append('rect')
+            .attr('x', d => d.x0 + 2)
+            .attr('y', d => d.y0 + 2)
+            .attr('width', d => Math.max(0, d.x1 - d.x0 - 4))
+            .attr('height', d => Math.max(0, d.y1 - d.y0 - 4))
+            .attr('fill', 'none')
+            .attr('stroke', 'rgba(255,255,255,0.5)')
+            .attr('stroke-width', 2)
+            .attr('stroke-dasharray', '6,4')
+            .attr('rx', 6)
+            .style('pointer-events', 'none');
 
         // Gradient overlay for depth
         cell.append('rect')
@@ -442,6 +462,14 @@
         document.getElementById('tooltip-pct').textContent = pct + '%';
         document.getElementById('tooltip-bar').style.width = pct + '%';
         document.getElementById('tooltip-bar').style.background = data.color;
+        const badge = document.getElementById('tooltip-badge');
+        if (data.estimated) {
+            badge.textContent = '⊘ Dato estimado — pendiente de fuentes reales';
+            badge.className = 'text-[10px] mt-1 px-2 py-0.5 rounded-full inline-block bg-amber-900/50 text-amber-300';
+        } else {
+            badge.textContent = '✓ Dato real — fuentes verificadas';
+            badge.className = 'text-[10px] mt-1 px-2 py-0.5 rounded-full inline-block bg-green-900/50 text-green-300';
+        }
         tooltipEl.classList.add('visible');
         moveTooltip(event);
     }
