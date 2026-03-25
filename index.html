@@ -1297,19 +1297,23 @@
             },
             '3.4': {
                 numero: '3.4',
-                titulo: 'Calcular métricas agregadas',
-                objetivo: 'Generar archivo de métricas por sector para el treemap.',
-                contexto: 'Necesitamos: promedio salarial por sector, total empleos, distribución por género, top puestos.',
+                titulo: 'Calcular métricas agregadas + análisis salarial Pareto',
+                objetivo: 'Generar métricas por sector incluyendo análisis salarial con distribución Pareto 80/20: media del 80% franja baja vs media del 20% franja alta, con porcentaje de empleados en cada franja.',
+                contexto: 'Necesitamos: promedio salarial por sector, distribución Pareto (80% gana X, 20% gana Y), total empleos, distribución por género, top puestos. Esto alimenta el treemap con rangos salariales reales por sector.',
                 plan: [
                     'Script que lee <code>normalized.json</code>',
-                    'Calcula agregados por sector',
+                    'Calcula agregados por sector: total empleos, salario promedio',
+                    'Análisis Pareto 80/20: ordenar salarios, calcular media del 80% inferior y media del 20% superior',
+                    'Porcentaje de empleados en cada franja y diferencia entre ambas medias',
+                    'Top 10 puestos por sector',
                     'Genera <code>metrics.json</code> consumible por el treemap'
                 ],
                 archivos: '<code>scripts/processors/</code>, <code>data/processed/metrics.json</code>',
                 criterios: [
                     'JSON con métricas por sector',
-                    'Salario promedio calculado',
-                    'Top 10 puestos por sector'
+                    'Salario promedio + franja baja (80%) + franja alta (20%) calculados',
+                    'Top 10 puestos por sector',
+                    'Treemap puede mostrar rango salarial por sector'
                 ],
                 dificultad: 'Medio',
                 dificultadColor: 'bg-amber-100 text-amber-700',
