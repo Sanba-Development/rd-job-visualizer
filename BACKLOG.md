@@ -46,6 +46,7 @@
 - [ ] **2.4** — Validación cruzada: sectores de fuentes vs taxonomía
 - [x] **2.5** — Prototipo treemap D3.js → `src/treemap.html` con 12 sectores, tooltips, panel de detalle, responsive, datos reales del summary.
 - [x] **2.6** — Paleta de colores por sector → `src/sector-colors.json` (12 sectores con hex, CIIU, icon, shortName) + `src/color-palette.html` preview con contraste WCAG.
+  - **Variante Abel López** (PR #18, rama `feat/abel-color-review`) → `src/sector-colors-abel.json` con paleta alternativa: colores referenciales (rojo MICM, RAL 4008, ámbar Lynda.com, etc.) + campo `rationale` por sector + 0 Fail WCAG en los 12 sectores.
 - [ ] **2.7** — Post de progreso "Día 2"
 
 ---
