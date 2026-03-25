@@ -40,7 +40,7 @@
 
 ## Día 2 — Martes 24 de Marzo
 
-- [ ] **2.1** — ~~Scraper Playwright para RD Trabaja~~ → _Reemplazado: API REST descubierta en `empleateya.mt.gob.do/api/`. Crear script de fetch directo._
+- [x] **2.1** — Fetch RD Trabaja API → `scripts/scrapers/fetch-rdtrabaja.js` + 5 JSON files en `data/raw/rdtrabaja/` (256 vacantes, conceptos, regiones, metadata, categorías). Script ejecutable con `node`.
 - [ ] **2.2** — Parser de datasets ONE (ENFT, demografía empresarial)
 - [ ] **2.3** — Script de normalización: raw → cleaned → normalized JSON
 - [ ] **2.4** — Validación cruzada: sectores de fuentes vs taxonomía
