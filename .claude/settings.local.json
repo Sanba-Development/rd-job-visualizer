@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/abell/AppData/Local/**)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/abell/**)"
+    ]
+  }
+}
