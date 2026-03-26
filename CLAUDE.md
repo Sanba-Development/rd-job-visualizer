@@ -50,6 +50,13 @@ Claude operates as an **orchestrator** for this repo:
 
 Open `index.html` in a browser directly — no build step needed. Any static file server works (`npx serve .`, `python -m http.server`, etc.).
 
+### Data Pipeline Commands
+
+- `node scripts/scrapers/fetch-rdtrabaja.js` — Download RD Trabaja API data to `data/raw/rdtrabaja/`
+- `node scripts/processors/normalize.js` — Normalize all raw data → `data/processed/normalized.json` (197MB, gitignored)
+- `node scripts/processors/calculate-metrics.js` — Generate `data/processed/metrics.json` from normalized data
+- `node scripts/processors/validate-sectors.js` — Validate sector coverage (exits 1 if gaps)
+
 ## Deployment
 
 - **Vercel Git Integration** — merges to `master` auto-deploy to `jobs.sanba.dev`. Do NOT run `vercel --prod` manually.
@@ -79,6 +86,9 @@ All JS is inline at the bottom of `index.html`.
 - **Overlays:** All follow the same pattern — `<div id="*-overlay" class="fixed inset-0 z-[100] hidden">`, fetch .md file, render with `marked.parse()`, lazy-load with `*Rendered` flag. Copy existing when adding new.
 - **Team cards:** Loaded dynamically from `data/participants.json` via `fetch()`. Photos in `assets/team/`.
 - **Progress section:** 6 colored card grid below hero — links to all key artifacts.
+- **Explorer datasets:** Hardcoded JS array in `explorer.html`. Must be updated manually when new data files are added to `data/raw/`. Stats computed dynamically from array.
+- **Treemap data:** `src/treemap.html` loads `data/processed/metrics.json` dynamically. To update: run `node scripts/processors/normalize.js` then `node scripts/processors/calculate-metrics.js`.
+- **Sector colors:** `src/sector-colors.json` is the source of truth. Treemap and color-palette.html read from it.
 
 ## Planned Architecture (from research doc)
 

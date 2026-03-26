@@ -2,7 +2,7 @@
 
 > This file is maintained by the orchestrator thread. It preserves architecture,
 > conventions, decisions, and risks so context survives compaction.
-> Last updated: 2026-03-25 (session-save)
+> Last updated: 2026-03-26 (session-save)
 
 ---
 
@@ -168,6 +168,11 @@ All overlays follow same pattern:
 | Abel López owns color palette | 2026-03-25 | sector-colors.json maintained by Abel. WCAG-compliant. Treemap must sync colors from this file. |
 | MIVHED = Admin Pública | 2026-03-25 | Ministry of Housing employees are govt workers, not construction. Fixed in normalize.js. |
 | RD Trabaja nested JSON | 2026-03-25 | API returns data[].puesto.titulo (nested), not data[].titulo. Fixed in normalize.js. |
+| Explorer must be updated manually | 2026-03-26 | When new data files are added, update the JS datasets array in explorer.html |
+| metrics.json is the bridge | 2026-03-26 | Treemap reads metrics.json (not normalized.json). Pipeline: normalize.js → calculate-metrics.js → treemap loads |
+| Vercel preview auth | 2026-03-26 | Disable "Vercel Authentication" in project Settings → Deployment Protection for public previews |
+| Promo images not in git | 2026-03-26 | promo-day*.png files stay local, not committed. Used for WhatsApp/social media only. |
+| Parallel subagents need coordination | 2026-03-26 | When two agents modify related files (treemap data + treemap layout), plan file ownership carefully |
 
 ---
 
@@ -182,44 +187,33 @@ All overlays follow same pattern:
 
 ---
 
-## Current State (as of 2026-03-25)
+## Current State (as of 2026-03-26)
 
-### Completed (Day 0 + Day 1 + Day 2)
-- [x] 0.3 — Plan + research shared (overlays on landing)
-- [x] 0.4 — Data sources inventoried (DATA_SOURCES.md + samples downloaded)
-- [x] 0.5 — Sector taxonomy defined (SECTOR_TAXONOMY.md, 12 sectors)
-- [x] X.1 — Participant intake skill + participant DB
-- [x] X.2 — Team section on landing (dynamic from participants.json)
-- [x] 1.1 — Downloaded 15 datasets (436k+ rows) from datos.gob.do CKAN
-- [x] 1.2 — RD Trabaja API discovered (open REST, no Playwright needed)
-- [x] 1.4 — Normalized schema (22 fields, JSON Schema draft-07)
-- [x] 1.5 — Treemap wireframe (desktop + mobile, interactive mockup)
-- [x] 1.6 — Repo structure (scripts/, src/, data/processed/, data/schemas/)
-- [x] 1.1b — Data Explorer (explorer.html) with interactive CSV preview
-- [x] Contributing guide + master branch protection + README
-- [x] 2.1 — Fetch RD Trabaja API (256 vacantes, conceptos, regiones, metadata)
-- [x] 2.3 — Normalización 262K registros de 13 fuentes + bugs fixed (MIVHED, RD Trabaja)
-- [x] 2.4 — Validación cruzada (6/12 gaps identified, bugs found and fixed)
-- [x] 2.5 — Treemap D3.js interactivo con mix real/estimado + visual distinction
-- [x] 2.6 — Paleta colores WCAG (Abel López) + preview page
-- [x] Treemap showcase section on landing
-- [x] Day 2 + Day 3 task cards with detail modals
-- [x] Onboarding guide (ONBOARDING.md)
+### Completed (Day 0 + Day 1 + Day 2 + Day 3)
+- [x] Days 0-2: All tasks (see BACKLOG.md for full history)
+- [x] 3.1 — Treemap loads metrics.json dynamically (no more hardcoded data)
+- [x] 3.2 — Tooltips with Pareto 80/20, top titles, salary, sources, detail panel
+- [x] 3.3 — 7 new datasets (CNZFE×4, MITUR, MISPAS, MIVHED). 264K records from 20 sources.
+- [x] 3.4 — calculate-metrics.js: per-sector salary/Pareto/titles/institutions/gender. Global Pareto 3.12x.
+- [x] 3.5 — data-quality-report.md: 10.4% formal coverage, outliers identified
+- [x] 3.6 — methodology.html: sources, classification, limitations, coverage
+- [x] Explorer updated with 27 datasets
+- [x] Landing: Day 3 completed + Day 4 task cards added
+- [x] Treemap showcase section between hero and progress
 
 ### Blocked
-- [!] 0.1 — Confirm participants (9 total: 7 confirmed, 2 interested)
-- [!] 0.2 — WhatsApp group active
+- [!] 0.1 — 9 participants (7 confirmed, 2 interested)
 
 ### Discarded
 - 1.3 — Aldaba RSS (no API, returns 403)
 
-### Pending / Next Up (Day 3 — Wed Mar 25)
-- 3.1 — Integrar datos reales al treemap (replace hardcoded data)
-- 3.2 — Mejorar tooltips con datos reales
-- 3.3 — Completar ingesta (fill 6 empty sectors)
-- 3.4 — Métricas agregadas + análisis Pareto 80/20 salarial
-- 3.5 — Validar datos vs fuentes oficiales
-- 3.6 — Diseño página contenedora (header, filtros, leyenda)
+### Pending / Next Up (Day 4 — Thu Mar 26)
+- 4.1 — Drill-down: click sector → expand sub-categories
+- 4.2 — Panel lateral mejorado (salary distribution visual, Pareto bar)
+- 4.3 — Responsive: mobile < 768px
+- 4.4 — Link methodology from treemap
+- 4.5 — Testing: 3+ browsers
+- 4.7 — FEATURE FREEZE 6pm
 
 ---
 
