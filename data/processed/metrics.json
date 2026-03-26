@@ -1,0 +1,952 @@
+{
+  "generated_at": "2026-03-26T04:39:03.593Z",
+  "global": {
+    "total_records": 262410,
+    "total_empleos": 431972702,
+    "record_types": {
+      "position": 255833,
+      "aggregate": 6321,
+      "vacancy": 256
+    },
+    "records_with_salary": 261326,
+    "salary_avg": 45565.08,
+    "salary_median": 35000,
+    "salary_min": 1,
+    "salary_max": 1758882,
+    "salary_pareto": {
+      "bottom_80_count": 209060,
+      "bottom_80_avg": 32019.54,
+      "top_20_count": 52266,
+      "top_20_avg": 99746.17,
+      "ratio": 3.12
+    },
+    "top_titles": [
+      {
+        "title": "conserje",
+        "count": 11506
+      },
+      {
+        "title": "chofer i",
+        "count": 7658
+      },
+      {
+        "title": "coordinador barrial",
+        "count": 6315
+      },
+      {
+        "title": "chofer",
+        "count": 5604
+      },
+      {
+        "title": "auxiliar administrativo",
+        "count": 5242
+      },
+      {
+        "title": "enlace barrial",
+        "count": 4826
+      },
+      {
+        "title": "auxiliar territorial",
+        "count": 4739
+      },
+      {
+        "title": "secretaria",
+        "count": 4494
+      },
+      {
+        "title": "comisionado",
+        "count": 4469
+      },
+      {
+        "title": "auxiliar administrativo (a)",
+        "count": 4196
+      }
+    ],
+    "top_institutions": [
+      {
+        "institution": "Dir. Gral. Proyectos Estratégicos y Especiales (PROPEEP)",
+        "count": 90919
+      },
+      {
+        "institution": "Ministerio de la Vivienda (MIVHED)",
+        "count": 78828
+      },
+      {
+        "institution": "Ministerio Administrativo de la Presidencia (MAPRE)",
+        "count": 68424
+      },
+      {
+        "institution": "Ayuntamiento Santo Domingo Este (ASDE)",
+        "count": 11440
+      },
+      {
+        "institution": "Instituto de Educación Superior en Formación Diplomática (INESDYC)",
+        "count": 3910
+      }
+    ],
+    "gender_distribution": {
+      "male": 1660,
+      "female": 600,
+      "unknown": 260150,
+      "male_pct": 0.63,
+      "female_pct": 0.23,
+      "unknown_pct": 99.14
+    },
+    "sources": [
+      "ckan",
+      "cnzfe",
+      "rdtrabaja",
+      "tss"
+    ],
+    "period": {
+      "min_year": 2000,
+      "max_year": 2026
+    }
+  },
+  "sectors": {
+    "agricultura_y_agroindustria": {
+      "total_records": 800,
+      "total_empleos": 800,
+      "record_types": {
+        "position": 794,
+        "aggregate": 0,
+        "vacancy": 6
+      },
+      "records_with_salary": 794,
+      "salary_avg": 46066.12,
+      "salary_median": 40000,
+      "salary_min": 9000,
+      "salary_max": 190000,
+      "salary_pareto": {
+        "bottom_80_count": 635,
+        "bottom_80_avg": 34907.87,
+        "top_20_count": 159,
+        "top_20_avg": 90628.93,
+        "ratio": 2.6
+      },
+      "top_titles": [
+        {
+          "title": "chofer",
+          "count": 79
+        },
+        {
+          "title": "agente de captacion",
+          "count": 42
+        },
+        {
+          "title": "conserje",
+          "count": 42
+        },
+        {
+          "title": "seguridad",
+          "count": 42
+        },
+        {
+          "title": "auxiliar administrativo",
+          "count": 41
+        },
+        {
+          "title": "tecnico contabilidad",
+          "count": 28
+        },
+        {
+          "title": "secretaria",
+          "count": 17
+        },
+        {
+          "title": "tecnico de tesoreria",
+          "count": 16
+        },
+        {
+          "title": "fotografo",
+          "count": 14
+        },
+        {
+          "title": "encargado de compras",
+          "count": 14
+        }
+      ],
+      "top_institutions": [
+        {
+          "institution": "Consejo Nacional de la Industria Lechera (CONALECHE)",
+          "count": 794
+        }
+      ],
+      "gender_distribution": {
+        "male": 469,
+        "female": 325,
+        "unknown": 6,
+        "male_pct": 58.63,
+        "female_pct": 40.63,
+        "unknown_pct": 0.75
+      },
+      "sources": [
+        "ckan",
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2025,
+        "max_year": 2026
+      }
+    },
+    "administracion_publica_y_defensa": {
+      "total_records": 250755,
+      "total_empleos": 127564487,
+      "record_types": {
+        "position": 249611,
+        "aggregate": 1144,
+        "vacancy": 0
+      },
+      "records_with_salary": 250208,
+      "salary_avg": 46083.18,
+      "salary_median": 36000,
+      "salary_min": 426.67,
+      "salary_max": 450000,
+      "salary_pareto": {
+        "bottom_80_count": 200166,
+        "bottom_80_avg": 32739.22,
+        "top_20_count": 50042,
+        "top_20_avg": 99458.5,
+        "ratio": 3.04
+      },
+      "top_titles": [
+        {
+          "title": "conserje",
+          "count": 11217
+        },
+        {
+          "title": "chofer i",
+          "count": 7640
+        },
+        {
+          "title": "coordinador barrial",
+          "count": 6315
+        },
+        {
+          "title": "chofer",
+          "count": 5337
+        },
+        {
+          "title": "auxiliar administrativo",
+          "count": 5062
+        },
+        {
+          "title": "enlace barrial",
+          "count": 4826
+        },
+        {
+          "title": "auxiliar territorial",
+          "count": 4739
+        },
+        {
+          "title": "comisionado",
+          "count": 4469
+        },
+        {
+          "title": "secretaria",
+          "count": 4293
+        },
+        {
+          "title": "auxiliar administrativo (a)",
+          "count": 4136
+        }
+      ],
+      "top_institutions": [
+        {
+          "institution": "Dir. Gral. Proyectos Estratégicos y Especiales (PROPEEP)",
+          "count": 90919
+        },
+        {
+          "institution": "Ministerio de la Vivienda (MIVHED)",
+          "count": 78828
+        },
+        {
+          "institution": "Ministerio Administrativo de la Presidencia (MAPRE)",
+          "count": 68424
+        },
+        {
+          "institution": "Ayuntamiento Santo Domingo Este (ASDE)",
+          "count": 11440
+        }
+      ],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 250755,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "ckan",
+        "tss"
+      ],
+      "period": {
+        "min_year": 2000,
+        "max_year": 2026
+      }
+    },
+    "educacion": {
+      "total_records": 3916,
+      "total_empleos": 3916,
+      "record_types": {
+        "position": 3910,
+        "aggregate": 0,
+        "vacancy": 6
+      },
+      "records_with_salary": 3910,
+      "salary_avg": 66979.42,
+      "salary_median": 45900,
+      "salary_min": 2000,
+      "salary_max": 260000,
+      "salary_pareto": {
+        "bottom_80_count": 3128,
+        "bottom_80_avg": 46677.34,
+        "top_20_count": 782,
+        "top_20_avg": 148187.77,
+        "ratio": 3.17
+      },
+      "top_titles": [
+        {
+          "title": "secretaria",
+          "count": 181
+        },
+        {
+          "title": "conserje",
+          "count": 179
+        },
+        {
+          "title": "técnico docente de idiomas",
+          "count": 148
+        },
+        {
+          "title": "soporte técnico informático",
+          "count": 140
+        },
+        {
+          "title": "auxiliar administrativo",
+          "count": 139
+        },
+        {
+          "title": "auxiliar biblioteca",
+          "count": 126
+        },
+        {
+          "title": "chofer",
+          "count": 110
+        },
+        {
+          "title": "auxiliar de admisiones",
+          "count": 105
+        },
+        {
+          "title": "auxiliar de educación continua",
+          "count": 91
+        },
+        {
+          "title": "asesor",
+          "count": 89
+        }
+      ],
+      "top_institutions": [
+        {
+          "institution": "Instituto de Educación Superior en Formación Diplomática (INESDYC)",
+          "count": 3910
+        }
+      ],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 3916,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "ckan",
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2023,
+        "max_year": 2026
+      }
+    },
+    "otros_servicios": {
+      "total_records": 6786,
+      "total_empleos": 303069388,
+      "record_types": {
+        "position": 1518,
+        "aggregate": 5135,
+        "vacancy": 133
+      },
+      "records_with_salary": 6372,
+      "salary_avg": 12303.74,
+      "salary_median": 7488,
+      "salary_min": 1,
+      "salary_max": 1758882,
+      "salary_pareto": {
+        "bottom_80_count": 5097,
+        "bottom_80_avg": 6586.61,
+        "top_20_count": 1275,
+        "top_20_avg": 35158.81,
+        "ratio": 5.34
+      },
+      "top_titles": [
+        {
+          "title": "salario minimo - sector privado - empresa grande",
+          "count": 1200
+        },
+        {
+          "title": "salario minimo - sector privado - empresa mediana",
+          "count": 1200
+        },
+        {
+          "title": "salario minimo - sector privado - empresa pequeña",
+          "count": 1200
+        },
+        {
+          "title": "salario minimo - sector privado - zona franca en áreas geográficas deprimidas",
+          "count": 600
+        },
+        {
+          "title": "salario minimo - sector privado - zona franca industrial",
+          "count": 312
+        },
+        {
+          "title": "salario minimo - sector privado - zona franca",
+          "count": 288
+        },
+        {
+          "title": "empleo formal sector privado",
+          "count": 272
+        },
+        {
+          "title": "vigilante nocturno",
+          "count": 121
+        },
+        {
+          "title": "operador de equipo",
+          "count": 107
+        },
+        {
+          "title": "supervisor (a)",
+          "count": 84
+        }
+      ],
+      "top_institutions": [
+        {
+          "institution": "Corp. Acueducto y Alcantarillado Boca Chica (CORAABO)",
+          "count": 1518
+        },
+        {
+          "institution": "DGII",
+          "count": 9
+        }
+      ],
+      "gender_distribution": {
+        "male": 1191,
+        "female": 275,
+        "unknown": 5320,
+        "male_pct": 17.55,
+        "female_pct": 4.05,
+        "unknown_pct": 78.4
+      },
+      "sources": [
+        "ckan",
+        "rdtrabaja",
+        "tss"
+      ],
+      "period": {
+        "min_year": 2000,
+        "max_year": 2026
+      }
+    },
+    "manufactura_y_zonas_francas": {
+      "total_records": 68,
+      "total_empleos": 1334026,
+      "record_types": {
+        "position": 0,
+        "aggregate": 42,
+        "vacancy": 26
+      },
+      "records_with_salary": 42,
+      "salary_avg": 2198.26,
+      "salary_median": 2101.5,
+      "salary_min": 875,
+      "salary_max": 4216,
+      "salary_pareto": {
+        "bottom_80_count": 33,
+        "bottom_80_avg": 1835.94,
+        "top_20_count": 9,
+        "top_20_avg": 3526.78,
+        "ratio": 1.92
+      },
+      "top_titles": [
+        {
+          "title": "empleo zona franca - textil",
+          "count": 21
+        },
+        {
+          "title": "empleo zona franca - electronicos",
+          "count": 21
+        },
+        {
+          "title": "operario de almacén",
+          "count": 1
+        },
+        {
+          "title": "asistente de documentación",
+          "count": 1
+        },
+        {
+          "title": "ingeniero de procesos (santiago)",
+          "count": 1
+        },
+        {
+          "title": "técnico mecánico industrial",
+          "count": 1
+        },
+        {
+          "title": "planificador de mantenimiento (santiago rodriguez)",
+          "count": 1
+        },
+        {
+          "title": "ingeniero industrial (santiago rodriguez)",
+          "count": 1
+        },
+        {
+          "title": "supervisor de mantenimiento automotriz (santiago rodriguez)",
+          "count": 1
+        },
+        {
+          "title": "electricista industrial (santiago rodriguez)",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 68,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "cnzfe",
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2003,
+        "max_year": 2026
+      }
+    },
+    "servicios_financieros": {
+      "total_records": 4,
+      "total_empleos": 4,
+      "record_types": {
+        "position": 0,
+        "aggregate": 0,
+        "vacancy": 4
+      },
+      "records_with_salary": 0,
+      "salary_avg": null,
+      "salary_median": null,
+      "salary_min": null,
+      "salary_max": null,
+      "salary_pareto": null,
+      "top_titles": [
+        {
+          "title": "cobrador",
+          "count": 1
+        },
+        {
+          "title": "contador financiero (dajabón)",
+          "count": 1
+        },
+        {
+          "title": "asistente de contabilidad (dajabón)",
+          "count": 1
+        },
+        {
+          "title": "auxiliar contable, para santo domingo norte",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 4,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2026,
+        "max_year": 2026
+      }
+    },
+    "comercio": {
+      "total_records": 37,
+      "total_empleos": 37,
+      "record_types": {
+        "position": 0,
+        "aggregate": 0,
+        "vacancy": 37
+      },
+      "records_with_salary": 0,
+      "salary_avg": null,
+      "salary_median": null,
+      "salary_min": null,
+      "salary_max": null,
+      "salary_pareto": null,
+      "top_titles": [
+        {
+          "title": "secretaria",
+          "count": 2
+        },
+        {
+          "title": "chofer de camion",
+          "count": 2
+        },
+        {
+          "title": "cajera (puerto plata)",
+          "count": 2
+        },
+        {
+          "title": "vendedor (puerto plata)",
+          "count": 2
+        },
+        {
+          "title": "cajera (higuey)",
+          "count": 2
+        },
+        {
+          "title": "encargada corte",
+          "count": 1
+        },
+        {
+          "title": "asistente administrativa (san juan d ela maguana)",
+          "count": 1
+        },
+        {
+          "title": "secretaria (san juan de la maguana)",
+          "count": 1
+        },
+        {
+          "title": "vendedores (san juan de la maguana)",
+          "count": 1
+        },
+        {
+          "title": "chofer (higuey)",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 37,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2025,
+        "max_year": 2026
+      }
+    },
+    "transporte_y_logistica": {
+      "total_records": 2,
+      "total_empleos": 2,
+      "record_types": {
+        "position": 0,
+        "aggregate": 0,
+        "vacancy": 2
+      },
+      "records_with_salary": 0,
+      "salary_avg": null,
+      "salary_median": null,
+      "salary_min": null,
+      "salary_max": null,
+      "salary_pareto": null,
+      "top_titles": [
+        {
+          "title": "conductores de ambulancia",
+          "count": 1
+        },
+        {
+          "title": "chofer de camión (dajabón)",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 2,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2026,
+        "max_year": 2026
+      }
+    },
+    "salud": {
+      "total_records": 8,
+      "total_empleos": 8,
+      "record_types": {
+        "position": 0,
+        "aggregate": 0,
+        "vacancy": 8
+      },
+      "records_with_salary": 0,
+      "salary_avg": null,
+      "salary_median": null,
+      "salary_min": null,
+      "salary_max": null,
+      "salary_pareto": null,
+      "top_titles": [
+        {
+          "title": "encargada de limpieza (higuey)",
+          "count": 1
+        },
+        {
+          "title": "servicio al cliente (higuey)",
+          "count": 1
+        },
+        {
+          "title": "asistente dental (higuey)",
+          "count": 1
+        },
+        {
+          "title": "medicos generales (higuey)",
+          "count": 1
+        },
+        {
+          "title": "odontologo general (higuey)",
+          "count": 1
+        },
+        {
+          "title": "medico de ambulancias (higuey)",
+          "count": 1
+        },
+        {
+          "title": "paramedico (higuey)",
+          "count": 1
+        },
+        {
+          "title": "auditor interno contable",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 8,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2026,
+        "max_year": 2026
+      }
+    },
+    "turismo_y_hosteleria": {
+      "total_records": 24,
+      "total_empleos": 24,
+      "record_types": {
+        "position": 0,
+        "aggregate": 0,
+        "vacancy": 24
+      },
+      "records_with_salary": 0,
+      "salary_avg": null,
+      "salary_median": null,
+      "salary_min": null,
+      "salary_max": null,
+      "salary_pareto": null,
+      "top_titles": [
+        {
+          "title": "cocinero (higuey)",
+          "count": 1
+        },
+        {
+          "title": "pasilleros (higuey)",
+          "count": 1
+        },
+        {
+          "title": "supervisor de pisos (higuey)",
+          "count": 1
+        },
+        {
+          "title": "capitan de room service (higuey)",
+          "count": 1
+        },
+        {
+          "title": "animador/a (higuey)",
+          "count": 1
+        },
+        {
+          "title": "stewards (higuey)",
+          "count": 1
+        },
+        {
+          "title": "supervisor de stewards (higuey)",
+          "count": 1
+        },
+        {
+          "title": "ayudantes de cocina (higuey)",
+          "count": 1
+        },
+        {
+          "title": "cocinero a (higuey)",
+          "count": 1
+        },
+        {
+          "title": "tecnicos de matenimiento (higuey)",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 24,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2026,
+        "max_year": 2026
+      }
+    },
+    "tecnologia_y_telecomunicaciones": {
+      "total_records": 2,
+      "total_empleos": 2,
+      "record_types": {
+        "position": 0,
+        "aggregate": 0,
+        "vacancy": 2
+      },
+      "records_with_salary": 0,
+      "salary_avg": null,
+      "salary_median": null,
+      "salary_min": null,
+      "salary_max": null,
+      "salary_pareto": null,
+      "top_titles": [
+        {
+          "title": "coordinador de tecnología (santiago)",
+          "count": 1
+        },
+        {
+          "title": "operador de cámara (dajabón)",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 2,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2026,
+        "max_year": 2026
+      }
+    },
+    "construccion": {
+      "total_records": 8,
+      "total_empleos": 8,
+      "record_types": {
+        "position": 0,
+        "aggregate": 0,
+        "vacancy": 8
+      },
+      "records_with_salary": 0,
+      "salary_avg": null,
+      "salary_median": null,
+      "salary_min": null,
+      "salary_max": null,
+      "salary_pareto": null,
+      "top_titles": [
+        {
+          "title": "encargado de control de documentos (manzanillo / montecristi)",
+          "count": 1
+        },
+        {
+          "title": "especialista de adquisiciones (manzanillo / montecristi)",
+          "count": 1
+        },
+        {
+          "title": "encargado de programación de obra (manzanillo / montecristi)",
+          "count": 1
+        },
+        {
+          "title": "andamiero (manzanillo / montecristi)",
+          "count": 1
+        },
+        {
+          "title": "obrero (manzanillo / montecristi)",
+          "count": 1
+        },
+        {
+          "title": "carpintero (manzanillo / montecristi)",
+          "count": 1
+        },
+        {
+          "title": "capataz de albañilería (manzanillo / montecristi)",
+          "count": 1
+        },
+        {
+          "title": "capataz general (manzanillo / montecristi)",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 8,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2026,
+        "max_year": 2026
+      }
+    }
+  }
+}

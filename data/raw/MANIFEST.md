@@ -30,6 +30,18 @@ Downloaded: 2026-03-22
 |------|--------|------|---------|-------|
 | `zonas-francas-textil-2003-2023.csv` | [CNZFE via CKAN](https://datos.gob.do/dataset/c459b0d6-9148-4da4-a25f-cb1e83881987/resource/d1ee5b18-c94c-4c38-9d22-2a9ab709ae53/download/estadisticas-de-la-evolucion-del-sector-textil-cnzfe-2003-2023.csv) | 21 | Anos;Empresas;Empleos;Export Millones US;Salario Prom Tecnicos;Salario Prom Operarios | Textile sector evolution. |
 | `zonas-francas-electronicos-2003-2023.csv` | [CNZFE via CKAN](https://datos.gob.do/dataset/c459b0d6-9148-4da4-a25f-cb1e83881987/resource/5e9d7045-7b50-4077-93e2-b32d249d0092/download/estadisticas-de-la-evolucion-del-sector-electricos-y-electronicos-cnzfe-2003-2023.csv) | 21 | Anos;Empresas;Empleos;Export Millones US;Salario Prom Tecnicos;Salario Prom Operarios | Electronics sector evolution. |
+| `zonas-francas-calzados-cnzfe-2003-2023.csv` | [CNZFE via CKAN](https://datos.gob.do/dataset/c459b0d6-9148-4da4-a25f-cb1e83881987/resource/50bbea15-e9bf-4d13-8df1-d1931bded5e8/download/estadisticas-de-la-evolucion-del-sector-calzados-cnzfe-2003-2023.csv) | 21 | Anos;Empresas;Empleos;Export Millones US;Salario Prom Tecnicos;Salario Prom Operarios | Footwear sector evolution. |
+| `zonas-francas-tabaco-cnzfe-2003-2023.csv` | [CNZFE via CKAN](https://datos.gob.do/dataset/c459b0d6-9148-4da4-a25f-cb1e83881987/resource/2104d4c1-9c3b-491e-ae87-4df4668d2b90/download/estadisticas-de-la-evolucion-del-sector-tabaco-cnzfe-2003-2023.csv) | 21 | Anos;Empresas;Empleos;Export Millones US;Salario Prom Tecnicos;Salario Prom Operarios | Tobacco sector evolution. |
+| `zonas-francas-joyeria-cnzfe-2003-2023.csv` | [CNZFE via CKAN](https://datos.gob.do/dataset/c459b0d6-9148-4da4-a25f-cb1e83881987/resource/412ed11a-cfb4-4b16-8fe0-3d0cfb7190f3/download/estadisticas-de-la-evolucion-del-sector-joyeria-cnzfe-2003-2023.csv) | 21 | Anos;Empresas;Empleos;Export Millones US;Salario Prom Tecnicos;Salario Prom Operarios | Jewelry sector evolution. |
+| `zonas-francas-dispositivos-medicos-cnzfe-2003-2023.csv` | [CNZFE via CKAN](https://datos.gob.do/dataset/c459b0d6-9148-4da4-a25f-cb1e83881987/resource/1f7d9b10-4a3f-4249-b0f7-68dbc224803f/download/estadisticas-de-la-evolucion-del-sector-dispositivos-medicos-y-farmaceuticos-cnzfe-2003-2023.csv) | 21 | Anos;Empresas;Empleos;Export Millones US;Salario Prom Tecnicos;Salario Prom Operarios | Medical devices & pharmaceuticals sector. Mapped to salud sector. |
+
+## Tourism, Health & Construction
+
+| File | Source | Rows | Columns | Notes |
+|------|--------|------|---------|-------|
+| `empresas-servicios-turisticos-mitur-2018-2025.csv` | [MITUR](https://transparencia.mitur.gob.do/Descargar/5691/estadisticas-empresas-y-servicios-turisticos/36778/estadisticas-empresas-y-servicios-turisticos-2018-2025-csv.csv) | 184 | Empresa o Servicio,Licencias Nuevas,Renovacion,...,Periodo,Ano | Tourism business licensing (hotels, restaurants, travel agencies). Quarterly. |
+| `exequatur-profesionales-salud-mispas-1933-2025.csv` | [MISPAS](https://www.msp.gob.do/web/Transparencia/documentos_oai/746/exequatur-profesionales-de-la-salud/33973/exequatur-profesionales-de-la-salud-1922-2025-formato-csv-octubre-diciembre-2025.csv) | 148,835 | NOMBRES;FECHA UNIVERSIDAD;...;PROFESION;FOLIO;LIBRO | Licensed health professionals (doctors, nurses, etc). Semicolon-delimited. Aggregated by profession+year in normalizer. |
+| `licencias-construccion-mivhed-2022-2025.csv` | [MIVHED](https://transparencia.mived.gob.do/images/Datos_abiertos/licencias-emitidas-2025/Licencias_emitidas_Ministerio_de_la_Vivienda_H%C3%A1bitat_y_Edificaciones_MIVHED_2022-2025.csv) | 4,770 | Fecha de Emisión,Mes,Año,Provincia,Municipio,...,Tipologia,Metros Cuadrados,Inversión Total | Building permits by type and province. Has 2 junk header rows before actual CSV headers. |
 
 ## Metadata
 
@@ -39,9 +51,10 @@ Downloaded: 2026-03-22
 
 ## Summary
 
-- **14 CSV files**, **1 JSON metadata file**
-- **Total rows: ~436,000+**
+- **21 CSV files**, **1 JSON metadata file**
+- **Total rows: ~590,000+**
 - **Key payroll files:** MAPRE (68k), MIVHED (79k), PROPEEP (91k), DGII ISR (174k)
+- **Key new files (Day 3):** MISPAS exequatur (149k), MIVHED licencias (4.7k), MITUR empresas (184), 4 new CNZFE sectors
 - **Delimiter note:** Many DR government CSVs use semicolons (`;`) rather than commas as delimiter
 
 ## Failed Downloads

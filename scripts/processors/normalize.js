@@ -737,6 +737,295 @@ function processDGII(filePath) {
 }
 
 /**
+ * Zonas Francas with custom sector mapping (e.g., medical devices → salud).
+ * Same format as processZonasFrancas but allows overriding the sector.
+ */
+function processZonasFrancasSector(filePath, subsector, sectorOverride) {
+  const rows = readCSV(filePath);
+  if (rows.length === 0) return [];
+  const results = [];
+
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i];
+    const yearKey = Object.keys(r).find(k => k.toLowerCase().includes('ano'));
+    const empleosKey = Object.keys(r).find(k => k.toLowerCase().includes('empleo'));
+    const salTecKey = Object.keys(r).find(k => k.toLowerCase().includes('tecnico'));
+    const salOpKey = Object.keys(r).find(k => k.toLowerCase().includes('operario'));
+
+    const year = parseYear(r[yearKey]);
+    if (!year) continue;
+    const empleos = parseInt(String(r[empleosKey] || '0').replace(/,/g, ''), 10);
+    if (!empleos || empleos <= 0) continue;
+
+    results.push({
+      id: `cnzfe_${subsector}_${year}`,
+      source: 'cnzfe',
+      source_record_id: null,
+      sector: sectorOverride || 'manufactura_y_zonas_francas',
+      job_title: `empleo zona franca - ${subsector}`,
+      institution: null,
+      salary_gross: null,
+      salary_net: null,
+      salary_min: parseSalary(r[salOpKey]),
+      salary_max: parseSalary(r[salTecKey]),
+      employee_count: empleos,
+      location_province: null,
+      location_city: null,
+      employment_type: 'zona_franca',
+      gender: null,
+      period_year: year,
+      period_month: null,
+      period_quarter: null,
+      raw_department: null,
+      raw_title: null,
+      raw_institution: null,
+      extracted_at: EXTRACTED_AT,
+      metadata: {
+        record_type: 'aggregate',
+        subsector_zf: subsector,
+        empresas: parseInt(String(r[Object.keys(r).find(k => k.toLowerCase().includes('empresa'))] || '0').replace(/,/g, ''), 10) || null,
+      },
+    });
+  }
+  return results;
+}
+
+/**
+ * MITUR Empresas y Servicios Turísticos — Tourism business licensing data.
+ * Columns: Empresa o Servicio,Licencias Nuevas,Renovacion,Cambio de Direccion,Cambio de categoria,Periodo,Ano
+ */
+function processMITUR(filePath) {
+  const rows = readCSV(filePath);
+  if (rows.length === 0) return [];
+  const results = [];
+
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i];
+    const cols = Object.keys(r);
+    const colEmpresa = cols.find(c => c.toLowerCase().includes('empresa') || c.toLowerCase().includes('servicio'));
+    const colNuevas = cols.find(c => c.toLowerCase().includes('nuevas'));
+    const colRenovacion = cols.find(c => c.toLowerCase().includes('renovacion'));
+    const colAno = cols.find(c => {
+      const n = c.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z]/g, '');
+      return n === 'ano' || n === 'year';
+    });
+    const colPeriodo = cols.find(c => c.toLowerCase().includes('periodo'));
+
+    const year = parseYear(r[colAno]);
+    if (!year) continue;
+    const empresa = (r[colEmpresa] || '').trim();
+    if (!empresa) continue;
+
+    const nuevas = parseInt(String(r[colNuevas] || '0').replace(/,/g, ''), 10) || 0;
+    const renovacion = parseInt(String(r[colRenovacion] || '0').replace(/,/g, ''), 10) || 0;
+    const total = nuevas + renovacion;
+    if (total <= 0) continue;
+
+    // Derive quarter from periodo (e.g. "Enero-Marzo" = Q1)
+    const periodo = (r[colPeriodo] || '').toLowerCase();
+    let quarter = null;
+    if (periodo.includes('enero')) quarter = 1;
+    else if (periodo.includes('abril')) quarter = 2;
+    else if (periodo.includes('julio')) quarter = 3;
+    else if (periodo.includes('octubre')) quarter = 4;
+
+    results.push({
+      id: `mitur_${empresa.toLowerCase().replace(/[^a-z0-9]/g, '_')}_${year}_q${quarter || 0}`,
+      source: 'mitur',
+      source_record_id: null,
+      sector: 'turismo_y_hosteleria',
+      job_title: `licencias turismo - ${empresa.toLowerCase()}`,
+      institution: 'Ministerio de Turismo (MITUR)',
+      salary_gross: null,
+      salary_net: null,
+      salary_min: null,
+      salary_max: null,
+      employee_count: total,
+      location_province: null,
+      location_city: null,
+      employment_type: 'privado',
+      gender: null,
+      period_year: year,
+      period_month: null,
+      period_quarter: quarter,
+      raw_department: null,
+      raw_title: empresa,
+      raw_institution: 'MITUR',
+      extracted_at: EXTRACTED_AT,
+      metadata: {
+        record_type: 'aggregate',
+        licencias_nuevas: nuevas,
+        renovaciones: renovacion,
+        periodo: r[colPeriodo] || null,
+      },
+    });
+  }
+  return results;
+}
+
+/**
+ * MISPAS Exequátur Profesionales de Salud — Licensed health professionals.
+ * Columns: NOMBRES;FECHA UNIVERSIDAD;NUMERO DECRETO;FECHA DECRETO;NUMERO REGISTRO;FECHA REGISTRO;UNIVERSIDAD;PROFESION CODIGO;PROFESION;FOLIO;LIBRO
+ */
+function processMISPAS(filePath) {
+  const rows = readCSV(filePath);
+  if (rows.length === 0) return [];
+  const results = [];
+
+  // Aggregate by profession and year to avoid 148k individual records
+  const groups = {};
+  for (const r of rows) {
+    const cols = Object.keys(r);
+    const colProfesion = cols.find(c => c.toLowerCase() === 'profesion');
+    const colFechaReg = cols.find(c => c.toLowerCase().includes('fecha registro'));
+    const colFechaDecreto = cols.find(c => c.toLowerCase().includes('fecha decreto'));
+
+    const profesion = (r[colProfesion] || '').trim();
+    if (!profesion) continue;
+
+    // Try to get year from fecha registro or fecha decreto
+    const fecha = r[colFechaReg] || r[colFechaDecreto] || '';
+    let year = null;
+    const dateMatch = fecha.match(/(\d{4})/);
+    if (dateMatch) year = parseInt(dateMatch[1], 10);
+    if (!year || year < 2000 || year > 2030) continue;
+
+    const key = `${profesion}__${year}`;
+    if (!groups[key]) groups[key] = { profesion, year, count: 0 };
+    groups[key].count++;
+  }
+
+  for (const [key, g] of Object.entries(groups)) {
+    results.push({
+      id: `mispas_exequatur_${key.replace(/[^a-z0-9_]/gi, '_').toLowerCase()}`,
+      source: 'mispas',
+      source_record_id: null,
+      sector: 'salud',
+      job_title: `profesional de salud - ${g.profesion.toLowerCase()}`,
+      institution: 'Ministerio de Salud Pública (MISPAS)',
+      salary_gross: null,
+      salary_net: null,
+      salary_min: null,
+      salary_max: null,
+      employee_count: g.count,
+      location_province: null,
+      location_city: null,
+      employment_type: 'privado',
+      gender: null,
+      period_year: g.year,
+      period_month: null,
+      period_quarter: null,
+      raw_department: null,
+      raw_title: g.profesion,
+      raw_institution: 'MISPAS',
+      extracted_at: EXTRACTED_AT,
+      metadata: {
+        record_type: 'aggregate',
+        tipo: 'exequatur',
+      },
+    });
+  }
+  return results;
+}
+
+/**
+ * MIVHED Licencias de Construcción — Building permits.
+ * Columns: Fecha de Emisión,Mes,Año,Provincia,Municipio,Barrio/Sector,Número de Licencia,Tipologia,Metros Cuadrados,Inversión Total
+ */
+function processLicenciasConstruccion(filePath) {
+  // This file has junk header rows before the actual CSV headers.
+  // Re-read manually to find the real header line.
+  let content = readFileAutoEncoding(filePath);
+  const lines = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n').filter(l => l.trim());
+
+  // Find the actual header line (contains "Provincia" and "Tipologia")
+  let headerIdx = -1;
+  for (let i = 0; i < Math.min(lines.length, 10); i++) {
+    if (lines[i].toLowerCase().includes('provincia') && lines[i].toLowerCase().includes('tipologia')) {
+      headerIdx = i;
+      break;
+    }
+  }
+  if (headerIdx < 0) {
+    console.warn('  ⚠ MIVHED licencias: could not find header row');
+    return [];
+  }
+
+  const delimiter = detectDelimiter(lines[headerIdx]);
+  const headers = parseCSVLine(lines[headerIdx], delimiter);
+  const results = [];
+
+  // Parse rows into objects
+  const rows = [];
+  for (let i = headerIdx + 1; i < lines.length; i++) {
+    const values = parseCSVLine(lines[i], delimiter);
+    const row = {};
+    for (let j = 0; j < headers.length; j++) {
+      row[headers[j]] = values[j] !== undefined ? values[j] : '';
+    }
+    rows.push(row);
+  }
+
+  // Aggregate by tipologia, province, and year
+  const groups = {};
+  for (const r of rows) {
+    const cols = Object.keys(r);
+    const colAno = cols.find(c => {
+      const n = c.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z]/g, '');
+      return n === 'ano' || n === 'year';
+    });
+    const colTipologia = cols.find(c => c.toLowerCase().includes('tipologia'));
+    const colProvincia = cols.find(c => c.toLowerCase().includes('provincia'));
+    const colInversion = cols.find(c => c.toLowerCase().includes('inversion'));
+
+    const year = parseYear(r[colAno]);
+    if (!year) continue;
+    const tipologia = (r[colTipologia] || '').trim();
+    if (!tipologia) continue;
+    const provincia = (r[colProvincia] || '').trim();
+
+    const key = `${tipologia}__${provincia}__${year}`;
+    if (!groups[key]) groups[key] = { tipologia, provincia, year, count: 0, inversion_total: 0 };
+    groups[key].count++;
+    const inv = parseSalary(r[colInversion]);
+    if (inv) groups[key].inversion_total += inv;
+  }
+
+  for (const [key, g] of Object.entries(groups)) {
+    results.push({
+      id: `mivhed_licencia_${key.replace(/[^a-z0-9_]/gi, '_').toLowerCase()}`,
+      source: 'mivhed',
+      source_record_id: null,
+      sector: 'construccion',
+      job_title: `licencia construccion - ${g.tipologia.toLowerCase()}`,
+      institution: 'Ministerio de la Vivienda (MIVHED)',
+      salary_gross: null,
+      salary_net: null,
+      salary_min: null,
+      salary_max: null,
+      employee_count: g.count,
+      location_province: g.provincia || null,
+      location_city: null,
+      employment_type: 'privado',
+      gender: null,
+      period_year: g.year,
+      period_month: null,
+      period_quarter: null,
+      raw_department: null,
+      raw_title: g.tipologia,
+      raw_institution: 'MIVHED',
+      extracted_at: EXTRACTED_AT,
+      metadata: {
+        record_type: 'aggregate',
+        tipo: 'licencia_construccion',
+        inversion_total: g.inversion_total || null,
+      },
+    });
+  }
+  return results;
+}
+
+/**
  * RD Trabaja puestos.json — Vacancies from the job portal.
  */
 function processRDTrabaja() {
@@ -946,8 +1235,46 @@ function main() {
   if (fs.existsSync(zfElec)) {
     addRecords('zonas-francas-electronicos-2003-2023.csv', processZonasFrancas(zfElec, 'electronicos'));
   }
+  const zfCalzados = path.join(RAW_DIR, 'zonas-francas-calzados-cnzfe-2003-2023.csv');
+  if (fs.existsSync(zfCalzados)) {
+    addRecords('zonas-francas-calzados-cnzfe-2003-2023.csv', processZonasFrancas(zfCalzados, 'calzados'));
+  }
+  const zfTabaco = path.join(RAW_DIR, 'zonas-francas-tabaco-cnzfe-2003-2023.csv');
+  if (fs.existsSync(zfTabaco)) {
+    addRecords('zonas-francas-tabaco-cnzfe-2003-2023.csv', processZonasFrancas(zfTabaco, 'tabaco'));
+  }
+  const zfJoyeria = path.join(RAW_DIR, 'zonas-francas-joyeria-cnzfe-2003-2023.csv');
+  if (fs.existsSync(zfJoyeria)) {
+    addRecords('zonas-francas-joyeria-cnzfe-2003-2023.csv', processZonasFrancas(zfJoyeria, 'joyeria'));
+  }
+  // Medical devices → salud sector (not manufactura)
+  const zfMedicos = path.join(RAW_DIR, 'zonas-francas-dispositivos-medicos-cnzfe-2003-2023.csv');
+  if (fs.existsSync(zfMedicos)) {
+    addRecords('zonas-francas-dispositivos-medicos-cnzfe-2003-2023.csv', processZonasFrancasSector(zfMedicos, 'dispositivos_medicos', 'salud'));
+  }
 
-  // ── 5. RD Trabaja ────────────────────────────────────────────────────
+  // ── 5. MITUR Tourism ──────────────────────────────────────────────────
+  console.log('Processing MITUR tourism data...');
+  const miturPath = path.join(RAW_DIR, 'empresas-servicios-turisticos-mitur-2018-2025.csv');
+  if (fs.existsSync(miturPath)) {
+    addRecords('empresas-servicios-turisticos-mitur-2018-2025.csv', processMITUR(miturPath));
+  }
+
+  // ── 6. MISPAS Health Professionals ────────────────────────────────────
+  console.log('Processing MISPAS health professionals data...');
+  const mispasPath = path.join(RAW_DIR, 'exequatur-profesionales-salud-mispas-1933-2025.csv');
+  if (fs.existsSync(mispasPath)) {
+    addRecords('exequatur-profesionales-salud-mispas-1933-2025.csv', processMISPAS(mispasPath));
+  }
+
+  // ── 7. MIVHED Construction Licenses ───────────────────────────────────
+  console.log('Processing MIVHED construction license data...');
+  const licenciasPath = path.join(RAW_DIR, 'licencias-construccion-mivhed-2022-2025.csv');
+  if (fs.existsSync(licenciasPath)) {
+    addRecords('licencias-construccion-mivhed-2022-2025.csv', processLicenciasConstruccion(licenciasPath));
+  }
+
+  // ── 8. RD Trabaja ─────────────────────────────────────────────────────
   console.log('Processing RD Trabaja data...');
   addRecords('rdtrabaja/puestos.json', processRDTrabaja());
 

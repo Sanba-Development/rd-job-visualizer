@@ -53,12 +53,12 @@
 
 ## Día 3 — Miércoles 25 de Marzo
 
-- [ ] **3.1** — Integrar datos normalizados con treemap D3.js
-- [ ] **3.2** — Interactividad: hover con tooltip (sector, # empleos, salario)
-- [ ] **3.3** — Completar ingesta de todas las fuentes priorizadas
-- [ ] **3.4** — Calcular métricas agregadas (promedio salarial por sector, total empleos)
-- [ ] **3.5** — Revisar y validar datos (¿los números tienen sentido?)
-- [ ] **3.6** — Diseño de la página contenedora (header, filtros, leyenda)
+- [x] **3.1** — Integrar datos normalizados con treemap D3.js → Treemap carga metrics.json dinámicamente. Sectores con <50 registros usan estimados.
+- [x] **3.2** — Interactividad mejorada → Tooltips con salario, Pareto 80/20, top 3 títulos, fuentes. Panel de detalle con top 10 títulos, instituciones, género.
+- [x] **3.3** — Completar ingesta → 7 nuevos datasets (CNZFE calzados/tabaco/joyería/dispositivos, MITUR turismo, MISPAS salud, MIVHED construcción). 264K registros totales.
+- [x] **3.4** — Métricas + Pareto → `scripts/processors/calculate-metrics.js` genera `data/processed/metrics.json`. Salario mediano RD$35K. Pareto global 3.12x.
+- [x] **3.5** — Validación de datos → `data/schemas/data-quality-report.md`. Cubrimos 10.4% empleo formal. 5 outliers salariales. 1,109 bajo mínimo.
+- [x] **3.6** — Página de metodología → `src/methodology.html` con fuentes, limitaciones, cobertura, datos estimados.
 - [ ] **3.7** — Post de progreso "Día 3"
 
 ---

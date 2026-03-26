@@ -90,22 +90,27 @@
             <div class="flex flex-wrap gap-x-6 gap-y-2 mt-5">
                 <div class="flex items-center gap-2 text-sm">
                     <i data-lucide="users" class="w-4 h-4 text-blue-400"></i>
-                    <span class="text-slate-300">Total empleos:</span>
+                    <span class="text-slate-300">Total registros:</span>
                     <span id="stat-total" class="font-bold text-white">—</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm">
                     <i data-lucide="layers" class="w-4 h-4 text-amber-400"></i>
                     <span class="text-slate-300">Sectores:</span>
-                    <span class="font-bold text-white">12</span>
+                    <span id="stat-sectors" class="font-bold text-white">12</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm">
                     <i data-lucide="calendar" class="w-4 h-4 text-emerald-400"></i>
                     <span class="text-slate-300">Periodo:</span>
-                    <span class="font-bold text-white">2000–2026</span>
+                    <span id="stat-period" class="font-bold text-white">—</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                    <i data-lucide="trending-up" class="w-4 h-4 text-cyan-400"></i>
+                    <span class="text-slate-300">Salario prom.:</span>
+                    <span id="stat-salary" class="font-bold text-white">—</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm">
                     <i data-lucide="database" class="w-4 h-4 text-purple-400"></i>
-                    <span class="text-slate-300 text-xs">Datos parciales — Fuentes: MAP, TSS, DGII, CNZFE</span>
+                    <span id="stat-sources" class="text-slate-300 text-xs">Fuentes: —</span>
                 </div>
             </div>
         </div>
@@ -113,6 +118,14 @@
 
     <!-- ============ MAIN ============ -->
     <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 md:py-8">
+
+        <!-- Error banner (hidden by default) -->
+        <div id="error-banner" class="hidden mb-4 bg-red-50 border border-red-200 rounded-xl p-4 text-red-700 text-sm">
+            <div class="flex items-center gap-2">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                <span id="error-message">Error al cargar los datos.</span>
+            </div>
+        </div>
 
         <!-- Treemap container -->
         <div id="treemap-container" class="w-full bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
@@ -129,43 +142,15 @@
                         </div>
                         <div>
                             <h3 id="detail-name" class="text-white font-bold text-lg leading-tight">Sector</h3>
-                            <p class="text-white/70 text-xs mt-0.5">Detalle del sector</p>
+                            <p id="detail-badge" class="text-white/70 text-xs mt-0.5">Detalle del sector</p>
                         </div>
                     </div>
                     <button id="detail-close" class="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors" onclick="closeDetail()">
                         <i data-lucide="x" class="w-4 h-4 text-white"></i>
                     </button>
                 </div>
-                <div class="p-5">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <div class="bg-slate-50 rounded-xl p-3">
-                            <p class="text-xs text-slate-400 font-medium">Total Empleos</p>
-                            <p id="detail-empleos" class="text-xl font-bold text-slate-900 mt-1">0</p>
-                        </div>
-                        <div class="bg-slate-50 rounded-xl p-3">
-                            <p class="text-xs text-slate-400 font-medium">Salario Promedio</p>
-                            <p id="detail-salario" class="text-xl font-bold text-slate-900 mt-1">RD$0</p>
-                        </div>
-                        <div class="bg-slate-50 rounded-xl p-3 col-span-2">
-                            <p class="text-xs text-slate-400 font-medium">Participacion del Mercado</p>
-                            <div class="flex items-center gap-3 mt-2">
-                                <div class="flex-1 bg-slate-200 rounded-full h-2">
-                                    <div id="detail-bar" class="h-2 rounded-full transition-all duration-500" style="width:0%; background:#3B82F6"></div>
-                                </div>
-                                <span id="detail-pct" class="text-sm font-bold text-slate-700">0%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-100">
-                        <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Fuentes de Datos</p>
-                        <div class="flex flex-wrap gap-1.5">
-                            <span class="inline-block bg-blue-50 text-blue-700 text-xs font-medium px-2 py-0.5 rounded-full">MAP Nomina</span>
-                            <span class="inline-block bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded-full">TSS Cotizantes</span>
-                            <span class="inline-block bg-amber-50 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">ENCFT</span>
-                            <span class="inline-block bg-purple-50 text-purple-700 text-xs font-medium px-2 py-0.5 rounded-full">DGII</span>
-                            <span class="inline-block bg-red-50 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">CNZFE</span>
-                        </div>
-                    </div>
+                <div id="detail-body" class="p-5">
+                    <!-- Content injected by JS -->
                 </div>
             </div>
         </div>
@@ -184,22 +169,33 @@
     <!-- ============ FOOTER ============ -->
     <footer class="border-t border-slate-200 bg-white mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-400">
-            <p>Datos: MAP, TSS, ENCFT, DGII, CNZFE &mdash; Periodo 2000&ndash;2026</p>
+            <p id="footer-sources">Datos: MAP, TSS, ENCFT, DGII, CNZFE &mdash; Periodo 2000&ndash;2026</p>
             <a href="https://jobs.sanba.dev" class="text-blue-600 hover:text-blue-700 font-medium transition-colors">jobs.sanba.dev</a>
         </div>
     </footer>
 
     <!-- ============ TOOLTIP ============ -->
-    <div id="tooltip" class="treemap-tooltip bg-slate-900 text-white rounded-xl px-4 py-3 shadow-xl text-sm max-w-[260px]">
-        <p id="tooltip-name" class="font-bold text-sm"></p>
-        <p id="tooltip-badge" class="hidden text-[10px] mt-1 px-2 py-0.5 rounded-full inline-block"></p>
+    <div id="tooltip" class="treemap-tooltip bg-slate-900 text-white rounded-xl px-4 py-3 shadow-xl text-sm max-w-[320px]">
+        <div class="flex items-center justify-between gap-2">
+            <p id="tooltip-name" class="font-bold text-sm"></p>
+            <span id="tooltip-badge" class="text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap"></span>
+        </div>
         <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-xs text-slate-300">
             <span>Empleos:</span>
             <span id="tooltip-empleos" class="font-semibold text-white"></span>
             <span>Salario prom.:</span>
             <span id="tooltip-salario" class="font-semibold text-white"></span>
-            <span>Participación:</span>
+            <span>Participacion:</span>
             <span id="tooltip-pct" class="font-semibold text-white"></span>
+        </div>
+        <div id="tooltip-pareto" class="mt-2 text-[11px] text-slate-400 hidden">
+        </div>
+        <div id="tooltip-titles" class="mt-2 hidden">
+            <p class="text-[10px] text-slate-500 uppercase font-semibold mb-1">Top cargos</p>
+            <div id="tooltip-titles-list" class="text-xs text-slate-300"></div>
+        </div>
+        <div id="tooltip-sources" class="mt-2 hidden">
+            <div class="flex flex-wrap gap-1" id="tooltip-sources-list"></div>
         </div>
         <div class="mt-2">
             <div class="bg-slate-700 rounded-full h-1.5 w-full">
@@ -219,26 +215,46 @@
 
     <!-- ============ DATA + JAVASCRIPT ============ -->
     <script>
-    // ---- SECTOR DATA ----
-    const sectorData = {
-        name: "Empleo en RD",
-        children: [
-            { name: "Administración Pública y Defensa", shortName: "Admin. Pública", value: 250755, color: "#1a5cb5", salary: "RD$35,000", icon: "landmark", estimated: false },
-            { name: "Turismo y Hostelería", shortName: "Turismo", value: 45000, color: "#a87e3a", salary: "RD$28,000", icon: "palm-tree", estimated: true },
-            { name: "Comercio", shortName: "Comercio", value: 38000, color: "#ee2a24", salary: "RD$22,000", icon: "shopping-cart", estimated: true },
-            { name: "Construcción", shortName: "Construcción", value: 25000, color: "#E55C00", salary: "RD$20,000", icon: "hard-hat", estimated: true },
-            { name: "Manufactura y Zonas Francas", shortName: "Manufactura", value: 25000, color: "#7b9720", salary: "RD$25,000", icon: "factory", estimated: true },
-            { name: "Educación", shortName: "Educación", value: 3916, color: "#e0aa06", salary: "RD$32,000", icon: "graduation-cap", estimated: false },
-            { name: "Otros Servicios", shortName: "Otros Serv.", value: 6786, color: "#64748B", salary: "RD$18,000", icon: "ellipsis", estimated: false },
-            { name: "Tecnología y Telecomunicaciones", shortName: "Tecnología", value: 6500, color: "#14a0b8", salary: "RD$65,000", icon: "cpu", estimated: true },
-            { name: "Transporte y Logística", shortName: "Transporte", value: 5000, color: "#844c82", salary: "RD$24,000", icon: "truck", estimated: true },
-            { name: "Salud", shortName: "Salud", value: 4500, color: "#0a7f58", salary: "RD$40,000", icon: "heart-pulse", estimated: true },
-            { name: "Servicios Financieros", shortName: "Financiero", value: 3500, color: "#409d84", salary: "RD$55,000", icon: "banknote", estimated: true },
-            { name: "Agricultura y Agroindustria", shortName: "Agricultura", value: 800, color: "#13893e", salary: "RD$15,000", icon: "wheat", estimated: false }
-        ]
+    // ---- MAPPING: metrics.json keys → sector-colors.json ids ----
+    const SECTOR_KEY_TO_COLOR_ID = {
+        'administracion_publica_y_defensa': 'admin-publica',
+        'turismo_y_hosteleria': 'turismo',
+        'comercio': 'comercio',
+        'construccion': 'construccion',
+        'manufactura_y_zonas_francas': 'manufactura',
+        'tecnologia_y_telecomunicaciones': 'tecnologia',
+        'salud': 'salud',
+        'educacion': 'educacion',
+        'servicios_financieros': 'financiero',
+        'transporte_y_logistica': 'transporte',
+        'agricultura_y_agroindustria': 'agricultura',
+        'otros_servicios': 'otros-servicios'
     };
 
-    const totalEmpleos = sectorData.children.reduce((s, d) => s + d.value, 0);
+    // Estimated values for sectors with < 50 records
+    const ESTIMATED_VALUES = {
+        'turismo_y_hosteleria': { value: 45000, salary: 28000 },
+        'comercio': { value: 38000, salary: 22000 },
+        'tecnologia_y_telecomunicaciones': { value: 6500, salary: 65000 },
+        'transporte_y_logistica': { value: 5000, salary: 24000 },
+        'servicios_financieros': { value: 3500, salary: 55000 }
+    };
+
+    const REAL_DATA_THRESHOLD = 50;
+
+    // ---- GLOBAL STATE ----
+    let sectorData = null;
+    let metricsData = null;
+    let totalEmpleos = 0;
+
+    // ---- SOURCE DISPLAY NAMES ----
+    const SOURCE_LABELS = {
+        'ckan': { label: 'datos.gob.do', bg: 'bg-blue-50', text: 'text-blue-700' },
+        'tss': { label: 'TSS Cotizantes', bg: 'bg-emerald-50', text: 'text-emerald-700' },
+        'cnzfe': { label: 'CNZFE', bg: 'bg-red-50', text: 'text-red-700' },
+        'rdtrabaja': { label: 'RD Trabaja', bg: 'bg-amber-50', text: 'text-amber-700' },
+        'encft': { label: 'ENCFT', bg: 'bg-purple-50', text: 'text-purple-700' }
+    };
 
     // ---- HELPERS ----
     function fmt(n) {
@@ -251,28 +267,124 @@
         return n.toString();
     }
 
+    function fmtSalary(n) {
+        if (n == null) return 'N/D';
+        return 'RD$' + Math.round(n).toLocaleString('es-DO');
+    }
+
     function pctOf(v) {
         return ((v / totalEmpleos) * 100).toFixed(1);
     }
 
-    // ---- POPULATE STATS ----
-    document.getElementById('stat-total').textContent = fmt(totalEmpleos);
+    function capitalizeTitle(t) {
+        return t.replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    function renderSourceBadges(sources) {
+        if (!sources || sources.length === 0) return '';
+        return sources.map(s => {
+            const info = SOURCE_LABELS[s] || { label: s, bg: 'bg-slate-50', text: 'text-slate-700' };
+            return `<span class="inline-block ${info.bg} ${info.text} text-[10px] font-medium px-2 py-0.5 rounded-full">${info.label}</span>`;
+        }).join('');
+    }
+
+    // ---- LOAD DATA ----
+    async function loadData() {
+        try {
+            const [metricsResp, colorsResp] = await Promise.all([
+                fetch('../data/processed/metrics.json'),
+                fetch('./sector-colors.json')
+            ]);
+
+            if (!metricsResp.ok) throw new Error('No se pudo cargar metrics.json (' + metricsResp.status + ')');
+            if (!colorsResp.ok) throw new Error('No se pudo cargar sector-colors.json (' + colorsResp.status + ')');
+
+            metricsData = await metricsResp.json();
+            const colorsArray = await colorsResp.json();
+
+            // Build color lookup by id
+            const colorMap = {};
+            colorsArray.forEach(c => { colorMap[c.id] = c; });
+
+            // Build sector children from metrics
+            const children = [];
+            for (const [key, sectorMetrics] of Object.entries(metricsData.sectors)) {
+                const colorId = SECTOR_KEY_TO_COLOR_ID[key];
+                const colorInfo = colorId ? colorMap[colorId] : null;
+                if (!colorInfo) continue;
+
+                const isEstimated = sectorMetrics.total_records < REAL_DATA_THRESHOLD && ESTIMATED_VALUES[key];
+                const estimateInfo = ESTIMATED_VALUES[key];
+
+                const value = isEstimated ? estimateInfo.value : sectorMetrics.total_records;
+                const salaryAvg = isEstimated ? estimateInfo.salary : sectorMetrics.salary_avg;
+
+                children.push({
+                    name: colorInfo.name,
+                    shortName: colorInfo.shortName,
+                    value: value,
+                    color: colorInfo.color,
+                    icon: colorInfo.icon,
+                    estimated: !!isEstimated,
+                    // Real metrics data for tooltips/detail
+                    metrics: sectorMetrics,
+                    salaryAvg: salaryAvg,
+                    sectorKey: key
+                });
+            }
+
+            // Sort by value descending
+            children.sort((a, b) => b.value - a.value);
+
+            sectorData = { name: "Empleo en RD", children };
+            totalEmpleos = children.reduce((s, d) => s + d.value, 0);
+
+            // Populate stats bar from global metrics
+            populateStats();
+
+            return true;
+        } catch (err) {
+            console.error('Error loading data:', err);
+            showError(err.message);
+            return false;
+        }
+    }
+
+    function showError(msg) {
+        const banner = document.getElementById('error-banner');
+        document.getElementById('error-message').textContent = msg + ' Se mostraran datos de respaldo.';
+        banner.classList.remove('hidden');
+    }
+
+    function populateStats() {
+        const g = metricsData.global;
+        document.getElementById('stat-total').textContent = fmt(g.total_records);
+        document.getElementById('stat-sectors').textContent = Object.keys(metricsData.sectors).length;
+        document.getElementById('stat-period').textContent = g.period.min_year + '–' + g.period.max_year;
+        document.getElementById('stat-salary').textContent = fmtSalary(g.salary_avg);
+        const srcNames = (g.sources || []).map(s => (SOURCE_LABELS[s] || { label: s }).label);
+        document.getElementById('stat-sources').textContent = 'Fuentes: ' + srcNames.join(', ');
+    }
 
     // ---- LEGEND ----
-    const legendEl = document.getElementById('legend');
-    sectorData.children.forEach(d => {
-        const item = document.createElement('div');
-        item.className = 'flex items-center gap-1.5 text-sm text-slate-600 cursor-pointer hover:text-slate-900 transition-colors';
-        item.innerHTML = `<span class="w-3 h-3 rounded-full shrink-0" style="background:${d.color}"></span><span class="text-xs">${d.shortName}</span>`;
-        item.addEventListener('click', () => {
-            if (isMobile()) {
-                openMobileSheet(d);
-            } else {
-                showDetail(d);
-            }
+    function buildLegend() {
+        const legendEl = document.getElementById('legend');
+        legendEl.innerHTML = '';
+        sectorData.children.forEach(d => {
+            const item = document.createElement('div');
+            item.className = 'flex items-center gap-1.5 text-sm text-slate-600 cursor-pointer hover:text-slate-900 transition-colors';
+            const borderStyle = d.estimated ? 'border: 1px dashed rgba(0,0,0,0.3);' : '';
+            item.innerHTML = `<span class="w-3 h-3 rounded-full shrink-0" style="background:${d.color}; ${borderStyle} opacity:${d.estimated ? 0.7 : 1}"></span><span class="text-xs">${d.shortName}</span>`;
+            item.addEventListener('click', () => {
+                if (isMobile()) {
+                    openMobileSheet(d);
+                } else {
+                    showDetail(d);
+                }
+            });
+            legendEl.appendChild(item);
         });
-        legendEl.appendChild(item);
-    });
+    }
 
     // ---- RESPONSIVE CHECK ----
     function isMobile() {
@@ -283,6 +395,8 @@
     let svg, treemapLayout, root;
 
     function buildTreemap() {
+        if (!sectorData) return;
+
         const container = document.getElementById('treemap');
         container.innerHTML = '';
 
@@ -424,7 +538,7 @@
                     .attr('font-weight', '500')
                     .attr('font-family', 'Plus Jakarta Sans, sans-serif')
                     .style('pointer-events', 'none')
-                    .text(d.data.salary + ' prom.');
+                    .text(fmtSalary(d.data.salaryAvg) + ' prom.');
             }
         });
 
@@ -455,21 +569,61 @@
     const tooltipEl = document.getElementById('tooltip');
 
     function showTooltip(event, data) {
+        const m = data.metrics;
+
         document.getElementById('tooltip-name').textContent = data.name;
         document.getElementById('tooltip-empleos').textContent = fmt(data.value);
-        document.getElementById('tooltip-salario').textContent = data.salary;
+        document.getElementById('tooltip-salario').textContent = fmtSalary(data.salaryAvg);
         const pct = pctOf(data.value);
         document.getElementById('tooltip-pct').textContent = pct + '%';
         document.getElementById('tooltip-bar').style.width = pct + '%';
         document.getElementById('tooltip-bar').style.background = data.color;
+
+        // Badge
         const badge = document.getElementById('tooltip-badge');
         if (data.estimated) {
-            badge.textContent = '⊘ Dato estimado — pendiente de fuentes reales';
-            badge.className = 'text-[10px] mt-1 px-2 py-0.5 rounded-full inline-block bg-amber-900/50 text-amber-300';
+            badge.textContent = 'Estimado';
+            badge.className = 'text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap bg-amber-900/50 text-amber-300';
         } else {
-            badge.textContent = '✓ Dato real — fuentes verificadas';
-            badge.className = 'text-[10px] mt-1 px-2 py-0.5 rounded-full inline-block bg-green-900/50 text-green-300';
+            badge.textContent = 'Dato real';
+            badge.className = 'text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap bg-green-900/50 text-green-300';
         }
+
+        // Pareto info
+        const paretoEl = document.getElementById('tooltip-pareto');
+        if (m.salary_pareto) {
+            paretoEl.textContent = '80% gana ~' + fmtSalary(m.salary_pareto.bottom_80_avg) + ' | 20% gana ~' + fmtSalary(m.salary_pareto.top_20_avg);
+            paretoEl.classList.remove('hidden');
+        } else {
+            paretoEl.classList.add('hidden');
+        }
+
+        // Top 3 titles
+        const titlesSection = document.getElementById('tooltip-titles');
+        const titlesList = document.getElementById('tooltip-titles-list');
+        if (m.top_titles && m.top_titles.length > 0) {
+            const top3 = m.top_titles.slice(0, 3);
+            titlesList.innerHTML = top3.map(t =>
+                `<div class="flex justify-between gap-2"><span class="truncate">${capitalizeTitle(t.title)}</span><span class="text-slate-500 shrink-0">${fmt(t.count)}</span></div>`
+            ).join('');
+            titlesSection.classList.remove('hidden');
+        } else {
+            titlesSection.classList.add('hidden');
+        }
+
+        // Sources
+        const sourcesSection = document.getElementById('tooltip-sources');
+        const sourcesList = document.getElementById('tooltip-sources-list');
+        if (m.sources && m.sources.length > 0) {
+            sourcesList.innerHTML = m.sources.map(s => {
+                const info = SOURCE_LABELS[s] || { label: s, bg: 'bg-slate-700', text: 'text-slate-300' };
+                return `<span class="inline-block bg-slate-700 text-slate-300 text-[10px] font-medium px-1.5 py-0.5 rounded">${info.label}</span>`;
+            }).join('');
+            sourcesSection.classList.remove('hidden');
+        } else {
+            sourcesSection.classList.add('hidden');
+        }
+
         tooltipEl.classList.add('visible');
         moveTooltip(event);
     }
@@ -477,8 +631,7 @@
     function moveTooltip(event) {
         const x = event.clientX + 16;
         const y = event.clientY - 12;
-        // Keep tooltip on screen
-        const tw = 260;
+        const tw = 320;
         const adjustedX = (x + tw > window.innerWidth) ? event.clientX - tw - 10 : x;
         tooltipEl.style.left = adjustedX + 'px';
         tooltipEl.style.top = y + 'px';
@@ -489,23 +642,180 @@
     }
 
     // ---- DETAIL PANEL (DESKTOP) ----
+    function buildDetailHTML(data) {
+        const m = data.metrics;
+        const pct = pctOf(data.value);
+
+        // Salary section
+        let salaryHTML = '';
+        if (m.salary_avg != null) {
+            salaryHTML = `
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="bg-slate-50 rounded-xl p-3">
+                        <p class="text-xs text-slate-400 font-medium">Salario Promedio</p>
+                        <p class="text-xl font-bold text-slate-900 mt-1">${fmtSalary(m.salary_avg)}</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-3">
+                        <p class="text-xs text-slate-400 font-medium">Salario Mediana</p>
+                        <p class="text-xl font-bold text-slate-900 mt-1">${fmtSalary(m.salary_median)}</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-3">
+                        <p class="text-xs text-slate-400 font-medium">Minimo</p>
+                        <p class="text-xl font-bold text-slate-900 mt-1">${fmtSalary(m.salary_min)}</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-3">
+                        <p class="text-xs text-slate-400 font-medium">Maximo</p>
+                        <p class="text-xl font-bold text-slate-900 mt-1">${fmtSalary(m.salary_max)}</p>
+                    </div>
+                </div>`;
+        } else {
+            salaryHTML = `<div class="bg-slate-50 rounded-xl p-3 text-sm text-slate-400">Sin datos salariales disponibles para este sector.</div>`;
+        }
+
+        // Pareto section
+        let paretoHTML = '';
+        if (m.salary_pareto) {
+            const p = m.salary_pareto;
+            paretoHTML = `
+                <div class="mt-4">
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Distribucion Salarial (Pareto 80/20)</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div class="bg-blue-50 rounded-xl p-3">
+                            <p class="text-xs text-blue-600 font-medium">80% gana en promedio</p>
+                            <p class="text-lg font-bold text-blue-900 mt-1">${fmtSalary(p.bottom_80_avg)}</p>
+                            <p class="text-[11px] text-blue-400">${fmt(p.bottom_80_count)} empleados</p>
+                        </div>
+                        <div class="bg-amber-50 rounded-xl p-3">
+                            <p class="text-xs text-amber-600 font-medium">20% gana en promedio</p>
+                            <p class="text-lg font-bold text-amber-900 mt-1">${fmtSalary(p.top_20_avg)}</p>
+                            <p class="text-[11px] text-amber-400">${fmt(p.top_20_count)} empleados</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-3">
+                            <p class="text-xs text-slate-500 font-medium">Ratio</p>
+                            <p class="text-lg font-bold text-slate-900 mt-1">${p.ratio}x</p>
+                            <p class="text-[11px] text-slate-400">El top 20% gana ${p.ratio}x mas</p>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // Top titles (up to 10)
+        let titlesHTML = '';
+        if (m.top_titles && m.top_titles.length > 0) {
+            const titles = m.top_titles.slice(0, 10);
+            titlesHTML = `
+                <div class="mt-4">
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Top ${titles.length} Cargos</p>
+                    <div class="space-y-1">
+                        ${titles.map((t, i) => `
+                            <div class="flex items-center justify-between text-sm py-1 ${i < titles.length - 1 ? 'border-b border-slate-50' : ''}">
+                                <span class="text-slate-700">${capitalizeTitle(t.title)}</span>
+                                <span class="text-slate-400 font-medium text-xs">${fmt(t.count)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>`;
+        }
+
+        // Top institutions (up to 5)
+        let instHTML = '';
+        if (m.top_institutions && m.top_institutions.length > 0) {
+            const insts = m.top_institutions.slice(0, 5);
+            instHTML = `
+                <div class="mt-4">
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Top ${insts.length} Instituciones</p>
+                    <div class="space-y-1">
+                        ${insts.map((inst, i) => `
+                            <div class="flex items-center justify-between text-sm py-1 ${i < insts.length - 1 ? 'border-b border-slate-50' : ''}">
+                                <span class="text-slate-700 truncate mr-2">${inst.institution}</span>
+                                <span class="text-slate-400 font-medium text-xs shrink-0">${fmt(inst.count)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>`;
+        }
+
+        // Gender distribution
+        let genderHTML = '';
+        if (m.gender_distribution && m.gender_distribution.unknown_pct < 90) {
+            const g = m.gender_distribution;
+            genderHTML = `
+                <div class="mt-4">
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Distribucion por Genero</p>
+                    <div class="flex items-center gap-3">
+                        <div class="flex-1 bg-slate-100 rounded-full h-4 overflow-hidden flex">
+                            <div class="h-4 bg-blue-500" style="width:${g.male_pct}%" title="Masculino ${g.male_pct}%"></div>
+                            <div class="h-4 bg-pink-500" style="width:${g.female_pct}%" title="Femenino ${g.female_pct}%"></div>
+                        </div>
+                        <div class="text-xs text-slate-500 shrink-0">
+                            <span class="text-blue-600 font-medium">${g.male_pct}% M</span> /
+                            <span class="text-pink-600 font-medium">${g.female_pct}% F</span>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // Sources
+        const sourcesHTML = m.sources && m.sources.length > 0
+            ? `<div class="mt-4 pt-4 border-t border-slate-100">
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Fuentes de Datos</p>
+                    <div class="flex flex-wrap gap-1.5">${renderSourceBadges(m.sources)}</div>
+                </div>`
+            : '';
+
+        // Period
+        const periodHTML = m.period
+            ? `<div class="mt-3 text-xs text-slate-400">Periodo: ${m.period.min_year}–${m.period.max_year} | Registros: ${fmt(m.total_records)}</div>`
+            : '';
+
+        return `
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <p class="text-xs text-slate-400 font-medium">Total Empleos</p>
+                    <p class="text-xl font-bold text-slate-900 mt-1">${fmt(data.value)}</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <p class="text-xs text-slate-400 font-medium">Registros Reales</p>
+                    <p class="text-xl font-bold text-slate-900 mt-1">${fmt(m.total_records)}</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-3 col-span-2">
+                    <p class="text-xs text-slate-400 font-medium">Participacion del Mercado</p>
+                    <div class="flex items-center gap-3 mt-2">
+                        <div class="flex-1 bg-slate-200 rounded-full h-2">
+                            <div class="h-2 rounded-full transition-all duration-500" style="width:${pct}%; background:${data.color}"></div>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700">${pct}%</span>
+                    </div>
+                </div>
+            </div>
+            ${salaryHTML}
+            ${paretoHTML}
+            ${titlesHTML}
+            ${instHTML}
+            ${genderHTML}
+            ${sourcesHTML}
+            ${periodHTML}
+        `;
+    }
+
     function showDetail(data) {
         const panel = document.getElementById('detail-panel');
         panel.classList.remove('panel-hidden');
 
         document.getElementById('detail-header').style.background = data.color;
         document.getElementById('detail-name').textContent = data.name;
-        document.getElementById('detail-empleos').textContent = fmt(data.value);
-        document.getElementById('detail-salario').textContent = data.salary;
 
-        const pct = pctOf(data.value);
-        document.getElementById('detail-bar').style.width = pct + '%';
-        document.getElementById('detail-bar').style.background = data.color;
-        document.getElementById('detail-pct').textContent = pct + '%';
+        // Badge
+        const badgeEl = document.getElementById('detail-badge');
+        badgeEl.textContent = data.estimated ? 'Dato estimado — pendiente de fuentes reales' : 'Dato real — fuentes verificadas';
 
         // Update icon
         const iconEl = document.getElementById('detail-icon');
         iconEl.setAttribute('data-lucide', data.icon);
+
+        // Build detail body
+        document.getElementById('detail-body').innerHTML = buildDetailHTML(data);
+
         lucide.createIcons();
 
         // Scroll to panel
@@ -514,13 +824,14 @@
 
     function closeDetail() {
         document.getElementById('detail-panel').classList.add('panel-hidden');
-        // Also close mobile sheet
         closeMobileSheet();
     }
 
     // ---- MOBILE BOTTOM SHEET ----
     function openMobileSheet(data) {
+        const m = data.metrics;
         const pct = pctOf(data.value);
+
         document.getElementById('mobile-sheet-content').innerHTML = `
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:${data.color}">
@@ -528,7 +839,7 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-slate-900">${data.name}</h3>
-                    <p class="text-xs text-slate-500">${pct}% del empleo formal</p>
+                    <p class="text-xs text-slate-500">${pct}% del empleo formal${data.estimated ? ' (estimado)' : ''}</p>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-3 mb-4">
@@ -538,9 +849,15 @@
                 </div>
                 <div class="bg-slate-50 rounded-xl p-3">
                     <p class="text-[10px] text-slate-400 font-medium uppercase">Salario Prom.</p>
-                    <p class="text-lg font-bold text-slate-900">${data.salary}</p>
+                    <p class="text-lg font-bold text-slate-900">${fmtSalary(data.salaryAvg)}</p>
                 </div>
             </div>
+            ${m.salary_pareto ? `
+            <div class="bg-slate-50 rounded-xl p-3 mb-4">
+                <p class="text-[10px] text-slate-400 font-medium uppercase mb-1">Pareto 80/20</p>
+                <p class="text-xs text-slate-600">80% gana ~${fmtSalary(m.salary_pareto.bottom_80_avg)}</p>
+                <p class="text-xs text-slate-600">20% gana ~${fmtSalary(m.salary_pareto.top_20_avg)}</p>
+            </div>` : ''}
             <div class="bg-slate-50 rounded-xl p-3 mb-4">
                 <p class="text-[10px] text-slate-400 font-medium uppercase mb-2">Participacion</p>
                 <div class="flex items-center gap-3">
@@ -550,14 +867,24 @@
                     <span class="text-sm font-bold text-slate-700">${pct}%</span>
                 </div>
             </div>
+            ${m.top_titles && m.top_titles.length > 0 ? `
+            <div class="mb-4">
+                <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-2">Top Cargos</p>
+                <div class="space-y-1">
+                    ${m.top_titles.slice(0, 5).map(t => `
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-600 truncate mr-2">${capitalizeTitle(t.title)}</span>
+                            <span class="text-slate-400 shrink-0">${fmt(t.count)}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>` : ''}
             <div class="pt-3 border-t border-slate-100">
                 <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-2">Fuentes de Datos</p>
                 <div class="flex flex-wrap gap-1.5">
-                    <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-medium px-2 py-0.5 rounded-full">MAP</span>
-                    <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-medium px-2 py-0.5 rounded-full">TSS</span>
-                    <span class="inline-block bg-amber-50 text-amber-700 text-[10px] font-medium px-2 py-0.5 rounded-full">ENCFT</span>
-                    <span class="inline-block bg-purple-50 text-purple-700 text-[10px] font-medium px-2 py-0.5 rounded-full">DGII</span>
+                    ${renderSourceBadges(m.sources)}
                 </div>
+                ${m.period ? `<p class="text-[10px] text-slate-400 mt-2">Periodo: ${m.period.min_year}–${m.period.max_year}</p>` : ''}
             </div>
         `;
 
@@ -585,8 +912,12 @@
     });
 
     // ---- INIT ----
-    document.addEventListener('DOMContentLoaded', () => {
-        buildTreemap();
+    document.addEventListener('DOMContentLoaded', async () => {
+        const loaded = await loadData();
+        if (loaded) {
+            buildLegend();
+            buildTreemap();
+        }
         lucide.createIcons();
     });
     </script>

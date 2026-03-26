@@ -375,50 +375,50 @@
                 </a>
             </div>
 
-            <!-- Día 3 Pendiente -->
+            <!-- Día 3 Completado -->
             <div class="text-center mb-12 mt-16">
-                <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 mb-4">
-                    <i data-lucide="clock" class="h-4 w-4"></i>
-                    <span>Día 3 — Pendiente</span>
+                <div class="inline-flex items-center gap-2 rounded-full bg-green-50 px-4 py-1.5 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-700/10 mb-4">
+                    <i data-lucide="check-circle-2" class="h-4 w-4"></i>
+                    <span>Día 3 Completado</span>
                 </div>
                 <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Integración y Visualización</h2>
-                <p class="mx-auto mt-3 max-w-xl text-slate-500">Datos reales fluyendo al treemap interactivo.</p>
+                <p class="mx-auto mt-3 max-w-xl text-slate-500">264K registros de 20 fuentes. Treemap con datos reales y análisis Pareto.</p>
             </div>
             <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-                <button onclick="openTaskModal('3.1')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                <a href="src/treemap.html" class="group flex flex-col items-center gap-3 rounded-2xl bg-blue-50 border-2 border-blue-200 p-5 hover:border-blue-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="layers" class="h-6 w-6"></i>
                     </div>
                     <div>
-                        <p class="text-sm font-bold text-slate-900">Integrar</p>
-                        <p class="text-xs text-slate-500">Datos → Treemap</p>
+                        <p class="text-sm font-bold text-slate-900">Treemap</p>
+                        <p class="text-xs text-blue-600">Datos reales ↗</p>
                     </div>
-                </button>
-                <button onclick="openTaskModal('3.2')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                </a>
+                <button onclick="openTaskModal('3.2')" class="group flex flex-col items-center gap-3 rounded-2xl bg-cyan-50 border-2 border-cyan-200 p-5 hover:border-cyan-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="message-square" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Tooltips</p>
-                        <p class="text-xs text-slate-500">Hover interactivo</p>
+                        <p class="text-xs text-cyan-600">Pareto + títulos ✓</p>
                     </div>
                 </button>
-                <button onclick="openTaskModal('3.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                <button onclick="openTaskModal('3.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-green-50 border-2 border-green-300 p-5 hover:border-green-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="database" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Ingesta</p>
-                        <p class="text-xs text-slate-500">Todas las fuentes</p>
+                        <p class="text-xs text-green-600">+7 fuentes ✓</p>
                     </div>
                 </button>
-                <button onclick="openTaskModal('3.4')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                <button onclick="openTaskModal('3.4')" class="group flex flex-col items-center gap-3 rounded-2xl bg-violet-50 border-2 border-violet-200 p-5 hover:border-violet-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="calculator" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Métricas</p>
-                        <p class="text-xs text-slate-500">Salario × sector</p>
+                        <p class="text-xs text-violet-600">Pareto 3.12x ✓</p>
                     </div>
                 </button>
                 <button onclick="openTaskModal('3.5')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
@@ -427,18 +427,18 @@
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Calidad</p>
-                        <p class="text-xs text-slate-500">¿Datos correctos?</p>
+                        <p class="text-xs text-amber-600">10.4% cobertura ✓</p>
                     </div>
                 </button>
-                <button onclick="openTaskModal('3.6')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
-                        <i data-lucide="layout" class="h-6 w-6"></i>
+                <a href="src/methodology.html" class="group flex flex-col items-center gap-3 rounded-2xl bg-indigo-50 border-2 border-indigo-200 p-5 hover:border-indigo-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="book-open" class="h-6 w-6"></i>
                     </div>
                     <div>
-                        <p class="text-sm font-bold text-slate-900">Layout</p>
-                        <p class="text-xs text-slate-500">Header + filtros</p>
+                        <p class="text-sm font-bold text-slate-900">Metodología</p>
+                        <p class="text-xs text-indigo-600">Ver notas ↗</p>
                     </div>
-                </button>
+                </a>
             </div>
         </div>
     </section>
