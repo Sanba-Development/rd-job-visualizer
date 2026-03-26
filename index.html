@@ -441,6 +441,73 @@
                 </a>
             </div>
         </div>
+
+            <!-- Día 4 Pendiente -->
+            <div class="text-center mb-12 mt-16">
+                <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 mb-4">
+                    <i data-lucide="clock" class="h-4 w-4"></i>
+                    <span>Día 4 — Hoy</span>
+                </div>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">MVP y Feature Freeze</h2>
+                <p class="mx-auto mt-3 max-w-xl text-slate-500">Pulir el treemap, responsive, testing, y feature freeze a las 6pm.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+                <button onclick="openTaskModal('4.1')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="mouse-pointer-click" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Drill-down</p>
+                        <p class="text-xs text-slate-500">Sub-categorías</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('4.2')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="panel-right" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Panel</p>
+                        <p class="text-xs text-slate-500">Detalle sector</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('4.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="smartphone" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Responsive</p>
+                        <p class="text-xs text-slate-500">Móvil < 768px</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('4.4')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="file-text" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Metodología</p>
+                        <p class="text-xs text-slate-500">Sobre los datos</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('4.5')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="bug" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Testing</p>
+                        <p class="text-xs text-slate-500">3+ browsers</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('4.7')" class="group flex flex-col items-center gap-3 rounded-2xl bg-red-50 border-2 border-red-200 p-5 hover:border-red-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="lock" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Freeze</p>
+                        <p class="text-xs text-red-500">6pm deadline</p>
+                    </div>
+                </button>
+            </div>
+        </div>
     </section>
 
     <!-- Contribuir Section -->
@@ -1409,8 +1476,65 @@
             }
         };
 
+        const day4Tasks = {
+            '4.1': {
+                numero: '4.1', titulo: 'Drill-down: sub-categorías por sector',
+                objetivo: 'Al hacer clic en un sector del treemap, expandir para mostrar sub-categorías (top títulos de puestos).',
+                contexto: 'El treemap ya tiene click → panel de detalle. Este task agrega navegación por niveles: sector → sub-sectores o top puestos.',
+                plan: ['Modificar el click handler del treemap', 'Al hacer clic, regenerar treemap con datos del sector seleccionado', 'Mostrar top títulos como celdas hijas', 'Botón "Volver" para regresar a vista general'],
+                archivos: '<code>src/treemap.html</code>, <code>data/processed/metrics.json</code>',
+                criterios: ['Clic en sector muestra sub-vista', 'Botón volver funciona', 'Transición animada'],
+                dificultad: 'Avanzado', dificultadColor: 'bg-red-100 text-red-700', branch: 'feat/treemap-drilldown'
+            },
+            '4.2': {
+                numero: '4.2', titulo: 'Panel lateral con detalle de sector',
+                objetivo: 'Mejorar el panel de detalle existente con más información y mejor diseño.',
+                contexto: 'Ya existe un panel de detalle al hacer clic. Mejorar con gráficos de distribución salarial, timeline, y links a metodología.',
+                plan: ['Agregar mini-gráfico de distribución salarial (barras)', 'Mostrar Pareto visualmente (barra 80/20)', 'Link a methodology.html', 'Mejorar responsive del panel'],
+                archivos: '<code>src/treemap.html</code>',
+                criterios: ['Panel muestra distribución salarial visual', 'Pareto 80/20 como barra', 'Link a metodología funciona'],
+                dificultad: 'Medio', dificultadColor: 'bg-amber-100 text-amber-700', branch: 'feat/treemap-panel'
+            },
+            '4.3': {
+                numero: '4.3', titulo: 'Responsive: funciona en móvil',
+                objetivo: 'Asegurar que el treemap, explorer, y landing se ven bien en pantallas < 768px.',
+                contexto: 'El treemap ya tiene resize listener. Necesitamos verificar que tooltips, panel de detalle, y navegación funcionan en móvil.',
+                plan: ['Probar treemap en viewport 375px', 'Ajustar tooltips para móvil (bottom sheet)', 'Verificar explorer en móvil', 'Verificar landing cards en móvil'],
+                archivos: '<code>src/treemap.html</code>, <code>explorer.html</code>, <code>index.html</code>',
+                criterios: ['Treemap legible en 375px', 'Tooltips no se salen de pantalla', 'Explorer usable en móvil'],
+                dificultad: 'Medio', dificultadColor: 'bg-amber-100 text-amber-700', branch: 'feat/responsive'
+            },
+            '4.4': {
+                numero: '4.4', titulo: 'Notas metodológicas en el portal',
+                objetivo: 'Integrar la página de metodología (ya creada) con el treemap y la landing.',
+                contexto: 'Ya existe <code>src/methodology.html</code>. Necesitamos linkearla prominentemente desde el treemap y la landing.',
+                plan: ['Agregar botón "Sobre los datos" en treemap header', 'Agregar link en footer del treemap', 'Verificar que methodology.html se ve bien'],
+                archivos: '<code>src/treemap.html</code>, <code>src/methodology.html</code>',
+                criterios: ['Link visible desde treemap', 'Methodology.html accesible y completa'],
+                dificultad: 'Fácil', dificultadColor: 'bg-green-100 text-green-700', branch: 'feat/methodology-links'
+            },
+            '4.5': {
+                numero: '4.5', titulo: 'Testing: 3+ navegadores y dispositivos',
+                objetivo: 'Probar el sitio completo en Chrome, Firefox, Safari y al menos 2 tamaños de pantalla.',
+                contexto: 'El sitio está en <code>jobs.sanba.dev</code>. Probar todas las páginas: landing, treemap, explorer, methodology, wireframe.',
+                plan: ['Chrome desktop + móvil', 'Firefox desktop', 'Safari (si disponible)', 'Documentar bugs encontrados', 'Fix bugs críticos'],
+                archivos: 'Todos los HTML',
+                criterios: ['Sin errores de consola en 3 browsers', 'Layout correcto en desktop y móvil', 'Todos los links funcionan'],
+                dificultad: 'Medio', dificultadColor: 'bg-amber-100 text-amber-700', branch: 'fix/cross-browser'
+            },
+            '4.7': {
+                numero: '4.7', titulo: 'FEATURE FREEZE — 6pm',
+                objetivo: 'Detener todo desarrollo de features nuevas. Solo bugfixes después de las 6pm.',
+                contexto: 'El MVP debe estar estable para Demo Day (viernes). Después del freeze, solo se aceptan correcciones de bugs críticos.',
+                plan: ['Revisar todos los PRs abiertos', 'Mergear lo que esté listo', 'Cerrar PRs incompletos', 'Comunicar al equipo que solo bugfixes'],
+                archivos: 'N/A',
+                criterios: ['Todos los PRs procesados', 'Master estable', 'Equipo notificado'],
+                dificultad: 'Fácil', dificultadColor: 'bg-green-100 text-green-700', branch: 'N/A'
+            }
+        };
+
         function openTaskModal(taskId) {
-            const task = day2Tasks[taskId] || day3Tasks[taskId];
+            const task = day2Tasks[taskId] || day3Tasks[taskId] || day4Tasks[taskId];
             if (!task) return;
 
             const titleEl = document.getElementById('task-modal-title');
