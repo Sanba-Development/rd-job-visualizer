@@ -48,7 +48,7 @@ Claude operates as an **orchestrator** for this repo:
 
 ## Development
 
-Open `index.html` in a browser directly — no build step needed. Any static file server works (`npx serve .`, `python -m http.server`, etc.).
+Open `index.html` in a browser directly — no build step needed. Use `npx serve .` (NOT `npx serve . -s` — SPA mode breaks multi-page .html navigation). Alternative: `python -m http.server`.
 
 ### Data Pipeline Commands
 
@@ -56,6 +56,10 @@ Open `index.html` in a browser directly — no build step needed. Any static fil
 - `node scripts/processors/normalize.js` — Normalize all raw data → `data/processed/normalized.json` (197MB, gitignored)
 - `node scripts/processors/calculate-metrics.js` — Generate `data/processed/metrics.json` from normalized data
 - `node scripts/processors/validate-sectors.js` — Validate sector coverage (exits 1 if gaps)
+
+### Known Data Issues
+- `normalize.js` picks up CSV subtotal/total rows as individual records (e.g., CORAABO RD$1.7M "salary" is a subtotal of 131 employees). See backlog X.6.
+- Always filter rows where name/position contains "subtotal"/"total" when adding new CSV sources.
 
 ## Deployment
 
@@ -89,6 +93,8 @@ All JS is inline at the bottom of `index.html`.
 - **Explorer datasets:** Hardcoded JS array in `explorer.html`. Must be updated manually when new data files are added to `data/raw/`. Stats computed dynamically from array.
 - **Treemap data:** `src/treemap.html` loads `data/processed/metrics.json` dynamically. To update: run `node scripts/processors/normalize.js` then `node scripts/processors/calculate-metrics.js`.
 - **Sector colors:** `src/sector-colors.json` is the source of truth. Treemap and color-palette.html read from it.
+- **Contribuciones overlay:** `CONTRIBUCIONES.md` rendered via `marked.parse()` in "¿Y ahora qué?" section overlay. Same pattern as Plan/Research overlays.
+- **Treemap drill-down:** Click sector → shows top 10 occupations in color variants. Breadcrumb bar + "Volver" to go back. Mobile uses bottom sheet instead (no drill-down).
 
 ## Planned Architecture (from research doc)
 
@@ -119,6 +125,13 @@ See `CONTRIBUTING.md` for full details. Key rules:
 - **Don't modify CLAUDE.md or ORCHESTRATOR.md** without Erick's approval.
 - **Don't delete raw data** — only add to `data/raw/`.
 - **Test locally** with `npx serve .` before creating a PR.
+- **Protected branch merges:** `gh pr merge` fails on master — need `--admin` flag or manual merge in GitHub UI.
+- **Parallel subagents on same file:** Run sequentially (not in worktree isolation) or assign non-overlapping line ranges. Review final state carefully.
+
+## Post-Challenge
+
+- `CONTRIBUCIONES.md` — 43 actionable contributions across 9 segments (visualization, data pipeline, treemap inverso, bureau de empleo, data standards, community, policy, infrastructure, prospectiva)
+- The "¿Y ahora qué?" section on the landing page links to this document via overlay
 
 ## Language
 

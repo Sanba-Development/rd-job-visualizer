@@ -2,7 +2,7 @@
 
 > This file is maintained by the orchestrator thread. It preserves architecture,
 > conventions, decisions, and risks so context survives compaction.
-> Last updated: 2026-03-26 (session-save)
+> Last updated: 2026-03-27 (session-save: Day 4 complete, Day 5 Demo Day)
 
 ---
 
@@ -38,6 +38,8 @@ assets/team/            ← Team member photos (erick-santana.png, jonathan-oval
 | `DATA_SOURCES.md` | 6 prioritized government data sources with URLs |
 | `SECTOR_TAXONOMY.md` | 12 CIUO-08 sectors for treemap + color palette |
 | `CONTRIBUTING.md` | Contribution rules for the team |
+| `CONTRIBUCIONES.md` | 43 post-challenge contributions across 9 segments |
+| `ORCHESTRATOR-ABEL.md` | Abel López's Claude session context file |
 | `README.md` | Project overview, structure, team, links |
 | `RD Job Visualizer Research.md` | Deep analysis (embedded inline in index.html) |
 
@@ -58,21 +60,23 @@ assets/team/            ← Team member photos (erick-santana.png, jonathan-oval
 ## index.html Structure
 
 ### Sections (in order)
-1. Nav (sticky, glass effect) — links: Progreso, Visión, Roadmap, Roles, Equipo, Tecnología, Plan, Investigación
+1. Nav (sticky, glass effect) — links: Progreso, Contribuir, Equipo, Visión, Roadmap, Roles, Tecnología, Plan, Investigación
 2. Hero — countdown timer targeting `2026-03-27T23:59:59`, CTA to WhatsApp signup
-3. **Progreso ("Lo Que Ya Tenemos")** — 6 colored card grid: Inventario, Explorador, Sectores, API RD Trabaja, Wireframe, Plan
-4. Vision — mission + mockup treemap preview
-5. Roadmap — 4-phase timeline cards
-6. Roles — 8 role cards (dev, data, design, content, etc.)
-7. **Equipo** — Dynamic grid from `data/participants.json` (photo/initials, status badge, role, bio, skills, socials)
-8. Tech Stack — Claude Code, Playwright, MCP, React+Tailwind
-9. Plan — button opens overlay → fetches `PROJECT_PLAN.md`
-10. Investigación — button opens overlay → renders embedded `<script id="research-md">`
-11. Final CTA — WhatsApp signup
-12. Footer
+3. **Treemap Showcase** — Preview widget linking to treemap
+4. **Progreso** — Days 1-4 (completed, colored cards with links) + Day 5 (amber/pending) + "¿Y ahora qué?" (6 gradient cards + overlay button)
+5. Contribuir — "Únete al Equipo" with ONBOARDING.md overlay
+6. **Equipo** — Dynamic grid from `data/participants.json` (photo/initials, status badge, role, bio, skills, socials)
+7. Vision — mission + mockup treemap preview
+8. Roadmap — 4-phase timeline cards
+9. Roles — 8 role cards (dev, data, design, content, etc.)
+10. Tech Stack — Claude Code, Playwright, MCP, React+Tailwind
+11. Plan — button opens overlay → fetches `PROJECT_PLAN.md`
+12. Investigación — button opens overlay → renders embedded `<script id="research-md">`
+13. Final CTA — WhatsApp signup
+14. Footer
 
-### Overlays (6 total)
-Research, Plan, Datos (DATA_SOURCES.md), Taxonomy (SECTOR_TAXONOMY.md), RD Trabaja analysis, Signup form
+### Overlays (7 total)
+Research, Plan, Datos (DATA_SOURCES.md), Taxonomy (SECTOR_TAXONOMY.md), RD Trabaja analysis, Signup form, Contribuciones (CONTRIBUCIONES.md)
 
 ### Overlays (Modal Pattern)
 All overlays follow same pattern:
@@ -173,6 +177,14 @@ All overlays follow same pattern:
 | Vercel preview auth | 2026-03-26 | Disable "Vercel Authentication" in project Settings → Deployment Protection for public previews |
 | Promo images not in git | 2026-03-26 | promo-day*.png files stay local, not committed. Used for WhatsApp/social media only. |
 | Parallel subagents need coordination | 2026-03-26 | When two agents modify related files (treemap data + treemap layout), plan file ownership carefully |
+| 3 agents on same file works sequentially | 2026-03-27 | Tasks 4.1/4.3/4.4 all edited treemap.html — ran sequentially (not worktrees), reviewed final state. No conflicts. |
+| Abel contributes via own branch | 2026-03-27 | Abel uses his own Claude session with ORCHESTRATOR-ABEL.md. Branches from day4/working, PRs back to it. |
+| salary_max is polluted by subtotals | 2026-03-27 | CORAABO CSV has subtotal rows (RD$1.7M) that normalize.js treats as individual records. Real max is RD$450K (Presidente Abinader). See backlog X.6. |
+| CONTRIBUCIONES.md as post-challenge roadmap | 2026-03-27 | 43 contributions across 9 segments. Visible on landing via "¿Y ahora qué?" section with overlay. |
+| Bureau de Empleo concept | 2026-03-27 | Erick's idea: employment verification bureau modeled on credit bureaus (give-in/take-out). 5 contributions in CONTRIBUCIONES.md. |
+| Treemap inverso concept | 2026-03-27 | Erick's idea: identify institutions NOT reporting data. Reverse transparency accountability. 5 contributions. |
+| Carlos Miranda prospectiva | 2026-03-27 | Carlos contributes sectoral vulnerability analysis + iBIZAi article. Added as contributions #41-43. |
+| serve -s breaks multi-page sites | 2026-03-27 | `npx serve . -s` (SPA mode) redirects .html → extensionless URLs → falls back to index.html. Use `npx serve .` without -s. |
 
 ---
 
@@ -184,36 +196,39 @@ All overlays follow same pattern:
 4. **`lucide.createIcons()`** called 7+ times — performance concern, no dedup
 5. **2MB team photo** — `erick-santana.png` is unoptimized, will slow page load
 6. **participants.json** — no validation, corrupt JSON = broken team section
+7. **normalize.js subtotal rows** — CORAABO (and potentially other CSVs) have subtotal/total rows that get treated as individual salary records. salary_max in metrics.json is RD$1.7M (actually a subtotal of 131 employees). Real individual max is RD$450K.
+8. **Lucide icon `palm-tree` missing** — Not in bundled Lucide icons. Shows as empty on methodology page.
 
 ---
 
-## Current State (as of 2026-03-26)
+## Current State (as of 2026-03-27)
 
-### Completed (Day 0 + Day 1 + Day 2 + Day 3)
-- [x] Days 0-2: All tasks (see BACKLOG.md for full history)
-- [x] 3.1 — Treemap loads metrics.json dynamically (no more hardcoded data)
-- [x] 3.2 — Tooltips with Pareto 80/20, top titles, salary, sources, detail panel
-- [x] 3.3 — 7 new datasets (CNZFE×4, MITUR, MISPAS, MIVHED). 264K records from 20 sources.
-- [x] 3.4 — calculate-metrics.js: per-sector salary/Pareto/titles/institutions/gender. Global Pareto 3.12x.
-- [x] 3.5 — data-quality-report.md: 10.4% formal coverage, outliers identified
-- [x] 3.6 — methodology.html: sources, classification, limitations, coverage
-- [x] Explorer updated with 27 datasets
-- [x] Landing: Day 3 completed + Day 4 task cards added
-- [x] Treemap showcase section between hero and progress
+### Completed (Days 0-4)
+- [x] Days 0-3: All tasks (see BACKLOG.md for full history)
+- [x] 4.1 — Drill-down: click sector → top 10 occupations in color variants, breadcrumb nav, back button. Mobile uses bottom sheet.
+- [x] 4.2 — Panel mejorado: salary distribution bars, Pareto 80/20 visual strip, methodology link. PR #32 by Abel López.
+- [x] 4.3 — Responsive mobile: taller treemap (0.75 ratio), hidden tooltip, compact stats, relaxed label thresholds for top 4.
+- [x] 4.4 — Methodology links in header stats bar and footer of treemap.
+- [x] 4.5 — Deploy verified (auto-deploy on merge). Tested desktop 1280px + mobile 375px.
+- [x] 4.6 — Browser tested: all features pass on desktop and mobile.
+- [x] Landing: Day 4 completed cards (colorful) + Day 5 Demo Day section + "¿Y ahora qué?" section with 43 contributions overlay
+- [x] CONTRIBUCIONES.md: 43 contributions across 9 segments (visualization, pipeline, treemap inverso, bureau de empleo, data standards, community, policy, infrastructure, prospectiva)
+- [x] Angelino Mejía-Ricart confirmed with full profile + photo
+- [x] CLAUDE.md updated with session learnings
 
 ### Blocked
-- [!] 0.1 — 9 participants (7 confirmed, 2 interested)
+- [!] 0.1 — 8 confirmed, 1 pending info
 
 ### Discarded
 - 1.3 — Aldaba RSS (no API, returns 403)
 
-### Pending / Next Up (Day 4 — Thu Mar 26)
-- 4.1 — Drill-down: click sector → expand sub-categories
-- 4.2 — Panel lateral mejorado (salary distribution visual, Pareto bar)
-- 4.3 — Responsive: mobile < 768px
-- 4.4 — Link methodology from treemap
-- 4.5 — Testing: 3+ browsers
-- 4.7 — FEATURE FREEZE 6pm
+### Pending / Next Up (Day 5 — Demo Day, Fri Mar 27)
+- 5.1 — Bugfixes (critical only)
+- 5.2 — Prepare demo script (2-3 min)
+- 5.3 — Capture screenshots and GIFs
+- 5.4 — Demo Day: live presentation
+- 5.5 — Final social media post with portal link
+- 5.6 — Retrospective
 
 ---
 
@@ -228,5 +243,5 @@ All overlays follow same pattern:
 | Abel López | confirmed | TBD | ENIA, Envision Innovation Labs. GitHub: jabelg. 3h/día. Owns color palette. |
 | José D'Andrade | confirmed | TBD | AI/ML/Data Science. Legal Design DO. GitHub: 13g4d0. Photo. |
 | Arlette Palacio | confirmed | TBD | EdTech (Educology). 2h/día. Photo. |
-| Angelino | interested | TBD | Comunicación, diseño, marketing. Pending details. |
+| Angelino Mejía-Ricart | confirmed | Contenido & Comunicación | Diseño, marketing, content creation. GitHub/IG: angelinocvino. Photo. |
 | (unnamed) | interested | TBD | Pending info. |
