@@ -139,6 +139,18 @@ El mercado laboral no es solo economía — es política. Decisiones sobre salar
 
 ---
 
+## 🔮 Prospectiva y Análisis Sectorial
+
+> **Concepto:** Más allá de los datos cuantitativos, necesitamos análisis cualitativo de hacia dónde van los sectores. ¿Cuáles son los más vulnerables ante la transición tecnológica? ¿Cuáles tienen más potencial de crecimiento? Este segmento cruza la prospectiva sectorial con los datos que ya tenemos para extraer métricas accionables.
+
+41. **Análisis de vulnerabilidad sectorial ante IA** — Evaluar cada uno de los 12 sectores según su susceptibilidad al impacto de la inteligencia artificial y automatización, independiente del dataset. Cruzar luego con nuestros datos cuantitativos para identificar cuántos empleos están en riesgo por sector. Referencia: [The Intelligence Transition (iBIZAi)](https://ibizai.io/es/explore/opinions/the-intelligence-transition/) por Carlos Miranda Levy / CEMI.ai. **Esfuerzo:** 1-2 semanas | **Impacto:** Muy Alto | **Archivos:** nuevo `docs/analisis-vulnerabilidad-sectorial.md`, `src/treemap.html` (nueva capa de color)
+
+42. **Mapa de reconversión de competencias** — Para los sectores más vulnerables, identificar rutas de reconversión: ¿a qué otros sectores pueden migrar los trabajadores? ¿Qué skills necesitan adquirir? Visualización tipo Sankey diagram: sector vulnerable → skills puente → sector destino. **Esfuerzo:** 1+ mes | **Impacto:** Alto | **Archivos:** nuevo `src/reconversion.html`
+
+43. **Cruce prospectiva × datos cuantitativos** — Tomar el análisis cualitativo de vulnerabilidad y cruzarlo con nuestras métricas reales: volumen de empleo, salario mediano, concentración institucional. Output: dashboard que muestre "X empleos en sector Y están en riesgo alto de automatización, con salario mediano de Z". **Esfuerzo:** 1-2 semanas | **Impacto:** Muy Alto | **Archivos:** `scripts/processors/`, `src/treemap.html`
+
+---
+
 ## 🛠️ Infraestructura Técnica
 
 El visualizador hoy es una aplicación de una sola página. Este segmento lo convierte en una plataforma: con una API que otros desarrolladores puedan consultar, un portal de descarga de datos, y un dashboard que muestra la salud del pipeline en tiempo real. La infraestructura técnica correcta multiplica el impacto de todo lo demás.
@@ -172,6 +184,7 @@ El visualizador hoy es una aplicación de una sola página. Este segmento lo con
 - [Data México](https://www.economia.gob.mx/datamexico/) — Portal de datos más sofisticado de LAC
 - [ILOSTAT](https://ilostat.ilo.org/) — Estadísticas laborales globales
 - [World Bank RD Jobs Diagnostic (2021)](https://documents1.worldbank.org/curated/en/820141619770918898/) — Diagnóstico del mercado laboral RD
+- [The Intelligence Transition (iBIZAi / CEMI.ai)](https://ibizai.io/es/explore/opinions/the-intelligence-transition/) — Análisis de impacto de IA en sectores económicos
 
 ---
 
