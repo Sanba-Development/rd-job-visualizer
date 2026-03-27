@@ -174,7 +174,10 @@
 
         <!-- ---- SCATTER PLOT ---- -->
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 mb-4">
-            <h2 class="text-lg font-bold text-slate-900 mb-1">Mapa de Vulnerabilidad vs. Susceptibilidad a IA</h2>
+            <div class="flex items-baseline justify-between flex-wrap gap-2 mb-1">
+                <h2 class="text-lg font-bold text-slate-900">Mapa de Vulnerabilidad vs. Susceptibilidad a IA</h2>
+                <span id="bubble-count" class="text-sm font-medium text-slate-500"></span>
+            </div>
             <p class="text-sm text-slate-500 mb-4">Cada burbuja representa una ocupaci&oacute;n. El tama&ntilde;o refleja la cantidad de trabajadores.</p>
             <div id="scatter-container" class="w-full" style="min-height: 420px;"></div>
         </div>
@@ -602,6 +605,9 @@
         if (activeSectorFilter) {
             occs = occs.filter(o => o.sector === activeSectorFilter);
         }
+
+        // Update bubble count
+        document.getElementById('bubble-count').textContent = `Total de Perfiles Representados: ${occs.length}`;
 
         // Sort so smaller bubbles render on top
         occs = [...occs].sort((a, b) => b.count - a.count);
