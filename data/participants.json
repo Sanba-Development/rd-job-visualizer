@@ -137,26 +137,27 @@
     "updated_at": "2026-03-24"
   },
   {
-    "id": "angelino",
-    "name": "Angelino",
-    "headline": null,
+    "id": "angelino-mejia-ricart",
+    "name": "Angelino Mejía-Ricart",
+    "headline": "Comunicación, Diseño & Marketing Digital",
     "current_role": null,
     "current_company": null,
-    "location": null,
-    "bio": "Experiencia en comunicación, diseño, marketing y creación de contenido.",
-    "challenge_role": null,
-    "status": "interested",
-    "skills": ["comunicación", "diseño", "marketing", "creación de contenido"],
+    "location": "República Dominicana",
+    "bio": "Experiencia en comunicación, diseño, marketing y creación de contenido. Perfil creativo con enfoque en narrativa visual y estrategia de marca.",
+    "challenge_role": "Contenido & Comunicación",
+    "status": "confirmed",
+    "skills": ["comunicación", "diseño", "marketing", "creación de contenido", "branding"],
     "socials": {
       "linkedin": null,
-      "github": null,
+      "github": "angelinocvino",
       "twitter": null,
       "website": null,
-      "email": null
+      "email": "angelinocvino@gmail.com",
+      "instagram": "angelinocvino"
     },
-    "photo_url": null,
+    "photo_url": "assets/team/angelino-mejia-ricart.jpeg",
     "joined_at": "2026-03-24",
-    "updated_at": "2026-03-24"
+    "updated_at": "2026-03-27"
   },
   {
     "id": "arlette-palacio",

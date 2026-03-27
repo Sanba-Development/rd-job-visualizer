@@ -66,7 +66,7 @@
 ## Día 4 — Jueves 26 de Marzo
 
 - [x] **4.1** — Drill-down: clic en sector → expandir sub-categorías → Click sector muestra top 10 ocupaciones con variantes de color, breadcrumb, back nav. Mobile usa bottom sheet.
-- [~] **4.2** — Panel lateral/modal con detalle de cada sector/ocupación → _Asignado a colaborador, branch desde day4/working_
+- [x] **4.2** — Panel lateral/modal con detalle de cada sector/ocupación → Gráfico de barras salariales, barra Pareto 80/20 visual, link a metodología. PR #32 por Abel López.
 - [x] **4.3** — Responsive: funciona en móvil (< 768px) → Treemap más alto en mobile (0.75 ratio), tooltip oculto, stats compactos, labels relajados para top 4 sectores.
 - [x] **4.4** — Fuentes y notas metodológicas ("Sobre los datos") → Links a methodology.html en header y footer del treemap.
 - [x] **4.5** — Deploy a Vercel — URL funcional → Auto-deploy via Vercel Git Integration on merge. Verified locally, production unaffected.
@@ -103,3 +103,5 @@
 - [x] **X.4** — **Dominio y deploy** — `jobs.sanba.dev` configurado via Vercel. Auto-deploy on merge.
 
 - [x] **X.5** — **Progreso above the fold** — Sección "Lo Que Ya Tenemos" con 6 tarjetas coloridas movida debajo del hero.
+
+- [ ] **X.6** — **Fix salary outliers in normalization** — `normalize.js` picks up subtotal/total rows as individual records (e.g., CORAABO subtotal RD$1,758,882 appears as salary_max). Fix: filter rows where name/position matches "subtotal"/"total", add salary cap or outlier flag in `calculate-metrics.js`. Re-run pipeline after fix.

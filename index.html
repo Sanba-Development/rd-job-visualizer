@@ -120,6 +120,22 @@
         #onboarding-content a { color: #0891b2; text-decoration: underline; }
         #onboarding-content blockquote { border-left: 4px solid #06b6d4; padding: 0.75rem 1rem; margin: 1rem 0; background: #ecfeff; color: #475569; }
         #onboarding-content hr { border: none; border-top: 2px solid #cffafe; margin: 2rem 0; }
+        /* Contribuciones overlay markdown styles */
+        #contribuciones-content h1 { font-size: 1.75rem; font-weight: 800; color: #0f172a; margin: 2rem 0 1rem; line-height: 1.3; }
+        #contribuciones-content h2 { font-size: 1.35rem; font-weight: 700; color: #1e293b; margin: 1.75rem 0 0.75rem; }
+        #contribuciones-content h3 { font-size: 1.1rem; font-weight: 600; color: #334155; margin: 1.5rem 0 0.5rem; }
+        #contribuciones-content p { color: #475569; line-height: 1.8; margin-bottom: 1rem; }
+        #contribuciones-content strong { color: #1e293b; }
+        #contribuciones-content ul, #contribuciones-content ol { color: #475569; margin: 0.75rem 0 1rem 1.5rem; line-height: 1.8; }
+        #contribuciones-content li { margin-bottom: 0.4rem; }
+        #contribuciones-content table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+        #contribuciones-content th { background: #eff6ff; color: #1e40af; font-weight: 600; text-align: left; padding: 0.75rem 1rem; border: 1px solid #bfdbfe; }
+        #contribuciones-content td { padding: 0.75rem 1rem; border: 1px solid #e2e8f0; color: #475569; }
+        #contribuciones-content tr:nth-child(even) { background: #f8fafc; }
+        #contribuciones-content code { background: #eff6ff; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; color: #2563eb; }
+        #contribuciones-content a { color: #2563eb; text-decoration: underline; }
+        #contribuciones-content hr { border: none; border-top: 2px solid #bfdbfe; margin: 2rem 0; }
+        #contribuciones-content blockquote { border-left: 4px solid #3b82f6; padding: 0.75rem 1rem; margin: 1rem 0; background: #eff6ff; color: #475569; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-700">
@@ -442,59 +458,59 @@
             </div>
         </div>
 
-            <!-- Día 4 Pendiente -->
+            <!-- Día 4 Completado -->
             <div class="text-center mb-12 mt-16">
-                <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 mb-4">
-                    <i data-lucide="clock" class="h-4 w-4"></i>
-                    <span>Día 4 — Hoy</span>
+                <div class="inline-flex items-center gap-2 rounded-full bg-green-50 px-4 py-1.5 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-700/10 mb-4">
+                    <i data-lucide="check-circle-2" class="h-4 w-4"></i>
+                    <span>Día 4 Completado</span>
                 </div>
                 <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">MVP y Feature Freeze</h2>
-                <p class="mx-auto mt-3 max-w-xl text-slate-500">Pulir el treemap, responsive, testing, y feature freeze a las 6pm.</p>
+                <p class="mx-auto mt-3 max-w-xl text-slate-500">Drill-down interactivo, panel mejorado, responsive móvil y testing completo.</p>
             </div>
             <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-                <button onclick="openTaskModal('4.1')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                <a href="src/treemap.html" class="group flex flex-col items-center gap-3 rounded-2xl bg-blue-50 border-2 border-blue-200 p-5 hover:border-blue-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="mouse-pointer-click" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Drill-down</p>
-                        <p class="text-xs text-slate-500">Sub-categorías</p>
+                        <p class="text-xs text-blue-600">Ocupaciones ↗</p>
                     </div>
-                </button>
-                <button onclick="openTaskModal('4.2')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
-                        <i data-lucide="panel-right" class="h-6 w-6"></i>
+                </a>
+                <button onclick="openTaskModal('4.2')" class="group flex flex-col items-center gap-3 rounded-2xl bg-cyan-50 border-2 border-cyan-200 p-5 hover:border-cyan-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="bar-chart-3" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Panel</p>
-                        <p class="text-xs text-slate-500">Detalle sector</p>
+                        <p class="text-xs text-cyan-600">Salarios + Pareto ✓</p>
                     </div>
                 </button>
-                <button onclick="openTaskModal('4.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                <button onclick="openTaskModal('4.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-green-50 border-2 border-green-300 p-5 hover:border-green-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
                         <i data-lucide="smartphone" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Responsive</p>
-                        <p class="text-xs text-slate-500">Móvil < 768px</p>
+                        <p class="text-xs text-green-600">Móvil + desktop ✓</p>
                     </div>
                 </button>
-                <button onclick="openTaskModal('4.4')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
-                        <i data-lucide="file-text" class="h-6 w-6"></i>
+                <a href="src/methodology.html" class="group flex flex-col items-center gap-3 rounded-2xl bg-indigo-50 border-2 border-indigo-200 p-5 hover:border-indigo-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="book-open" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Metodología</p>
-                        <p class="text-xs text-slate-500">Sobre los datos</p>
+                        <p class="text-xs text-indigo-600">Ver notas ↗</p>
                     </div>
-                </button>
-                <button onclick="openTaskModal('4.5')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
-                        <i data-lucide="bug" class="h-6 w-6"></i>
+                </a>
+                <button onclick="openTaskModal('4.5')" class="group flex flex-col items-center gap-3 rounded-2xl bg-violet-50 border-2 border-violet-200 p-5 hover:border-violet-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="check-square" class="h-6 w-6"></i>
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Testing</p>
-                        <p class="text-xs text-slate-500">3+ browsers</p>
+                        <p class="text-xs text-violet-600">Verificado ✓</p>
                     </div>
                 </button>
                 <button onclick="openTaskModal('4.7')" class="group flex flex-col items-center gap-3 rounded-2xl bg-red-50 border-2 border-red-200 p-5 hover:border-red-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
@@ -503,8 +519,158 @@
                     </div>
                     <div>
                         <p class="text-sm font-bold text-slate-900">Freeze</p>
-                        <p class="text-xs text-red-500">6pm deadline</p>
+                        <p class="text-xs text-red-500">Feature freeze ✓</p>
                     </div>
+                </button>
+            </div>
+
+            <!-- Día 5 Demo Day -->
+            <div class="text-center mb-12 mt-16">
+                <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 mb-4">
+                    <i data-lucide="rocket" class="h-4 w-4"></i>
+                    <span>Día 5 — Demo Day</span>
+                </div>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Presentación y Entrega Final</h2>
+                <p class="mx-auto mt-3 max-w-xl text-slate-500">Bugfixes de última hora, demo en vivo, screenshots, y retrospectiva.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+                <button onclick="openTaskModal('5.1')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="wrench" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Bugfixes</p>
+                        <p class="text-xs text-slate-500">Solo críticos</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('5.2')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="presentation" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Demo</p>
+                        <p class="text-xs text-slate-500">Script 2-3 min</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('5.3')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="camera" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Screenshots</p>
+                        <p class="text-xs text-slate-500">GIFs + capturas</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('5.4')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="mic" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Presentación</p>
+                        <p class="text-xs text-slate-500">Demo en vivo</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('5.5')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="share-2" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Post Final</p>
+                        <p class="text-xs text-slate-500">Link al portal</p>
+                    </div>
+                </button>
+                <button onclick="openTaskModal('5.6')" class="group flex flex-col items-center gap-3 rounded-2xl bg-amber-50 border-2 border-amber-200 p-5 hover:border-amber-400 hover:shadow-lg hover:scale-105 transition-all active:scale-95 text-center cursor-pointer">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white text-xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i data-lucide="message-circle" class="h-6 w-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Retro</p>
+                        <p class="text-xs text-slate-500">Retrospectiva</p>
+                    </div>
+                </button>
+            </div>
+
+            <!-- ¿Y ahora qué? -->
+            <div class="text-center mb-12 mt-16">
+                <div class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 mb-4">
+                    <i data-lucide="rocket" class="h-4 w-4"></i>
+                    <span>Post-Challenge</span>
+                </div>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">¿Y ahora qué?</h2>
+                <p class="mx-auto mt-3 max-w-2xl text-slate-500">El challenge de 7 días terminó, pero ahora es que falta mambo. Tenemos 43 contribuciones concretas esperando por ti.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Card 1: Treemap Inverso -->
+                <div class="rounded-2xl bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-200 p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-red-500 text-white shadow-md">
+                            <i data-lucide="eye-off" class="h-5 w-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">Treemap Inverso</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">¿Quién NO reporta datos? Identificar las instituciones gubernamentales y gremios privados que deberían compartir datos de empleo y no lo hacen.</p>
+                    <p class="text-xs text-red-600 font-medium mt-3">5 contribuciones</p>
+                </div>
+                <!-- Card 2: Bureau de Empleo -->
+                <div class="rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 border-2 border-violet-200 p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white shadow-md">
+                            <i data-lucide="shield-check" class="h-5 w-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">Bureau de Empleo</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Como el Bureau de Crédito, pero para verificación laboral. Las empresas aportan datos y a cambio pueden verificar historial de candidatos.</p>
+                    <p class="text-xs text-violet-600 font-medium mt-3">5 contribuciones</p>
+                </div>
+                <!-- Card 3: Estándar de Datos -->
+                <div class="rounded-2xl bg-gradient-to-br from-cyan-50 to-teal-50 border-2 border-cyan-200 p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-600 text-white shadow-md">
+                            <i data-lucide="file-code" class="h-5 w-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">Estándar de Datos</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Proponer una Clasificación Oficial Dominicana de Ocupaciones (CODO-08) y un schema estándar para reportar datos de empleabilidad.</p>
+                    <p class="text-xs text-cyan-600 font-medium mt-3">4 contribuciones</p>
+                </div>
+                <!-- Card 4: IA y Visualización -->
+                <div class="rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md">
+                            <i data-lucide="brain" class="h-5 w-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">IA y Visualización</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Scoring de exposición a IA por ocupación, mapa provincial, toggle de capas de color, buscador de ocupaciones, y más.</p>
+                    <p class="text-xs text-blue-600 font-medium mt-3">13 contribuciones</p>
+                </div>
+                <!-- Card 5: Prospectiva Sectorial -->
+                <div class="rounded-2xl bg-gradient-to-br from-amber-50 to-yellow-50 border-2 border-amber-200 p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500 text-white shadow-md">
+                            <i data-lucide="trending-up" class="h-5 w-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">Prospectiva Sectorial</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Análisis de vulnerabilidad ante IA, mapas de reconversión de competencias, y cruce de prospectiva con datos cuantitativos.</p>
+                    <p class="text-xs text-amber-600 font-medium mt-3">3 contribuciones</p>
+                </div>
+                <!-- Card 6: Política + Comunidad -->
+                <div class="rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-green-600 text-white shadow-md">
+                            <i data-lucide="landmark" class="h-5 w-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">Política y Comunidad</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Simulador de políticas, reporte anual del mercado laboral, encuesta de salarios, alianzas con universidades, y datos abiertos.</p>
+                    <p class="text-xs text-green-600 font-medium mt-3">13 contribuciones</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <button onclick="openContribucionesOverlay()" class="inline-flex items-center gap-3 rounded-2xl bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95">
+                    <i data-lucide="list-checks" class="h-5 w-5"></i>
+                    Ver las 43 Contribuciones
                 </button>
             </div>
         </div>
@@ -832,6 +998,22 @@
                 </button>
             </div>
             <div id="plan-content" class="flex-1 overflow-y-auto rounded-b-2xl bg-white px-6 py-8 sm:px-10"></div>
+        </div>
+    </div>
+
+    <!-- Contribuciones Overlay -->
+    <div id="contribuciones-overlay" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeContribucionesOverlay()"></div>
+        <div class="relative z-10 mx-auto max-w-4xl h-full overflow-y-auto py-8 px-4 sm:px-6">
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div class="sticky top-0 z-20 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-slate-900">43 Contribuciones para el Futuro</h2>
+                    <button onclick="closeContribucionesOverlay()" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                        <i data-lucide="x" class="w-4 h-4 text-slate-600"></i>
+                    </button>
+                </div>
+                <div id="contribuciones-content" class="prose prose-slate max-w-none px-6 py-6"></div>
+            </div>
         </div>
     </div>
 
@@ -1533,8 +1715,65 @@
             }
         };
 
+        const day5Tasks = {
+            '5.1': {
+                numero: '5.1', titulo: 'Bugfixes de última hora',
+                objetivo: 'Corregir solo bugs críticos que afecten la demo.',
+                contexto: 'Feature freeze activo. Solo se aceptan correcciones de bugs que rompan funcionalidad existente.',
+                plan: ['Revisar consola en producción', 'Fix bugs de rendering', 'Verificar links rotos', 'Probar en jobs.sanba.dev'],
+                archivos: 'Cualquier archivo con bug',
+                criterios: ['Sin errores de consola', 'Todos los links funcionan', 'Treemap carga correctamente'],
+                dificultad: 'Variable', dificultadColor: 'bg-amber-100 text-amber-700', branch: 'fix/demo-day'
+            },
+            '5.2': {
+                numero: '5.2', titulo: 'Preparar demo (script 2-3 min)',
+                objetivo: 'Escribir el guión de la presentación de 2-3 minutos.',
+                contexto: 'Demo Day: mostrar el MVP funcionando, explicar las fuentes de datos, y demostrar la interactividad del treemap.',
+                plan: ['Intro: qué es RD Job Visualizer', 'Demo: navegar el treemap en vivo', 'Datos: 262K registros, 12 sectores, Pareto', 'Cierre: próximos pasos y equipo'],
+                archivos: 'N/A (documento externo)',
+                criterios: ['Script de 2-3 minutos', 'Cubre todas las features principales', 'Incluye datos de impacto'],
+                dificultad: 'Fácil', dificultadColor: 'bg-green-100 text-green-700', branch: 'N/A'
+            },
+            '5.3': {
+                numero: '5.3', titulo: 'Capturar screenshots y GIFs',
+                objetivo: 'Generar assets visuales para redes sociales y documentación.',
+                contexto: 'Necesitamos screenshots del treemap (sectores, drill-down, panel de detalle, móvil) y GIFs de la interacción.',
+                plan: ['Screenshot treemap desktop', 'Screenshot drill-down', 'Screenshot panel de detalle', 'Screenshot móvil', 'GIF de interacción completa'],
+                archivos: 'Outputs en carpeta raíz (promo-day*.png)',
+                criterios: ['Mínimo 4 screenshots', 'Al menos 1 GIF animado', 'Calidad para redes sociales'],
+                dificultad: 'Fácil', dificultadColor: 'bg-green-100 text-green-700', branch: 'N/A'
+            },
+            '5.4': {
+                numero: '5.4', titulo: 'Demo Day: presentación en vivo',
+                objetivo: 'Presentar el MVP terminado al equipo y stakeholders.',
+                contexto: 'Demostración en vivo del portal en jobs.sanba.dev. Mostrar treemap, drill-down, datos, metodología.',
+                plan: ['Conectar a projector/screen share', 'Seguir el script preparado', 'Navegar el treemap en vivo', 'Q&A'],
+                archivos: 'jobs.sanba.dev (producción)',
+                criterios: ['Presentación completa sin errores', 'Demo funciona en vivo', 'Audiencia entiende el producto'],
+                dificultad: 'Medio', dificultadColor: 'bg-amber-100 text-amber-700', branch: 'N/A'
+            },
+            '5.5': {
+                numero: '5.5', titulo: 'Post final en redes',
+                objetivo: 'Publicar el resultado final del reto con link al portal.',
+                contexto: 'Post final para WhatsApp, Instagram, LinkedIn con screenshots, métricas clave, y link a jobs.sanba.dev.',
+                plan: ['Redactar texto del post', 'Seleccionar mejores screenshots/promo images', 'Publicar en todos los canales', 'Incluir link a jobs.sanba.dev'],
+                archivos: 'promo-day*.png (imágenes generadas)',
+                criterios: ['Post publicado en al menos 2 canales', 'Incluye link funcional', 'Incluye métricas de impacto'],
+                dificultad: 'Fácil', dificultadColor: 'bg-green-100 text-green-700', branch: 'N/A'
+            },
+            '5.6': {
+                numero: '5.6', titulo: 'Retrospectiva',
+                objetivo: 'Reflexionar sobre el reto: qué funcionó, qué mejorar, lecciones aprendidas.',
+                contexto: 'Cierre del reto de 7 días. Documentar aprendizajes para futuros proyectos de Sanba Development.',
+                plan: ['Qué salió bien', 'Qué podríamos mejorar', 'Sorpresas y hallazgos inesperados', 'Próximos pasos post-reto'],
+                archivos: 'N/A',
+                criterios: ['Documento o discusión de retrospectiva', 'Al menos 3 lecciones aprendidas'],
+                dificultad: 'Fácil', dificultadColor: 'bg-green-100 text-green-700', branch: 'N/A'
+            }
+        };
+
         function openTaskModal(taskId) {
-            const task = day2Tasks[taskId] || day3Tasks[taskId] || day4Tasks[taskId];
+            const task = day2Tasks[taskId] || day3Tasks[taskId] || day4Tasks[taskId] || day5Tasks[taskId];
             if (!task) return;
 
             const titleEl = document.getElementById('task-modal-title');
@@ -1588,6 +1827,29 @@
             document.body.style.overflow = '';
         }
 
+        // ---- Contribuciones Overlay ----
+        let contribucionesRendered = false;
+        function openContribucionesOverlay() {
+            const overlay = document.getElementById('contribuciones-overlay');
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            if (!contribucionesRendered) {
+                fetch('CONTRIBUCIONES.md')
+                    .then(r => r.text())
+                    .then(md => {
+                        document.getElementById('contribuciones-content').innerHTML = marked.parse(md);
+                        contribucionesRendered = true;
+                    })
+                    .catch(() => {
+                        document.getElementById('contribuciones-content').innerHTML = '<p class="text-red-500">Error al cargar las contribuciones.</p>';
+                    });
+            }
+        }
+        function closeContribucionesOverlay() {
+            document.getElementById('contribuciones-overlay').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeTaskModal();
@@ -1597,6 +1859,7 @@
                 closeTaxonomyOverlay();
                 closeRdTrabajaOverlay();
                 closeOnboardingOverlay();
+                closeContribucionesOverlay();
                 closeSignupForm();
             }
         });
