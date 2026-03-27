@@ -961,23 +961,61 @@
         // Salary section
         let salaryHTML = '';
         if (m.salary_avg != null) {
+            // Visual range bar: min → median → avg → max
+            const sMax = m.salary_max;
+            const pctMedian = Math.round((m.salary_median / sMax) * 100);
+            const pctAvg    = Math.round((m.salary_avg    / sMax) * 100);
+            const pctMin    = Math.round((m.salary_min    / sMax) * 100);
             salaryHTML = `
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <div class="bg-slate-50 rounded-xl p-3">
-                        <p class="text-xs text-slate-400 font-medium">Salario Promedio</p>
-                        <p class="text-xl font-bold text-slate-900 mt-1">${fmtSalary(m.salary_avg)}</p>
+                <div>
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Distribución Salarial</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                        <div class="bg-slate-50 rounded-xl p-3">
+                            <p class="text-xs text-slate-400 font-medium">Promedio</p>
+                            <p class="text-lg font-bold text-slate-900 mt-1">${fmtSalary(m.salary_avg)}</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-3">
+                            <p class="text-xs text-slate-400 font-medium">Mediana</p>
+                            <p class="text-lg font-bold text-slate-900 mt-1">${fmtSalary(m.salary_median)}</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-3">
+                            <p class="text-xs text-slate-400 font-medium">Mínimo</p>
+                            <p class="text-lg font-bold text-slate-900 mt-1">${fmtSalary(m.salary_min)}</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-3">
+                            <p class="text-xs text-slate-400 font-medium">Máximo</p>
+                            <p class="text-lg font-bold text-slate-900 mt-1">${fmtSalary(m.salary_max)}</p>
+                        </div>
                     </div>
-                    <div class="bg-slate-50 rounded-xl p-3">
-                        <p class="text-xs text-slate-400 font-medium">Salario Mediana</p>
-                        <p class="text-xl font-bold text-slate-900 mt-1">${fmtSalary(m.salary_median)}</p>
-                    </div>
-                    <div class="bg-slate-50 rounded-xl p-3">
-                        <p class="text-xs text-slate-400 font-medium">Minimo</p>
-                        <p class="text-xl font-bold text-slate-900 mt-1">${fmtSalary(m.salary_min)}</p>
-                    </div>
-                    <div class="bg-slate-50 rounded-xl p-3">
-                        <p class="text-xs text-slate-400 font-medium">Maximo</p>
-                        <p class="text-xl font-bold text-slate-900 mt-1">${fmtSalary(m.salary_max)}</p>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="w-16 text-slate-400 shrink-0 text-right text-[10px] sm:text-xs">Mínimo</span>
+                            <div class="flex-1 bg-slate-100 rounded-full h-3 relative">
+                                <div class="h-3 rounded-full bg-slate-300" style="width:${pctMin}%"></div>
+                            </div>
+                            <span class="w-20 text-slate-500 font-medium shrink-0 text-[10px] sm:text-xs">${fmtSalary(m.salary_min)}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-16 text-slate-400 shrink-0 text-right text-[10px] sm:text-xs">Mediana</span>
+                            <div class="flex-1 bg-slate-100 rounded-full h-3 relative">
+                                <div class="h-3 rounded-full bg-blue-400" style="width:${pctMedian}%"></div>
+                            </div>
+                            <span class="w-20 text-slate-500 font-medium shrink-0 text-[10px] sm:text-xs">${fmtSalary(m.salary_median)}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-16 text-slate-400 shrink-0 text-right text-[10px] sm:text-xs">Promedio</span>
+                            <div class="flex-1 bg-slate-100 rounded-full h-3 relative">
+                                <div class="h-3 rounded-full bg-blue-600" style="width:${pctAvg}%"></div>
+                            </div>
+                            <span class="w-20 text-slate-500 font-medium shrink-0 text-[10px] sm:text-xs">${fmtSalary(m.salary_avg)}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-16 text-slate-400 shrink-0 text-right text-[10px] sm:text-xs">Máximo</span>
+                            <div class="flex-1 bg-slate-100 rounded-full h-3 relative">
+                                <div class="h-3 rounded-full bg-blue-900" style="width:100%"></div>
+                            </div>
+                            <span class="w-20 text-slate-500 font-medium shrink-0 text-[10px] sm:text-xs">${fmtSalary(m.salary_max)}</span>
+                        </div>
                     </div>
                 </div>`;
         } else {
@@ -990,7 +1028,15 @@
             const p = m.salary_pareto;
             paretoHTML = `
                 <div class="mt-4">
-                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Distribucion Salarial (Pareto 80/20)</p>
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-2">Brecha Salarial (Pareto 80/20)</p>
+                    <div class="flex h-8 rounded-xl overflow-hidden mb-3 shadow-sm">
+                        <div class="bg-blue-500 flex items-center justify-center text-white text-xs font-bold gap-1" style="width:80%">
+                            <span>80%</span><span class="hidden sm:inline">· ${fmtSalary(p.bottom_80_avg)}</span>
+                        </div>
+                        <div class="bg-amber-500 flex items-center justify-center text-white text-xs font-bold gap-1" style="width:20%">
+                            <span>20%</span>
+                        </div>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <div class="bg-blue-50 rounded-xl p-3">
                             <p class="text-xs text-blue-600 font-medium">80% gana en promedio</p>
@@ -1003,9 +1049,9 @@
                             <p class="text-[11px] text-amber-400">${fmt(p.top_20_count)} empleados</p>
                         </div>
                         <div class="bg-slate-50 rounded-xl p-3">
-                            <p class="text-xs text-slate-500 font-medium">Ratio</p>
+                            <p class="text-xs text-slate-500 font-medium">Ratio de brecha</p>
                             <p class="text-lg font-bold text-slate-900 mt-1">${p.ratio}x</p>
-                            <p class="text-[11px] text-slate-400">El top 20% gana ${p.ratio}x mas</p>
+                            <p class="text-[11px] text-slate-400">El top 20% gana ${p.ratio}x más</p>
                         </div>
                     </div>
                 </div>`;
@@ -1080,7 +1126,17 @@
             ? `<div class="mt-3 text-xs text-slate-400">Periodo: ${m.period.min_year}–${m.period.max_year} | Registros: ${fmt(m.total_records)}</div>`
             : '';
 
+        // Methodology link
+        const methodologyHTML = `
+            <div class="mt-4 pt-4 border-t border-slate-100">
+                <a href="methodology.html" class="inline-flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                    <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                    Ver notas metodológicas y fuentes
+                </a>
+            </div>`;
+
         return `
+            ${paretoHTML}
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                 <div class="bg-slate-50 rounded-xl p-3">
                     <p class="text-xs text-slate-400 font-medium">Total Empleos</p>
@@ -1101,12 +1157,12 @@
                 </div>
             </div>
             ${salaryHTML}
-            ${paretoHTML}
             ${titlesHTML}
             ${instHTML}
             ${genderHTML}
             ${sourcesHTML}
             ${periodHTML}
+            ${methodologyHTML}
         `;
     }
 
