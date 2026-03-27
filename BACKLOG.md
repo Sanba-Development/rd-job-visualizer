@@ -66,7 +66,7 @@
 ## Día 4 — Jueves 26 de Marzo
 
 - [ ] **4.1** — Drill-down: clic en sector → expandir sub-categorías
-- [ ] **4.2** — Panel lateral/modal con detalle de cada sector/ocupación
+- [x] **4.2** — Panel lateral/modal con detalle de cada sector/ocupación → gráfico de barras salariales (mín/med/prom/máx), barra visual Pareto 80/20, link a methodology.html, responsive labels. PR #32 por Abel López.
 - [ ] **4.3** — Responsive: funciona en móvil (< 768px)
 - [ ] **4.4** — Fuentes y notas metodológicas ("Sobre los datos")
 - [ ] **4.5** — Deploy a Vercel — URL funcional
