@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T16:56:14.431Z",
+  "generated_at": "2026-03-28T23:42:44.515Z",
   "global": {
     "total_records": 757562,
     "total_empleos": 433757621,
@@ -211,29 +211,29 @@
       }
     },
     "administracion_publica_y_defensa": {
-      "total_records": 315249,
-      "total_empleos": 127628981,
+      "total_records": 316555,
+      "total_empleos": 127630287,
       "record_types": {
-        "position": 314105,
+        "position": 315411,
         "aggregate": 1144,
         "vacancy": 0
       },
-      "records_with_salary": 314702,
-      "salary_avg": 46237.8,
+      "records_with_salary": 316008,
+      "salary_avg": 46283.52,
       "salary_median": 35000,
       "salary_min": 1,
       "salary_max": 500000,
       "salary_pareto": {
-        "bottom_80_count": 251761,
-        "bottom_80_avg": 32380.01,
-        "top_20_count": 62941,
-        "top_20_avg": 101668.29,
+        "bottom_80_count": 252806,
+        "bottom_80_avg": 32409.47,
+        "top_20_count": 63202,
+        "top_20_avg": 101779.29,
         "ratio": 3.14
       },
       "top_titles": [
         {
           "title": "conserje",
-          "count": 14651
+          "count": 14726
         },
         {
           "title": "chofer i",
@@ -241,15 +241,15 @@
         },
         {
           "title": "chofer",
-          "count": 6588
+          "count": 6661
+        },
+        {
+          "title": "auxiliar administrativo (a)",
+          "count": 6435
         },
         {
           "title": "coordinador barrial",
           "count": 6405
-        },
-        {
-          "title": "auxiliar administrativo (a)",
-          "count": 6375
         },
         {
           "title": "auxiliar administrativo",
@@ -257,7 +257,7 @@
         },
         {
           "title": "secretaria",
-          "count": 5413
+          "count": 5443
         },
         {
           "title": "enlace barrial",
@@ -269,7 +269,7 @@
         },
         {
           "title": "auxiliar",
-          "count": 4674
+          "count": 4675
         }
       ],
       "top_institutions": [
@@ -295,12 +295,12 @@
         }
       ],
       "gender_distribution": {
-        "male": 33193,
-        "female": 31301,
+        "male": 33946,
+        "female": 31854,
         "unknown": 250755,
-        "male_pct": 10.53,
-        "female_pct": 9.93,
-        "unknown_pct": 79.54
+        "male_pct": 10.72,
+        "female_pct": 10.06,
+        "unknown_pct": 79.21
       },
       "sources": [
         "ckan",
@@ -709,95 +709,6 @@
         "max_year": 2026
       }
     },
-    "servicios_financieros": {
-      "total_records": 1441,
-      "total_empleos": 1441,
-      "record_types": {
-        "position": 1437,
-        "aggregate": 0,
-        "vacancy": 4
-      },
-      "records_with_salary": 1437,
-      "salary_avg": 59231.84,
-      "salary_median": 45000,
-      "salary_min": 2666.67,
-      "salary_max": 300000,
-      "salary_pareto": {
-        "bottom_80_count": 1149,
-        "bottom_80_avg": 42288.21,
-        "top_20_count": 288,
-        "top_20_avg": 126829.86,
-        "ratio": 3
-      },
-      "top_titles": [
-        {
-          "title": "seguridad",
-          "count": 158
-        },
-        {
-          "title": "conserje",
-          "count": 83
-        },
-        {
-          "title": "chofer",
-          "count": 75
-        },
-        {
-          "title": "auxiliar administrativo (a)",
-          "count": 64
-        },
-        {
-          "title": "inspector (a) de casinos y juegos de azar",
-          "count": 62
-        },
-        {
-          "title": "tecnico administrativo",
-          "count": 49
-        },
-        {
-          "title": "auxiliar de casino y juegos de azar",
-          "count": 41
-        },
-        {
-          "title": "secretaria",
-          "count": 31
-        },
-        {
-          "title": "coordinador tecnico administrativo",
-          "count": 30
-        },
-        {
-          "title": "desarrollador de sistemas",
-          "count": 27
-        }
-      ],
-      "top_institutions": [
-        {
-          "institution": "Ministerio de Hacienda",
-          "count": 1306
-        },
-        {
-          "institution": "Unidad de Análisis Financiero",
-          "count": 131
-        }
-      ],
-      "gender_distribution": {
-        "male": 819,
-        "female": 618,
-        "unknown": 4,
-        "male_pct": 56.84,
-        "female_pct": 42.89,
-        "unknown_pct": 0.28
-      },
-      "sources": [
-        "map",
-        "rdtrabaja"
-      ],
-      "period": {
-        "min_year": 2025,
-        "max_year": 2026
-      }
-    },
     "construccion": {
       "total_records": 6582,
       "total_empleos": 10871,
@@ -885,6 +796,91 @@
       ],
       "period": {
         "min_year": 2022,
+        "max_year": 2026
+      }
+    },
+    "servicios_financieros": {
+      "total_records": 135,
+      "total_empleos": 135,
+      "record_types": {
+        "position": 131,
+        "aggregate": 0,
+        "vacancy": 4
+      },
+      "records_with_salary": 131,
+      "salary_avg": 78480.92,
+      "salary_median": 71000,
+      "salary_min": 20000,
+      "salary_max": 285000,
+      "salary_pareto": {
+        "bottom_80_count": 104,
+        "bottom_80_avg": 56682.69,
+        "top_20_count": 27,
+        "top_20_avg": 162444.44,
+        "ratio": 2.87
+      },
+      "top_titles": [
+        {
+          "title": "analista operativo i",
+          "count": 18
+        },
+        {
+          "title": "vigilante",
+          "count": 14
+        },
+        {
+          "title": "conserje",
+          "count": 8
+        },
+        {
+          "title": "coordinador (a)",
+          "count": 6
+        },
+        {
+          "title": "auxiliar administrativo (a)",
+          "count": 4
+        },
+        {
+          "title": "encargado (a)",
+          "count": 4
+        },
+        {
+          "title": "asesor",
+          "count": 3
+        },
+        {
+          "title": "analista de compras y contrataciones",
+          "count": 3
+        },
+        {
+          "title": "soporte mesa de ayuda",
+          "count": 3
+        },
+        {
+          "title": "analista de coordinacion nacional e internacional",
+          "count": 3
+        }
+      ],
+      "top_institutions": [
+        {
+          "institution": "Unidad de Análisis Financiero",
+          "count": 131
+        }
+      ],
+      "gender_distribution": {
+        "male": 66,
+        "female": 65,
+        "unknown": 4,
+        "male_pct": 48.89,
+        "female_pct": 48.15,
+        "unknown_pct": 2.96
+      },
+      "sources": [
+        "map",
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2025,
         "max_year": 2026
       }
     },

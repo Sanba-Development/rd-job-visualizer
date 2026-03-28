@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T16:55:38.550Z",
+  "generated_at": "2026-03-28T23:41:57.869Z",
   "total_records": 757562,
   "date_range": {
     "min_year": 2000,
@@ -17,13 +17,13 @@
   },
   "by_sector": {
     "agricultura_y_agroindustria": 14755,
-    "administracion_publica_y_defensa": 315249,
+    "administracion_publica_y_defensa": 316555,
     "educacion": 283790,
     "otros_servicios": 12467,
     "salud": 112369,
     "transporte_y_logistica": 5541,
-    "servicios_financieros": 1441,
     "construccion": 6582,
+    "servicios_financieros": 135,
     "comercio": 3744,
     "turismo_y_hosteleria": 1491,
     "manufactura_y_zonas_francas": 131,

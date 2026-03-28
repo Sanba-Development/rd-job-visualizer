@@ -200,11 +200,15 @@ La combinación de V, S y A clasifica cada ocupación en una zona de riesgo:
 
 ### Mapeo de Instituciones a Sectores
 
-Los 493K registros de MAP se mapean a los 12 sectores económicos mediante:
+Los 493K registros de MAP se mapean a los 12 sectores económicos **por institución empleadora, no por título de cargo**. Un "desarrollador de sistemas" que trabaja en el Ministerio de Hacienda se clasifica como Administración Pública, no como TIC, porque el sector refleja el contexto laboral del empleado (estabilidad, informalidad, salario sectorial), no sus habilidades técnicas individuales.
 
-1. **Coincidencia exacta** — tabla de ~30 instituciones principales mapeadas manualmente (ej: "Ministerio de Educación" → Educación, "Servicio Nacional de Salud" → Salud)
+El mapeo se realiza mediante:
+
+1. **Coincidencia exacta** — tabla de ~35 instituciones principales mapeadas manualmente (ej: "Ministerio de Educación" → Educación, "Servicio Nacional de Salud" → Salud)
 2. **Coincidencia por keywords** — si la institución contiene "salud", "hospital", "sanitari" → Salud; "educación", "universidad" → Educación; etc.
 3. **Fallback** — instituciones no mapeadas se asignan a Administración Pública y Defensa
+
+**Criterio para Servicios Financieros:** Solo se clasifican como Servicios Financieros las entidades reguladoras financieras autónomas (Superintendencia de Bancos, Banco Central, Superintendencia de Valores, Superintendencia de Seguros). Las entidades gubernamentales de finanzas públicas — Ministerio de Hacienda, Dirección General de Presupuesto, Tesorería de la Seguridad Social, Contraloría General — se clasifican como Administración Pública, ya que sus empleados son funcionarios públicos, no profesionales del sector financiero privado. Esta distinción evita inflar artificialmente el sector financiero con empleados gubernamentales cuyo perfil de riesgo ante la IA es diferente al de un analista bancario.
 
 ### Umbral de Representatividad Salarial (≥500 registros)
 

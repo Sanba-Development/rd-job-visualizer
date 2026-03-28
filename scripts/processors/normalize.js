@@ -1171,10 +1171,15 @@ const MAP_INSTITUTION_SECTOR = {
   'ministerio de interior y policía': 'administracion_publica_y_defensa',
   'programa supérate': 'administracion_publica_y_defensa',
   'oficina nacional de estadística': 'administracion_publica_y_defensa',
-  'ministerio de hacienda': 'servicios_financieros',
+  'ministerio de hacienda': 'administracion_publica_y_defensa',
+  'dirección general de presupuesto': 'administracion_publica_y_defensa',
+  'tesorería de la seguridad social': 'administracion_publica_y_defensa',
+  'dirección general de contrataciones públicas': 'administracion_publica_y_defensa',
+  'contraloría general de la república': 'administracion_publica_y_defensa',
   'superintendencia de bancos': 'servicios_financieros',
   'banco central de la república dominicana': 'servicios_financieros',
   'superintendencia de valores': 'servicios_financieros',
+  'superintendencia de seguros': 'servicios_financieros',
   'oficina de tecnologías de la información y comunicación': 'tecnologia_y_telecomunicaciones',
   'instituto dominicano de las telecomunicaciones': 'tecnologia_y_telecomunicaciones',
 };
@@ -1191,7 +1196,7 @@ function mapInstitutionToSector(institution) {
   if (inst.includes('obras públicas') || inst.includes('construcción') || inst.includes('vivienda')) return 'construccion';
   if (inst.includes('industria') || inst.includes('comercio') || inst.includes('mipymes')) return 'comercio';
   if (inst.includes('telecomunicacion') || inst.includes('tecnología') || inst.includes('informática')) return 'tecnologia_y_telecomunicaciones';
-  if (inst.includes('banco') || inst.includes('financier') || inst.includes('hacienda') || inst.includes('superintendencia')) return 'servicios_financieros';
+  if (inst.includes('banco') || inst.includes('financier') || inst.includes('superintendencia de banco') || inst.includes('superintendencia de valor') || inst.includes('superintendencia de seguro')) return 'servicios_financieros';
   return 'administracion_publica_y_defensa';
 }
 
