@@ -1189,7 +1189,14 @@
         }
 
         const selected = computed.sectors.filter(s => radarSelections.includes(s.key));
-        const maxSalary = Math.max(...computed.sectors.map(s => s.salaryAvg || 1));
+        const salaryProxyMap = {
+            administracion_publica_y_defensa: 32000, agricultura_y_agroindustria: 15000,
+            comercio: 22000, construccion: 18000, manufactura_y_zonas_francas: 22000,
+            turismo_y_hosteleria: 20000, tecnologia_y_telecomunicaciones: 45000,
+            salud: 35000, educacion: 28000, servicios_financieros: 55000,
+            transporte_y_logistica: 20000, otros_servicios: 25000
+        };
+        const maxSalary = Math.max(...computed.sectors.map(s => s.salaryAvg || salaryProxyMap[s.key] || 25000));
 
         // Build radar data
         function sectorToRadar(sec) {
@@ -1200,11 +1207,19 @@
                 salud: 0.30, educacion: 0.20, servicios_financieros: 0.10,
                 transporte_y_logistica: 0.70, otros_servicios: 0.54
             };
+            const salaryProxy = {
+                administracion_publica_y_defensa: 32000, agricultura_y_agroindustria: 15000,
+                comercio: 22000, construccion: 18000, manufactura_y_zonas_francas: 22000,
+                turismo_y_hosteleria: 20000, tecnologia_y_telecomunicaciones: 45000,
+                salud: 35000, educacion: 28000, servicios_financieros: 55000,
+                transporte_y_logistica: 20000, otros_servicios: 25000
+            };
+            const salary = sec.salaryAvg || salaryProxy[sec.key] || 25000;
             return [
                 sec.vDisplay || 0,
                 sec.sDisplay || 0,
                 sec.aDisplay || 0,
-                Math.round(((sec.salaryAvg || 0) / maxSalary) * 100),
+                Math.round((salary / maxSalary) * 100),
                 Math.round((1 - (informality[sec.key] || 0.5)) * 100)
             ];
         }
