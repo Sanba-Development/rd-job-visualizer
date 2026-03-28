@@ -29,6 +29,8 @@ composición de tareas de cada ocupación en RD es similar a la de EE.UU. Esta
 simplificación será refinada en versiones posteriores con un Factor de Ajuste de
 Tareas Dominicano (TAF-RD) validado por expertos locales.
 
+**Nota sobre modelos de IA generativa (LLMs):** El AIOE fue publicado en 2021, antes de la irrupción de los grandes modelos de lenguaje (LLMs) como Claude (Anthropic), GPT-4 (OpenAI) y Gemini (Google). Estos modelos expanden significativamente la superficie de exposición más allá de lo que el AIOE originalmente midió: hoy la IA puede redactar documentos legales, generar código de software, analizar imágenes médicas, traducir en tiempo real y razonar sobre problemas complejos — capacidades que en 2021 eran teóricas. El multiplicador de **Intensidad "Fuerte" (×1.25)** captura parcialmente esta expansión, representando un escenario donde la IA supera las proyecciones originales del AIOE. Versiones futuras de este modelo podrían incorporar un índice actualizado que refleje las capacidades de los LLMs de 2025-2026.
+
 **Dos dimensiones de escenario:**
 
 El S-Score se ajusta mediante dos multiplicadores combinados: `S_mostrado = min(100, AIOE × velocidad × intensidad)`
