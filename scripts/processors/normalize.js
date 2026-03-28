@@ -374,6 +374,7 @@ function processCORAABO(filePath) {
   const headers = parseCSVLine(lines[headerIdx], delimiter);
 
   const colFecha = headers.findIndex(h => h.toLowerCase().includes('fecha'));
+  const colNombre = headers.findIndex(h => h.toLowerCase().includes('nombre'));
   const colCargo = headers.findIndex(h => h.toLowerCase().includes('cargo'));
   const colGenero = headers.findIndex(h => h.toLowerCase().includes('genero'));
   const colBruto = headers.findIndex(h => h.toLowerCase().includes('ingreso bruto'));
@@ -381,7 +382,9 @@ function processCORAABO(filePath) {
 
   for (let i = headerIdx + 1; i < lines.length; i++) {
     const vals = parseCSVLine(lines[i], delimiter);
+    const nombre = vals[colNombre] || '';
     const cargo = vals[colCargo] || '';
+    if (nombre.toLowerCase().includes('subtotal')) continue;
     if (!cargo || cargo.toLowerCase().includes('corporacion')) continue;
 
     const fecha = vals[colFecha] || '';
@@ -1179,9 +1182,7 @@ const MAP_INSTITUTION_SECTOR = {
 function mapInstitutionToSector(institution) {
   if (!institution) return 'administracion_publica_y_defensa';
   const inst = institution.toLowerCase().trim();
-  // Exact match first
   if (MAP_INSTITUTION_SECTOR[inst]) return MAP_INSTITUTION_SECTOR[inst];
-  // Keyword matching
   if (inst.includes('salud') || inst.includes('hospital') || inst.includes('sanitari')) return 'salud';
   if (inst.includes('educación') || inst.includes('educacion') || inst.includes('universidad') || inst.includes('escuela')) return 'educacion';
   if (inst.includes('agrícola') || inst.includes('agricola') || inst.includes('agricultura') || inst.includes('agropecuari') || inst.includes('ganadería') || inst.includes('forestal')) return 'agricultura_y_agroindustria';
@@ -1204,7 +1205,6 @@ function processMAP(filePath) {
     const cargo = r['Cargo'] || '';
     if (!cargo) continue;
 
-    // Skip subtotal/total rows
     const cargoLower = cargo.toLowerCase();
     if (cargoLower.includes('subtotal') || cargoLower.includes('total')) continue;
 

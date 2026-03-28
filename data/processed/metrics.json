@@ -1,23 +1,23 @@
 {
-  "generated_at": "2026-03-28T14:03:56.328Z",
+  "generated_at": "2026-03-28T16:56:14.431Z",
   "global": {
-    "total_records": 757605,
-    "total_empleos": 433757664,
+    "total_records": 757562,
+    "total_empleos": 433757621,
     "record_types": {
-      "position": 749387,
+      "position": 749344,
       "aggregate": 7962,
       "vacancy": 256
     },
-    "records_with_salary": 754964,
-    "salary_avg": 42100.64,
+    "records_with_salary": 754921,
+    "salary_avg": 42080.59,
     "salary_median": 39000,
     "salary_min": 1,
-    "salary_max": 1758882,
+    "salary_max": 575863.6,
     "salary_pareto": {
-      "bottom_80_count": 603971,
-      "bottom_80_avg": 31472.58,
-      "top_20_count": 150993,
-      "top_20_avg": 84612.77,
+      "bottom_80_count": 603936,
+      "bottom_80_avg": 31471.31,
+      "top_20_count": 150985,
+      "top_20_avg": 84517.43,
       "ratio": 2.69
     },
     "top_titles": [
@@ -87,10 +87,10 @@
     "gender_distribution": {
       "male": 165705,
       "female": 330109,
-      "unknown": 261791,
+      "unknown": 261748,
       "male_pct": 21.87,
-      "female_pct": 43.57,
-      "unknown_pct": 34.56
+      "female_pct": 43.58,
+      "unknown_pct": 34.55
     },
     "sources": [
       "ckan",
@@ -415,24 +415,24 @@
       }
     },
     "otros_servicios": {
-      "total_records": 12510,
-      "total_empleos": 303075112,
+      "total_records": 12467,
+      "total_empleos": 303075069,
       "record_types": {
-        "position": 7242,
+        "position": 7199,
         "aggregate": 5135,
         "vacancy": 133
       },
-      "records_with_salary": 12096,
-      "salary_avg": 15682.75,
-      "salary_median": 12000,
+      "records_with_salary": 12053,
+      "salary_avg": 14332.97,
+      "salary_median": 11900,
       "salary_min": 1,
-      "salary_max": 1758882,
+      "salary_max": 300000,
       "salary_pareto": {
-        "bottom_80_count": 9676,
-        "bottom_80_avg": 9857.76,
-        "top_20_count": 2420,
-        "top_20_avg": 38973.1,
-        "ratio": 3.95
+        "bottom_80_count": 9642,
+        "bottom_80_avg": 9831.54,
+        "top_20_count": 2411,
+        "top_20_avg": 32334.96,
+        "ratio": 3.29
       },
       "top_titles": [
         {
@@ -487,7 +487,7 @@
         },
         {
           "institution": "Corp. Acueducto y Alcantarillado Boca Chica (CORAABO)",
-          "count": 1518
+          "count": 1475
         },
         {
           "institution": "DGII",
@@ -497,10 +497,10 @@
       "gender_distribution": {
         "male": 4405,
         "female": 2785,
-        "unknown": 5320,
-        "male_pct": 35.21,
-        "female_pct": 22.26,
-        "unknown_pct": 42.53
+        "unknown": 5277,
+        "male_pct": 35.33,
+        "female_pct": 22.34,
+        "unknown_pct": 42.33
       },
       "sources": [
         "ckan",

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-28T14:03:27.570Z",
-  "total_records": 757605,
+  "generated_at": "2026-03-28T16:55:38.550Z",
+  "total_records": 757562,
   "date_range": {
     "min_year": 2000,
     "max_year": 2026
   },
   "by_source": {
-    "ckan": 261296,
+    "ckan": 261253,
     "map": 493554,
     "tss": 816,
     "cnzfe": 126,
@@ -19,7 +19,7 @@
     "agricultura_y_agroindustria": 14755,
     "administracion_publica_y_defensa": 315249,
     "educacion": 283790,
-    "otros_servicios": 12510,
+    "otros_servicios": 12467,
     "salud": 112369,
     "transporte_y_logistica": 5541,
     "servicios_financieros": 1441,
@@ -30,7 +30,7 @@
     "tecnologia_y_telecomunicaciones": 2
   },
   "by_record_type": {
-    "position": 749387,
+    "position": 749344,
     "aggregate": 7962,
     "vacancy": 256
   }
