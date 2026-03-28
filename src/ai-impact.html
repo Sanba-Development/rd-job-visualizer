@@ -140,39 +140,35 @@
     <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-8 w-full">
 
         <!-- ---- CONTROLS BAR ---- -->
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-6 sticky top-14 z-40">
-            <h2 class="text-lg font-bold text-slate-900 mb-1">Escenario de An&aacute;lisis</h2>
-            <p class="text-sm text-slate-500 mb-4">Estos controles afectan todas las secciones: indicadores, mapa de burbujas, rankings, radar y desglose sectorial</p>
-            <div class="flex flex-col lg:flex-row gap-5">
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm px-4 py-2.5 mb-6 sticky top-14 z-40">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center gap-3">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider shrink-0 flex items-center gap-1">
+                    <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+                    Controles globales
+                </span>
                 <!-- Temporal -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                    <span class="text-sm font-semibold text-slate-700 flex items-center gap-1.5 shrink-0">
-                        <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>
-                        Horizonte:
-                    </span>
-                    <div class="flex bg-slate-200/70 rounded-lg p-1 gap-1">
-                        <button class="temporal-btn active rounded-md px-3 py-1.5 text-sm font-medium" data-period="short">Corto (2026-28)</button>
-                        <button class="temporal-btn rounded-md px-3 py-1.5 text-sm font-medium text-slate-600" data-period="medium">Medio (2028-32)</button>
-                        <button class="temporal-btn rounded-md px-3 py-1.5 text-sm font-medium text-slate-600" data-period="long">Largo (2032+)</button>
+                <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-medium text-slate-500 shrink-0">Horizonte:</span>
+                    <div class="flex bg-slate-200/70 rounded-md p-0.5 gap-0.5">
+                        <button class="temporal-btn active rounded px-2 py-1 text-xs font-medium" data-period="short">Corto</button>
+                        <button class="temporal-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-period="medium">Medio</button>
+                        <button class="temporal-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-period="long">Largo</button>
                     </div>
                 </div>
                 <!-- Adoption speed -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                    <span class="text-sm font-semibold text-slate-700 flex items-center gap-1.5 shrink-0">
-                        <i data-lucide="zap" class="w-4 h-4 text-slate-400"></i>
-                        Adopci&oacute;n IA:
-                    </span>
-                    <div class="flex bg-slate-200/70 rounded-lg p-1 gap-1">
-                        <button class="adoption-btn rounded-md px-3 py-1.5 text-sm font-medium text-slate-600" data-speed="slow">Lenta</button>
-                        <button class="adoption-btn active rounded-md px-3 py-1.5 text-sm font-medium" data-speed="average">Promedio</button>
-                        <button class="adoption-btn rounded-md px-3 py-1.5 text-sm font-medium text-slate-600" data-speed="fast">R&aacute;pida</button>
+                <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-medium text-slate-500 shrink-0">Adopci&oacute;n:</span>
+                    <div class="flex bg-slate-200/70 rounded-md p-0.5 gap-0.5">
+                        <button class="adoption-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-speed="slow">Lenta</button>
+                        <button class="adoption-btn active rounded px-2 py-1 text-xs font-medium" data-speed="average">Promedio</button>
+                        <button class="adoption-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-speed="fast">R&aacute;pida</button>
                     </div>
                 </div>
                 <!-- Search -->
-                <div class="flex items-center gap-2 ml-auto flex-1 max-w-xs">
+                <div class="flex items-center gap-1.5 ml-auto flex-1 max-w-xs">
                     <div class="relative flex-1">
-                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                        <input id="occupation-search" type="text" placeholder="Buscar ocupaci&oacute;n..." class="w-full pl-9 pr-3 py-1.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                        <input id="occupation-search" type="text" placeholder="Buscar ocupaci&oacute;n..." class="w-full pl-8 pr-3 py-1 rounded-md border border-slate-300 text-xs focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
                     </div>
                 </div>
             </div>
