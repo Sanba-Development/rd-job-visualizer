@@ -141,27 +141,33 @@
     <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-8 w-full">
 
         <!-- ---- GAUGES + ZONE BAR ---- -->
+        <div class="mb-2">
+            <p class="text-sm text-slate-500 text-center">Promedio nacional ponderado por cantidad de trabajadores en cada ocupaci&oacute;n (escala 0-100)</p>
+        </div>
         <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <!-- V-Score Gauge -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col items-center">
                 <svg id="gauge-v" width="140" height="80" viewBox="0 0 140 80"></svg>
                 <p id="gauge-v-value" class="text-3xl font-extrabold mt-2 text-slate-900">--</p>
-                <p class="text-sm text-slate-500 mt-1">V-Score (Vulnerabilidad)</p>
-                <p class="text-xs text-slate-400 mt-0.5">Mayor = m&aacute;s vulnerable</p>
+                <p class="text-sm font-semibold text-slate-700 mt-1">Vulnerabilidad</p>
+                <p class="text-xs text-slate-400 mt-0.5">Fragilidad econ&oacute;mica del trabajador</p>
+                <p class="text-xs text-red-500 mt-0.5">Mayor = m&aacute;s vulnerable</p>
             </div>
             <!-- S-Score Gauge -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col items-center">
                 <svg id="gauge-s" width="140" height="80" viewBox="0 0 140 80"></svg>
                 <p id="gauge-s-value" class="text-3xl font-extrabold mt-2 text-slate-900">--</p>
-                <p class="text-sm text-slate-500 mt-1">S-Score (Susceptibilidad a la IA)</p>
-                <p class="text-xs text-slate-400 mt-0.5">Mayor = m&aacute;s expuesto a IA</p>
+                <p class="text-sm font-semibold text-slate-700 mt-1">Susceptibilidad a la IA</p>
+                <p class="text-xs text-slate-400 mt-0.5">Exposici&oacute;n a automatizaci&oacute;n por IA</p>
+                <p class="text-xs text-purple-500 mt-0.5">Mayor = m&aacute;s expuesto</p>
             </div>
             <!-- A-Score Gauge -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col items-center">
                 <svg id="gauge-a" width="140" height="80" viewBox="0 0 140 80"></svg>
                 <p id="gauge-a-value" class="text-3xl font-extrabold mt-2 text-slate-900">--</p>
-                <p class="text-sm text-slate-500 mt-1">A-Score (Adaptabilidad)</p>
-                <p class="text-xs text-slate-400 mt-0.5">Mayor = mejor preparado</p>
+                <p class="text-sm font-semibold text-slate-700 mt-1">Adaptabilidad</p>
+                <p class="text-xs text-slate-400 mt-0.5">Capacidad de reconversi&oacute;n laboral</p>
+                <p class="text-xs text-green-500 mt-0.5">Mayor = mejor preparado</p>
             </div>
         </section>
 
