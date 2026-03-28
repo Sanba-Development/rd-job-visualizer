@@ -126,14 +126,20 @@
                     <span class="text-slate-400">Sal. prom.:</span>
                     <span id="stat-salary" class="font-bold text-white">—</span>
                 </div>
-                <div class="stat-item flex items-center gap-1.5 text-xs md:text-sm">
+                <div class="stat-item flex items-center gap-1.5 text-xs md:text-sm w-full">
                     <i data-lucide="database" class="w-3.5 h-3.5 md:w-4 md:h-4 text-purple-400 shrink-0"></i>
                     <span id="stat-sources" class="text-slate-400">Fuentes: —</span>
                 </div>
-                <a href="./methodology.html" class="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors ml-auto">
-                    <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
-                    <span>Metodología</span>
-                </a>
+                <div class="flex items-center gap-3 w-full">
+                    <button id="toggle-map" onclick="toggleMap()" class="flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border border-slate-600 text-slate-300 hover:border-slate-400 transition-colors">
+                        <span id="toggle-map-dot" class="w-2 h-2 rounded-full bg-green-400"></span>
+                        <span id="toggle-map-label">Original</span>
+                    </button>
+                    <a href="./methodology.html" class="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors">
+                        <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
+                        <span>Metodología</span>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -302,6 +308,54 @@
     // ---- DRILL-DOWN STATE ----
     let currentView = 'sectors'; // 'sectors' | 'titles'
     let drilledSector = null;    // sector data object when drilled in
+    // dataMode cycles: 'original' → 'map' → 'todo' → 'original' ...
+    let dataMode = 'original';
+    let colorMap = {};
+
+    function rebuildSectorData() {
+        const children = [];
+        for (const [key, sectorMetrics] of Object.entries(metricsData.sectors)) {
+            const colorId = SECTOR_KEY_TO_COLOR_ID[key];
+            const colorInfo = colorId ? colorMap[colorId] : null;
+            if (!colorInfo) continue;
+            const isEstimated = sectorMetrics.total_records < REAL_DATA_THRESHOLD && ESTIMATED_VALUES[key];
+            const estimateInfo = ESTIMATED_VALUES[key];
+            const value = isEstimated ? estimateInfo.value : sectorMetrics.total_records;
+            const salaryAvg = isEstimated ? estimateInfo.salary : sectorMetrics.salary_avg;
+            children.push({
+                name: colorInfo.name, shortName: colorInfo.shortName,
+                value, color: colorInfo.color, icon: colorInfo.icon,
+                estimated: !!isEstimated, metrics: sectorMetrics,
+                salaryAvg, sectorKey: key
+            });
+        }
+        children.sort((a, b) => b.value - a.value);
+        sectorData = { name: 'Empleo en RD', children };
+        totalEmpleos = children.reduce((s, d) => s + d.value, 0);
+    }
+
+    const DATA_MODES = [
+        { key: 'original', label: 'Original',  dot: 'bg-green-400',  file: '../data/processed/metrics-no-map.json' },
+        { key: 'map',      label: 'Solo MAP',  dot: 'bg-blue-400',   file: '../data/processed/metrics-map-only.json' },
+        { key: 'todo',     label: 'Todo',       dot: 'bg-yellow-400', file: '../data/processed/metrics.json' },
+    ];
+
+    async function toggleMap() {
+        const currentIdx = DATA_MODES.findIndex(m => m.key === dataMode);
+        const next = DATA_MODES[(currentIdx + 1) % DATA_MODES.length];
+        dataMode = next.key;
+        document.getElementById('toggle-map-dot').className = 'w-2 h-2 rounded-full ' + next.dot;
+        document.getElementById('toggle-map-label').textContent = next.label;
+        metricsData = await (await fetch(next.file)).json();
+        currentView = 'sectors';
+        drilledSector = null;
+        const bar = document.getElementById('breadcrumb-bar');
+        bar.classList.add('hidden');
+        bar.style.display = '';
+        rebuildSectorData();
+        buildTreemap();
+        populateStats();
+    }
 
     // ---- SOURCE DISPLAY NAMES ----
     const SOURCE_LABELS = {
@@ -378,52 +432,20 @@
     async function loadData() {
         try {
             const [metricsResp, colorsResp] = await Promise.all([
-                fetch('../data/processed/metrics.json'),
+                fetch('../data/processed/metrics-no-map.json'),
                 fetch('./sector-colors.json')
             ]);
 
-            if (!metricsResp.ok) throw new Error('No se pudo cargar metrics.json (' + metricsResp.status + ')');
+            if (!metricsResp.ok) throw new Error('No se pudo cargar metrics-no-map.json (' + metricsResp.status + ')');
             if (!colorsResp.ok) throw new Error('No se pudo cargar sector-colors.json (' + colorsResp.status + ')');
 
             metricsData = await metricsResp.json();
             const colorsArray = await colorsResp.json();
 
             // Build color lookup by id
-            const colorMap = {};
             colorsArray.forEach(c => { colorMap[c.id] = c; });
 
-            // Build sector children from metrics
-            const children = [];
-            for (const [key, sectorMetrics] of Object.entries(metricsData.sectors)) {
-                const colorId = SECTOR_KEY_TO_COLOR_ID[key];
-                const colorInfo = colorId ? colorMap[colorId] : null;
-                if (!colorInfo) continue;
-
-                const isEstimated = sectorMetrics.total_records < REAL_DATA_THRESHOLD && ESTIMATED_VALUES[key];
-                const estimateInfo = ESTIMATED_VALUES[key];
-
-                const value = isEstimated ? estimateInfo.value : sectorMetrics.total_records;
-                const salaryAvg = isEstimated ? estimateInfo.salary : sectorMetrics.salary_avg;
-
-                children.push({
-                    name: colorInfo.name,
-                    shortName: colorInfo.shortName,
-                    value: value,
-                    color: colorInfo.color,
-                    icon: colorInfo.icon,
-                    estimated: !!isEstimated,
-                    // Real metrics data for tooltips/detail
-                    metrics: sectorMetrics,
-                    salaryAvg: salaryAvg,
-                    sectorKey: key
-                });
-            }
-
-            // Sort by value descending
-            children.sort((a, b) => b.value - a.value);
-
-            sectorData = { name: "Empleo en RD", children };
-            totalEmpleos = children.reduce((s, d) => s + d.value, 0);
+            rebuildSectorData();
 
             // Populate stats bar from global metrics
             populateStats();

@@ -1144,6 +1144,13 @@ function processRDTrabaja() {
   return results;
 }
 
+/**
+ * MAP Nómina Pública General del Estado
+ * Columnas: Nombre_del_empleado,Institución,Cargo,Estatus,Suelto_Bruto,Género,Mes,Año
+ * Fuente: map.gob.do/datosabiertos/data/nomina_publica_general_estado/json
+ * Convertido a CSV con scripts/processors/map-json-to-csv.js
+ */
+
 // ── MAP Nómina Pública (493K+ records, Dec 2025) ──────────────────────────
 
 const MAP_INSTITUTION_SECTOR = {
@@ -1175,7 +1182,6 @@ const MAP_INSTITUTION_SECTOR = {
   'dirección general de presupuesto': 'administracion_publica_y_defensa',
   'tesorería de la seguridad social': 'administracion_publica_y_defensa',
   'dirección general de contrataciones públicas': 'administracion_publica_y_defensa',
-  'contraloría general de la república': 'administracion_publica_y_defensa',
   'superintendencia de bancos': 'servicios_financieros',
   'banco central de la república dominicana': 'servicios_financieros',
   'superintendencia de valores': 'servicios_financieros',
@@ -1200,6 +1206,12 @@ function mapInstitutionToSector(institution) {
   return 'administracion_publica_y_defensa';
 }
 
+function mapEstatus(estatus) {
+  const s = (estatus || '').toLowerCase();
+  if (s.includes('fijo')) return 'publico_fijo';
+  if (s.includes('contrat')) return 'publico_contratado';
+  return 'publico';
+}
 function processMAP(filePath) {
   const rows = readCSV(filePath);
   if (rows.length === 0) return [];
@@ -1237,7 +1249,7 @@ function processMAP(filePath) {
       employee_count: 1,
       location_province: null,
       location_city: null,
-      employment_type: 'publico',
+      employment_type: mapEstatus(r['Estatus']),
       gender: gender,
       period_year: year,
       period_month: month,
@@ -1246,16 +1258,14 @@ function processMAP(filePath) {
       raw_title: cargo,
       raw_institution: institution,
       extracted_at: EXTRACTED_AT,
-      metadata: {
-        estatus: r['Estatus'] || null,
-      },
+      metadata: { estatus: (r['Estatus'] || '').trim() },
     });
   }
   return results;
 }
 
 // ── Main ───────────────────────────────────────────────────────────────────
-function main() {
+async function main() {
   console.log('═══════════════════════════════════════════════════════');
   console.log(' RD Job Visualizer — Normalization Script');
   console.log('═══════════════════════════════════════════════════════\n');
@@ -1270,7 +1280,7 @@ function main() {
       console.log(`  → ${label}: 0 records (skipped or empty)\n`);
       return;
     }
-    for (let ri = 0; ri < records.length; ri++) allRecords.push(records[ri]);
+    for (const r of records) allRecords.push(r);
     console.log(`  → ${label}: ${records.length.toLocaleString()} records\n`);
 
     for (const r of records) {
@@ -1303,18 +1313,13 @@ function main() {
 
   // ASDE — special layout
   const asdePath = path.join(RAW_DIR, 'nomina-asde-2020-2023.csv');
-  if (fs.existsSync(asdePath)) {
-    addRecords('nomina-asde-2020-2023.csv', processASDE(asdePath));
-  }
+  if (fs.existsSync(asdePath)) addRecords('nomina-asde-2020-2023.csv', processASDE(asdePath));
 
   // CORAABO — special layout
   const coraaboPath = path.join(RAW_DIR, 'nomina-coraabo-2021-2025.csv');
-  if (fs.existsSync(coraaboPath)) {
-    addRecords('nomina-coraabo-2021-2025.csv', processCORAABO(coraaboPath));
-  }
+  if (fs.existsSync(coraaboPath)) addRecords('nomina-coraabo-2021-2025.csv', processCORAABO(coraaboPath));
 
-  // ── 1b. MAP Nómina Pública ────────────────────────────────────────────
-  console.log('Processing MAP nómina pública...');
+  // MAP Nómina Pública General del Estado
   const mapPath = path.join(RAW_DIR, 'nomina-map-2025-12.csv');
   if (fs.existsSync(mapPath)) {
     addRecords('nomina-map-2025-12.csv', processMAP(mapPath));
@@ -1323,76 +1328,49 @@ function main() {
   // ── 2. TSS ────────────────────────────────────────────────────────────
   console.log('Processing TSS employment data...');
   const tssPath = path.join(RAW_DIR, 'empleos-cotizantes-tss-2003-2026.csv');
-  if (fs.existsSync(tssPath)) {
-    addRecords('empleos-cotizantes-tss-2003-2026.csv', processTSS(tssPath));
-  }
+  if (fs.existsSync(tssPath)) addRecords('empleos-cotizantes-tss-2003-2026.csv', processTSS(tssPath));
 
   // ── 3. Salario Mínimo ────────────────────────────────────────────────
   console.log('Processing salary statistics...');
   const salHacienda = path.join(RAW_DIR, 'salario-minimo-hacienda-2000-2025.csv');
-  if (fs.existsSync(salHacienda)) {
-    addRecords('salario-minimo-hacienda-2000-2025.csv', processSalarioMinimo(salHacienda, 'hacienda'));
-  }
+  if (fs.existsSync(salHacienda)) addRecords('salario-minimo-hacienda-2000-2025.csv', processSalarioMinimo(salHacienda, 'hacienda'));
   const salMepyd = path.join(RAW_DIR, 'salario-minimo-mepyd-2000-2023.csv');
-  if (fs.existsSync(salMepyd)) {
-    addRecords('salario-minimo-mepyd-2000-2023.csv', processSalarioMinimo(salMepyd, 'mepyd'));
-  }
+  if (fs.existsSync(salMepyd)) addRecords('salario-minimo-mepyd-2000-2023.csv', processSalarioMinimo(salMepyd, 'mepyd'));
 
   // DGII ISR — aggregate only
   console.log('Processing DGII ISR data...');
   const dgiiPath = path.join(RAW_DIR, 'retencion-isr-salarios-dgii-2017-2025.csv');
-  if (fs.existsSync(dgiiPath)) {
-    addRecords('retencion-isr-salarios-dgii-2017-2025.csv', processDGII(dgiiPath));
-  }
+  if (fs.existsSync(dgiiPath)) addRecords('retencion-isr-salarios-dgii-2017-2025.csv', processDGII(dgiiPath));
 
   // ── 4. Zonas Francas ─────────────────────────────────────────────────
   console.log('Processing Zonas Francas data...');
   const zfTextil = path.join(RAW_DIR, 'zonas-francas-textil-2003-2023.csv');
-  if (fs.existsSync(zfTextil)) {
-    addRecords('zonas-francas-textil-2003-2023.csv', processZonasFrancas(zfTextil, 'textil'));
-  }
+  if (fs.existsSync(zfTextil)) addRecords('zonas-francas-textil-2003-2023.csv', processZonasFrancas(zfTextil, 'textil'));
   const zfElec = path.join(RAW_DIR, 'zonas-francas-electronicos-2003-2023.csv');
-  if (fs.existsSync(zfElec)) {
-    addRecords('zonas-francas-electronicos-2003-2023.csv', processZonasFrancas(zfElec, 'electronicos'));
-  }
+  if (fs.existsSync(zfElec)) addRecords('zonas-francas-electronicos-2003-2023.csv', processZonasFrancas(zfElec, 'electronicos'));
   const zfCalzados = path.join(RAW_DIR, 'zonas-francas-calzados-cnzfe-2003-2023.csv');
-  if (fs.existsSync(zfCalzados)) {
-    addRecords('zonas-francas-calzados-cnzfe-2003-2023.csv', processZonasFrancas(zfCalzados, 'calzados'));
-  }
+  if (fs.existsSync(zfCalzados)) addRecords('zonas-francas-calzados-cnzfe-2003-2023.csv', processZonasFrancas(zfCalzados, 'calzados'));
   const zfTabaco = path.join(RAW_DIR, 'zonas-francas-tabaco-cnzfe-2003-2023.csv');
-  if (fs.existsSync(zfTabaco)) {
-    addRecords('zonas-francas-tabaco-cnzfe-2003-2023.csv', processZonasFrancas(zfTabaco, 'tabaco'));
-  }
+  if (fs.existsSync(zfTabaco)) addRecords('zonas-francas-tabaco-cnzfe-2003-2023.csv', processZonasFrancas(zfTabaco, 'tabaco'));
   const zfJoyeria = path.join(RAW_DIR, 'zonas-francas-joyeria-cnzfe-2003-2023.csv');
-  if (fs.existsSync(zfJoyeria)) {
-    addRecords('zonas-francas-joyeria-cnzfe-2003-2023.csv', processZonasFrancas(zfJoyeria, 'joyeria'));
-  }
-  // Medical devices → salud sector (not manufactura)
+  if (fs.existsSync(zfJoyeria)) addRecords('zonas-francas-joyeria-cnzfe-2003-2023.csv', processZonasFrancas(zfJoyeria, 'joyeria'));
   const zfMedicos = path.join(RAW_DIR, 'zonas-francas-dispositivos-medicos-cnzfe-2003-2023.csv');
-  if (fs.existsSync(zfMedicos)) {
-    addRecords('zonas-francas-dispositivos-medicos-cnzfe-2003-2023.csv', processZonasFrancasSector(zfMedicos, 'dispositivos_medicos', 'salud'));
-  }
+  if (fs.existsSync(zfMedicos)) addRecords('zonas-francas-dispositivos-medicos-cnzfe-2003-2023.csv', processZonasFrancasSector(zfMedicos, 'dispositivos_medicos', 'salud'));
 
   // ── 5. MITUR Tourism ──────────────────────────────────────────────────
   console.log('Processing MITUR tourism data...');
   const miturPath = path.join(RAW_DIR, 'empresas-servicios-turisticos-mitur-2018-2025.csv');
-  if (fs.existsSync(miturPath)) {
-    addRecords('empresas-servicios-turisticos-mitur-2018-2025.csv', processMITUR(miturPath));
-  }
+  if (fs.existsSync(miturPath)) addRecords('empresas-servicios-turisticos-mitur-2018-2025.csv', processMITUR(miturPath));
 
   // ── 6. MISPAS Health Professionals ────────────────────────────────────
   console.log('Processing MISPAS health professionals data...');
   const mispasPath = path.join(RAW_DIR, 'exequatur-profesionales-salud-mispas-1933-2025.csv');
-  if (fs.existsSync(mispasPath)) {
-    addRecords('exequatur-profesionales-salud-mispas-1933-2025.csv', processMISPAS(mispasPath));
-  }
+  if (fs.existsSync(mispasPath)) addRecords('exequatur-profesionales-salud-mispas-1933-2025.csv', processMISPAS(mispasPath));
 
   // ── 7. MIVHED Construction Licenses ───────────────────────────────────
   console.log('Processing MIVHED construction license data...');
   const licenciasPath = path.join(RAW_DIR, 'licencias-construccion-mivhed-2022-2025.csv');
-  if (fs.existsSync(licenciasPath)) {
-    addRecords('licencias-construccion-mivhed-2022-2025.csv', processLicenciasConstruccion(licenciasPath));
-  }
+  if (fs.existsSync(licenciasPath)) addRecords('licencias-construccion-mivhed-2022-2025.csv', processLicenciasConstruccion(licenciasPath));
 
   // ── 8. RD Trabaja ─────────────────────────────────────────────────────
   console.log('Processing RD Trabaja data...');
@@ -1461,4 +1439,4 @@ function main() {
   console.log('\nDone.');
 }
 
-main();
+main().catch(e => { console.error(e); process.exit(1); });

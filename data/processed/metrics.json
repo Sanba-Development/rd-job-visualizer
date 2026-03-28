@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T23:42:44.515Z",
+  "generated_at": "2026-03-27T20:27:52.608Z",
   "global": {
     "total_records": 757562,
     "total_empleos": 433757621,
@@ -109,65 +109,65 @@
   },
   "sectors": {
     "agricultura_y_agroindustria": {
-      "total_records": 14755,
-      "total_empleos": 14755,
+      "total_records": 10186,
+      "total_empleos": 10186,
       "record_types": {
-        "position": 14749,
+        "position": 10180,
         "aggregate": 0,
         "vacancy": 6
       },
-      "records_with_salary": 14749,
-      "salary_avg": 33778.31,
+      "records_with_salary": 10180,
+      "salary_avg": 32033.67,
       "salary_median": 25000,
       "salary_min": 1000,
       "salary_max": 300000,
       "salary_pareto": {
-        "bottom_80_count": 11799,
-        "bottom_80_avg": 24217.09,
-        "top_20_count": 2950,
-        "top_20_avg": 72019.93,
-        "ratio": 2.97
+        "bottom_80_count": 8144,
+        "bottom_80_avg": 23637.36,
+        "top_20_count": 2036,
+        "top_20_avg": 65618.93,
+        "ratio": 2.78
       },
       "top_titles": [
         {
           "title": "auxiliar administrativo",
-          "count": 799
-        },
-        {
-          "title": "conserje",
-          "count": 729
+          "count": 762
         },
         {
           "title": "tecnico i",
-          "count": 655
+          "count": 629
+        },
+        {
+          "title": "conserje",
+          "count": 569
         },
         {
           "title": "auxiliar",
-          "count": 578
-        },
-        {
-          "title": "obrero (a)",
-          "count": 568
-        },
-        {
-          "title": "obrero",
           "count": 528
         },
         {
-          "title": "tecnico",
-          "count": 517
+          "title": "obrero",
+          "count": 470
         },
         {
-          "title": "chofer",
-          "count": 484
+          "title": "obrero (a)",
+          "count": 374
         },
         {
           "title": "secretaria",
-          "count": 447
+          "count": 352
         },
         {
-          "title": "guardaparque",
-          "count": 384
+          "title": "chofer",
+          "count": 348
+        },
+        {
+          "title": "profesional basico i",
+          "count": 275
+        },
+        {
+          "title": "vigilante",
+          "count": 237
         }
       ],
       "top_institutions": [
@@ -176,29 +176,29 @@
           "count": 7789
         },
         {
-          "institution": "Ministerio de Medio Ambiente y Recursos Naturales",
-          "count": 4274
-        },
-        {
-          "institution": "Dirección General de Ganadería",
-          "count": 949
-        },
-        {
           "institution": "Consejo Nacional de la Industria Lechera (CONALECHE)",
           "count": 794
         },
         {
           "institution": "Instituto Dominicano de Investigaciones Agropecuarias y Forestales",
           "count": 550
+        },
+        {
+          "institution": "Consejo Dominicano de Pesca y Acuicultura",
+          "count": 365
+        },
+        {
+          "institution": "Mercados Dominicanos de Abasto Agropecuario",
+          "count": 298
         }
       ],
       "gender_distribution": {
-        "male": 9540,
-        "female": 5209,
+        "male": 6502,
+        "female": 3678,
         "unknown": 6,
-        "male_pct": 64.66,
-        "female_pct": 35.3,
-        "unknown_pct": 0.04
+        "male_pct": 63.83,
+        "female_pct": 36.11,
+        "unknown_pct": 0.06
       },
       "sources": [
         "ckan",
@@ -211,41 +211,41 @@
       }
     },
     "administracion_publica_y_defensa": {
-      "total_records": 316555,
-      "total_empleos": 127630287,
+      "total_records": 339384,
+      "total_empleos": 127653116,
       "record_types": {
-        "position": 315411,
+        "position": 338240,
         "aggregate": 1144,
         "vacancy": 0
       },
-      "records_with_salary": 316008,
-      "salary_avg": 46283.52,
+      "records_with_salary": 338837,
+      "salary_avg": 44629.16,
       "salary_median": 35000,
       "salary_min": 1,
       "salary_max": 500000,
       "salary_pareto": {
-        "bottom_80_count": 252806,
-        "bottom_80_avg": 32409.47,
-        "top_20_count": 63202,
-        "top_20_avg": 101779.29,
-        "ratio": 3.14
+        "bottom_80_count": 271069,
+        "bottom_80_avg": 31123.23,
+        "top_20_count": 67768,
+        "top_20_avg": 98652.32,
+        "ratio": 3.17
       },
       "top_titles": [
         {
           "title": "conserje",
-          "count": 14726
+          "count": 17182
         },
         {
           "title": "chofer i",
-          "count": 8260
+          "count": 8357
         },
         {
           "title": "chofer",
-          "count": 6661
+          "count": 6768
         },
         {
           "title": "auxiliar administrativo (a)",
-          "count": 6435
+          "count": 6742
         },
         {
           "title": "coordinador barrial",
@@ -253,23 +253,23 @@
         },
         {
           "title": "auxiliar administrativo",
-          "count": 6097
+          "count": 6128
         },
         {
           "title": "secretaria",
-          "count": 5443
+          "count": 5877
         },
         {
           "title": "enlace barrial",
           "count": 5031
         },
         {
-          "title": "auxiliar territorial",
-          "count": 4739
+          "title": "auxiliar",
+          "count": 5022
         },
         {
-          "title": "auxiliar",
-          "count": 4675
+          "title": "auxiliar territorial",
+          "count": 4739
         }
       ],
       "top_institutions": [
@@ -286,21 +286,21 @@
           "count": 68424
         },
         {
-          "institution": "Ayuntamiento Santo Domingo Este (ASDE)",
-          "count": 11440
+          "institution": "Instituto Nacional de Atención Integral a la Primera Infancia",
+          "count": 15807
         },
         {
-          "institution": "Procuraduría General de la República",
-          "count": 11111
+          "institution": "Ayuntamiento Santo Domingo Este (ASDE)",
+          "count": 11440
         }
       ],
       "gender_distribution": {
-        "male": 33946,
-        "female": 31854,
+        "male": 41351,
+        "female": 47278,
         "unknown": 250755,
-        "male_pct": 10.72,
-        "female_pct": 10.06,
-        "unknown_pct": 79.21
+        "male_pct": 12.18,
+        "female_pct": 13.93,
+        "unknown_pct": 73.89
       },
       "sources": [
         "ckan",
@@ -313,24 +313,24 @@
       }
     },
     "educacion": {
-      "total_records": 283790,
-      "total_empleos": 283790,
+      "total_records": 268665,
+      "total_empleos": 268665,
       "record_types": {
-        "position": 283784,
+        "position": 268659,
         "aggregate": 0,
         "vacancy": 6
       },
-      "records_with_salary": 283784,
-      "salary_avg": 38371.96,
-      "salary_median": 43500,
-      "salary_min": 577.5,
-      "salary_max": 300000,
+      "records_with_salary": 268659,
+      "salary_avg": 39036.57,
+      "salary_median": 55998.24,
+      "salary_min": 2000,
+      "salary_max": 361354.4,
       "salary_pareto": {
-        "bottom_80_count": 227027,
-        "bottom_80_avg": 31920.1,
-        "top_20_count": 56757,
-        "top_20_avg": 64179.31,
-        "ratio": 2.01
+        "bottom_80_count": 214927,
+        "bottom_80_avg": 32653.48,
+        "top_20_count": 53732,
+        "top_20_avg": 64568.81,
+        "ratio": 1.98
       },
       "top_titles": [
         {
@@ -362,26 +362,22 @@
           "count": 8228
         },
         {
-          "title": "conserje",
-          "count": 8045
-        },
-        {
           "title": "secretaria j.e",
           "count": 7013
         },
         {
           "title": "orientador basica j.e",
           "count": 6828
+        },
+        {
+          "title": "conserje",
+          "count": 6616
         }
       ],
       "top_institutions": [
         {
           "institution": "Ministerio de Educación",
           "count": 262940
-        },
-        {
-          "institution": "Instituto Nacional de Atención Integral a la Primera Infancia",
-          "count": 15807
         },
         {
           "institution": "Instituto de Educación Superior en Formación Diplomática (INESDYC)",
@@ -392,17 +388,21 @@
           "count": 1026
         },
         {
-          "institution": "Instituto de Educación Superior en Formación Diplomática y Consular “Dr. Eduardo Latorre Rodríguez”",
-          "count": 101
+          "institution": "Instituto Nacional de Bienestar Magisterial",
+          "count": 384
+        },
+        {
+          "institution": "Instituto Nacional de Formación y Capacitación del Magisterio",
+          "count": 298
         }
       ],
       "gender_distribution": {
-        "male": 80193,
-        "female": 199681,
+        "male": 77638,
+        "female": 187111,
         "unknown": 3916,
-        "male_pct": 28.26,
-        "female_pct": 70.36,
-        "unknown_pct": 1.38
+        "male_pct": 28.9,
+        "female_pct": 69.64,
+        "unknown_pct": 1.46
       },
       "sources": [
         "ckan",
@@ -415,24 +415,24 @@
       }
     },
     "otros_servicios": {
-      "total_records": 12467,
-      "total_empleos": 303075069,
+      "total_records": 6743,
+      "total_empleos": 303069345,
       "record_types": {
-        "position": 7199,
+        "position": 1475,
         "aggregate": 5135,
         "vacancy": 133
       },
-      "records_with_salary": 12053,
-      "salary_avg": 14332.97,
-      "salary_median": 11900,
+      "records_with_salary": 6329,
+      "salary_avg": 9710.26,
+      "salary_median": 7430,
       "salary_min": 1,
-      "salary_max": 300000,
+      "salary_max": 165000,
       "salary_pareto": {
-        "bottom_80_count": 9642,
-        "bottom_80_avg": 9831.54,
-        "top_20_count": 2411,
-        "top_20_avg": 32334.96,
-        "ratio": 3.29
+        "bottom_80_count": 5063,
+        "bottom_80_avg": 6537.4,
+        "top_20_count": 1266,
+        "top_20_avg": 22399.21,
+        "ratio": 3.43
       },
       "top_titles": [
         {
@@ -448,43 +448,35 @@
           "count": 1200
         },
         {
-          "title": "conserje",
-          "count": 1122
-        },
-        {
           "title": "salario minimo - sector privado - zona franca en áreas geográficas deprimidas",
           "count": 600
-        },
-        {
-          "title": "ayudante de cocina",
-          "count": 532
-        },
-        {
-          "title": "auxiliar administrativo (a)",
-          "count": 318
         },
         {
           "title": "salario minimo - sector privado - zona franca industrial",
           "count": 312
         },
         {
-          "title": "vigilante",
-          "count": 303
+          "title": "salario minimo - sector privado - zona franca",
+          "count": 288
         },
         {
-          "title": "cocinero (a)",
-          "count": 296
+          "title": "empleo formal sector privado",
+          "count": 272
+        },
+        {
+          "title": "vigilante nocturno",
+          "count": 121
+        },
+        {
+          "title": "operador de equipo",
+          "count": 107
+        },
+        {
+          "title": "supervisor (a)",
+          "count": 84
         }
       ],
       "top_institutions": [
-        {
-          "institution": "Ministerio de Deportes y Recreación",
-          "count": 3311
-        },
-        {
-          "institution": "Comedores Económicos del Estado",
-          "count": 2413
-        },
         {
           "institution": "Corp. Acueducto y Alcantarillado Boca Chica (CORAABO)",
           "count": 1475
@@ -495,16 +487,15 @@
         }
       ],
       "gender_distribution": {
-        "male": 4405,
-        "female": 2785,
+        "male": 1191,
+        "female": 275,
         "unknown": 5277,
-        "male_pct": 35.33,
-        "female_pct": 22.34,
-        "unknown_pct": 42.33
+        "male_pct": 17.66,
+        "female_pct": 4.08,
+        "unknown_pct": 78.26
       },
       "sources": [
         "ckan",
-        "map",
         "rdtrabaja",
         "tss"
       ],
@@ -513,24 +504,24 @@
         "max_year": 2026
       }
     },
-    "salud": {
-      "total_records": 112369,
-      "total_empleos": 614539,
+    "salud_y_asistencia_social": {
+      "total_records": 111437,
+      "total_empleos": 111437,
       "record_types": {
         "position": 111437,
-        "aggregate": 924,
-        "vacancy": 8
+        "aggregate": 0,
+        "vacancy": 0
       },
-      "records_with_salary": 111458,
-      "salary_avg": 44430.66,
+      "records_with_salary": 111437,
+      "salary_avg": 44438.59,
       "salary_median": 40370,
-      "salary_min": 962,
+      "salary_min": 1500,
       "salary_max": 330000,
       "salary_pareto": {
-        "bottom_80_count": 89166,
-        "bottom_80_avg": 34457.03,
-        "top_20_count": 22292,
-        "top_20_avg": 84324.28,
+        "bottom_80_count": 89149,
+        "bottom_80_avg": 34466.58,
+        "top_20_count": 22288,
+        "top_20_avg": 84325.3,
         "ratio": 2.45
       },
       "top_titles": [
@@ -600,89 +591,82 @@
       "gender_distribution": {
         "male": 28366,
         "female": 83071,
-        "unknown": 932,
-        "male_pct": 25.24,
-        "female_pct": 73.93,
-        "unknown_pct": 0.83
+        "unknown": 0,
+        "male_pct": 25.45,
+        "female_pct": 74.55,
+        "unknown_pct": 0
       },
       "sources": [
-        "cnzfe",
-        "map",
-        "mispas",
-        "rdtrabaja"
+        "map"
       ],
       "period": {
-        "min_year": 2000,
-        "max_year": 2026
+        "min_year": 2025,
+        "max_year": 2025
       }
     },
     "transporte_y_logistica": {
-      "total_records": 5541,
-      "total_empleos": 5541,
+      "total_records": 4887,
+      "total_empleos": 4887,
       "record_types": {
-        "position": 5539,
+        "position": 4885,
         "aggregate": 0,
         "vacancy": 2
       },
-      "records_with_salary": 5539,
-      "salary_avg": 34675.68,
-      "salary_median": 26250,
-      "salary_min": 4687,
+      "records_with_salary": 4885,
+      "salary_avg": 40721.24,
+      "salary_median": 35000,
+      "salary_min": 4666.67,
       "salary_max": 350000,
       "salary_pareto": {
-        "bottom_80_count": 4431,
-        "bottom_80_avg": 23787.53,
-        "top_20_count": 1108,
-        "top_20_avg": 78218.45,
-        "ratio": 3.29
+        "bottom_80_count": 3908,
+        "bottom_80_avg": 28765.29,
+        "top_20_count": 977,
+        "top_20_avg": 88545.03,
+        "ratio": 3.08
       },
       "top_titles": [
         {
           "title": "conserje",
-          "count": 621
-        },
-        {
-          "title": "supervisor (a)",
-          "count": 306
-        },
-        {
-          "title": "auxiliar",
-          "count": 299
-        },
-        {
-          "title": "seguridad",
-          "count": 278
+          "count": 649
         },
         {
           "title": "atencion al usuario",
-          "count": 259
+          "count": 327
+        },
+        {
+          "title": "seguridad",
+          "count": 220
         },
         {
           "title": "inspector (a)",
-          "count": 236
+          "count": 219
+        },
+        {
+          "title": "despachador",
+          "count": 208
         },
         {
           "title": "conductor",
-          "count": 137
+          "count": 204
         },
         {
-          "title": "analista",
-          "count": 128
+          "title": "operador del 911",
+          "count": 146
         },
         {
-          "title": "auxiliar administrativo",
-          "count": 120
+          "title": "operador (a) de estacion",
+          "count": 124
         },
         {
           "title": "seguridad militar",
           "count": 118
+        },
+        {
+          "title": "auxiliar administrativo (a)",
+          "count": 110
         }
       ],
       "top_institutions": [
-        {
-          "institution": "Autoridad Portuaria Dominicana",
-          "count": 2253
-        },
         {
           "institution": "Oficina para el Reordenamiento del Transporte",
           "count": 1974
@@ -690,14 +674,22 @@
         {
           "institution": "Instituto Nacional de Tránsito y Transporte Terrestre",
           "count": 1312
+        },
+        {
+          "institution": "Sistema Nacional de Atención a Emergencias y Seguridad 911 Zona Metro",
+          "count": 1092
+        },
+        {
+          "institution": "Dirección del Metro de Santo Domingo",
+          "count": 507
         }
       ],
       "gender_distribution": {
-        "male": 2939,
-        "female": 2600,
+        "male": 2533,
+        "female": 2352,
         "unknown": 2,
-        "male_pct": 53.04,
-        "female_pct": 46.92,
+        "male_pct": 51.83,
+        "female_pct": 48.13,
         "unknown_pct": 0.04
       },
       "sources": [
@@ -710,33 +702,37 @@
       }
     },
     "construccion": {
-      "total_records": 6582,
-      "total_empleos": 10871,
+      "total_records": 7604,
+      "total_empleos": 11893,
       "record_types": {
-        "position": 6095,
+        "position": 7117,
         "aggregate": 479,
         "vacancy": 8
       },
-      "records_with_salary": 6095,
-      "salary_avg": 33913.49,
+      "records_with_salary": 7117,
+      "salary_avg": 34186.59,
       "salary_median": 25000,
       "salary_min": 1500,
       "salary_max": 300000,
       "salary_pareto": {
-        "bottom_80_count": 4876,
-        "bottom_80_avg": 23094.28,
-        "top_20_count": 1219,
-        "top_20_avg": 77190.36,
-        "ratio": 3.34
+        "bottom_80_count": 5693,
+        "bottom_80_avg": 23012.01,
+        "top_20_count": 1424,
+        "top_20_avg": 78861.36,
+        "ratio": 3.43
       },
       "top_titles": [
         {
           "title": "cajero (a)",
-          "count": 622
+          "count": 644
         },
         {
           "title": "conserje",
-          "count": 504
+          "count": 553
+        },
+        {
+          "title": "chofer",
+          "count": 325
         },
         {
           "title": "obrero (a)",
@@ -747,28 +743,24 @@
           "count": 279
         },
         {
-          "title": "chofer",
-          "count": 243
-        },
-        {
           "title": "seguridad",
-          "count": 235
+          "count": 250
         },
         {
           "title": "supervisor de obras",
-          "count": 191
+          "count": 203
         },
         {
           "title": "supervisor (a)",
-          "count": 149
+          "count": 167
         },
         {
           "title": "tecnico",
-          "count": 148
+          "count": 149
         },
         {
           "title": "ingeniero (a) civil",
-          "count": 136
+          "count": 138
         }
       ],
       "top_institutions": [
@@ -779,15 +771,27 @@
         {
           "institution": "Ministerio de la Vivienda (MIVHED)",
           "count": 479
+        },
+        {
+          "institution": "Corporación del Acueducto y Alcantarillado de la Romana",
+          "count": 453
+        },
+        {
+          "institution": "Oficina Nacional de Evaluación Sísmica y Vulnerabilidad de Infraestructura y Edificaciones",
+          "count": 249
+        },
+        {
+          "institution": "Comité Ejecutor de Infraestructuras de Zonas Turísticas",
+          "count": 205
         }
       ],
       "gender_distribution": {
-        "male": 3477,
-        "female": 2618,
+        "male": 4148,
+        "female": 2969,
         "unknown": 487,
-        "male_pct": 52.83,
-        "female_pct": 39.78,
-        "unknown_pct": 7.4
+        "male_pct": 54.55,
+        "female_pct": 39.05,
+        "unknown_pct": 6.4
       },
       "sources": [
         "map",
@@ -800,80 +804,96 @@
       }
     },
     "servicios_financieros": {
-      "total_records": 135,
-      "total_empleos": 135,
+      "total_records": 2356,
+      "total_empleos": 2356,
       "record_types": {
-        "position": 131,
+        "position": 2352,
         "aggregate": 0,
         "vacancy": 4
       },
-      "records_with_salary": 131,
-      "salary_avg": 78480.92,
-      "salary_median": 71000,
-      "salary_min": 20000,
-      "salary_max": 285000,
+      "records_with_salary": 2352,
+      "salary_avg": 66322.26,
+      "salary_median": 51750,
+      "salary_min": 2666.67,
+      "salary_max": 450000,
       "salary_pareto": {
-        "bottom_80_count": 104,
-        "bottom_80_avg": 56682.69,
-        "top_20_count": 27,
-        "top_20_avg": 162444.44,
-        "ratio": 2.87
+        "bottom_80_count": 1881,
+        "bottom_80_avg": 48484.84,
+        "top_20_count": 471,
+        "top_20_avg": 137558.31,
+        "ratio": 2.84
       },
       "top_titles": [
         {
-          "title": "analista operativo i",
-          "count": 18
-        },
-        {
-          "title": "vigilante",
-          "count": 14
+          "title": "seguridad",
+          "count": 159
         },
         {
           "title": "conserje",
-          "count": 8
-        },
-        {
-          "title": "coordinador (a)",
-          "count": 6
+          "count": 119
         },
         {
           "title": "auxiliar administrativo (a)",
-          "count": 4
+          "count": 89
         },
         {
-          "title": "encargado (a)",
-          "count": 4
+          "title": "chofer",
+          "count": 82
         },
         {
-          "title": "asesor",
-          "count": 3
+          "title": "analista sectorial de presupuesto i",
+          "count": 78
         },
         {
-          "title": "analista de compras y contrataciones",
-          "count": 3
+          "title": "inspector (a) de casinos y juegos de azar",
+          "count": 62
         },
         {
-          "title": "soporte mesa de ayuda",
-          "count": 3
+          "title": "tecnico administrativo",
+          "count": 56
         },
         {
-          "title": "analista de coordinacion nacional e internacional",
-          "count": 3
+          "title": "secretaria",
+          "count": 47
+        },
+        {
+          "title": "auxiliar de casino y juegos de azar",
+          "count": 41
+        },
+        {
+          "title": "soporte técnico informático",
+          "count": 34
         }
       ],
       "top_institutions": [
         {
-          "institution": "Unidad de Análisis Financiero",
-          "count": 131
+          "institution": "Ministerio de Hacienda",
+          "count": 1306
+        },
+        {
+          "institution": "Tesorería de la Seguridad Social",
+          "count": 356
+        },
+        {
+          "institution": "Dirección General de Presupuesto",
+          "count": 339
+        },
+        {
+          "institution": "Tesorería Nacional",
+          "count": 284
+        },
+        {
+          "institution": "Dirección General de Política y Legislación Tributaria",
+          "count": 67
         }
       ],
       "gender_distribution": {
-        "male": 66,
-        "female": 65,
+        "male": 1203,
+        "female": 1149,
         "unknown": 4,
-        "male_pct": 48.89,
-        "female_pct": 48.15,
-        "unknown_pct": 2.96
+        "male_pct": 51.06,
+        "female_pct": 48.77,
+        "unknown_pct": 0.17
       },
       "sources": [
         "map",
@@ -884,13 +904,13 @@
         "max_year": 2026
       }
     },
-    "comercio": {
-      "total_records": 3744,
-      "total_empleos": 3744,
+    "comercio_y_servicios": {
+      "total_records": 3707,
+      "total_empleos": 3707,
       "record_types": {
         "position": 3707,
         "aggregate": 0,
-        "vacancy": 37
+        "vacancy": 0
       },
       "records_with_salary": 3707,
       "salary_avg": 40258.17,
@@ -911,7 +931,7 @@
         },
         {
           "title": "seguridad",
-          "count": 343
+          "count": 342
         },
         {
           "title": "supervisor (a)",
@@ -923,11 +943,11 @@
         },
         {
           "title": "conserje",
-          "count": 145
+          "count": 144
         },
         {
           "title": "chofer",
-          "count": 86
+          "count": 85
         },
         {
           "title": "vigilante",
@@ -967,18 +987,17 @@
       "gender_distribution": {
         "male": 2098,
         "female": 1609,
-        "unknown": 37,
-        "male_pct": 56.04,
-        "female_pct": 42.98,
-        "unknown_pct": 0.99
+        "unknown": 0,
+        "male_pct": 56.6,
+        "female_pct": 43.4,
+        "unknown_pct": 0
       },
       "sources": [
-        "map",
-        "rdtrabaja"
+        "map"
       ],
       "period": {
         "min_year": 2025,
-        "max_year": 2026
+        "max_year": 2025
       }
     },
     "turismo_y_hosteleria": {
@@ -1148,6 +1167,165 @@
       ],
       "period": {
         "min_year": 2003,
+        "max_year": 2026
+      }
+    },
+    "salud": {
+      "total_records": 932,
+      "total_empleos": 503102,
+      "record_types": {
+        "position": 0,
+        "aggregate": 924,
+        "vacancy": 8
+      },
+      "records_with_salary": 21,
+      "salary_avg": 2335,
+      "salary_median": 2158,
+      "salary_min": 962,
+      "salary_max": 4602,
+      "salary_pareto": {
+        "bottom_80_count": 16,
+        "bottom_80_avg": 1873.31,
+        "top_20_count": 5,
+        "top_20_avg": 3812.4,
+        "ratio": 2.04
+      },
+      "top_titles": [
+        {
+          "title": "profesional de salud - doctor en medicina",
+          "count": 27
+        },
+        {
+          "title": "profesional de salud - doctor en estomatologia",
+          "count": 26
+        },
+        {
+          "title": "profesional de salud - licenciado en bioanalisis",
+          "count": 26
+        },
+        {
+          "title": "profesional de salud - licenciado en psicologia mencion psicologia clinica",
+          "count": 26
+        },
+        {
+          "title": "profesional de salud - licenciado en enfermeria",
+          "count": 26
+        },
+        {
+          "title": "profesional de salud - doctor en medicina veterinaria",
+          "count": 26
+        },
+        {
+          "title": "profesional de salud - doctor en odontologia",
+          "count": 26
+        },
+        {
+          "title": "profesional de salud - licenciado en psicologia mencion clinica",
+          "count": 26
+        },
+        {
+          "title": "profesional de salud - licenciado en psicologia",
+          "count": 26
+        },
+        {
+          "title": "profesional de salud - licenciado en farmacia",
+          "count": 26
+        }
+      ],
+      "top_institutions": [
+        {
+          "institution": "Ministerio de Salud Pública (MISPAS)",
+          "count": 903
+        }
+      ],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 932,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "cnzfe",
+        "mispas",
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2000,
+        "max_year": 2026
+      }
+    },
+    "comercio": {
+      "total_records": 37,
+      "total_empleos": 37,
+      "record_types": {
+        "position": 0,
+        "aggregate": 0,
+        "vacancy": 37
+      },
+      "records_with_salary": 0,
+      "salary_avg": null,
+      "salary_median": null,
+      "salary_min": null,
+      "salary_max": null,
+      "salary_pareto": null,
+      "top_titles": [
+        {
+          "title": "secretaria",
+          "count": 2
+        },
+        {
+          "title": "chofer de camion",
+          "count": 2
+        },
+        {
+          "title": "cajera (puerto plata)",
+          "count": 2
+        },
+        {
+          "title": "vendedor (puerto plata)",
+          "count": 2
+        },
+        {
+          "title": "cajera (higuey)",
+          "count": 2
+        },
+        {
+          "title": "encargada corte",
+          "count": 1
+        },
+        {
+          "title": "asistente administrativa (san juan d ela maguana)",
+          "count": 1
+        },
+        {
+          "title": "secretaria (san juan de la maguana)",
+          "count": 1
+        },
+        {
+          "title": "vendedores (san juan de la maguana)",
+          "count": 1
+        },
+        {
+          "title": "chofer (higuey)",
+          "count": 1
+        }
+      ],
+      "top_institutions": [],
+      "gender_distribution": {
+        "male": 0,
+        "female": 0,
+        "unknown": 37,
+        "male_pct": 0,
+        "female_pct": 0,
+        "unknown_pct": 100
+      },
+      "sources": [
+        "rdtrabaja"
+      ],
+      "period": {
+        "min_year": 2025,
         "max_year": 2026
       }
     },
