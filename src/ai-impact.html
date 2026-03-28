@@ -770,7 +770,6 @@
                         <li>&bull; <strong>G&eacute;nero incompleto:</strong> Datos solo para MAP (67% F / 33% M). An&aacute;lisis completo requiere ENCFT.</li>
                         <li>&bull; <strong>Informalidad estimada:</strong> Tasas de informalidad basadas en ENCFT sectorial, no observadas a nivel de ocupaci&oacute;n.</li>
                     </ul>
-                    <p class="text-xs text-slate-500 mt-2"><a href="#" onclick="openMethodologyModal(); return false;" class="text-blue-600 hover:text-blue-800 underline">Ver documentaci&oacute;n metodol&oacute;gica completa</a></p>
 
                     <h3 class="text-base font-bold text-slate-800 mt-6">Cr&eacute;ditos y Referencias</h3>
                     <p class="text-slate-600">An&aacute;lisis desarrollado por <strong>Carlos Miranda Levy</strong> (<a href="https://thesocialentrepreneur.com" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">thesocialentrepreneur.com</a>) / <strong>CEMI.ai</strong> en colaboraci&oacute;n con <strong>Sanba Development</strong>.</p>
@@ -779,12 +778,46 @@
                         <a href="https://ibizai.io/explore/opinions/the-intelligence-transition" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">The Intelligence Transition</a>
                     </p>
                     <p class="text-slate-500 text-xs mt-2">Felten, E., Raj, M. &amp; Seamans, R. (2021). &ldquo;Occupational, industry, and geographic exposure to artificial intelligence: A novel dataset and its potential uses.&rdquo; <em>Strategic Management Journal</em>, 42(12), 2195-2217.</p>
-                    <p class="mt-4">
-                        <a href="#" onclick="openMethodologyModal(); return false;" class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">
-                            <i data-lucide="file-text" class="w-4 h-4"></i>
-                            Abrir documento metodol&oacute;gico completo
-                        </a>
-                    </p>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Documentos de Trabajo y Planificaci&oacute;n Originales</h3>
+                    <p class="text-xs text-slate-500 mb-3">Estos documentos guiaron el dise&ntilde;o y desarrollo de este prototipo. La implementaci&oacute;n final puede haber cambiado y adaptado respecto a lo planificado originalmente.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/ai-impact-methodology.md', 'Metodolog\u00eda Completa'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Metodolog&iacute;a Completa (ai-impact-methodology.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Documento metodol&oacute;gico consolidado con f&oacute;rmulas, tablas, factores DR y hoja de ruta</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/AI-Workforce-Impact-DR-Methodology-Review.md', 'Revisi\u00f3n Metodol\u00f3gica'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Revisi&oacute;n Metodol&oacute;gica (AI-Workforce-Impact-DR-Methodology-Review.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Evaluaci&oacute;n cr&iacute;tica del marco V/S/A, recomendaciones de mejora y framework de 5 fases</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/AI-Workforce-DR-Working-Tools.md', 'Herramientas de Trabajo'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Herramientas de Trabajo (AI-Workforce-DR-Working-Tools.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Top 35 ocupaciones prioritarias, plantillas de scoring, instrumento Delphi para TAF-RD</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/AI-Workforce-DR-Sprint-Plan.md', 'Plan de Sprint'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Plan de Sprint (AI-Workforce-DR-Sprint-Plan.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Plan de ejecuci&oacute;n de 2-3 semanas, entregables por fase, riesgos y mitigaciones</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/AI-Impact-Prototype-Master-Prompt.md', 'Prompt de Prototipo'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Prompt Maestro del Prototipo (AI-Impact-Prototype-Master-Prompt.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Especificaci&oacute;n t&eacute;cnica original para la construcci&oacute;n del prototipo con Claude Code</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -1907,21 +1940,28 @@
         chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
     });
 
-    // ---- METHODOLOGY MODAL ----
-    let methodologyLoaded = false;
-    function openMethodologyModal() {
+    // ---- DOCUMENT MODAL ----
+    const docCache = {};
+    function loadDocModal(url, title) {
         const modal = document.getElementById('methodology-modal');
+        const titleEl = modal.querySelector('h2');
+        const body = document.getElementById('methodology-modal-body');
+        titleEl.textContent = title || 'Documento';
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-        if (!methodologyLoaded) {
-            fetch('../docs/ai-impact-methodology.md')
+        if (docCache[url]) {
+            body.innerHTML = docCache[url];
+        } else {
+            body.innerHTML = '<p class="text-slate-400 text-sm">Cargando...</p>';
+            fetch(url)
                 .then(r => r.ok ? r.text() : Promise.reject('No se pudo cargar'))
                 .then(md => {
-                    document.getElementById('methodology-modal-body').innerHTML = marked.parse(md);
-                    methodologyLoaded = true;
+                    const html = marked.parse(md);
+                    docCache[url] = html;
+                    body.innerHTML = html;
                 })
                 .catch(err => {
-                    document.getElementById('methodology-modal-body').innerHTML = `<p class="text-red-500">${err}</p>`;
+                    body.innerHTML = `<p class="text-red-500">${err}</p>`;
                 });
         }
     }
