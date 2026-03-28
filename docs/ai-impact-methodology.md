@@ -342,6 +342,93 @@ Basado en estos factores, los multiplicadores de velocidad están calibrados ~30
 
 ---
 
+## Niveles de Confianza de los Datos
+
+Siguiendo la recomendación de la revisión metodológica (AI-Workforce-Impact-DR-Methodology-Review.md), los scores se clasifican en tres niveles de confianza:
+
+| Nivel | Criterio | Margen de error | Ejemplo |
+|---|---|---|---|
+| **Tier 1** (Alta) | Datos a nivel de ocupación con salario real y ≥500 registros | ±5 puntos | Conserje en Admin. Pública (11,506 registros, salario MAP) |
+| **Tier 2** (Moderada) | AIOE por keyword match + salario sectorial promedio | ±10 puntos | Secretaria en Educación (keyword match, salario promedio del sector) |
+| **Tier 3** (Estimada) | AIOE por defecto sectorial + proxy salarial | ±15-20 puntos | Ocupaciones en TIC (2 registros, proxy salarial, AIOE sectorial) |
+
+En el prototipo actual, la mayoría de ocupaciones son Tier 2 (keyword match con salario sectorial). Las ocupaciones de los 4 sectores con >10,000 registros (Admin. Pública, Educación, Salud, Agricultura) se aproximan a Tier 1 gracias a la nómina MAP.
+
+---
+
+## La Paradoja de la Informalidad
+
+Un hallazgo contra-intuitivo del modelo: los trabajadores más vulnerables económicamente (Construcción con 85.4% informalidad, Agricultura con 80%) tienen los scores más bajos de Susceptibilidad a la IA. Esto crea la **Paradoja de la Informalidad**:
+
+- **Impacto directo bajo**: Las tareas manuales (albañilería, agricultura, servicio doméstico) son difícilmente automatizables.
+- **Impacto indirecto potencialmente alto**: A medida que el sector formal adopta IA y gana productividad, puede comprimir los mercados donde compiten trabajadores informales:
+  - Supermercados con self-checkout vs. colmados
+  - E-commerce con logística IA vs. vendedores ambulantes
+  - Aplicaciones de transporte vs. motoconchistas
+  - Cadenas hoteleras con IA vs. operadores turísticos informales
+
+Este impacto indirecto NO está modelado en el prototipo actual. Es un área crítica para investigación futura y una razón por la que los scores de Vulnerabilidad (V) pueden subestimar el riesgo real para estos trabajadores.
+
+---
+
+## Dimensión de Género
+
+Los datos de la nómina MAP (diciembre 2025) revelan una distribución de género significativa:
+
+- **Femenino**: 329,509 (66.8%)
+- **Masculino**: 164,045 (33.2%)
+
+Las ocupaciones con mayor representación femenina en el sector público dominicano — maestras, enfermeras, secretarias, auxiliares administrativas — tienen un perfil de riesgo mixto:
+
+- **Secretarias/Auxiliares administrativas** (AIOE 65-70): Alta susceptibilidad a la IA, moderada adaptabilidad. Zona de Atención Urgente en escenarios medios.
+- **Maestras** (AIOE 45): Susceptibilidad moderada, alta adaptabilidad por habilidades transferibles. Zona de Monitoreo.
+- **Enfermeras** (AIOE 38): Baja susceptibilidad, cuidado directo protegido. Zona de Oportunidad IA.
+
+La literatura internacional (IMF 2024, World Bank 2024) confirma que las mujeres en roles administrativos y de servicios enfrentan mayor exposición a la IA generativa que los hombres en roles manuales. En RD, esto tiene implicaciones directas: los ~263K empleados del Ministerio de Educación (mayoría mujeres) requieren estrategias de adaptación diferenciadas.
+
+Un análisis género-desagregado completo requiere acceso a ENCFT microdata, lo cual está fuera del alcance del prototipo actual.
+
+---
+
+## BPO / Call Centers como Micro-Sector de Riesgo Concentrado
+
+Los Business Process Outsourcing (BPO) y call centers en zonas francas representan un caso de riesgo concentrado que merece atención especial:
+
+- **~30,000 empleos directos** en call centers y BPOs de zonas francas
+- **AIOE = 82** (entre los más altos de cualquier ocupación)
+- **Adopción a ritmo global**: las casas matrices (no las subsidiarias dominicanas) deciden cuándo desplegar IA
+- **IA generativa como amenaza existencial**: chatbots multilingües, sistemas de atención automatizada y voice AI ya reemplazan funciones de call center a nivel mundial
+- **Demografía vulnerable**: empleados jóvenes (18-30), primer empleo formal, concentrados geográficamente en Santo Domingo y Santiago
+
+En el escenario por defecto (Promedio + Medio + Moderada), operadores de call center obtienen S=45. Pero en el escenario Rápida + Medio + Fuerte (plausible dado que las MNCs aceleran la adopción), el score sube a S=62 — Zona de Atención Urgente.
+
+Este micro-sector debería ser objeto de políticas de reconversión proactivas, no reactivas.
+
+---
+
+## Hoja de Ruta: Fases Futuras
+
+Este prototipo corresponde a la **Fase 1** de un marco de análisis de 5 fases propuesto en la revisión metodológica:
+
+| Fase | Descripción | Estado |
+|---|---|---|
+| **Fase 0**: Fundamentos de Datos | Pipeline de datos, normalización, taxonomía sectorial | ✅ Completada (757K registros) |
+| **Fase 1**: Evaluación de Impacto | Scoring V/S/A, clasificación de zonas, visualización interactiva | ✅ Prototipo completado |
+| **Fase 2**: Overlays Estructurales | Factor de Ajuste de Tareas Dominicano (TAF-RD), análisis de informalidad indirecta, dimensión de género | ⬜ Pendiente |
+| **Fase 3**: Escenarios y Temporalidad | Panel Delphi de expertos, escenarios calibrados, proyecciones temporales validadas | ⬜ Pendiente |
+| **Fase 4**: Política Pública | Recomendaciones sectoriales, programas de reconversión, integración con INFOTEP/MINERD | ⬜ Pendiente |
+| **Fase 5**: Monitoreo Continuo | Dashboard en tiempo real, alertas sectoriales, actualización periódica de scores | ⬜ Pendiente |
+
+### Mejoras Prioritarias para Fase 2
+
+1. **TAF-RD (Factor de Ajuste de Tareas Dominicano)**: Validación mediante panel Delphi de 5-10 líderes empresariales dominicanos. El instrumento Delphi ya está diseñado (ver AI-Workforce-DR-Working-Tools.md).
+2. **Clasificación ISCO-08**: Concordancia formal entre títulos de cargo dominicanos y la Clasificación Internacional Uniforme de Ocupaciones, permitiendo comparaciones internacionales.
+3. **A-Score ampliado**: Incorporar capacidad de INFOTEP por sector, dominio de inglés, factor etario (cohorte 18-30 más adaptable), y factor de movilidad geográfica (migración a SDQ/STI).
+4. **Modelo de informalidad indirecta**: Simular el efecto de compresión de mercado cuando competidores formales adoptan IA.
+5. **Acceso a ENCFT microdata**: Datos a nivel de hogar del Banco Central permitirían scoring Tier 1 para todas las ocupaciones.
+
+---
+
 ## Limitaciones del Prototipo
 
 1. **TAF=1.0:** No se ajusta por diferencias en composición de tareas entre RD y EE.UU. Un maestro dominicano y uno estadounidense hacen tareas diferentes, pero reciben el mismo AIOE.
@@ -349,9 +436,11 @@ Basado en estos factores, los multiplicadores de velocidad están calibrados ~30
 3. **Datos mixtos:** Algunos scores usan datos a nivel de ocupación (títulos de cargo); otros usan proxies sectoriales cuando no hay coincidencia de keywords.
 4. **Umbral de 500 registros:** Sectores pequeños (Manufactura: 131 registros, TIC: 2) usan proxies salariales que pueden no reflejar la realidad.
 5. **A-Score simplificado:** No incorpora infraestructura de reentrenamiento (INFOTEP), movilidad geográfica, factor etario, idiomas, ni acceso a programas de reconversión.
-6. **Informalidad como factor indirecto:** El prototipo captura informalidad como vulnerabilidad pero no modela los efectos indirectos de la IA en mercados informales (compresión de mercado por competidores formales que adoptan IA).
-7. **Keyword matching:** La asignación de AIOE por coincidencia de palabras clave es imprecisa — "auxiliar administrativo" recibe un score diferente a "asistente de oficina" aunque son funciones similares.
-8. **Sector público dominante:** 493K de 757K registros son del sector público (MAP). El análisis está sesgado hacia ocupaciones gubernamentales y subrepresenta al sector privado.
+6. **Informalidad indirecta no modelada:** El prototipo captura informalidad como vulnerabilidad pero no modela los efectos indirectos de la IA en mercados informales (compresión de mercado por competidores formales que adoptan IA). Ver sección "La Paradoja de la Informalidad".
+7. **Keyword matching:** La asignación de AIOE por coincidencia de palabras clave es imprecisa — "auxiliar administrativo" recibe un score diferente a "asistente de oficina" aunque son funciones similares. Una concordancia formal ISCO-08 resolvería esto.
+8. **Sector público dominante:** 493K de 757K registros son del sector público (MAP). El análisis está sesgado hacia ocupaciones gubernamentales y subrepresenta al sector privado formal e informal.
+9. **Sin panel de validación:** Los scores no han sido validados por expertos dominicanos. Un panel Delphi (diseñado en AI-Workforce-DR-Working-Tools.md) es necesario para calibrar el TAF-RD.
+10. **Dimensión de género incompleta:** Datos de género disponibles solo para MAP (67% F / 33% M). Un análisis diferenciado completo requiere ENCFT microdata.
 
 ---
 
@@ -372,7 +461,7 @@ Basado en estos factores, los multiplicadores de velocidad están calibrados ~30
 
 ## Créditos
 
-Análisis desarrollado por **CEMI.ai** (Collectively Enhanced Multiple Intelligence) en colaboración con **Sanba Development**.
+Análisis desarrollado por **Carlos Miranda Levy** ([thesocialentrepreneur.com](https://thesocialentrepreneur.com)) / **CEMI.ai** (Collectively Enhanced Multiple Intelligence) en colaboración con **Sanba Development**.
 
 Datos: Sanba Development RD Job Visualizer (757K+ registros, 12 sectores, 14+ fuentes gubernamentales).
 
