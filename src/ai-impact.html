@@ -444,6 +444,136 @@
             </div>
         </div>
 
+        <!-- ---- ANÁLISIS SISTÉMICO ---- -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+            <button id="systemic-toggle" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">An&aacute;lisis Sist&eacute;mico</h2>
+                    <p class="text-sm text-slate-500 mt-0.5">Paradoja de la informalidad, dimensi&oacute;n de g&eacute;nero, riesgo BPO y factores de adopci&oacute;n en RD</p>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform shrink-0 ml-3" id="systemic-chevron"></i>
+            </button>
+            <div id="systemic-content" class="hidden px-5 pb-6">
+
+                <!-- Paradoja de la Informalidad -->
+                <div class="mt-4 mb-6">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <i data-lucide="alert-circle" class="w-5 h-5 text-amber-500"></i>
+                        La Paradoja de la Informalidad
+                    </h3>
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-3">
+                        <p class="text-sm text-slate-700 font-medium">Los trabajadores m&aacute;s vulnerables econ&oacute;micamente tienen los scores m&aacute;s bajos de Susceptibilidad a la IA.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
+                        <div class="bg-green-50/50 rounded-lg p-4 border border-green-100">
+                            <p class="font-semibold text-green-800 text-xs uppercase tracking-wide mb-2">Impacto directo: bajo</p>
+                            <p>Las tareas manuales (alba&ntilde;iler&iacute;a, agricultura, servicio dom&eacute;stico, motoconcho) son dif&iacute;cilmente automatizables. Un alba&ntilde;il tiene AIOE de 12 — pr&aacute;cticamente inmune a la IA directa.</p>
+                        </div>
+                        <div class="bg-red-50/50 rounded-lg p-4 border border-red-100">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wide mb-2">Impacto indirecto: potencialmente alto</p>
+                            <p>Competidores formales que adoptan IA comprimen los mercados informales:</p>
+                            <ul class="mt-2 space-y-1 text-xs">
+                                <li>&bull; Supermercados con self-checkout vs. <strong>colmados</strong></li>
+                                <li>&bull; E-commerce con log&iacute;stica IA vs. <strong>vendedores ambulantes</strong></li>
+                                <li>&bull; Apps de transporte vs. <strong>motoconchistas</strong></li>
+                                <li>&bull; Cadenas hoteleras con IA vs. <strong>operadores tur&iacute;sticos informales</strong></li>
+                                <li>&bull; Chatbots bancarios vs. <strong>prestamistas informales</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3">Este impacto indirecto NO est&aacute; modelado en el prototipo actual. Es un &aacute;rea cr&iacute;tica para investigaci&oacute;n futura.</p>
+                </div>
+
+                <!-- Dimensión de Género -->
+                <div class="mb-6">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <i data-lucide="users" class="w-5 h-5 text-purple-500"></i>
+                        Dimensi&oacute;n de G&eacute;nero
+                    </h3>
+                    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 mb-3">
+                        <p class="text-sm text-slate-700"><strong>67% de la n&oacute;mina p&uacute;blica son mujeres</strong> (329,509 de 493,554 registros MAP, diciembre 2025)</p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Ocupaci&oacute;n</th>
+                                    <th class="px-3 py-2 text-center font-semibold text-slate-700">% Mujeres</th>
+                                    <th class="px-3 py-2 text-center font-semibold text-slate-700">AIOE</th>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Perfil de riesgo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr><td class="px-3 py-2">Secretaria / Auxiliar admin.</td><td class="px-3 py-2 text-center">~85%</td><td class="px-3 py-2 text-center font-semibold text-red-600">65-70</td><td class="px-3 py-2">Alta susceptibilidad. Zona Atenci&oacute;n Urgente.</td></tr>
+                                <tr><td class="px-3 py-2">Maestra</td><td class="px-3 py-2 text-center">~78%</td><td class="px-3 py-2 text-center font-semibold text-yellow-600">45</td><td class="px-3 py-2">Moderada. Contenido impactado, mentor&iacute;a protegida.</td></tr>
+                                <tr><td class="px-3 py-2">Enfermera</td><td class="px-3 py-2 text-center">~90%</td><td class="px-3 py-2 text-center font-semibold text-green-600">38</td><td class="px-3 py-2">Baja. Cuidado directo pr&aacute;cticamente inmune a IA.</td></tr>
+                                <tr><td class="px-3 py-2">Digitadora</td><td class="px-3 py-2 text-center">~70%</td><td class="px-3 py-2 text-center font-semibold text-red-600">85</td><td class="px-3 py-2">Muy alta. Tarea eliminable a corto plazo.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3">La literatura internacional (IMF 2024, World Bank 2024) confirma que las mujeres en roles administrativos enfrentan mayor exposici&oacute;n a IA generativa. Los 263K empleados del Ministerio de Educaci&oacute;n (mayor&iacute;a mujeres) requieren estrategias de adaptaci&oacute;n diferenciadas.</p>
+                </div>
+
+                <!-- BPO / Call Centers -->
+                <div class="mb-6">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <i data-lucide="phone-call" class="w-5 h-5 text-red-500"></i>
+                        BPO / Call Centers: Riesgo Concentrado
+                    </h3>
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mb-3">
+                            <div><p class="text-2xl font-bold text-red-700">~30K</p><p class="text-xs text-slate-500">empleos directos</p></div>
+                            <div><p class="text-2xl font-bold text-red-700">82</p><p class="text-xs text-slate-500">AIOE (muy alto)</p></div>
+                            <div><p class="text-2xl font-bold text-red-700">18-30</p><p class="text-xs text-slate-500">a&ntilde;os (demograf&iacute;a)</p></div>
+                            <div><p class="text-2xl font-bold text-red-700">MNC</p><p class="text-xs text-slate-500">deciden adopci&oacute;n</p></div>
+                        </div>
+                        <p class="text-sm text-slate-700">Las casas matrices de las MNCs &mdash; no las subsidiarias dominicanas &mdash; deciden cu&aacute;ndo desplegar chatbots y voice AI que reemplazan funciones de call center. Estos empleados j&oacute;venes, en su primer empleo formal, concentrados en Santo Domingo y Santiago, requieren <strong>pol&iacute;ticas de reconversi&oacute;n proactivas, no reactivas</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Factores DR (already existed, now moved here) -->
+                <div class="mb-2">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-blue-500"></i>
+                        Factores que Impactan la Adopci&oacute;n de IA en RD
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-3">Los multiplicadores est&aacute;n calibrados ~30% por debajo de econom&iacute;as desarrolladas, reflejando factores espec&iacute;ficos de Rep&uacute;blica Dominicana:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-red-50/50 rounded-lg p-3 border border-red-100">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wide mb-1.5">Factores que retardan</p>
+                            <ul class="text-slate-600 space-y-1 text-xs">
+                                <li>&bull; Informalidad laboral del 54% (ENCFT 2025)</li>
+                                <li>&bull; Bajo costo de mano de obra vs. costo de IA</li>
+                                <li>&bull; Brechas de infraestructura digital fuera de SDQ</li>
+                                <li>&bull; 493K+ empleados p&uacute;blicos en sistemas legados</li>
+                                <li>&bull; 98.1% MiPyMEs sin capacidad de inversi&oacute;n TI</li>
+                                <li>&bull; INFOTEP con oferta limitada en IA</li>
+                                <li>&bull; Barreras ling&uuml;&iacute;sticas (espa&ntilde;ol dominicano)</li>
+                                <li>&bull; Resistencia institucional y sindical</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50/50 rounded-lg p-3 border border-green-100">
+                            <p class="font-semibold text-green-800 text-xs uppercase tracking-wide mb-1.5">Factores que aceleran</p>
+                            <ul class="text-slate-600 space-y-1 text-xs">
+                                <li>&bull; Zonas francas y MNCs adoptan a ritmo global</li>
+                                <li>&bull; Banca ya despliega chatbots y scoring con IA</li>
+                                <li>&bull; Remesas (~10% PIB) y presi&oacute;n diasporiana</li>
+                                <li>&bull; Poblaci&oacute;n joven (mediana 28 a&ntilde;os) y digital</li>
+                                <li>&bull; Turismo (~15% PIB) con cadenas internacionales</li>
+                                <li>&bull; Ausencia de regulaci&oacute;n de IA (sin barreras)</li>
+                                <li>&bull; ENIA y apoyo BID/UNESCO</li>
+                                <li>&bull; Competencia regional (CR, Panam&aacute;, Colombia)</li>
+                                <li>&bull; Costos de IA decrecientes (~50% anual)</li>
+                                <li>&bull; Efecto demostraci&oacute;n del sector privado formal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2"><a href="#" onclick="openMethodologyModal(); return false;" class="text-blue-600 hover:text-blue-800 underline">Ver an&aacute;lisis detallado de cada factor</a></p>
+                </div>
+
+            </div>
+        </div>
+
         <!-- ---- SECTOR EXPLANATIONS ---- -->
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
             <button id="explanations-toggle" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors">
@@ -597,39 +727,50 @@
                     <h3 class="text-base font-bold text-slate-800 mt-6">Agregaci&oacute;n de Rankings</h3>
                     <p class="text-slate-600">Los rankings Top 10 agregan ocupaciones con el mismo t&iacute;tulo que aparecen en m&uacute;ltiples sectores. Los scores V/S/A se calculan como promedios ponderados por cantidad de trabajadores. Por ejemplo, &ldquo;conserje&rdquo; aparece en 8+ sectores; el ranking muestra una sola entrada con el promedio ponderado de todos los sectores donde existe esa ocupaci&oacute;n. Adicionalmente, se normalizan variantes de g&eacute;nero en los t&iacute;tulos: ocupaciones como &ldquo;supervisor (a)&rdquo; y &ldquo;supervisor&rdquo;, o &ldquo;encargado(a)&rdquo; y &ldquo;encargado&rdquo;, se consolidan en una sola entrada.</p>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Factores que Impactan la Adopci&oacute;n de IA en RD</h3>
-                    <p class="text-slate-600 mb-2">Los multiplicadores est&aacute;n calibrados ~30% por debajo de econom&iacute;as desarrolladas, reflejando factores espec&iacute;ficos de Rep&uacute;blica Dominicana:</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                        <div class="bg-red-50/50 rounded-lg p-3 border border-red-100">
-                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wide mb-1.5">Factores que retardan</p>
-                            <ul class="text-slate-600 space-y-1 text-xs">
-                                <li>&bull; Informalidad laboral del 54% (ENCFT 2025)</li>
-                                <li>&bull; Bajo costo de mano de obra vs. costo de IA</li>
-                                <li>&bull; Brechas de infraestructura digital fuera de SDQ</li>
-                                <li>&bull; 493K+ empleados p&uacute;blicos en sistemas legados</li>
-                                <li>&bull; 98.1% MiPyMEs sin capacidad de inversi&oacute;n TI</li>
-                                <li>&bull; INFOTEP con oferta limitada en IA</li>
-                                <li>&bull; Barreras ling&uuml;&iacute;sticas (espa&ntilde;ol dominicano)</li>
-                                <li>&bull; Resistencia institucional y sindical</li>
-                            </ul>
-                        </div>
-                        <div class="bg-green-50/50 rounded-lg p-3 border border-green-100">
-                            <p class="font-semibold text-green-800 text-xs uppercase tracking-wide mb-1.5">Factores que aceleran</p>
-                            <ul class="text-slate-600 space-y-1 text-xs">
-                                <li>&bull; Zonas francas y MNCs adoptan a ritmo global</li>
-                                <li>&bull; Banca ya despliega chatbots y scoring con IA</li>
-                                <li>&bull; Remesas (~10% PIB) y presi&oacute;n diasporiana</li>
-                                <li>&bull; Poblaci&oacute;n joven (mediana 28 a&ntilde;os) y digital</li>
-                                <li>&bull; Turismo (~15% PIB) con cadenas internacionales</li>
-                                <li>&bull; Ausencia de regulaci&oacute;n de IA (sin barreras)</li>
-                                <li>&bull; ENIA y apoyo BID/UNESCO</li>
-                                <li>&bull; Competencia regional (CR, Panam&aacute;, Colombia)</li>
-                                <li>&bull; Costos de IA decrecientes (~50% anual)</li>
-                                <li>&bull; Efecto demostraci&oacute;n del sector privado formal</li>
-                            </ul>
-                        </div>
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Niveles de Confianza de los Datos</h3>
+                    <div class="overflow-x-auto mt-2">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Nivel</th>
+                                    <th class="px-3 py-2 text-center font-semibold text-slate-700">Margen</th>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Criterio</th>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Ejemplo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr><td class="px-3 py-2 font-medium text-green-700">Tier 1 (Alta)</td><td class="px-3 py-2 text-center">&plusmn;5</td><td class="px-3 py-2">Datos a nivel de ocupaci&oacute;n + salario real + &ge;500 registros</td><td class="px-3 py-2">Conserje en Admin. P&uacute;blica</td></tr>
+                                <tr><td class="px-3 py-2 font-medium text-yellow-700">Tier 2 (Moderada)</td><td class="px-3 py-2 text-center">&plusmn;10</td><td class="px-3 py-2">AIOE por keyword + salario promedio sectorial</td><td class="px-3 py-2">Secretaria en Educaci&oacute;n</td></tr>
+                                <tr><td class="px-3 py-2 font-medium text-red-700">Tier 3 (Estimada)</td><td class="px-3 py-2 text-center">&plusmn;15-20</td><td class="px-3 py-2">AIOE por defecto sectorial + proxy salarial</td><td class="px-3 py-2">Ocupaciones en TIC (2 registros)</td></tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <p class="text-xs text-slate-500 mt-2"><a href="#" onclick="openMethodologyModal(); return false;" class="text-blue-600 hover:text-blue-800 underline">Ver documentaci&oacute;n completa</a></p>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Hoja de Ruta</h3>
+                    <p class="text-slate-600 text-sm mb-2">Este prototipo es la <strong>Fase 1</strong> de un marco de 5 fases:</p>
+                    <div class="space-y-1.5 text-xs text-slate-600">
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[10px] font-bold shrink-0">&#10003;</span><span><strong>Fase 0</strong>: Fundamentos de datos (757K registros, 14+ fuentes)</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[10px] font-bold shrink-0">&#10003;</span><span><strong>Fase 1</strong>: Evaluaci&oacute;n V/S/A + visualizaci&oacute;n interactiva (este prototipo)</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">2</span><span><strong>Fase 2</strong>: TAF-RD (Delphi), ISCO-08, an&aacute;lisis de g&eacute;nero, modelo de informalidad indirecta</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">3</span><span><strong>Fase 3</strong>: Panel de expertos, escenarios calibrados, proyecciones validadas</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">4</span><span><strong>Fase 4</strong>: Recomendaciones de pol&iacute;tica p&uacute;blica, integraci&oacute;n INFOTEP/MINERD</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">5</span><span><strong>Fase 5</strong>: Dashboard en tiempo real, alertas sectoriales, monitoreo continuo</span></div>
+                    </div>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Limitaciones del Prototipo</h3>
+                    <ul class="text-slate-600 space-y-1 text-xs">
+                        <li>&bull; <strong>TAF=1.0:</strong> No se ajusta por diferencias en composici&oacute;n de tareas entre RD y EE.UU.</li>
+                        <li>&bull; <strong>AIOE pre-LLMs:</strong> &Iacute;ndice de 2021, anterior a ChatGPT/Claude/Gemini. Intensidad &ldquo;Fuerte&rdquo; (&times;1.25) compensa parcialmente.</li>
+                        <li>&bull; <strong>Keyword matching:</strong> Asignaci&oacute;n de AIOE por coincidencia de palabras clave, no por clasificaci&oacute;n ISCO-08 formal.</li>
+                        <li>&bull; <strong>Datos sectoriales:</strong> Salarios reflejan promedios sectoriales, no por ocupaci&oacute;n espec&iacute;fica. Sectores con &lt;500 registros usan proxies.</li>
+                        <li>&bull; <strong>A-Score simplificado:</strong> No incorpora INFOTEP, movilidad geogr&aacute;fica, factor etario ni idiomas.</li>
+                        <li>&bull; <strong>Informalidad indirecta:</strong> No modela compresi&oacute;n de mercado informal por competidores formales con IA.</li>
+                        <li>&bull; <strong>Sector p&uacute;blico dominante:</strong> 493K de 757K registros son del sector p&uacute;blico (MAP).</li>
+                        <li>&bull; <strong>Sin validaci&oacute;n experta:</strong> Scores no validados por panel Delphi de l&iacute;deres dominicanos.</li>
+                        <li>&bull; <strong>G&eacute;nero incompleto:</strong> Datos solo para MAP (67% F / 33% M). An&aacute;lisis completo requiere ENCFT.</li>
+                        <li>&bull; <strong>Informalidad estimada:</strong> Tasas de informalidad basadas en ENCFT sectorial, no observadas a nivel de ocupaci&oacute;n.</li>
+                    </ul>
+                    <p class="text-xs text-slate-500 mt-2"><a href="#" onclick="openMethodologyModal(); return false;" class="text-blue-600 hover:text-blue-800 underline">Ver documentaci&oacute;n metodol&oacute;gica completa</a></p>
 
                     <h3 class="text-base font-bold text-slate-800 mt-6">Cr&eacute;ditos y Referencias</h3>
                     <p class="text-slate-600">An&aacute;lisis desarrollado por <strong>Carlos Miranda Levy</strong> (<a href="https://thesocialentrepreneur.com" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">thesocialentrepreneur.com</a>) / <strong>CEMI.ai</strong> en colaboraci&oacute;n con <strong>Sanba Development</strong>.</p>
@@ -1712,6 +1853,14 @@
     });
 
     // ---- METHODOLOGY TOGGLE ----
+    // ---- SYSTEMIC TOGGLE ----
+    document.getElementById('systemic-toggle').addEventListener('click', () => {
+        const content = document.getElementById('systemic-content');
+        const chevron = document.getElementById('systemic-chevron');
+        content.classList.toggle('hidden');
+        chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+
     // ---- EXPLANATIONS TOGGLE ----
     document.getElementById('explanations-toggle').addEventListener('click', () => {
         const content = document.getElementById('explanations-content');
