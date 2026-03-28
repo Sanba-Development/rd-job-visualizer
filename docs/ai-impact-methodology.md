@@ -37,9 +37,9 @@ El S-Score se ajusta mediante dos multiplicadores combinados: `S_mostrado = min(
 
 | Velocidad | Corto (2026-28) | Medio (2028-32) | Largo (2032+) |
 |---|---|---|---|
-| Lenta | ×0.15 | ×0.35 | ×0.60 |
-| Promedio | ×0.30 | ×0.60 | ×0.90 |
-| Rápida | ×0.50 | ×0.80 | ×0.95 |
+| Lenta | ×0.30 | ×0.50 | ×0.70 |
+| Promedio | ×0.50 | ×0.75 | ×0.90 |
+| Rápida | ×0.70 | ×0.90 | ×1.00 |
 
 **Intensidad de Adopción** (qué tan profundamente penetra la IA en cada ocupación):
 - Leve (×0.5): IA augmenta pero no reemplaza — humanos permanecen en el loop
