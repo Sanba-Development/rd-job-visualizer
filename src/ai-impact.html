@@ -192,13 +192,13 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <!-- V-Score Ring -->
                 <div class="bg-white rounded-xl p-5 flex flex-col items-center border border-slate-100">
-                    <div class="relative w-28 h-28">
-                        <svg class="w-28 h-28 -rotate-90" viewBox="0 0 120 120">
-                            <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" stroke-width="10"/>
-                            <circle id="ring-v" cx="60" cy="60" r="52" fill="none" stroke="#DC2626" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="gauge-arc"/>
+                    <div class="relative w-20 h-20">
+                        <svg class="w-20 h-20 -rotate-90" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="#e2e8f0" stroke-width="7"/>
+                            <circle id="ring-v" cx="40" cy="40" r="36" fill="none" stroke="#DC2626" stroke-width="7" stroke-linecap="round" stroke-dasharray="226.19" stroke-dashoffset="226.19" class="gauge-arc"/>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span id="gauge-v-value" class="text-2xl font-extrabold text-slate-900">--</span>
+                            <span id="gauge-v-value" class="text-xl font-extrabold text-slate-900">--</span>
                         </div>
                     </div>
                     <p class="text-sm font-semibold text-slate-700 mt-3">Vulnerabilidad</p>
@@ -207,13 +207,13 @@
                 </div>
                 <!-- S-Score Ring -->
                 <div class="bg-white rounded-xl p-5 flex flex-col items-center border border-slate-100">
-                    <div class="relative w-28 h-28">
-                        <svg class="w-28 h-28 -rotate-90" viewBox="0 0 120 120">
-                            <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" stroke-width="10"/>
-                            <circle id="ring-s" cx="60" cy="60" r="52" fill="none" stroke="#8B5CF6" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="gauge-arc"/>
+                    <div class="relative w-20 h-20">
+                        <svg class="w-20 h-20 -rotate-90" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="#e2e8f0" stroke-width="7"/>
+                            <circle id="ring-s" cx="40" cy="40" r="36" fill="none" stroke="#8B5CF6" stroke-width="7" stroke-linecap="round" stroke-dasharray="226.19" stroke-dashoffset="226.19" class="gauge-arc"/>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span id="gauge-s-value" class="text-2xl font-extrabold text-slate-900">--</span>
+                            <span id="gauge-s-value" class="text-xl font-extrabold text-slate-900">--</span>
                         </div>
                     </div>
                     <p class="text-sm font-semibold text-slate-700 mt-3">Susceptibilidad a la IA</p>
@@ -222,13 +222,13 @@
                 </div>
                 <!-- A-Score Ring -->
                 <div class="bg-white rounded-xl p-5 flex flex-col items-center border border-slate-100">
-                    <div class="relative w-28 h-28">
-                        <svg class="w-28 h-28 -rotate-90" viewBox="0 0 120 120">
-                            <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" stroke-width="10"/>
-                            <circle id="ring-a" cx="60" cy="60" r="52" fill="none" stroke="#10B981" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="gauge-arc"/>
+                    <div class="relative w-20 h-20">
+                        <svg class="w-20 h-20 -rotate-90" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="#e2e8f0" stroke-width="7"/>
+                            <circle id="ring-a" cx="40" cy="40" r="36" fill="none" stroke="#10B981" stroke-width="7" stroke-linecap="round" stroke-dasharray="226.19" stroke-dashoffset="226.19" class="gauge-arc"/>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span id="gauge-a-value" class="text-2xl font-extrabold text-slate-900">--</span>
+                            <span id="gauge-a-value" class="text-xl font-extrabold text-slate-900">--</span>
                         </div>
                     </div>
                     <p class="text-sm font-semibold text-slate-700 mt-3">Adaptabilidad</p>
@@ -636,20 +636,28 @@
     }
 
     // ---- GAUGES (ring indicators) ----
-    const RING_CIRCUMFERENCE = 2 * Math.PI * 52; // ~326.73
+    const RING_CIRCUMFERENCE = 2 * Math.PI * 36; // ~226.19
 
-    function updateRing(ringId, valueId, value) {
+    function scoreColor(value, invert) {
+        if (invert) { value = 100 - value; }
+        if (value <= 35) return '#10B981';
+        if (value < 70) return '#F59E0B';
+        return '#DC2626';
+    }
+
+    function updateRing(ringId, valueId, value, invert) {
         const ring = document.getElementById(ringId);
         const label = document.getElementById(valueId);
         const offset = RING_CIRCUMFERENCE * (1 - Math.min(value, 100) / 100);
         ring.style.strokeDashoffset = offset;
+        ring.style.stroke = scoreColor(value, invert);
         label.textContent = value;
     }
 
     function updateGauges(global) {
-        updateRing('ring-v', 'gauge-v-value', global.avgV);
-        updateRing('ring-s', 'gauge-s-value', global.avgS);
-        updateRing('ring-a', 'gauge-a-value', global.avgA);
+        updateRing('ring-v', 'gauge-v-value', global.avgV, false);
+        updateRing('ring-s', 'gauge-s-value', global.avgS, false);
+        updateRing('ring-a', 'gauge-a-value', global.avgA, true);
     }
 
     // ---- ZONE BAR ----
