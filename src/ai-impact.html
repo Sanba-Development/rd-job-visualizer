@@ -493,6 +493,40 @@
                     <h3 class="text-base font-bold text-slate-800 mt-6">Agregaci&oacute;n de Rankings</h3>
                     <p class="text-slate-600">Los rankings Top 10 agregan ocupaciones con el mismo t&iacute;tulo que aparecen en m&uacute;ltiples sectores. Los scores V/S/A se calculan como promedios ponderados por cantidad de trabajadores. Por ejemplo, &ldquo;conserje&rdquo; aparece en 8+ sectores; el ranking muestra una sola entrada con el promedio ponderado de todos los sectores donde existe esa ocupaci&oacute;n. Adicionalmente, se normalizan variantes de g&eacute;nero en los t&iacute;tulos: ocupaciones como &ldquo;supervisor (a)&rdquo; y &ldquo;supervisor&rdquo;, o &ldquo;encargado(a)&rdquo; y &ldquo;encargado&rdquo;, se consolidan en una sola entrada.</p>
 
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Factores que Impactan la Adopci&oacute;n de IA en RD</h3>
+                    <p class="text-slate-600 mb-2">Los multiplicadores est&aacute;n calibrados ~30% por debajo de econom&iacute;as desarrolladas, reflejando factores espec&iacute;ficos de Rep&uacute;blica Dominicana:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-red-50/50 rounded-lg p-3 border border-red-100">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wide mb-1.5">Factores que retardan</p>
+                            <ul class="text-slate-600 space-y-1 text-xs">
+                                <li>&bull; Informalidad laboral del 54% (ENCFT 2025)</li>
+                                <li>&bull; Bajo costo de mano de obra vs. costo de IA</li>
+                                <li>&bull; Brechas de infraestructura digital fuera de SDQ</li>
+                                <li>&bull; 493K+ empleados p&uacute;blicos en sistemas legados</li>
+                                <li>&bull; 98.1% MiPyMEs sin capacidad de inversi&oacute;n TI</li>
+                                <li>&bull; INFOTEP con oferta limitada en IA</li>
+                                <li>&bull; Barreras ling&uuml;&iacute;sticas (espa&ntilde;ol dominicano)</li>
+                                <li>&bull; Resistencia institucional y sindical</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50/50 rounded-lg p-3 border border-green-100">
+                            <p class="font-semibold text-green-800 text-xs uppercase tracking-wide mb-1.5">Factores que aceleran</p>
+                            <ul class="text-slate-600 space-y-1 text-xs">
+                                <li>&bull; Zonas francas y MNCs adoptan a ritmo global</li>
+                                <li>&bull; Banca ya despliega chatbots y scoring con IA</li>
+                                <li>&bull; Remesas (~10% PIB) y presi&oacute;n diasporiana</li>
+                                <li>&bull; Poblaci&oacute;n joven (mediana 28 a&ntilde;os) y digital</li>
+                                <li>&bull; Turismo (~15% PIB) con cadenas internacionales</li>
+                                <li>&bull; Ausencia de regulaci&oacute;n de IA (sin barreras)</li>
+                                <li>&bull; ENIA y apoyo BID/UNESCO</li>
+                                <li>&bull; Competencia regional (CR, Panam&aacute;, Colombia)</li>
+                                <li>&bull; Costos de IA decrecientes (~50% anual)</li>
+                                <li>&bull; Efecto demostraci&oacute;n del sector privado formal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Ver documentaci&oacute;n completa en <code>docs/ai-impact-methodology.md</code></p>
+
                     <h3 class="text-base font-bold text-slate-800 mt-6">Cr&eacute;ditos y Referencias</h3>
                     <p class="text-slate-600">An&aacute;lisis desarrollado por <strong>CEMI.ai</strong> en colaboraci&oacute;n con <strong>Sanba Development</strong>.</p>
                     <p class="text-slate-600 mt-2">
@@ -572,9 +606,9 @@
 
     // Adoption speed multipliers: [short, medium, long]
     const ADOPTION_SPEEDS = {
-        slow:    { short: 0.30, medium: 0.50, long: 0.70 },
-        average: { short: 0.50, medium: 0.75, long: 0.90 },
-        fast:    { short: 0.70, medium: 0.90, long: 1.00 }
+        slow:    { short: 0.20, medium: 0.35, long: 0.55 },
+        average: { short: 0.35, medium: 0.55, long: 0.75 },
+        fast:    { short: 0.55, medium: 0.75, long: 0.90 }
     };
 
     // Adoption intensity multipliers
