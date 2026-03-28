@@ -288,70 +288,81 @@
         <div id="occupation-detail" class="detail-panel bg-white rounded-2xl border border-slate-200 shadow-sm mb-8 px-6"></div>
 
         <!-- ---- TOP 10 RANKINGS ---- -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-red-100 bg-red-50/50">
-                    <h2 class="text-base font-bold text-red-800 flex items-center gap-2">
-                        <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                        Top 10 M&aacute;s Vulnerables
-                    </h2>
-                    <p class="text-xs text-red-600 mt-0.5">Ocupaciones con mayor riesgo compuesto</p>
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+            <button id="rankings-toggle" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">Ocupaciones Top y Bottom 10 en Vulnerabilidad, Susceptibilidad a la IA y Adaptabilidad</h2>
+                    <p class="text-sm text-slate-500 mt-0.5">Rankings de ocupaciones agregadas a nivel nacional con scores ponderados</p>
                 </div>
-                <div id="top-vulnerable" class="divide-y divide-slate-100"></div>
-            </div>
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-green-100 bg-green-50/50">
-                    <h2 class="text-base font-bold text-green-800 flex items-center gap-2">
-                        <i data-lucide="shield-check" class="w-4 h-4"></i>
-                        Top 10 M&aacute;s Seguros
-                    </h2>
-                    <p class="text-xs text-green-600 mt-0.5">Ocupaciones con menor exposici&oacute;n a IA</p>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform shrink-0 ml-3" id="rankings-chevron"></i>
+            </button>
+            <div id="rankings-content" class="hidden px-5 pb-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-red-100 bg-red-50/50">
+                            <h3 class="text-base font-bold text-red-800 flex items-center gap-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                                Top 10 M&aacute;s Vulnerables
+                            </h3>
+                            <p class="text-xs text-red-600 mt-0.5">Ocupaciones con mayor riesgo compuesto</p>
+                        </div>
+                        <div id="top-vulnerable" class="divide-y divide-slate-100"></div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-green-100 bg-green-50/50">
+                            <h3 class="text-base font-bold text-green-800 flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                Top 10 M&aacute;s Seguros
+                            </h3>
+                            <p class="text-xs text-green-600 mt-0.5">Ocupaciones con menor exposici&oacute;n a IA</p>
+                        </div>
+                        <div id="top-secure" class="divide-y divide-slate-100"></div>
+                    </div>
                 </div>
-                <div id="top-secure" class="divide-y divide-slate-100"></div>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-purple-100 bg-purple-50/50">
-                    <h2 class="text-base font-bold text-purple-800 flex items-center gap-2">
-                        <i data-lucide="brain-circuit" class="w-4 h-4"></i>
-                        Top 10 M&aacute;s Susceptibles a Impacto de la IA
-                    </h2>
-                    <p class="text-xs text-purple-600 mt-0.5">Ocupaciones con mayor exposici&oacute;n a automatizaci&oacute;n por IA</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-purple-100 bg-purple-50/50">
+                            <h3 class="text-base font-bold text-purple-800 flex items-center gap-2">
+                                <i data-lucide="brain-circuit" class="w-4 h-4"></i>
+                                Top 10 M&aacute;s Susceptibles a Impacto de la IA
+                            </h3>
+                            <p class="text-xs text-purple-600 mt-0.5">Ocupaciones con mayor exposici&oacute;n a automatizaci&oacute;n por IA</p>
+                        </div>
+                        <div id="top-susceptible" class="divide-y divide-slate-100"></div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-blue-100 bg-blue-50/50">
+                            <h3 class="text-base font-bold text-blue-800 flex items-center gap-2">
+                                <i data-lucide="shield" class="w-4 h-4"></i>
+                                Top 10 Menos Susceptibles a Impacto por la IA
+                            </h3>
+                            <p class="text-xs text-blue-600 mt-0.5">Ocupaciones con menor exposici&oacute;n a automatizaci&oacute;n por IA</p>
+                        </div>
+                        <div id="top-not-susceptible" class="divide-y divide-slate-100"></div>
+                    </div>
                 </div>
-                <div id="top-susceptible" class="divide-y divide-slate-100"></div>
-            </div>
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-blue-100 bg-blue-50/50">
-                    <h2 class="text-base font-bold text-blue-800 flex items-center gap-2">
-                        <i data-lucide="shield" class="w-4 h-4"></i>
-                        Top 10 Menos Susceptibles a Impacto por la IA
-                    </h2>
-                    <p class="text-xs text-blue-600 mt-0.5">Ocupaciones con menor exposici&oacute;n a automatizaci&oacute;n por IA</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-emerald-100 bg-emerald-50/50">
+                            <h3 class="text-base font-bold text-emerald-800 flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                Top 10 con Mayor Adaptabilidad
+                            </h3>
+                            <p class="text-xs text-emerald-600 mt-0.5">Ocupaciones con mayor capacidad de reconversi&oacute;n</p>
+                        </div>
+                        <div id="top-adaptable" class="divide-y divide-slate-100"></div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-amber-100 bg-amber-50/50">
+                            <h3 class="text-base font-bold text-amber-800 flex items-center gap-2">
+                                <i data-lucide="trending-down" class="w-4 h-4"></i>
+                                Top 10 con Menor Adaptabilidad
+                            </h3>
+                            <p class="text-xs text-amber-600 mt-0.5">Ocupaciones con menor capacidad de reconversi&oacute;n</p>
+                        </div>
+                        <div id="top-not-adaptable" class="divide-y divide-slate-100"></div>
+                    </div>
                 </div>
-                <div id="top-not-susceptible" class="divide-y divide-slate-100"></div>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-emerald-100 bg-emerald-50/50">
-                    <h2 class="text-base font-bold text-emerald-800 flex items-center gap-2">
-                        <i data-lucide="trending-up" class="w-4 h-4"></i>
-                        Top 10 con Mayor Adaptabilidad
-                    </h2>
-                    <p class="text-xs text-emerald-600 mt-0.5">Ocupaciones con mayor capacidad de reconversi&oacute;n</p>
-                </div>
-                <div id="top-adaptable" class="divide-y divide-slate-100"></div>
-            </div>
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-amber-100 bg-amber-50/50">
-                    <h2 class="text-base font-bold text-amber-800 flex items-center gap-2">
-                        <i data-lucide="trending-down" class="w-4 h-4"></i>
-                        Top 10 con Menor Adaptabilidad
-                    </h2>
-                    <p class="text-xs text-amber-600 mt-0.5">Ocupaciones con menor capacidad de reconversi&oacute;n</p>
-                </div>
-                <div id="top-not-adaptable" class="divide-y divide-slate-100"></div>
             </div>
         </div>
 
@@ -1498,6 +1509,14 @@
     });
 
     // ---- METHODOLOGY TOGGLE ----
+    // ---- RANKINGS TOGGLE ----
+    document.getElementById('rankings-toggle').addEventListener('click', () => {
+        const content = document.getElementById('rankings-content');
+        const chevron = document.getElementById('rankings-chevron');
+        content.classList.toggle('hidden');
+        chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+
     // ---- DASHBOARD TOGGLE ----
     document.getElementById('dashboard-toggle').addEventListener('click', () => {
         const content = document.getElementById('dashboard-content');
