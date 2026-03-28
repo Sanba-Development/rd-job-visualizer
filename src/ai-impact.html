@@ -406,6 +406,9 @@
                         <li>Las tasas de informalidad son estimaciones basadas en la ENCFT del Banco Central.</li>
                     </ul>
 
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Agregaci&oacute;n de Rankings</h3>
+                    <p class="text-slate-600">Los rankings Top 10 agregan ocupaciones con el mismo t&iacute;tulo que aparecen en m&uacute;ltiples sectores. Los scores V/S/A se calculan como promedios ponderados por cantidad de trabajadores. Por ejemplo, &ldquo;conserje&rdquo; aparece en 8+ sectores; el ranking muestra una sola entrada con el promedio ponderado de todos los sectores donde existe esa ocupaci&oacute;n.</p>
+
                     <h3 class="text-base font-bold text-slate-800 mt-6">Cr&eacute;ditos y Referencias</h3>
                     <p class="text-slate-600">An&aacute;lisis desarrollado por <strong>CEMI.ai</strong> en colaboraci&oacute;n con <strong>Sanba Development</strong>.</p>
                     <p class="text-slate-600 mt-2">
@@ -1114,13 +1117,48 @@
 
     // ---- TOP 10 RANKINGS ----
     function renderTop10(computed) {
+        // Aggregate occupations with same title across sectors (weighted average by count)
+        function aggregateByTitle(occupations) {
+            const map = {};
+            for (const o of occupations) {
+                if (!map[o.title]) {
+                    map[o.title] = { title: o.title, totalCount: 0, wV: 0, wS: 0, wA: 0, sectors: [], zoneColorDisplay: o.zoneColorDisplay };
+                }
+                const m = map[o.title];
+                m.totalCount += o.count;
+                m.wV += o.vScore * o.count;
+                m.wS += o.sDisplay * o.count;
+                m.wA += o.aScore * o.count;
+                m.sectors.push(o.sectorShortName);
+            }
+            return Object.values(map).map(m => {
+                const c = m.totalCount || 1;
+                const vScore = Math.round(m.wV / c);
+                const sDisplay = Math.round(m.wS / c);
+                const aScore = Math.round(m.wA / c);
+                const zone = classifyZone(vScore, sDisplay, aScore);
+                const uniqueSectors = [...new Set(m.sectors)];
+                return {
+                    title: m.title,
+                    count: m.totalCount,
+                    vScore, sDisplay, aScore,
+                    zoneColorDisplay: ZONE_COLORS[zone],
+                    sectorLabel: uniqueSectors.length > 2
+                        ? uniqueSectors.slice(0, 2).join(', ') + ' +' + (uniqueSectors.length - 2)
+                        : uniqueSectors.join(', ')
+                };
+            });
+        }
+
+        const aggregated = aggregateByTitle(computed.occupations);
+
         function renderList(container, items, colorClass) {
             container.innerHTML = items.map((o, i) => `
                 <div class="flex items-center gap-3 px-5 py-3 rank-enter" style="animation-delay: ${i * 40}ms">
                     <span class="text-lg font-bold ${colorClass} w-6 text-center">${i + 1}</span>
                     <div class="flex-1 min-w-0">
                         <p class="font-semibold text-sm text-slate-800 capitalize truncate">${o.title}</p>
-                        <p class="text-xs text-slate-500">${o.sectorShortName}</p>
+                        <p class="text-xs text-slate-500 truncate">${o.sectorLabel} &middot; ${fmt.format(o.count)} trab.</p>
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
                         <span class="text-xs px-1.5 py-0.5 rounded bg-red-100 text-red-700" title="Vulnerabilidad">V:${o.vScore}</span>
@@ -1132,17 +1170,17 @@
         }
 
         // Compound risk (V + S - A)
-        const byRisk = [...computed.occupations].sort((a, b) => (b.vScore + b.sDisplay - b.aScore) - (a.vScore + a.sDisplay - a.aScore));
+        const byRisk = [...aggregated].sort((a, b) => (b.vScore + b.sDisplay - b.aScore) - (a.vScore + a.sDisplay - a.aScore));
         renderList(document.getElementById('top-vulnerable'), byRisk.slice(0, 10), 'text-red-500');
         renderList(document.getElementById('top-secure'), byRisk.slice(-10).reverse(), 'text-green-500');
 
         // By S-Score (susceptibility)
-        const bySusceptibility = [...computed.occupations].sort((a, b) => b.sDisplay - a.sDisplay);
+        const bySusceptibility = [...aggregated].sort((a, b) => b.sDisplay - a.sDisplay);
         renderList(document.getElementById('top-susceptible'), bySusceptibility.slice(0, 10), 'text-purple-500');
         renderList(document.getElementById('top-not-susceptible'), bySusceptibility.slice(-10).reverse(), 'text-blue-500');
 
         // By A-Score (adaptability)
-        const byAdaptability = [...computed.occupations].sort((a, b) => b.aScore - a.aScore);
+        const byAdaptability = [...aggregated].sort((a, b) => b.aScore - a.aScore);
         renderList(document.getElementById('top-adaptable'), byAdaptability.slice(0, 10), 'text-emerald-500');
         renderList(document.getElementById('top-not-adaptable'), byAdaptability.slice(-10).reverse(), 'text-amber-500');
     }

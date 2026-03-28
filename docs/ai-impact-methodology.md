@@ -50,6 +50,10 @@ Mide la capacidad y viabilidad de transición a otras áreas laborales.
 | Monitoreo Estratégico | Amarillo | V≤35, S>55, A≥55 | Expuestos pero resilientes — el mercado puede autocorregir |
 | Oportunidad IA | Verde | S≤40 | Baja exposición a IA — enfoque en aprovechar beneficios |
 
+## Agregación de Rankings
+
+Los rankings Top 10 agregan ocupaciones con el mismo título que aparecen en múltiples sectores. Los scores V/S/A se calculan como promedios ponderados por cantidad de trabajadores. Por ejemplo, "conserje" aparece en 8+ sectores; el ranking muestra una sola entrada con el promedio ponderado de todos los sectores donde existe esa ocupación. Esto proporciona una visión consolidada del perfil de riesgo de cada ocupación a nivel nacional.
+
 ## Limitaciones del Prototipo
 
 1. **TAF=1.0:** No se ajusta por diferencias en composición de tareas entre RD y EE.UU.
