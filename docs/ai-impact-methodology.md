@@ -198,6 +198,42 @@ La combinación de V, S y A clasifica cada ocupación en una zona de riesgo:
 | MITUR Empresas Turísticas | 175 | Registro | Tipo empresa, ubicación |
 | CNZFE Zonas Francas | 126 | Agregado | Sector, conteo empleos |
 
+### Concordancia ISCO-08
+
+Las ocupaciones se clasifican según la **Clasificación Internacional Uniforme de Ocupaciones (ISCO-08)** de la OIT a nivel de 4 dígitos. La tabla de concordancia (`src/isco-08-concordance.json`) contiene ~60 patrones de títulos dominicanos mapeados a códigos ISCO-08 con sus valores AIOE correspondientes.
+
+**Cadena de resolución:**
+1. Concordancia exacta con tabla ISCO-08
+2. Concordancia por keyword con tabla ISCO-08
+3. Contexto sectorial (para títulos ambiguos como "técnico")
+4. Legacy keyword matching (AIOE sin código ISCO)
+5. Promedio AIOE del grupo mayor ISCO-08
+6. Promedio sectorial (último recurso)
+
+**Caso especial — "Técnico" en RD:** En la República Dominicana, "técnico" designa un profesional de nivel medio con formación técnica (INFOTEP, escuela técnica), correspondiente al Grupo Mayor 3 de ISCO-08 (Técnicos y Profesionales de Nivel Medio). Su clasificación específica y AIOE dependen del sector donde trabaja:
+
+| Sector | ISCO-08 | AIOE | Ejemplo |
+|---|---|---|---|
+| Educación | 2359 (Prof. enseñanza nep) | 48 | Técnico docente |
+| Salud | 3256 (Asistentes médicos) | 38 | Técnico en transporte sanitario |
+| Admin. Pública | 3341 (Supervisores oficina) | 58 | Técnico administrativo |
+| TIC | 3511 (Técnicos operaciones TIC) | 65 | Técnico de soporte |
+| Agricultura | 3142 (Técnicos agropecuarios) | 28 | Técnico agrícola |
+| Construcción | 3112 (Técnicos ing. civil) | 42 | Técnico de obra |
+| Financiero | 3311 (Agentes bolsa/finanzas) | 75 | Técnico financiero |
+
+### Exclusiones del Análisis de Impacto IA
+
+Se excluyen del análisis V/S/A (scatter, rankings, radar) las siguientes categorías que no representan ocupaciones reales:
+
+| Categoría | Entradas | Razón | Impacto si no se excluyen |
+|---|---|---|---|
+| "Salario mínimo - ..." | 5 | Referencias salariales del sector privado, no trabajadores | Inflaban "Otros Servicios" con ~2,862 registros fantasma |
+| "Empleo zona franca - ..." | 5 | Categorías agregadas (textil, electrónicos, etc.) que agrupan miles de ocupaciones diferentes | No se puede asignar AIOE significativo a una categoría que mezcla operarios, supervisores e ingenieros |
+| "Licencias turismo - ..." | 3 | Registros de licencias comerciales, no empleo | Contaminaban sector Turismo con datos de negocios |
+
+Estas entradas se mantienen en normalized.json y metrics.json para el treemap y explorador de datos, pero se filtran del scoring V/S/A.
+
 ### Mapeo de Instituciones a Sectores
 
 Los 493K registros de MAP se mapean a los 12 sectores económicos **por institución empleadora, no por título de cargo**. Un "desarrollador de sistemas" que trabaja en el Ministerio de Hacienda se clasifica como Administración Pública, no como TIC, porque el sector refleja el contexto laboral del empleado (estabilidad, informalidad, salario sectorial), no sus habilidades técnicas individuales.

@@ -729,6 +729,57 @@
                     <h3 class="text-base font-bold text-slate-800 mt-6">Agregaci&oacute;n de Rankings</h3>
                     <p class="text-slate-600">Los rankings Top 10 agregan ocupaciones con el mismo t&iacute;tulo que aparecen en m&uacute;ltiples sectores. Los scores V/S/A se calculan como promedios ponderados por cantidad de trabajadores. Por ejemplo, &ldquo;conserje&rdquo; aparece en 8+ sectores; el ranking muestra una sola entrada con el promedio ponderado de todos los sectores donde existe esa ocupaci&oacute;n. Adicionalmente, se normalizan variantes de g&eacute;nero en los t&iacute;tulos: ocupaciones como &ldquo;supervisor (a)&rdquo; y &ldquo;supervisor&rdquo;, o &ldquo;encargado(a)&rdquo; y &ldquo;encargado&rdquo;, se consolidan en una sola entrada.</p>
 
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Concordancia ISCO-08</h3>
+                    <p class="text-slate-600 text-sm">Las ocupaciones se clasifican seg&uacute;n la <strong>Clasificaci&oacute;n Internacional Uniforme de Ocupaciones (ISCO-08)</strong> de la OIT a nivel de 4 d&iacute;gitos, presentadas a nivel de 2 d&iacute;gitos en la interfaz. El sistema usa una tabla de concordancia con ~60 patrones de t&iacute;tulos dominicanos mapeados a c&oacute;digos ISCO-08.</p>
+                    <p class="text-slate-600 text-sm mt-2"><strong>Cadena de resoluci&oacute;n:</strong> Concordancia exacta &rarr; Concordancia por keyword &rarr; Contexto sectorial (para &ldquo;t&eacute;cnico&rdquo; sin calificador) &rarr; Grupo mayor ISCO-08 &rarr; Promedio sectorial.</p>
+                    <p class="text-slate-600 text-sm mt-2"><strong>Caso especial &mdash; &ldquo;T&eacute;cnico&rdquo;:</strong> En RD, &ldquo;t&eacute;cnico&rdquo; designa un profesional de nivel medio con formaci&oacute;n t&eacute;cnica (INFOTEP, escuela t&eacute;cnica). Su clasificaci&oacute;n ISCO-08 y AIOE dependen del sector: un t&eacute;cnico en Salud (ISCO 3256, AIOE 38) tiene un perfil de riesgo muy diferente a un t&eacute;cnico en TIC (ISCO 3511, AIOE 65).</p>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Exclusiones y Adaptaciones</h3>
+                    <p class="text-slate-600 text-sm mb-2">Se excluyen del an&aacute;lisis de impacto IA (scatter, rankings, radar) las siguientes categor&iacute;as que no representan ocupaciones reales:</p>
+                    <div class="overflow-x-auto mt-2">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Categor&iacute;a</th>
+                                    <th class="px-3 py-2 text-center font-semibold text-slate-700">Entradas</th>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Raz&oacute;n de exclusi&oacute;n</th>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Impacto</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr>
+                                    <td class="px-3 py-2 font-medium">&ldquo;Salario m&iacute;nimo&rdquo;</td>
+                                    <td class="px-3 py-2 text-center">5</td>
+                                    <td class="px-3 py-2">Referencias salariales del sector privado, no trabajadores reales. No tienen ocupaci&oacute;n ni exposici&oacute;n a IA medible.</td>
+                                    <td class="px-3 py-2">Inflaban &ldquo;Otros Servicios&rdquo; con ~2,862 registros fantasma y sesgaban el V-Score del sector.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-2 font-medium">&ldquo;Empleo zona franca&rdquo;</td>
+                                    <td class="px-3 py-2 text-center">5</td>
+                                    <td class="px-3 py-2">Categor&iacute;as agregadas de empleo (textil, electr&oacute;nicos, calzados, tabaco, joyer&iacute;a). Cada una agrupa miles de ocupaciones diferentes.</td>
+                                    <td class="px-3 py-2">No se puede asignar un AIOE significativo a &ldquo;empleo zona franca - textil&rdquo; porque contiene operarios, supervisores e ingenieros.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-2 font-medium">&ldquo;Licencias turismo&rdquo;</td>
+                                    <td class="px-3 py-2 text-center">3</td>
+                                    <td class="px-3 py-2">Registros de licencias comerciales (hoteles, agencias, gift shops), no registros de empleo.</td>
+                                    <td class="px-3 py-2">Contaminaban el sector Turismo con datos de negocios, no de trabajadores.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Estas entradas se mantienen en el pipeline de datos (normalized.json, metrics.json) para el treemap y el explorador de datos, pero se filtran del an&aacute;lisis V/S/A.</p>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Adaptaciones al Contexto Dominicano</h3>
+                    <ul class="text-slate-600 space-y-1.5 text-sm">
+                        <li>&bull; <strong>Sector por instituci&oacute;n, no por cargo:</strong> Un &ldquo;desarrollador de sistemas&rdquo; en el Ministerio de Hacienda se clasifica como Admin. P&uacute;blica, porque su contexto laboral (estabilidad, informalidad, salario) es el del sector p&uacute;blico.</li>
+                        <li>&bull; <strong>&ldquo;T&eacute;cnico&rdquo; = profesional de nivel medio:</strong> En RD designa alguien con formaci&oacute;n t&eacute;cnica (INFOTEP, escuela t&eacute;cnica), no un obrero. Se clasifica como ISCO Grupo 3 con AIOE variable por sector.</li>
+                        <li>&bull; <strong>Normalizaci&oacute;n de g&eacute;nero:</strong> T&iacute;tulos como &ldquo;supervisor (a)&rdquo; y &ldquo;supervisor&rdquo; se consolidan. Convenci&oacute;n com&uacute;n en la n&oacute;mina p&uacute;blica dominicana.</li>
+                        <li>&bull; <strong>Multiplicadores calibrados para RD:</strong> Velocidad ~10-17% menor que econom&iacute;as desarrolladas. Intensidad &ldquo;Fuerte&rdquo; (&times;1.25) captura expansi&oacute;n por LLMs post-2021.</li>
+                        <li>&bull; <strong>Umbral de 500 registros:</strong> Sectores con pocas muestras usan proxies salariales para evitar distorsiones.</li>
+                        <li>&bull; <strong>Finanzas p&uacute;blicas &ne; sector financiero:</strong> Hacienda, Presupuesto, Tesorer&iacute;a = Admin. P&uacute;blica. Solo reguladores aut&oacute;nomos (SB, BCRD) = Serv. Financieros.</li>
+                    </ul>
+
                     <h3 class="text-base font-bold text-slate-800 mt-6">Niveles de Confianza de los Datos</h3>
                     <div class="overflow-x-auto mt-2">
                         <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
@@ -1266,9 +1317,11 @@
     }
 
     function buildTooltipHTML(d) {
+        const iscoTag = d.isco4 ? `<span class="text-slate-400">[ISCO ${d.isco4}]</span> ` : '';
+        const iscoLabel = d.iscoLabel ? `<p class="text-slate-400 text-xs">${iscoLabel}</p>` : '';
         return `
             <p class="font-bold text-base leading-tight">${d.title}</p>
-            <p class="text-slate-300 text-xs mt-0.5">${d.sectorName}</p>
+            <p class="text-slate-300 text-xs mt-0.5">${d.sectorName} ${iscoTag}</p>
             <div class="flex gap-4 mt-2 text-xs">
                 <span><span class="text-red-400 font-bold">V:</span> ${d.vScore}</span>
                 <span><span class="text-purple-400 font-bold">S:</span> ${d.sDisplay}</span>
@@ -1319,7 +1372,9 @@
                         <p class="text-sm text-slate-500 flex items-center gap-1.5 mt-0.5">
                             <span class="w-2.5 h-2.5 rounded-full inline-block" style="background:${d.sectorColor}"></span>
                             ${d.sectorName}
+                            ${d.isco4 ? `<span class="text-slate-400">· ISCO-08: ${d.isco4}</span>` : ''}
                         </p>
+                        ${d.iscoLabel ? `<p class="text-xs text-slate-400 mt-0.5">${d.iscoLabel}</p>` : ''}
                     </div>
                     <button onclick="closeOccupationDetail()" class="text-slate-400 hover:text-slate-600 p-1">
                         <i data-lucide="x" class="w-5 h-5"></i>
@@ -1989,9 +2044,10 @@
     // ---- INIT ----
     document.addEventListener('DOMContentLoaded', async () => {
         try {
-            const [metricsResp, colorsResp] = await Promise.all([
+            const [metricsResp, colorsResp, iscoResp] = await Promise.all([
                 fetch('../data/processed/metrics.json'),
-                fetch('./sector-colors.json')
+                fetch('./sector-colors.json'),
+                fetch('./isco-08-concordance.json')
             ]);
 
             if (!metricsResp.ok || !colorsResp.ok) {
@@ -2000,11 +2056,12 @@
 
             const metricsData = await metricsResp.json();
             const sectorColorsRaw = await colorsResp.json();
+            const iscoData = iscoResp.ok ? await iscoResp.json() : null;
 
             // Remap sector-colors IDs to match metrics.json keys
             const sectorColorsRemapped = remapSectorColors(sectorColorsRaw);
 
-            allData = window.AIImpactScores.computeAll(metricsData, sectorColorsRemapped);
+            allData = window.AIImpactScores.computeAll(metricsData, sectorColorsRemapped, iscoData);
 
             renderAll(true);
         } catch (err) {
