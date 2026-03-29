@@ -19,6 +19,7 @@
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
         .gauge-arc { transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease; }
+        .methodology-h3 { border-bottom: 2px solid; border-image: linear-gradient(to right, #1e3a5f, #dc2626) 1; padding-bottom: 0.4rem; }
         #methodology-modal-body { font-family: 'Plus Jakarta Sans', sans-serif; }
         #methodology-modal-body h1 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin: 1.5rem 0 0.5rem; }
         #methodology-modal-body h2 { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 1.5rem 0 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; }
@@ -607,7 +608,7 @@
                         <li><strong>Adaptabilidad:</strong> Mide la capacidad de la fuerza laboral para adaptarse. Combina transferibilidad de habilidades (50%) y nivel educativo (50%).</li>
                     </ul>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">&Iacute;ndice AIOE (AI Occupational Exposure)</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">&Iacute;ndice AIOE (AI Occupational Exposure)</h3>
                     <p class="text-slate-600">La base del S-Score es el <strong>AI Occupational Exposure Index (AIOE)</strong> de Felten, Raj &amp; Seamans (2021), publicado en <em>Strategic Management Journal</em>. El AIOE mide, en una escala de 0 a 100, qu&eacute; tan expuesta est&aacute; cada ocupaci&oacute;n a las capacidades de la IA. Fue construido cruzando 10 aplicaciones de IA (procesamiento de lenguaje, reconocimiento de im&aacute;genes, predicci&oacute;n, generaci&oacute;n de contenido, entre otras) con las habilidades requeridas por cada ocupaci&oacute;n seg&uacute;n la base de datos O*NET del Departamento de Trabajo de EE.UU.</p>
                     <p class="text-slate-600 mt-2"><strong>AIOE e ISCO-08:</strong> El &iacute;ndice original est&aacute; mapeado a la <strong>Clasificaci&oacute;n Internacional Uniforme de Ocupaciones (ISCO-08)</strong> de la OIT, el est&aacute;ndar global para clasificar ocupaciones. Este prototipo utiliza una <strong>tabla de concordancia ISCO-08</strong> (<code>isco-08-concordance.json</code>) con ~60 patrones de t&iacute;tulos dominicanos clasificados a nivel de 4 d&iacute;gitos. La cadena de resoluci&oacute;n es: concordancia exacta &rarr; keyword &rarr; contexto sectorial &rarr; grupo mayor ISCO-08 &rarr; promedio sectorial. Ver secci&oacute;n &ldquo;Concordancia ISCO-08&rdquo; m&aacute;s abajo.</p>
                     <p class="text-slate-600 mt-2"><strong>Nota sobre modelos de IA generativa:</strong> El AIOE fue publicado en 2021, antes de la irrupci&oacute;n de los grandes modelos de lenguaje (LLMs) como Claude (Anthropic), GPT-4 (OpenAI) y Gemini (Google). Estos modelos expanden significativamente la superficie de exposici&oacute;n m&aacute;s all&aacute; de lo que el AIOE originalmente midi&oacute;: hoy la IA puede redactar documentos legales, generar c&oacute;digo, analizar im&aacute;genes m&eacute;dicas, traducir en tiempo real y razonar sobre problemas complejos &mdash; capacidades que en 2021 eran te&oacute;ricas. El multiplicador de <strong>Intensidad &ldquo;Fuerte&rdquo; (&times;1.25)</strong> captura parcialmente esta expansi&oacute;n, representando un escenario donde la IA supera las proyecciones originales del AIOE. Versiones futuras de este modelo podr&iacute;an incorporar un &iacute;ndice actualizado que refleje las capacidades de los LLMs de 2025-2026.</p>
@@ -635,7 +636,7 @@
                         </table>
                     </div>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Multiplicadores de Escenario</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Multiplicadores de Escenario</h3>
                     <p class="text-slate-600">El AIOE base se ajusta mediante dos multiplicadores combinados para reflejar el escenario de adopci&oacute;n seleccionado:</p>
                     <p class="text-slate-700 font-mono text-sm mt-2 bg-slate-100 rounded-lg px-4 py-2">S<sub>mostrado</sub> = min(100, AIOE &times; Velocidad[horizonte] &times; Intensidad)</p>
 
@@ -697,7 +698,7 @@
                     </div>
                     <p class="text-xs text-slate-500 mt-1">El mismo contador puede ir de &ldquo;seguro&rdquo; (S=8) a &ldquo;cr&iacute;tico&rdquo; (S=89) dependiendo del escenario. Esto refleja la incertidumbre real sobre el ritmo de adopci&oacute;n de IA en RD.</p>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Zonas de Riesgo</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Zonas de Riesgo</h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm border border-slate-200 rounded-lg overflow-hidden">
                             <thead class="bg-slate-50">
@@ -717,7 +718,7 @@
                         </table>
                     </div>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Limitaciones del Prototipo</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Limitaciones del Prototipo</h3>
                     <ul class="text-slate-600 space-y-1">
                         <li>Los scores AIOE se asignan por coincidencia de palabras clave; no son modelos entrenados.</li>
                         <li>Sectores con menos de 50 registros en la fuente usan valores estimados (indicados con borde punteado).</li>
@@ -726,15 +727,15 @@
                         <li>Las tasas de informalidad son estimaciones basadas en la ENCFT del Banco Central.</li>
                     </ul>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Agregaci&oacute;n de Rankings</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Agregaci&oacute;n de Rankings</h3>
                     <p class="text-slate-600">Los rankings Top 10 agregan ocupaciones con el mismo t&iacute;tulo que aparecen en m&uacute;ltiples sectores. Los scores V/S/A se calculan como promedios ponderados por cantidad de trabajadores. Por ejemplo, &ldquo;conserje&rdquo; aparece en 8+ sectores; el ranking muestra una sola entrada con el promedio ponderado de todos los sectores donde existe esa ocupaci&oacute;n. Adicionalmente, se normalizan variantes de g&eacute;nero en los t&iacute;tulos: ocupaciones como &ldquo;supervisor (a)&rdquo; y &ldquo;supervisor&rdquo;, o &ldquo;encargado(a)&rdquo; y &ldquo;encargado&rdquo;, se consolidan en una sola entrada.</p>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Concordancia ISCO-08</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Concordancia ISCO-08</h3>
                     <p class="text-slate-600 text-sm">Las ocupaciones se clasifican seg&uacute;n la <strong>Clasificaci&oacute;n Internacional Uniforme de Ocupaciones (ISCO-08)</strong> de la OIT a nivel de 4 d&iacute;gitos, presentadas a nivel de 2 d&iacute;gitos en la interfaz. El sistema usa una tabla de concordancia con ~60 patrones de t&iacute;tulos dominicanos mapeados a c&oacute;digos ISCO-08.</p>
                     <p class="text-slate-600 text-sm mt-2"><strong>Cadena de resoluci&oacute;n:</strong> Concordancia exacta &rarr; Concordancia por keyword &rarr; Contexto sectorial (para &ldquo;t&eacute;cnico&rdquo; sin calificador) &rarr; Grupo mayor ISCO-08 &rarr; Promedio sectorial.</p>
                     <p class="text-slate-600 text-sm mt-2"><strong>Caso especial &mdash; &ldquo;T&eacute;cnico&rdquo;:</strong> En RD, &ldquo;t&eacute;cnico&rdquo; designa un profesional de nivel medio con formaci&oacute;n t&eacute;cnica (INFOTEP, escuela t&eacute;cnica). Su clasificaci&oacute;n ISCO-08 y AIOE dependen del sector: un t&eacute;cnico en Salud (ISCO 3256, AIOE 38) tiene un perfil de riesgo muy diferente a un t&eacute;cnico en TIC (ISCO 3511, AIOE 65).</p>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Exclusiones y Adaptaciones</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Exclusiones y Adaptaciones</h3>
                     <p class="text-slate-600 text-sm mb-2">Se excluyen del an&aacute;lisis de impacto IA (scatter, rankings, radar) las siguientes categor&iacute;as que no representan ocupaciones reales:</p>
                     <div class="overflow-x-auto mt-2">
                         <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
@@ -770,7 +771,7 @@
                     </div>
                     <p class="text-xs text-slate-500 mt-2">Estas entradas se mantienen en el pipeline de datos (normalized.json, metrics.json) para el treemap y el explorador de datos, pero se filtran del an&aacute;lisis V/S/A.</p>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Adaptaciones al Contexto Dominicano</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Adaptaciones al Contexto Dominicano</h3>
                     <ul class="text-slate-600 space-y-1.5 text-sm">
                         <li>&bull; <strong>Sector por instituci&oacute;n, no por cargo:</strong> Un &ldquo;desarrollador de sistemas&rdquo; en el Ministerio de Hacienda se clasifica como Admin. P&uacute;blica, porque su contexto laboral (estabilidad, informalidad, salario) es el del sector p&uacute;blico.</li>
                         <li>&bull; <strong>&ldquo;T&eacute;cnico&rdquo; = profesional de nivel medio:</strong> En RD designa alguien con formaci&oacute;n t&eacute;cnica (INFOTEP, escuela t&eacute;cnica), no un obrero. Se clasifica como ISCO Grupo 3 con AIOE variable por sector.</li>
@@ -780,7 +781,7 @@
                         <li>&bull; <strong>Finanzas p&uacute;blicas &ne; sector financiero:</strong> Hacienda, Presupuesto, Tesorer&iacute;a = Admin. P&uacute;blica. Solo reguladores aut&oacute;nomos (SB, BCRD) = Serv. Financieros.</li>
                     </ul>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Niveles de Confianza de los Datos</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Niveles de Confianza de los Datos</h3>
                     <div class="overflow-x-auto mt-2">
                         <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
                             <thead class="bg-slate-50">
@@ -799,7 +800,7 @@
                         </table>
                     </div>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Hoja de Ruta</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Hoja de Ruta</h3>
                     <p class="text-slate-600 text-sm mb-2">Este prototipo es la <strong>Fase 1</strong> de un marco de 5 fases:</p>
                     <div class="space-y-1.5 text-xs text-slate-600">
                         <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[10px] font-bold shrink-0">&#10003;</span><span><strong>Fase 0</strong>: Fundamentos de datos (757K registros, 14+ fuentes)</span></div>
@@ -810,7 +811,7 @@
                         <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">5</span><span><strong>Fase 5</strong>: Dashboard en tiempo real, alertas sectoriales, monitoreo continuo</span></div>
                     </div>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Limitaciones del Prototipo</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Limitaciones del Prototipo</h3>
                     <ul class="text-slate-600 space-y-1 text-xs">
                         <li>&bull; <strong>TAF=1.0:</strong> No se ajusta por diferencias en composici&oacute;n de tareas entre RD y EE.UU.</li>
                         <li>&bull; <strong>AIOE pre-LLMs:</strong> &Iacute;ndice de 2021, anterior a ChatGPT/Claude/Gemini. Intensidad &ldquo;Fuerte&rdquo; (&times;1.25) compensa parcialmente.</li>
@@ -825,7 +826,7 @@
                         <li>&bull; <strong>Informalidad estimada:</strong> Tasas de informalidad basadas en ENCFT sectorial, no observadas a nivel de ocupaci&oacute;n.</li>
                     </ul>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Cr&eacute;ditos y Referencias</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Cr&eacute;ditos y Referencias</h3>
                     <p class="text-slate-600">An&aacute;lisis desarrollado por <a href="https://thesocialentrepreneur.com" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline"><strong>Carlos Miranda Levy</strong></a> / <a href="https://cemi.ai" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline"><strong>CEMI.ai</strong></a> en colaboraci&oacute;n con <strong>Sanba Development</strong>.</p>
                     <p class="text-slate-600 font-semibold mt-3">Art&iacute;culos de Referencia:</p>
                     <ul class="text-slate-600 space-y-2 mt-1 text-sm">
@@ -833,7 +834,7 @@
                         <li>&bull; Felten, E., Raj, M. &amp; Seamans, R. (2021). &ldquo;Occupational, industry, and geographic exposure to artificial intelligence: A novel dataset and its potential uses.&rdquo; <em>Strategic Management Journal</em>, 42(12), 2195-2217. [<a href="https://sms.onlinelibrary.wiley.com/doi/full/10.1002/smj.3286" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">Wiley</a>] [<a href="https://www.researchgate.net/publication/351174628_Occupational_industry_and_geographic_exposure_to_artificial_intelligence_A_novel_dataset_and_its_potential_uses" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">ResearchGate</a>]</li>
                     </ul>
 
-                    <h3 class="text-base font-bold text-slate-800 mt-6">Documentos de Trabajo y Planificaci&oacute;n Originales</h3>
+                    <h3 class="text-base font-bold text-slate-800 mt-6 methodology-h3">Documentos de Trabajo y Planificaci&oacute;n Originales</h3>
                     <p class="text-xs text-slate-500 mb-3">Estos documentos guiaron el dise&ntilde;o y desarrollo de este prototipo. La implementaci&oacute;n final puede haber cambiado y adaptado respecto a lo planificado originalmente.</p>
                     <ul class="space-y-2 text-sm">
                         <li>
