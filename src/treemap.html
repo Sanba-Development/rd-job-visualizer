@@ -126,14 +126,23 @@
                     <span class="text-slate-400">Sal. prom.:</span>
                     <span id="stat-salary" class="font-bold text-white">—</span>
                 </div>
-                <div class="stat-item flex items-center gap-1.5 text-xs md:text-sm">
-                    <i data-lucide="database" class="w-3.5 h-3.5 md:w-4 md:h-4 text-purple-400 shrink-0"></i>
-                    <span id="stat-sources" class="text-slate-400">Fuentes: —</span>
+                <div class="flex items-center justify-between w-full gap-4">
+                    <div class="flex items-center gap-1.5 text-xs md:text-sm min-w-0">
+                        <i data-lucide="database" class="w-3.5 h-3.5 md:w-4 md:h-4 text-purple-400 shrink-0"></i>
+                        <span id="stat-sources" class="text-slate-400 truncate">Fuentes: —</span>
+                    </div>
+                    <a href="./methodology.html" class="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors shrink-0">
+                        <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
+                        <span>Metodología</span>
+                    </a>
                 </div>
-                <a href="./methodology.html" class="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors ml-auto">
-                    <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
-                    <span>Metodología</span>
-                </a>
+                <div class="flex items-center gap-1.5 w-full">
+                    <span class="text-xs text-slate-500 shrink-0">Filtro:</span>
+                    <div class="flex items-center gap-1">
+                        <button onclick="setDataMode('todo')" id="filter-todo" class="text-xs px-2.5 py-1 rounded-full border transition-colors border-yellow-500 text-yellow-400 bg-yellow-500/10">Todo</button>
+                        <button onclick="setDataMode('map')" id="filter-map" class="text-xs px-2.5 py-1 rounded-full border transition-colors border-slate-600 text-slate-400 hover:border-slate-400">Solo MAP</button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -302,6 +311,84 @@
     // ---- DRILL-DOWN STATE ----
     let currentView = 'sectors'; // 'sectors' | 'titles'
     let drilledSector = null;    // sector data object when drilled in
+    // ── FILTRO DE FUENTE DE DATOS ──────────────────────────────────────────────
+    // Este filtro fue introducido para permitir la distinción entre el sector
+    // público (representado principalmente por los datos del MAP — Ministerio de
+    // Administración Pública, que cubre la nómina del Estado dominicano) y el
+    // sector privado/mixto (resto de fuentes: TSS, DGII, CNZFE, MITUR, etc.).
+    //
+    // NOTA IMPORTANTE ANTES DE PRESENTAR AL PÚBLICO:
+    // Es necesario realizar un estudio de solapamiento entre las fuentes de datos
+    // para determinar si alguna de las fuentes ya incluidas en el dataset general
+    // (ej. TSS Cotizantes) ya contiene los empleados públicos que también aparecen
+    // en los datos del MAP. De existir solapamiento, los datos del modo "Todo"
+    // estarían sobrecontando empleados y no serían comparables directamente.
+    // Hasta que ese análisis no esté completo, el modo "Todo" debe tratarse como
+    // exploratorio y NO como cifra oficial de empleo total en RD.
+    //
+    // Modos disponibles:
+    //   'todo'  → metrics.json         (todas las fuentes combinadas, sin deduplicar)
+    //   'map'   → metrics-map-only.json (solo nómina pública del MAP)
+    let dataMode = 'todo';
+    let colorMap = {};
+
+    function rebuildSectorData() {
+        const children = [];
+        for (const [key, sectorMetrics] of Object.entries(metricsData.sectors)) {
+            const colorId = SECTOR_KEY_TO_COLOR_ID[key];
+            const colorInfo = colorId ? colorMap[colorId] : null;
+            if (!colorInfo) continue;
+            const isEstimated = sectorMetrics.total_records < REAL_DATA_THRESHOLD && ESTIMATED_VALUES[key];
+            const estimateInfo = ESTIMATED_VALUES[key];
+            const value = isEstimated ? estimateInfo.value : sectorMetrics.total_records;
+            const salaryAvg = isEstimated ? estimateInfo.salary : sectorMetrics.salary_avg;
+            children.push({
+                name: colorInfo.name, shortName: colorInfo.shortName,
+                value, color: colorInfo.color, icon: colorInfo.icon,
+                estimated: !!isEstimated, metrics: sectorMetrics,
+                salaryAvg, sectorKey: key
+            });
+        }
+        children.sort((a, b) => b.value - a.value);
+        sectorData = { name: 'Empleo en RD', children };
+        totalEmpleos = children.reduce((s, d) => s + d.value, 0);
+    }
+
+    // Cada modo apunta a un archivo de métricas pre-calculado.
+    // Ver scripts/processors/calculate-metrics.js para la generación de cada archivo.
+    const DATA_MODES = [
+        { key: 'todo', label: 'Todo',     activeCls: 'border-yellow-500 text-yellow-400 bg-yellow-500/10', file: '../data/processed/metrics.json' },
+        { key: 'map',  label: 'Solo MAP', activeCls: 'border-blue-500 text-blue-400 bg-blue-500/10',      file: '../data/processed/metrics-map-only.json' },
+    ];
+
+    function updateFilterButtons() {
+        DATA_MODES.forEach(m => {
+            const btn = document.getElementById('filter-' + m.key);
+            if (!btn) return;
+            if (m.key === dataMode) {
+                btn.className = `text-xs px-2.5 py-1 rounded-full border transition-colors ${m.activeCls}`;
+            } else {
+                btn.className = 'text-xs px-2.5 py-1 rounded-full border transition-colors border-slate-600 text-slate-400 hover:border-slate-400';
+            }
+        });
+    }
+
+    async function setDataMode(key) {
+        if (key === dataMode) return;
+        const mode = DATA_MODES.find(m => m.key === key);
+        if (!mode) return;
+        dataMode = key;
+        updateFilterButtons();
+        metricsData = await (await fetch(mode.file)).json();
+        currentView = 'sectors';
+        drilledSector = null;
+        const bar = document.getElementById('breadcrumb-bar');
+        bar.classList.add('hidden');
+        bar.style.display = '';
+        rebuildSectorData();
+        buildTreemap();
+        populateStats();
+    }
 
     // ---- SOURCE DISPLAY NAMES ----
     const SOURCE_LABELS = {
@@ -389,41 +476,9 @@
             const colorsArray = await colorsResp.json();
 
             // Build color lookup by id
-            const colorMap = {};
             colorsArray.forEach(c => { colorMap[c.id] = c; });
 
-            // Build sector children from metrics
-            const children = [];
-            for (const [key, sectorMetrics] of Object.entries(metricsData.sectors)) {
-                const colorId = SECTOR_KEY_TO_COLOR_ID[key];
-                const colorInfo = colorId ? colorMap[colorId] : null;
-                if (!colorInfo) continue;
-
-                const isEstimated = sectorMetrics.total_records < REAL_DATA_THRESHOLD && ESTIMATED_VALUES[key];
-                const estimateInfo = ESTIMATED_VALUES[key];
-
-                const value = isEstimated ? estimateInfo.value : sectorMetrics.total_records;
-                const salaryAvg = isEstimated ? estimateInfo.salary : sectorMetrics.salary_avg;
-
-                children.push({
-                    name: colorInfo.name,
-                    shortName: colorInfo.shortName,
-                    value: value,
-                    color: colorInfo.color,
-                    icon: colorInfo.icon,
-                    estimated: !!isEstimated,
-                    // Real metrics data for tooltips/detail
-                    metrics: sectorMetrics,
-                    salaryAvg: salaryAvg,
-                    sectorKey: key
-                });
-            }
-
-            // Sort by value descending
-            children.sort((a, b) => b.value - a.value);
-
-            sectorData = { name: "Empleo en RD", children };
-            totalEmpleos = children.reduce((s, d) => s + d.value, 0);
+            rebuildSectorData();
 
             // Populate stats bar from global metrics
             populateStats();

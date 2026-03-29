@@ -14,6 +14,8 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..', '..');
 const INPUT = path.join(ROOT, 'data', 'processed', 'normalized.json');
 const OUTPUT = path.join(ROOT, 'data', 'processed', 'metrics.json');
+const OUTPUT_NO_MAP = path.join(ROOT, 'data', 'processed', 'metrics-no-map.json');
+const OUTPUT_MAP_ONLY = path.join(ROOT, 'data', 'processed', 'metrics-map-only.json');
 const COLORS_FILE = path.join(ROOT, 'src', 'sector-colors.json');
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -226,6 +228,40 @@ function main() {
 
   fs.writeFileSync(OUTPUT, JSON.stringify(output, null, 2), 'utf8');
   console.log(`\n✓ Written: ${OUTPUT}`);
+
+  // Generate metrics-no-map.json — same pipeline excluding source='map'
+  const recordsNoMap = records.filter(r => r.source !== 'map');
+  const globalAccNoMap = createAccumulator();
+  const sectorAccsNoMap = {};
+  for (const r of recordsNoMap) {
+    accumulate(globalAccNoMap, r);
+    if (!sectorAccsNoMap[r.sector]) sectorAccsNoMap[r.sector] = createAccumulator();
+    accumulate(sectorAccsNoMap[r.sector], r);
+  }
+  const outputNoMap = {
+    generated_at: new Date().toISOString(),
+    global: finalize(globalAccNoMap),
+    sectors: Object.fromEntries(Object.entries(sectorAccsNoMap).map(([k, v]) => [k, finalize(v)])),
+  };
+  fs.writeFileSync(OUTPUT_NO_MAP, JSON.stringify(outputNoMap, null, 2), 'utf8');
+  console.log(`✓ Written: ${OUTPUT_NO_MAP}`);
+
+  // Generate metrics-map-only.json — only source='map' records
+  const recordsMapOnly = records.filter(r => r.source === 'map');
+  const globalAccMapOnly = createAccumulator();
+  const sectorAccsMapOnly = {};
+  for (const r of recordsMapOnly) {
+    accumulate(globalAccMapOnly, r);
+    if (!sectorAccsMapOnly[r.sector]) sectorAccsMapOnly[r.sector] = createAccumulator();
+    accumulate(sectorAccsMapOnly[r.sector], r);
+  }
+  const outputMapOnly = {
+    generated_at: new Date().toISOString(),
+    global: finalize(globalAccMapOnly),
+    sectors: Object.fromEntries(Object.entries(sectorAccsMapOnly).map(([k, v]) => [k, finalize(v)])),
+  };
+  fs.writeFileSync(OUTPUT_MAP_ONLY, JSON.stringify(outputMapOnly, null, 2), 'utf8');
+  console.log(`✓ Written: ${OUTPUT_MAP_ONLY}`);
 
   // ── Console summary ──────────────────────────────────────────────────────
 
