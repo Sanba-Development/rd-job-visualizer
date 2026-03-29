@@ -454,18 +454,24 @@ Este prototipo corresponde a la **Fase 1** de un marco de análisis de 5 fases p
 |---|---|---|
 | **Fase 0**: Fundamentos de Datos | Pipeline de datos, normalización, taxonomía sectorial | ✅ Completada (757K registros) |
 | **Fase 1**: Evaluación de Impacto | Scoring V/S/A, clasificación de zonas, visualización interactiva | ✅ Prototipo completado |
-| **Fase 2**: Overlays Estructurales | Factor de Ajuste de Tareas Dominicano (TAF-RD), análisis de informalidad indirecta, dimensión de género | ⬜ Pendiente |
+| **Fase 2**: Overlays Estructurales | ✅ Concordancia ISCO-08 (4 dígitos), ✅ exclusión de no-ocupaciones, ✅ desambiguación "técnico" por sector. Pendiente: TAF-RD (Delphi), análisis de género completo, modelo de informalidad indirecta | 🟡 Parcial |
 | **Fase 3**: Escenarios y Temporalidad | Panel Delphi de expertos, escenarios calibrados, proyecciones temporales validadas | ⬜ Pendiente |
 | **Fase 4**: Política Pública | Recomendaciones sectoriales, programas de reconversión, integración con INFOTEP/MINERD | ⬜ Pendiente |
 | **Fase 5**: Monitoreo Continuo | Dashboard en tiempo real, alertas sectoriales, actualización periódica de scores | ⬜ Pendiente |
 
-### Mejoras Prioritarias para Fase 2
+### Fase 2: Estado Actual
 
-1. **TAF-RD (Factor de Ajuste de Tareas Dominicano)**: Validación mediante panel Delphi de 5-10 líderes empresariales dominicanos. El instrumento Delphi ya está diseñado (ver AI-Workforce-DR-Working-Tools.md).
-2. **Clasificación ISCO-08**: Concordancia formal entre títulos de cargo dominicanos y la Clasificación Internacional Uniforme de Ocupaciones, permitiendo comparaciones internacionales.
-3. **A-Score ampliado**: Incorporar capacidad de INFOTEP por sector, dominio de inglés, factor etario (cohorte 18-30 más adaptable), y factor de movilidad geográfica (migración a SDQ/STI).
-4. **Modelo de informalidad indirecta**: Simular el efecto de compresión de mercado cuando competidores formales adoptan IA.
-5. **Acceso a ENCFT microdata**: Datos a nivel de hogar del Banco Central permitirían scoring Tier 1 para todas las ocupaciones.
+**Completado:**
+1. ✅ **Concordancia ISCO-08**: Tabla de ~60 patrones de títulos dominicanos clasificados a nivel de 4 dígitos ISCO-08 (`src/isco-08-concordance.json`). Cadena de resolución de 6 pasos. Desambiguación de "técnico" por contexto sectorial.
+2. ✅ **Exclusión de no-ocupaciones**: Filtrado de "salario mínimo" (referencias salariales), "empleo zona franca" (categorías agregadas) y "licencias turismo" (registros comerciales) del análisis V/S/A.
+3. ✅ **Adaptaciones al contexto dominicano**: Sector por institución (no cargo), finanzas públicas ≠ sector financiero, normalización de género "(a)", calibración de multiplicadores para RD.
+
+**Pendiente:**
+4. ⬜ **TAF-RD (Factor de Ajuste de Tareas Dominicano)**: Validación mediante panel Delphi de 5-10 líderes empresariales dominicanos. El instrumento Delphi ya está diseñado (ver AI-Workforce-DR-Working-Tools.md).
+5. ⬜ **A-Score ampliado**: Incorporar capacidad de INFOTEP por sector, dominio de inglés, factor etario (cohorte 18-30 más adaptable), y factor de movilidad geográfica (migración a SDQ/STI).
+6. ⬜ **Modelo de informalidad indirecta**: Simular el efecto de compresión de mercado cuando competidores formales adoptan IA.
+7. ⬜ **Análisis de género completo**: Requiere acceso a ENCFT microdata para cruzar género con ocupación a nivel nacional.
+8. ⬜ **Acceso a ENCFT microdata**: Datos a nivel de hogar del Banco Central permitirían scoring Tier 1 para todas las ocupaciones.
 
 ---
 
@@ -477,7 +483,7 @@ Este prototipo corresponde a la **Fase 1** de un marco de análisis de 5 fases p
 4. **Umbral de 500 registros:** Sectores pequeños (Manufactura: 131 registros, TIC: 2) usan proxies salariales que pueden no reflejar la realidad.
 5. **A-Score simplificado:** No incorpora infraestructura de reentrenamiento (INFOTEP), movilidad geográfica, factor etario, idiomas, ni acceso a programas de reconversión.
 6. **Informalidad indirecta no modelada:** El prototipo captura informalidad como vulnerabilidad pero no modela los efectos indirectos de la IA en mercados informales (compresión de mercado por competidores formales que adoptan IA). Ver sección "La Paradoja de la Informalidad".
-7. **Keyword matching:** La asignación de AIOE por coincidencia de palabras clave es imprecisa — "auxiliar administrativo" recibe un score diferente a "asistente de oficina" aunque son funciones similares. Una concordancia formal ISCO-08 resolvería esto.
+7. **Concordancia ISCO-08 parcial:** ~60 patrones clasificados a 4 dígitos cubren las ocupaciones más comunes. Títulos no cubiertos por la tabla de concordancia usan keyword matching legacy o promedio sectorial como fallback.
 8. **Sector público dominante:** 493K de 757K registros son del sector público (MAP). El análisis está sesgado hacia ocupaciones gubernamentales y subrepresenta al sector privado formal e informal.
 9. **Sin panel de validación:** Los scores no han sido validados por expertos dominicanos. Un panel Delphi (diseñado en AI-Workforce-DR-Working-Tools.md) es necesario para calibrar el TAF-RD.
 10. **Dimensión de género incompleta:** Datos de género disponibles solo para MAP (67% F / 33% M). Un análisis diferenciado completo requiere ENCFT microdata.
