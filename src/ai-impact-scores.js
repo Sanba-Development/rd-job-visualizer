@@ -99,10 +99,10 @@
 
   var ZONE_COLORS = {
     red: "#DC2626",
-    orange: "#F59E0B",
-    yellow: "#FBBF24",
+    orange: "#F97316",
+    yellow: "#EAB308",
     green: "#10B981",
-    amber: "#F97316",
+    amber: "#6366F1",
   };
 
   function normalizeText(str) {

@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -17,7 +18,21 @@
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
-        .gauge-arc { transition: stroke-dashoffset 0.8s ease; }
+        .gauge-arc { transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease; }
+        #methodology-modal-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        #methodology-modal-body h1 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin: 1.5rem 0 0.5rem; }
+        #methodology-modal-body h2 { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 1.5rem 0 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; }
+        #methodology-modal-body h3 { font-size: 1.1rem; font-weight: 600; color: #334155; margin: 1.25rem 0 0.4rem; }
+        #methodology-modal-body p { color: #475569; line-height: 1.7; margin: 0.5rem 0; }
+        #methodology-modal-body ul, #methodology-modal-body ol { color: #475569; padding-left: 1.5rem; margin: 0.5rem 0; }
+        #methodology-modal-body li { margin: 0.3rem 0; line-height: 1.6; }
+        #methodology-modal-body strong { color: #1e293b; }
+        #methodology-modal-body em { color: #64748b; }
+        #methodology-modal-body code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; }
+        #methodology-modal-body table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.875rem; }
+        #methodology-modal-body th { background: #f8fafc; padding: 0.5rem 0.75rem; text-align: left; font-weight: 600; color: #334155; border: 1px solid #e2e8f0; }
+        #methodology-modal-body td { padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; color: #475569; }
+        #methodology-modal-body blockquote { border-left: 3px solid #3b82f6; padding-left: 1rem; margin: 0.75rem 0; color: #64748b; font-style: italic; }
 
         .detail-panel {
             transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
@@ -28,6 +43,7 @@
         .detail-panel.open {
             max-height: 600px;
             opacity: 1;
+            margin-bottom: 2rem;
         }
 
         .zone-bar-segment { transition: width 0.5s ease; }
@@ -59,11 +75,15 @@
         .adoption-btn.active[data-speed="average"] { background: #D97706; color: white; }
         .adoption-btn.active[data-speed="fast"] { background: #DC2626; color: white; }
 
+        .intensity-btn { transition: all 0.2s ease; }
+        .intensity-btn.active { box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        .intensity-btn.active[data-intensity="light"] { background: #6366F1; color: white; }
+        .intensity-btn.active[data-intensity="moderate"] { background: #8B5CF6; color: white; }
+        .intensity-btn.active[data-intensity="strong"] { background: #A855F7; color: white; }
+
         .search-highlight { stroke: #2563eb !important; stroke-width: 3px !important; filter: drop-shadow(0 0 6px rgba(37,99,235,0.5)); }
         .search-dim { opacity: 0.15 !important; }
 
-        .play-btn { transition: all 0.2s ease; }
-        .play-btn.playing { background: #DC2626 !important; }
 
         .radar-axis line { stroke: #e2e8f0; }
         .radar-axis text { fill: #64748b; font-size: 10px; }
@@ -140,198 +160,149 @@
     <!-- ============ MAIN CONTENT ============ -->
     <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-8 w-full">
 
-        <!-- ---- GAUGES + ZONE BAR ---- -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <!-- V-Score Gauge -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col items-center">
-                <svg id="gauge-v" width="140" height="80" viewBox="0 0 140 80"></svg>
-                <p id="gauge-v-value" class="text-3xl font-extrabold mt-2 text-slate-900">--</p>
-                <p class="text-sm text-slate-500 mt-1">V-Score (Vulnerabilidad)</p>
-                <p class="text-xs text-slate-400 mt-0.5">Mayor = m&aacute;s vulnerable</p>
+        <!-- ---- CONTROLS BAR ---- -->
+        <div class="bg-white/95 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm px-4 py-2.5 mb-6 sticky top-14 z-40">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center gap-3">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider shrink-0 flex items-center gap-1">
+                    <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+                    Controles globales
+                </span>
+                <!-- Temporal -->
+                <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-medium text-slate-500 shrink-0">Horizonte:</span>
+                    <div class="flex bg-slate-200/70 rounded-md p-0.5 gap-0.5">
+                        <button class="temporal-btn active rounded px-2 py-1 text-xs font-medium" data-period="short" title="Corto plazo: 2026-2028">Corto</button>
+                        <button class="temporal-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-period="medium" title="Mediano plazo: 2028-2032">Medio</button>
+                        <button class="temporal-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-period="long" title="Largo plazo: 2032+">Largo</button>
+                    </div>
+                </div>
+                <!-- Adoption speed -->
+                <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-medium text-slate-500 shrink-0">Velocidad:</span>
+                    <div class="flex bg-slate-200/70 rounded-md p-0.5 gap-0.5">
+                        <button class="adoption-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-speed="slow" title="Solo grandes empresas y MNCs adoptan IA">Lenta</button>
+                        <button class="adoption-btn active rounded px-2 py-1 text-xs font-medium" data-speed="average" title="Adopci&oacute;n se extiende al mercado medio">Promedio</button>
+                        <button class="adoption-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-speed="fast" title="Incentivos fiscales + infraestructura digital aceleran adopci&oacute;n">R&aacute;pida</button>
+                    </div>
+                </div>
+                <!-- Adoption intensity -->
+                <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-medium text-slate-500 shrink-0">Intensidad:</span>
+                    <div class="flex bg-slate-200/70 rounded-md p-0.5 gap-0.5">
+                        <button class="intensity-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-intensity="light" title="IA augmenta pero no reemplaza &mdash; humanos en el loop">Leve</button>
+                        <button class="intensity-btn active rounded px-2 py-1 text-xs font-medium" data-intensity="moderate" title="Automatizaci&oacute;n est&aacute;ndar seg&uacute;n proyecci&oacute;n AIOE">Moderada</button>
+                        <button class="intensity-btn rounded px-2 py-1 text-xs font-medium text-slate-600" data-intensity="strong" title="IA supera expectativas &mdash; m&aacute;s tareas automatizadas de lo previsto">Fuerte</button>
+                    </div>
+                </div>
+                <!-- Search -->
+                <div class="flex items-center gap-1.5 ml-auto flex-1 max-w-xs">
+                    <div class="relative flex-1">
+                        <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                        <input id="occupation-search" type="text" placeholder="Buscar ocupaci&oacute;n..." class="w-full pl-8 pr-3 py-1 rounded-md border border-slate-300 text-xs focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                    </div>
+                </div>
             </div>
-            <!-- S-Score Gauge -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col items-center">
-                <svg id="gauge-s" width="140" height="80" viewBox="0 0 140 80"></svg>
-                <p id="gauge-s-value" class="text-3xl font-extrabold mt-2 text-slate-900">--</p>
-                <p class="text-sm text-slate-500 mt-1">S-Score (Susceptibilidad a la IA)</p>
-                <p class="text-xs text-slate-400 mt-0.5">Mayor = m&aacute;s expuesto a IA</p>
+        </div>
+
+        <!-- ---- DASHBOARD COLLAPSIBLE ---- -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+            <button id="dashboard-toggle" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">Dashboard de Impacto</h2>
+                    <p class="text-sm text-slate-500 mt-0.5">Indicadores nacionales, mapa de vulnerabilidad y desglose sectorial</p>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform" id="dashboard-chevron"></i>
+            </button>
+            <div id="dashboard-content" class="hidden px-5 pb-5">
+
+        <!-- ---- GAUGES ---- -->
+        <div class="bg-slate-50 rounded-xl p-5 mb-6">
+            <h2 class="text-lg font-bold text-slate-900 mb-1">Indicadores Nacionales</h2>
+            <p class="text-sm text-slate-500 mb-4">Promedio nacional ponderado por cantidad de trabajadores en cada ocupaci&oacute;n (escala 0-100)</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- V-Score Ring -->
+                <div class="bg-white rounded-xl p-5 flex flex-col items-center border border-slate-100">
+                    <div class="relative w-20 h-20">
+                        <svg class="w-20 h-20 -rotate-90" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="#e2e8f0" stroke-width="7"/>
+                            <circle id="ring-v" cx="40" cy="40" r="36" fill="none" stroke="#DC2626" stroke-width="7" stroke-linecap="round" stroke-dasharray="226.19" stroke-dashoffset="226.19" class="gauge-arc"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span id="gauge-v-value" class="text-xl font-extrabold text-slate-900">--</span>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-700 mt-3">Vulnerabilidad</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Fragilidad econ&oacute;mica del trabajador</p>
+                    <p class="text-xs text-red-500 mt-0.5">Mayor = m&aacute;s vulnerable</p>
+                </div>
+                <!-- S-Score Ring -->
+                <div class="bg-white rounded-xl p-5 flex flex-col items-center border border-slate-100">
+                    <div class="relative w-20 h-20">
+                        <svg class="w-20 h-20 -rotate-90" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="#e2e8f0" stroke-width="7"/>
+                            <circle id="ring-s" cx="40" cy="40" r="36" fill="none" stroke="#8B5CF6" stroke-width="7" stroke-linecap="round" stroke-dasharray="226.19" stroke-dashoffset="226.19" class="gauge-arc"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span id="gauge-s-value" class="text-xl font-extrabold text-slate-900">--</span>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-700 mt-3">Susceptibilidad a la IA</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Exposici&oacute;n a automatizaci&oacute;n por IA</p>
+                    <p class="text-xs text-purple-500 mt-0.5">Mayor = m&aacute;s expuesto</p>
+                </div>
+                <!-- A-Score Ring -->
+                <div class="bg-white rounded-xl p-5 flex flex-col items-center border border-slate-100">
+                    <div class="relative w-20 h-20">
+                        <svg class="w-20 h-20 -rotate-90" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="#e2e8f0" stroke-width="7"/>
+                            <circle id="ring-a" cx="40" cy="40" r="36" fill="none" stroke="#10B981" stroke-width="7" stroke-linecap="round" stroke-dasharray="226.19" stroke-dashoffset="226.19" class="gauge-arc"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span id="gauge-a-value" class="text-xl font-extrabold text-slate-900">--</span>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-700 mt-3">Adaptabilidad</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Capacidad de reconversi&oacute;n laboral</p>
+                    <p class="text-xs text-green-500 mt-0.5">Mayor = mejor preparado</p>
+                </div>
             </div>
-            <!-- A-Score Gauge -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col items-center">
-                <svg id="gauge-a" width="140" height="80" viewBox="0 0 140 80"></svg>
-                <p id="gauge-a-value" class="text-3xl font-extrabold mt-2 text-slate-900">--</p>
-                <p class="text-sm text-slate-500 mt-1">A-Score (Adaptabilidad)</p>
-                <p class="text-xs text-slate-400 mt-0.5">Mayor = mejor preparado</p>
-            </div>
-        </section>
+        </div>
 
         <!-- Zone distribution bar -->
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+        <div class="bg-slate-50 rounded-xl p-5 mb-6">
             <p class="text-sm font-semibold text-slate-700 mb-3">Distribuci&oacute;n de trabajadores por zona de riesgo</p>
             <div id="zone-bar" class="w-full h-8 rounded-lg overflow-hidden flex"></div>
             <div id="zone-legend" class="flex flex-wrap gap-x-5 gap-y-1 mt-3 text-xs text-slate-600"></div>
         </div>
 
-        <!-- ---- CONTROLS BAR ---- -->
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-6">
-            <div class="flex flex-col lg:flex-row gap-5">
-                <!-- Temporal -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                    <span class="text-sm font-semibold text-slate-700 flex items-center gap-1.5 shrink-0">
-                        <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>
-                        Horizonte:
-                    </span>
-                    <div class="flex bg-slate-200/70 rounded-lg p-1 gap-1">
-                        <button class="temporal-btn active rounded-md px-3 py-1.5 text-sm font-medium" data-period="short">Corto (2026-28)</button>
-                        <button class="temporal-btn rounded-md px-3 py-1.5 text-sm font-medium text-slate-600" data-period="medium">Medio (2028-32)</button>
-                        <button class="temporal-btn rounded-md px-3 py-1.5 text-sm font-medium text-slate-600" data-period="long">Largo (2032+)</button>
-                    </div>
-                    <button id="play-btn" class="play-btn flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium bg-blue-600 text-white hover:bg-blue-700" title="Animar transici&oacute;n temporal">
-                        <i data-lucide="play" class="w-3.5 h-3.5" id="play-icon"></i>
-                        <span id="play-label">Animar</span>
-                    </button>
-                </div>
-                <!-- Adoption speed -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                    <span class="text-sm font-semibold text-slate-700 flex items-center gap-1.5 shrink-0">
-                        <i data-lucide="zap" class="w-4 h-4 text-slate-400"></i>
-                        Adopci&oacute;n IA:
-                    </span>
-                    <div class="flex bg-slate-200/70 rounded-lg p-1 gap-1">
-                        <button class="adoption-btn rounded-md px-3 py-1.5 text-sm font-medium text-slate-600" data-speed="slow">Lenta</button>
-                        <button class="adoption-btn active rounded-md px-3 py-1.5 text-sm font-medium" data-speed="average">Promedio</button>
-                        <button class="adoption-btn rounded-md px-3 py-1.5 text-sm font-medium text-slate-600" data-speed="fast">R&aacute;pida</button>
-                    </div>
-                </div>
-                <!-- Search -->
-                <div class="flex items-center gap-2 ml-auto flex-1 max-w-xs">
-                    <div class="relative flex-1">
-                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                        <input id="occupation-search" type="text" placeholder="Buscar ocupaci&oacute;n..." class="w-full pl-9 pr-3 py-1.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- ---- SCATTER PLOT ---- -->
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 mb-4">
+        <div class="bg-slate-50 rounded-xl p-4 sm:p-6 mb-4">
             <div class="flex items-baseline justify-between flex-wrap gap-2 mb-1">
                 <h2 class="text-lg font-bold text-slate-900">Mapa de Vulnerabilidad vs. Susceptibilidad a IA</h2>
                 <span id="bubble-count" class="text-sm font-medium text-slate-500"></span>
             </div>
-            <p class="text-sm text-slate-500 mb-4">Cada burbuja representa una ocupaci&oacute;n. El tama&ntilde;o refleja la cantidad de trabajadores.</p>
+            <p class="text-sm text-slate-500 mb-3">Cada burbuja representa una ocupaci&oacute;n. El tama&ntilde;o refleja la cantidad de trabajadores.</p>
+            <div id="scatter-sector-filter" class="flex flex-wrap gap-2 mb-4">
+                <button class="scatter-filter-btn active rounded-full px-3 py-1 text-xs font-medium border border-slate-300 bg-slate-900 text-white" data-sector="all">Todos</button>
+            </div>
             <div id="scatter-container" class="w-full" style="min-height: 420px;"></div>
         </div>
 
         <!-- Scatter legend -->
         <div class="flex flex-wrap gap-x-5 gap-y-2 mb-8 px-1 text-xs text-slate-600">
             <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#DC2626] inline-block"></span> Zona Cr&iacute;tica</div>
-            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#F59E0B] inline-block"></span> Atenci&oacute;n Urgente</div>
-            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#FBBF24] inline-block"></span> Monitoreo Estrat&eacute;gico</div>
-            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#F97316] inline-block"></span> Evaluaci&oacute;n Contextual</div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#F97316] inline-block"></span> Atenci&oacute;n Urgente</div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#EAB308] inline-block"></span> Monitoreo Estrat&eacute;gico</div>
+            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#6366F1] inline-block"></span> Evaluaci&oacute;n Contextual</div>
             <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#10B981] inline-block"></span> Oportunidad IA</div>
             <div class="flex items-center gap-1.5 ml-4 border-l border-slate-300 pl-4"><span class="w-4 h-3 rounded-full border-2 border-dashed border-slate-400 inline-block"></span> Sector estimado (&lt;50 registros)</div>
         </div>
 
-        <!-- ---- OCCUPATION DETAIL PANEL ---- -->
-        <div id="occupation-detail" class="detail-panel bg-white rounded-2xl border border-slate-200 shadow-sm mb-8 px-6"></div>
-
-        <!-- ---- TOP 10 RANKINGS ---- -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-red-100 bg-red-50/50">
-                    <h2 class="text-base font-bold text-red-800 flex items-center gap-2">
-                        <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                        Top 10 M&aacute;s Vulnerables
-                    </h2>
-                    <p class="text-xs text-red-600 mt-0.5">Ocupaciones con mayor riesgo compuesto</p>
-                </div>
-                <div id="top-vulnerable" class="divide-y divide-slate-100"></div>
-            </div>
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-green-100 bg-green-50/50">
-                    <h2 class="text-base font-bold text-green-800 flex items-center gap-2">
-                        <i data-lucide="shield-check" class="w-4 h-4"></i>
-                        Top 10 M&aacute;s Seguros
-                    </h2>
-                    <p class="text-xs text-green-600 mt-0.5">Ocupaciones con menor exposici&oacute;n a IA</p>
-                </div>
-                <div id="top-secure" class="divide-y divide-slate-100"></div>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-purple-100 bg-purple-50/50">
-                    <h2 class="text-base font-bold text-purple-800 flex items-center gap-2">
-                        <i data-lucide="brain-circuit" class="w-4 h-4"></i>
-                        Top 10 M&aacute;s Susceptibles a Impacto de la IA
-                    </h2>
-                    <p class="text-xs text-purple-600 mt-0.5">Ocupaciones con mayor exposici&oacute;n a automatizaci&oacute;n por IA</p>
-                </div>
-                <div id="top-susceptible" class="divide-y divide-slate-100"></div>
-            </div>
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-blue-100 bg-blue-50/50">
-                    <h2 class="text-base font-bold text-blue-800 flex items-center gap-2">
-                        <i data-lucide="shield" class="w-4 h-4"></i>
-                        Top 10 Menos Susceptibles a Impacto por la IA
-                    </h2>
-                    <p class="text-xs text-blue-600 mt-0.5">Ocupaciones con menor exposici&oacute;n a automatizaci&oacute;n por IA</p>
-                </div>
-                <div id="top-not-susceptible" class="divide-y divide-slate-100"></div>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-emerald-100 bg-emerald-50/50">
-                    <h2 class="text-base font-bold text-emerald-800 flex items-center gap-2">
-                        <i data-lucide="trending-up" class="w-4 h-4"></i>
-                        Top 10 con Mayor Adaptabilidad
-                    </h2>
-                    <p class="text-xs text-emerald-600 mt-0.5">Ocupaciones con mayor capacidad de reconversi&oacute;n</p>
-                </div>
-                <div id="top-adaptable" class="divide-y divide-slate-100"></div>
-            </div>
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-amber-100 bg-amber-50/50">
-                    <h2 class="text-base font-bold text-amber-800 flex items-center gap-2">
-                        <i data-lucide="trending-down" class="w-4 h-4"></i>
-                        Top 10 con Menor Adaptabilidad
-                    </h2>
-                    <p class="text-xs text-amber-600 mt-0.5">Ocupaciones con menor capacidad de reconversi&oacute;n</p>
-                </div>
-                <div id="top-not-adaptable" class="divide-y divide-slate-100"></div>
-            </div>
-        </div>
-
-        <!-- ---- RADAR CHART ---- -->
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 mb-8">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
-                <div>
-                    <h2 class="text-lg font-bold text-slate-900">Comparaci&oacute;n Radar por Sector</h2>
-                    <p class="text-sm text-slate-500 mt-0.5">Selecciona sectores para comparar en 5 dimensiones</p>
-                </div>
-                <button id="radar-clear" class="text-sm text-slate-500 hover:text-red-600 transition-colors flex items-center gap-1">
-                    <i data-lucide="x" class="w-3.5 h-3.5"></i> Limpiar selecci&oacute;n
-                </button>
-            </div>
-            <div id="radar-chips" class="flex flex-wrap gap-2 mb-4"></div>
-            <div id="radar-container" class="w-full flex justify-center" style="min-height: 350px;"></div>
-            <div id="radar-legend" class="flex flex-wrap justify-center gap-4 mt-3 text-xs text-slate-600"></div>
-            <div class="mt-5 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-xs text-slate-500">
-                <div><strong class="text-slate-700">Vulnerabilidad:</strong> Fragilidad econ&oacute;mica del trabajador (salario, informalidad, educaci&oacute;n, ahorro). Mayor = m&aacute;s fr&aacute;gil.</div>
-                <div><strong class="text-slate-700">Susceptibilidad a IA:</strong> Grado de exposici&oacute;n de la ocupaci&oacute;n a ser automatizada por inteligencia artificial. Mayor = m&aacute;s expuesto.</div>
-                <div><strong class="text-slate-700">Adaptabilidad:</strong> Capacidad de transici&oacute;n a otras &aacute;reas laborales (transferibilidad de habilidades + nivel educativo). Mayor = m&aacute;s adaptable.</div>
-                <div><strong class="text-slate-700">Nivel Salarial:</strong> Salario promedio del sector como porcentaje del sector mejor pagado. 100 = el salario m&aacute;s alto del mercado.</div>
-                <div><strong class="text-slate-700">Formalidad:</strong> Porcentaje de trabajadores con empleo formal (contrato, seguridad social). Mayor = m&aacute;s formalizado.</div>
-            </div>
-        </div>
-
         <!-- ---- SECTOR TABLE ---- -->
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+        <div class="bg-slate-50 rounded-xl overflow-hidden mb-4">
             <div class="px-5 py-4 border-b border-slate-100">
                 <h2 class="text-lg font-bold text-slate-900">Desglose por Sector</h2>
-                <p class="text-sm text-slate-500 mt-0.5">Haz clic en un sector para filtrar el gr&aacute;fico</p>
+                <p class="text-sm text-slate-500 mt-0.5">Scores promedio ponderados por sector econ&oacute;mico (clic en un sector para filtrar el gr&aacute;fico)</p>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
@@ -342,21 +313,280 @@
                             <th class="px-4 py-3 font-semibold text-center">Susceptibilidad a la IA</th>
                             <th class="px-4 py-3 font-semibold text-center">Adaptabilidad</th>
                             <th class="px-4 py-3 font-semibold text-center">Zona</th>
-                            <th class="px-4 py-3 font-semibold text-right">Empleos</th>
+                            <th class="px-4 py-3 font-semibold text-right">Registros</th>
                         </tr>
                     </thead>
                     <tbody id="sector-table-body"></tbody>
                 </table>
             </div>
+            <div class="px-5 py-4 border-t border-slate-100 bg-slate-50/50">
+                <p class="text-xs font-semibold text-slate-600 mb-2">Clasificaci&oacute;n de Zonas de Riesgo:</p>
+                <div class="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-slate-600">
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#DC2626] inline-block"></span> <strong>Zona Cr&iacute;tica:</strong> V&gt;60, S&gt;55, A&lt;45 &mdash; Intervenci&oacute;n inmediata</div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#F97316] inline-block"></span> <strong>Atenci&oacute;n Urgente:</strong> V&gt;35, S&gt;55, A&lt;60 &mdash; Programas de reconversi&oacute;n</div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#EAB308] inline-block"></span> <strong>Monitoreo Estrat&eacute;gico:</strong> V&le;35, S&gt;55, A&ge;55 &mdash; Upskilling progresivo</div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#10B981] inline-block"></span> <strong>Oportunidad IA:</strong> S&le;40 &mdash; Potenciar con herramientas IA</div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#6366F1] inline-block"></span> <strong>Evaluaci&oacute;n Contextual:</strong> Otros casos &mdash; An&aacute;lisis caso por caso</div>
+                </div>
+            </div>
+        </div>
+
+            </div> <!-- end dashboard-content -->
+        </div> <!-- end dashboard collapsible -->
+
+        <!-- ---- OCCUPATION DETAIL PANEL ---- -->
+        <div id="occupation-detail" class="detail-panel bg-white rounded-2xl border border-slate-200 shadow-sm px-6"></div>
+
+        <!-- ---- TOP 10 RANKINGS ---- -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+            <button id="rankings-toggle" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">Ocupaciones Top y Bottom 10 en Vulnerabilidad, Susceptibilidad a la IA y Adaptabilidad</h2>
+                    <p class="text-sm text-slate-500 mt-0.5">Rankings de ocupaciones agregadas a nivel nacional. Responden al horizonte temporal y velocidad de adopci&oacute;n seleccionados.</p>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform shrink-0 ml-3" id="rankings-chevron"></i>
+            </button>
+            <div id="rankings-content" class="hidden px-5 pb-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-red-100 bg-red-50/50">
+                            <h3 class="text-base font-bold text-red-800 flex items-center gap-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                                Top 10 M&aacute;s Vulnerables
+                            </h3>
+                            <p class="text-xs text-red-600 mt-0.5">Mayor fragilidad econ&oacute;mica (salario, informalidad, educaci&oacute;n, ahorro)</p>
+                        </div>
+                        <div id="top-vulnerable" class="divide-y divide-slate-100"></div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-green-100 bg-green-50/50">
+                            <h3 class="text-base font-bold text-green-800 flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                Top 10 Menos Vulnerables
+                            </h3>
+                            <p class="text-xs text-green-600 mt-0.5">Menor fragilidad econ&oacute;mica (salario, informalidad, educaci&oacute;n, ahorro)</p>
+                        </div>
+                        <div id="top-secure" class="divide-y divide-slate-100"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-purple-100 bg-purple-50/50">
+                            <h3 class="text-base font-bold text-purple-800 flex items-center gap-2">
+                                <i data-lucide="brain-circuit" class="w-4 h-4"></i>
+                                Top 10 M&aacute;s Susceptibles a Impacto de la IA
+                            </h3>
+                            <p class="text-xs text-purple-600 mt-0.5">Mayor grado de exposici&oacute;n a ser automatizadas por IA</p>
+                        </div>
+                        <div id="top-susceptible" class="divide-y divide-slate-100"></div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-blue-100 bg-blue-50/50">
+                            <h3 class="text-base font-bold text-blue-800 flex items-center gap-2">
+                                <i data-lucide="shield" class="w-4 h-4"></i>
+                                Top 10 Menos Susceptibles a Impacto por la IA
+                            </h3>
+                            <p class="text-xs text-blue-600 mt-0.5">Menor grado de exposici&oacute;n a ser automatizadas por IA</p>
+                        </div>
+                        <div id="top-not-susceptible" class="divide-y divide-slate-100"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-emerald-100 bg-emerald-50/50">
+                            <h3 class="text-base font-bold text-emerald-800 flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                Top 10 con Mayor Adaptabilidad
+                            </h3>
+                            <p class="text-xs text-emerald-600 mt-0.5">Mayor capacidad de transici&oacute;n a otras &aacute;reas laborales</p>
+                        </div>
+                        <div id="top-adaptable" class="divide-y divide-slate-100"></div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                        <div class="px-5 py-4 border-b border-amber-100 bg-amber-50/50">
+                            <h3 class="text-base font-bold text-amber-800 flex items-center gap-2">
+                                <i data-lucide="trending-down" class="w-4 h-4"></i>
+                                Top 10 con Menor Adaptabilidad
+                            </h3>
+                            <p class="text-xs text-amber-600 mt-0.5">Menor capacidad de transici&oacute;n a otras &aacute;reas laborales</p>
+                        </div>
+                        <div id="top-not-adaptable" class="divide-y divide-slate-100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ---- RADAR CHART ---- -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+            <button id="radar-toggle" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">Comparaci&oacute;n Radar por Sector</h2>
+                    <p class="text-sm text-slate-500 mt-0.5">Selecciona sectores para comparar en 5 dimensiones. Responde al horizonte temporal y velocidad de adopci&oacute;n seleccionados arriba.</p>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform shrink-0 ml-3" id="radar-toggle-chevron"></i>
+            </button>
+            <div id="radar-collapsible-content" class="hidden px-5 pb-5">
+                <div class="flex justify-end mb-3">
+                    <button id="radar-clear" class="text-sm text-slate-500 hover:text-red-600 transition-colors flex items-center gap-1">
+                        <i data-lucide="x" class="w-3.5 h-3.5"></i> Limpiar selecci&oacute;n
+                    </button>
+                </div>
+                <div id="radar-chips" class="flex flex-wrap gap-2 mb-4"></div>
+                <div id="radar-container" class="w-full flex justify-center" style="min-height: 350px;"></div>
+                <div id="radar-legend" class="flex flex-wrap justify-center gap-4 mt-3 text-xs text-slate-600"></div>
+                <div class="mt-5 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-xs text-slate-500">
+                    <div><strong class="text-slate-700">Vulnerabilidad:</strong> Fragilidad econ&oacute;mica del trabajador (salario, informalidad, educaci&oacute;n, ahorro). Mayor = m&aacute;s fr&aacute;gil.</div>
+                    <div><strong class="text-slate-700">Susceptibilidad a IA:</strong> Grado de exposici&oacute;n de la ocupaci&oacute;n a ser automatizada por inteligencia artificial. Mayor = m&aacute;s expuesto.</div>
+                    <div><strong class="text-slate-700">Adaptabilidad:</strong> Capacidad de transici&oacute;n a otras &aacute;reas laborales (transferibilidad de habilidades + nivel educativo). Mayor = m&aacute;s adaptable.</div>
+                    <div><strong class="text-slate-700">Nivel Salarial:</strong> Salario promedio del sector como porcentaje del sector mejor pagado. 100 = el salario m&aacute;s alto del mercado.</div>
+                    <div><strong class="text-slate-700">Formalidad:</strong> Porcentaje de trabajadores con empleo formal (contrato, seguridad social). Mayor = m&aacute;s formalizado.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ---- ANÁLISIS SISTÉMICO ---- -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+            <button id="systemic-toggle" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">An&aacute;lisis Sist&eacute;mico</h2>
+                    <p class="text-sm text-slate-500 mt-0.5">Paradoja de la informalidad, dimensi&oacute;n de g&eacute;nero, riesgo BPO y factores de adopci&oacute;n en RD</p>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform shrink-0 ml-3" id="systemic-chevron"></i>
+            </button>
+            <div id="systemic-content" class="hidden px-5 pb-6">
+
+                <!-- Paradoja de la Informalidad -->
+                <div class="mt-4 mb-6">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <i data-lucide="alert-circle" class="w-5 h-5 text-amber-500"></i>
+                        La Paradoja de la Informalidad
+                    </h3>
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-3">
+                        <p class="text-sm text-slate-700 font-medium">Los trabajadores m&aacute;s vulnerables econ&oacute;micamente tienen los scores m&aacute;s bajos de Susceptibilidad a la IA.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
+                        <div class="bg-green-50/50 rounded-lg p-4 border border-green-100">
+                            <p class="font-semibold text-green-800 text-xs uppercase tracking-wide mb-2">Impacto directo: bajo</p>
+                            <p>Las tareas manuales (alba&ntilde;iler&iacute;a, agricultura, servicio dom&eacute;stico, motoconcho) son dif&iacute;cilmente automatizables. Un alba&ntilde;il tiene AIOE de 12 — pr&aacute;cticamente inmune a la IA directa.</p>
+                        </div>
+                        <div class="bg-red-50/50 rounded-lg p-4 border border-red-100">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wide mb-2">Impacto indirecto: potencialmente alto</p>
+                            <p>Competidores formales que adoptan IA comprimen los mercados informales:</p>
+                            <ul class="mt-2 space-y-1 text-xs">
+                                <li>&bull; Supermercados con self-checkout vs. <strong>colmados</strong></li>
+                                <li>&bull; E-commerce con log&iacute;stica IA vs. <strong>vendedores ambulantes</strong></li>
+                                <li>&bull; Apps de transporte vs. <strong>motoconchistas</strong></li>
+                                <li>&bull; Cadenas hoteleras con IA vs. <strong>operadores tur&iacute;sticos informales</strong></li>
+                                <li>&bull; Chatbots bancarios vs. <strong>prestamistas informales</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3">Este impacto indirecto NO est&aacute; modelado en el prototipo actual. Es un &aacute;rea cr&iacute;tica para investigaci&oacute;n futura.</p>
+                </div>
+
+                <!-- Dimensión de Género -->
+                <div class="mb-6">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <i data-lucide="users" class="w-5 h-5 text-purple-500"></i>
+                        Dimensi&oacute;n de G&eacute;nero
+                    </h3>
+                    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 mb-3">
+                        <p class="text-sm text-slate-700"><strong>67% de la n&oacute;mina p&uacute;blica son mujeres</strong> (329,509 de 493,554 registros MAP, diciembre 2025)</p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Ocupaci&oacute;n</th>
+                                    <th class="px-3 py-2 text-center font-semibold text-slate-700">% Mujeres</th>
+                                    <th class="px-3 py-2 text-center font-semibold text-slate-700">AIOE</th>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Perfil de riesgo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr><td class="px-3 py-2">Secretaria / Auxiliar admin.</td><td class="px-3 py-2 text-center">~85%</td><td class="px-3 py-2 text-center font-semibold text-red-600">65-70</td><td class="px-3 py-2">Alta susceptibilidad. Zona Atenci&oacute;n Urgente.</td></tr>
+                                <tr><td class="px-3 py-2">Maestra</td><td class="px-3 py-2 text-center">~78%</td><td class="px-3 py-2 text-center font-semibold text-yellow-600">45</td><td class="px-3 py-2">Moderada. Contenido impactado, mentor&iacute;a protegida.</td></tr>
+                                <tr><td class="px-3 py-2">Enfermera</td><td class="px-3 py-2 text-center">~90%</td><td class="px-3 py-2 text-center font-semibold text-green-600">38</td><td class="px-3 py-2">Baja. Cuidado directo pr&aacute;cticamente inmune a IA.</td></tr>
+                                <tr><td class="px-3 py-2">Digitadora</td><td class="px-3 py-2 text-center">~70%</td><td class="px-3 py-2 text-center font-semibold text-red-600">85</td><td class="px-3 py-2">Muy alta. Tarea eliminable a corto plazo.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3">La literatura internacional (IMF 2024, World Bank 2024) confirma que las mujeres en roles administrativos enfrentan mayor exposici&oacute;n a IA generativa. Los 263K empleados del Ministerio de Educaci&oacute;n (mayor&iacute;a mujeres) requieren estrategias de adaptaci&oacute;n diferenciadas.</p>
+                </div>
+
+                <!-- BPO / Call Centers -->
+                <div class="mb-6">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <i data-lucide="phone-call" class="w-5 h-5 text-red-500"></i>
+                        BPO / Call Centers: Riesgo Concentrado
+                    </h3>
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mb-3">
+                            <div><p class="text-2xl font-bold text-red-700">~30K</p><p class="text-xs text-slate-500">empleos directos</p></div>
+                            <div><p class="text-2xl font-bold text-red-700">82</p><p class="text-xs text-slate-500">AIOE (muy alto)</p></div>
+                            <div><p class="text-2xl font-bold text-red-700">18-30</p><p class="text-xs text-slate-500">a&ntilde;os (demograf&iacute;a)</p></div>
+                            <div><p class="text-2xl font-bold text-red-700">MNCs*</p><p class="text-xs text-slate-500">deciden adopci&oacute;n</p></div>
+                        </div>
+                        <p class="text-sm text-slate-700">Las casas matrices de las MNCs* &mdash; no las subsidiarias dominicanas &mdash; deciden cu&aacute;ndo desplegar chatbots y voice AI que reemplazan funciones de call center. Estos empleados j&oacute;venes, en su primer empleo formal, concentrados en Santo Domingo y Santiago, requieren <strong>pol&iacute;ticas de reconversi&oacute;n proactivas, no reactivas</strong>.</p>
+                        <p class="text-xs text-slate-400 mt-2">* MNCs = Corporaciones Multinacionales (ej: Hanes, 3M, Cardinal Health, Marriott)</p>
+                    </div>
+                </div>
+
+                <!-- Factores DR (already existed, now moved here) -->
+                <div class="mb-2">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 mb-3">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-blue-500"></i>
+                        Factores que Impactan la Adopci&oacute;n de IA en RD
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-3">Los multiplicadores est&aacute;n calibrados ~10-17% por debajo de econom&iacute;as desarrolladas, reflejando factores espec&iacute;ficos de Rep&uacute;blica Dominicana:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-red-50/50 rounded-lg p-3 border border-red-100">
+                            <p class="font-semibold text-red-800 text-xs uppercase tracking-wide mb-1.5">Factores que retardan</p>
+                            <ul class="text-slate-600 space-y-1 text-xs">
+                                <li>&bull; Informalidad laboral del 54% (ENCFT 2025)</li>
+                                <li>&bull; Bajo costo de mano de obra vs. costo de IA</li>
+                                <li>&bull; Brechas de infraestructura digital fuera de SDQ</li>
+                                <li>&bull; 493K+ empleados p&uacute;blicos en sistemas legados</li>
+                                <li>&bull; 98.1% MiPyMEs sin capacidad de inversi&oacute;n TI</li>
+                                <li>&bull; INFOTEP con oferta limitada en IA</li>
+                                <li>&bull; Barreras ling&uuml;&iacute;sticas (espa&ntilde;ol dominicano)</li>
+                                <li>&bull; Resistencia institucional y sindical</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50/50 rounded-lg p-3 border border-green-100">
+                            <p class="font-semibold text-green-800 text-xs uppercase tracking-wide mb-1.5">Factores que aceleran</p>
+                            <ul class="text-slate-600 space-y-1 text-xs">
+                                <li>&bull; Zonas francas y MNCs* adoptan a ritmo global</li>
+                                <li>&bull; Banca ya despliega chatbots y scoring con IA</li>
+                                <li>&bull; Remesas (~10% PIB) y presi&oacute;n diasporiana</li>
+                                <li>&bull; Poblaci&oacute;n joven (mediana 28 a&ntilde;os) y digital</li>
+                                <li>&bull; Turismo (~15% PIB) con cadenas internacionales</li>
+                                <li>&bull; Ausencia de regulaci&oacute;n de IA (sin barreras)</li>
+                                <li>&bull; ENIA y apoyo BID/UNESCO</li>
+                                <li>&bull; Competencia regional (CR, Panam&aacute;, Colombia)</li>
+                                <li>&bull; Costos de IA decrecientes (~50% anual)</li>
+                                <li>&bull; Efecto demostraci&oacute;n del sector privado formal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2">* MNCs = Corporaciones Multinacionales</p>
+                </div>
+
+            </div>
         </div>
 
         <!-- ---- SECTOR EXPLANATIONS ---- -->
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
-            <div class="px-5 py-4 border-b border-slate-100">
-                <h2 class="text-lg font-bold text-slate-900">An&aacute;lisis por Sector</h2>
-                <p class="text-sm text-slate-500 mt-0.5">Explicaci&oacute;n de Vulnerabilidad, Susceptibilidad a la IA y Adaptabilidad para cada sector econ&oacute;mico</p>
+            <button id="explanations-toggle" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900">An&aacute;lisis por Sector</h2>
+                    <p class="text-sm text-slate-500 mt-0.5">Los scores se actualizan seg&uacute;n el escenario seleccionado; las descripciones reflejan el an&aacute;lisis general del sector</p>
+                </div>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform shrink-0 ml-3" id="explanations-chevron"></i>
+            </button>
+            <div id="explanations-content" class="hidden">
+                <div id="sector-explanations" class="divide-y divide-slate-100"></div>
             </div>
-            <div id="sector-explanations" class="divide-y divide-slate-100"></div>
         </div>
 
         <!-- ---- METHODOLOGY ---- -->
@@ -373,9 +603,99 @@
                     <h3 class="text-base font-bold text-slate-800 mt-0">Apreciaciones de Vulnerabilidad, Susceptibilidad a la IA y Adaptabilidad</h3>
                     <ul class="text-slate-600 space-y-2">
                         <li><strong>Vulnerabilidad:</strong> Mide qu&eacute; tan vulnerable es una ocupaci&oacute;n ante disrupciones econ&oacute;micas. Combina: vulnerabilidad de ingreso (35%), informalidad sectorial (30%), nivel educativo (20%) y capacidad de ahorro (15%).</li>
-                        <li><strong>Susceptibilidad a la IA:</strong> Mide qu&eacute; tan susceptible es la ocupaci&oacute;n a ser automatizada por IA, basado en el &iacute;ndice AI Occupational Exposure (AIOE). Los multiplicadores temporales escalan el score: &times;0.3 (corto plazo), &times;0.6 (mediano) y &times;0.9 (largo plazo).</li>
+                        <li><strong>Susceptibilidad a la IA:</strong> Mide qu&eacute; tan susceptible es la ocupaci&oacute;n a ser automatizada por IA. Se calcula como: <code class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">S = min(100, AIOE &times; Velocidad &times; Intensidad)</code>. Ver detalles abajo.</li>
                         <li><strong>Adaptabilidad:</strong> Mide la capacidad de la fuerza laboral para adaptarse. Combina transferibilidad de habilidades (50%) y nivel educativo (50%).</li>
                     </ul>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">&Iacute;ndice AIOE (AI Occupational Exposure)</h3>
+                    <p class="text-slate-600">La base del S-Score es el <strong>AI Occupational Exposure Index (AIOE)</strong> de Felten, Raj &amp; Seamans (2021), publicado en <em>Strategic Management Journal</em>. El AIOE mide, en una escala de 0 a 100, qu&eacute; tan expuesta est&aacute; cada ocupaci&oacute;n a las capacidades de la IA. Fue construido cruzando 10 aplicaciones de IA (procesamiento de lenguaje, reconocimiento de im&aacute;genes, predicci&oacute;n, generaci&oacute;n de contenido, entre otras) con las habilidades requeridas por cada ocupaci&oacute;n seg&uacute;n la base de datos O*NET del Departamento de Trabajo de EE.UU.</p>
+                    <p class="text-slate-600 mt-2"><strong>AIOE e ISCO-08:</strong> El &iacute;ndice original est&aacute; mapeado a la <strong>Clasificaci&oacute;n Internacional Uniforme de Ocupaciones (ISCO-08)</strong> de la OIT, el est&aacute;ndar global para clasificar ocupaciones. En este prototipo, no se utiliza una concordancia formal ISCO-08 para las ocupaciones dominicanas. En su lugar, se emplea un sistema simplificado de coincidencia por palabras clave (~100 t&eacute;rminos) contra los t&iacute;tulos de cargo de la n&oacute;mina p&uacute;blica. Cuando no hay coincidencia, se usa el promedio AIOE del grupo ocupacional mayor de ISCO-08 (ej: Grupo 4 &ldquo;Empleados de oficina&rdquo; = 75, Grupo 9 &ldquo;Ocupaciones elementales&rdquo; = 12). Una concordancia formal ISCO-08 es prioridad para la Fase 2.</p>
+                    <p class="text-slate-600 mt-2"><strong>Nota sobre modelos de IA generativa:</strong> El AIOE fue publicado en 2021, antes de la irrupci&oacute;n de los grandes modelos de lenguaje (LLMs) como Claude (Anthropic), GPT-4 (OpenAI) y Gemini (Google). Estos modelos expanden significativamente la superficie de exposici&oacute;n m&aacute;s all&aacute; de lo que el AIOE originalmente midi&oacute;: hoy la IA puede redactar documentos legales, generar c&oacute;digo, analizar im&aacute;genes m&eacute;dicas, traducir en tiempo real y razonar sobre problemas complejos &mdash; capacidades que en 2021 eran te&oacute;ricas. El multiplicador de <strong>Intensidad &ldquo;Fuerte&rdquo; (&times;1.25)</strong> captura parcialmente esta expansi&oacute;n, representando un escenario donde la IA supera las proyecciones originales del AIOE. Versiones futuras de este modelo podr&iacute;an incorporar un &iacute;ndice actualizado que refleje las capacidades de los LLMs de 2025-2026.</p>
+                    <p class="text-slate-600 mt-2">Ejemplos de valores AIOE base:</p>
+                    <div class="overflow-x-auto mt-2">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-1.5 text-left font-semibold text-slate-700">Ocupaci&oacute;n</th>
+                                    <th class="px-3 py-1.5 text-center font-semibold text-slate-700">AIOE</th>
+                                    <th class="px-3 py-1.5 text-left font-semibold text-slate-700">Interpretaci&oacute;n</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr><td class="px-3 py-1.5">Desarrollador de software</td><td class="px-3 py-1.5 text-center font-semibold text-red-600">88</td><td class="px-3 py-1.5">Muy alta exposici&oacute;n &mdash; IA generativa ya transforma la programaci&oacute;n</td></tr>
+                                <tr><td class="px-3 py-1.5">Digitador / Data entry</td><td class="px-3 py-1.5 text-center font-semibold text-red-600">85</td><td class="px-3 py-1.5">Tarea altamente repetitiva y automatizable</td></tr>
+                                <tr><td class="px-3 py-1.5">Contador</td><td class="px-3 py-1.5 text-center font-semibold text-orange-600">79</td><td class="px-3 py-1.5">Contabilidad rutinaria ya automatizada en pa&iacute;ses desarrollados</td></tr>
+                                <tr><td class="px-3 py-1.5">Secretaria</td><td class="px-3 py-1.5 text-center font-semibold text-orange-600">70</td><td class="px-3 py-1.5">Agendas, correos y documentos impactados por asistentes IA</td></tr>
+                                <tr><td class="px-3 py-1.5">M&eacute;dico</td><td class="px-3 py-1.5 text-center font-semibold text-yellow-600">62</td><td class="px-3 py-1.5">Diagn&oacute;stico impactado, pero atenci&oacute;n directa protegida</td></tr>
+                                <tr><td class="px-3 py-1.5">Profesor</td><td class="px-3 py-1.5 text-center font-semibold text-green-600">45</td><td class="px-3 py-1.5">Contenido impactado, pero rol de mentor irremplazable</td></tr>
+                                <tr><td class="px-3 py-1.5">Chofer</td><td class="px-3 py-1.5 text-center font-semibold text-green-600">28</td><td class="px-3 py-1.5">Veh&iacute;culos aut&oacute;nomos lejanos en RD</td></tr>
+                                <tr><td class="px-3 py-1.5">Alba&ntilde;il</td><td class="px-3 py-1.5 text-center font-semibold text-green-700">12</td><td class="px-3 py-1.5">Trabajo f&iacute;sico variable, muy dif&iacute;cil de automatizar</td></tr>
+                                <tr><td class="px-3 py-1.5">Conserje</td><td class="px-3 py-1.5 text-center font-semibold text-green-700">10</td><td class="px-3 py-1.5">Tareas f&iacute;sicas en entornos no estructurados</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Multiplicadores de Escenario</h3>
+                    <p class="text-slate-600">El AIOE base se ajusta mediante dos multiplicadores combinados para reflejar el escenario de adopci&oacute;n seleccionado:</p>
+                    <p class="text-slate-700 font-mono text-sm mt-2 bg-slate-100 rounded-lg px-4 py-2">S<sub>mostrado</sub> = min(100, AIOE &times; Velocidad[horizonte] &times; Intensidad)</p>
+
+                    <p class="text-slate-600 mt-3"><strong>Velocidad de Adopci&oacute;n</strong> &mdash; qu&eacute; tan r&aacute;pido se despliega la IA en la econom&iacute;a dominicana:</p>
+                    <div class="overflow-x-auto mt-2">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-1.5 text-left font-semibold text-slate-700">Velocidad</th>
+                                    <th class="px-3 py-1.5 text-center font-semibold text-slate-700">Corto (2026-28)</th>
+                                    <th class="px-3 py-1.5 text-center font-semibold text-slate-700">Medio (2028-32)</th>
+                                    <th class="px-3 py-1.5 text-center font-semibold text-slate-700">Largo (2032+)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600 text-center">
+                                <tr><td class="px-3 py-1.5 text-left font-medium">Lenta</td><td class="px-3 py-1.5">&times;0.20</td><td class="px-3 py-1.5">&times;0.35</td><td class="px-3 py-1.5">&times;0.55</td></tr>
+                                <tr class="bg-blue-50/50"><td class="px-3 py-1.5 text-left font-medium">Promedio (defecto)</td><td class="px-3 py-1.5">&times;0.35</td><td class="px-3 py-1.5 font-semibold">&times;0.55</td><td class="px-3 py-1.5">&times;0.75</td></tr>
+                                <tr><td class="px-3 py-1.5 text-left font-medium">R&aacute;pida</td><td class="px-3 py-1.5">&times;0.55</td><td class="px-3 py-1.5">&times;0.75</td><td class="px-3 py-1.5">&times;0.90</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Calibrados ~10-17% por debajo de econom&iacute;as desarrolladas para reflejar la realidad dominicana.</p>
+
+                    <p class="text-slate-600 mt-3"><strong>Intensidad de Adopci&oacute;n</strong> &mdash; qu&eacute; tan profundamente penetra la IA en cada ocupaci&oacute;n:</p>
+                    <div class="overflow-x-auto mt-2">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-1.5 text-left font-semibold text-slate-700">Intensidad</th>
+                                    <th class="px-3 py-1.5 text-center font-semibold text-slate-700">Multiplicador</th>
+                                    <th class="px-3 py-1.5 text-left font-semibold text-slate-700">Significado</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr><td class="px-3 py-1.5 font-medium">Leve</td><td class="px-3 py-1.5 text-center">&times;0.50</td><td class="px-3 py-1.5">IA augmenta pero no reemplaza &mdash; humanos en el loop</td></tr>
+                                <tr class="bg-blue-50/50"><td class="px-3 py-1.5 font-medium">Moderada (defecto)</td><td class="px-3 py-1.5 text-center font-semibold">&times;1.00</td><td class="px-3 py-1.5">Automatizaci&oacute;n est&aacute;ndar seg&uacute;n proyecci&oacute;n AIOE</td></tr>
+                                <tr><td class="px-3 py-1.5 font-medium">Fuerte</td><td class="px-3 py-1.5 text-center">&times;1.25</td><td class="px-3 py-1.5">IA supera expectativas &mdash; m&aacute;s tareas automatizadas de lo previsto</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="text-slate-600 mt-3"><strong>Ejemplos con un Contador (AIOE = 79):</strong></p>
+                    <div class="overflow-x-auto mt-2">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-1.5 text-left font-semibold text-slate-700">Escenario</th>
+                                    <th class="px-3 py-1.5 text-center font-semibold text-slate-700">C&aacute;lculo</th>
+                                    <th class="px-3 py-1.5 text-center font-semibold text-slate-700">S-Score</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr><td class="px-3 py-1.5">Lenta + Corto + Leve (optimista)</td><td class="px-3 py-1.5 text-center font-mono">79 &times; 0.20 &times; 0.50</td><td class="px-3 py-1.5 text-center font-semibold text-green-600">8</td></tr>
+                                <tr class="bg-blue-50/50"><td class="px-3 py-1.5">Promedio + Medio + Moderada (defecto)</td><td class="px-3 py-1.5 text-center font-mono">79 &times; 0.55 &times; 1.00</td><td class="px-3 py-1.5 text-center font-semibold text-yellow-600">43</td></tr>
+                                <tr><td class="px-3 py-1.5">R&aacute;pida + Medio + Fuerte</td><td class="px-3 py-1.5 text-center font-mono">79 &times; 0.75 &times; 1.25</td><td class="px-3 py-1.5 text-center font-semibold text-orange-600">74</td></tr>
+                                <tr><td class="px-3 py-1.5">R&aacute;pida + Largo + Fuerte (pesimista)</td><td class="px-3 py-1.5 text-center font-mono">79 &times; 0.90 &times; 1.25</td><td class="px-3 py-1.5 text-center font-semibold text-red-600">89</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">El mismo contador puede ir de &ldquo;seguro&rdquo; (S=8) a &ldquo;cr&iacute;tico&rdquo; (S=89) dependiendo del escenario. Esto refleja la incertidumbre real sobre el ritmo de adopci&oacute;n de IA en RD.</p>
 
                     <h3 class="text-base font-bold text-slate-800 mt-6">Zonas de Riesgo</h3>
                     <div class="overflow-x-auto">
@@ -389,10 +709,10 @@
                             </thead>
                             <tbody class="divide-y divide-slate-100">
                                 <tr><td class="px-3 py-2"><span class="inline-block w-3 h-3 rounded-full bg-[#DC2626] mr-1.5"></span>Zona Cr&iacute;tica</td><td class="px-3 py-2 text-slate-600">V &gt; 60, S &gt; 55, A &lt; 45</td><td class="px-3 py-2 text-slate-600">Intervenci&oacute;n inmediata</td></tr>
-                                <tr><td class="px-3 py-2"><span class="inline-block w-3 h-3 rounded-full bg-[#F59E0B] mr-1.5"></span>Atenci&oacute;n Urgente</td><td class="px-3 py-2 text-slate-600">V &gt; 35, S &gt; 55, A &lt; 60</td><td class="px-3 py-2 text-slate-600">Programas de reconversi&oacute;n</td></tr>
-                                <tr><td class="px-3 py-2"><span class="inline-block w-3 h-3 rounded-full bg-[#FBBF24] mr-1.5"></span>Monitoreo Estrat&eacute;gico</td><td class="px-3 py-2 text-slate-600">V &le; 35, S &gt; 55, A &ge; 55</td><td class="px-3 py-2 text-slate-600">Upskilling progresivo</td></tr>
+                                <tr><td class="px-3 py-2"><span class="inline-block w-3 h-3 rounded-full bg-[#F97316] mr-1.5"></span>Atenci&oacute;n Urgente</td><td class="px-3 py-2 text-slate-600">V &gt; 35, S &gt; 55, A &lt; 60</td><td class="px-3 py-2 text-slate-600">Programas de reconversi&oacute;n</td></tr>
+                                <tr><td class="px-3 py-2"><span class="inline-block w-3 h-3 rounded-full bg-[#EAB308] mr-1.5"></span>Monitoreo Estrat&eacute;gico</td><td class="px-3 py-2 text-slate-600">V &le; 35, S &gt; 55, A &ge; 55</td><td class="px-3 py-2 text-slate-600">Upskilling progresivo</td></tr>
                                 <tr><td class="px-3 py-2"><span class="inline-block w-3 h-3 rounded-full bg-[#10B981] mr-1.5"></span>Oportunidad IA</td><td class="px-3 py-2 text-slate-600">S &le; 40</td><td class="px-3 py-2 text-slate-600">Potenciar con herramientas IA</td></tr>
-                                <tr><td class="px-3 py-2"><span class="inline-block w-3 h-3 rounded-full bg-[#F97316] mr-1.5"></span>Evaluaci&oacute;n Contextual</td><td class="px-3 py-2 text-slate-600">Otros casos</td><td class="px-3 py-2 text-slate-600">An&aacute;lisis caso por caso</td></tr>
+                                <tr><td class="px-3 py-2"><span class="inline-block w-3 h-3 rounded-full bg-[#6366F1] mr-1.5"></span>Evaluaci&oacute;n Contextual</td><td class="px-3 py-2 text-slate-600">Otros casos</td><td class="px-3 py-2 text-slate-600">An&aacute;lisis caso por caso</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -409,25 +729,126 @@
                     <h3 class="text-base font-bold text-slate-800 mt-6">Agregaci&oacute;n de Rankings</h3>
                     <p class="text-slate-600">Los rankings Top 10 agregan ocupaciones con el mismo t&iacute;tulo que aparecen en m&uacute;ltiples sectores. Los scores V/S/A se calculan como promedios ponderados por cantidad de trabajadores. Por ejemplo, &ldquo;conserje&rdquo; aparece en 8+ sectores; el ranking muestra una sola entrada con el promedio ponderado de todos los sectores donde existe esa ocupaci&oacute;n. Adicionalmente, se normalizan variantes de g&eacute;nero en los t&iacute;tulos: ocupaciones como &ldquo;supervisor (a)&rdquo; y &ldquo;supervisor&rdquo;, o &ldquo;encargado(a)&rdquo; y &ldquo;encargado&rdquo;, se consolidan en una sola entrada.</p>
 
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Niveles de Confianza de los Datos</h3>
+                    <div class="overflow-x-auto mt-2">
+                        <table class="w-full text-xs border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Nivel</th>
+                                    <th class="px-3 py-2 text-center font-semibold text-slate-700">Margen</th>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Criterio</th>
+                                    <th class="px-3 py-2 text-left font-semibold text-slate-700">Ejemplo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                <tr><td class="px-3 py-2 font-medium text-green-700">Tier 1 (Alta)</td><td class="px-3 py-2 text-center">&plusmn;5</td><td class="px-3 py-2">Datos a nivel de ocupaci&oacute;n + salario real + &ge;500 registros</td><td class="px-3 py-2">Conserje en Admin. P&uacute;blica</td></tr>
+                                <tr><td class="px-3 py-2 font-medium text-yellow-700">Tier 2 (Moderada)</td><td class="px-3 py-2 text-center">&plusmn;10</td><td class="px-3 py-2">AIOE por keyword + salario promedio sectorial</td><td class="px-3 py-2">Secretaria en Educaci&oacute;n</td></tr>
+                                <tr><td class="px-3 py-2 font-medium text-red-700">Tier 3 (Estimada)</td><td class="px-3 py-2 text-center">&plusmn;15-20</td><td class="px-3 py-2">AIOE por defecto sectorial + proxy salarial</td><td class="px-3 py-2">Ocupaciones en TIC (2 registros)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Hoja de Ruta</h3>
+                    <p class="text-slate-600 text-sm mb-2">Este prototipo es la <strong>Fase 1</strong> de un marco de 5 fases:</p>
+                    <div class="space-y-1.5 text-xs text-slate-600">
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[10px] font-bold shrink-0">&#10003;</span><span><strong>Fase 0</strong>: Fundamentos de datos (757K registros, 14+ fuentes)</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[10px] font-bold shrink-0">&#10003;</span><span><strong>Fase 1</strong>: Evaluaci&oacute;n V/S/A + visualizaci&oacute;n interactiva (este prototipo)</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">2</span><span><strong>Fase 2</strong>: TAF-RD (Delphi), ISCO-08, an&aacute;lisis de g&eacute;nero, modelo de informalidad indirecta</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">3</span><span><strong>Fase 3</strong>: Panel de expertos, escenarios calibrados, proyecciones validadas</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">4</span><span><strong>Fase 4</strong>: Recomendaciones de pol&iacute;tica p&uacute;blica, integraci&oacute;n INFOTEP/MINERD</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold shrink-0">5</span><span><strong>Fase 5</strong>: Dashboard en tiempo real, alertas sectoriales, monitoreo continuo</span></div>
+                    </div>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Limitaciones del Prototipo</h3>
+                    <ul class="text-slate-600 space-y-1 text-xs">
+                        <li>&bull; <strong>TAF=1.0:</strong> No se ajusta por diferencias en composici&oacute;n de tareas entre RD y EE.UU.</li>
+                        <li>&bull; <strong>AIOE pre-LLMs:</strong> &Iacute;ndice de 2021, anterior a ChatGPT/Claude/Gemini. Intensidad &ldquo;Fuerte&rdquo; (&times;1.25) compensa parcialmente.</li>
+                        <li>&bull; <strong>Keyword matching:</strong> Asignaci&oacute;n de AIOE por coincidencia de palabras clave, no por clasificaci&oacute;n ISCO-08 formal.</li>
+                        <li>&bull; <strong>Mapeo institucional:</strong> El sector se determina por la instituci&oacute;n empleadora, no por el cargo. Entidades de finanzas p&uacute;blicas (Hacienda, Presupuesto, Tesorer&iacute;a) se clasifican como Admin. P&uacute;blica; solo reguladores aut&oacute;nomos (SB, BCRD) como Serv. Financieros.</li>
+                        <li>&bull; <strong>Datos salariales:</strong> Salarios reflejan promedios sectoriales, no por ocupaci&oacute;n espec&iacute;fica. Sectores con &lt;500 registros usan proxies.</li>
+                        <li>&bull; <strong>A-Score simplificado:</strong> No incorpora INFOTEP, movilidad geogr&aacute;fica, factor etario ni idiomas.</li>
+                        <li>&bull; <strong>Informalidad indirecta:</strong> No modela compresi&oacute;n de mercado informal por competidores formales con IA.</li>
+                        <li>&bull; <strong>Sector p&uacute;blico dominante:</strong> 493K de 757K registros son del sector p&uacute;blico (MAP).</li>
+                        <li>&bull; <strong>Sin validaci&oacute;n experta:</strong> Scores no validados por panel Delphi de l&iacute;deres dominicanos.</li>
+                        <li>&bull; <strong>G&eacute;nero incompleto:</strong> Datos solo para MAP (67% F / 33% M). An&aacute;lisis completo requiere ENCFT.</li>
+                        <li>&bull; <strong>Informalidad estimada:</strong> Tasas de informalidad basadas en ENCFT sectorial, no observadas a nivel de ocupaci&oacute;n.</li>
+                    </ul>
+
                     <h3 class="text-base font-bold text-slate-800 mt-6">Cr&eacute;ditos y Referencias</h3>
-                    <p class="text-slate-600">An&aacute;lisis desarrollado por <strong>CEMI.ai</strong> en colaboraci&oacute;n con <strong>Sanba Development</strong>.</p>
-                    <p class="text-slate-600 mt-2">
-                        Art&iacute;culo de referencia:
-                        <a href="https://ibizai.io/explore/opinions/the-intelligence-transition" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">The Intelligence Transition</a>
-                    </p>
-                    <p class="text-slate-500 text-xs mt-2">Felten, E., Raj, M. &amp; Seamans, R. (2021). &ldquo;Occupational, industry, and geographic exposure to artificial intelligence: A novel dataset and its potential uses.&rdquo; <em>Strategic Management Journal</em>, 42(12), 2195-2217.</p>
+                    <p class="text-slate-600">An&aacute;lisis desarrollado por <a href="https://thesocialentrepreneur.com" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline"><strong>Carlos Miranda Levy</strong></a> / <a href="https://cemi.ai" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline"><strong>CEMI.ai</strong></a> en colaboraci&oacute;n con <strong>Sanba Development</strong>.</p>
+                    <p class="text-slate-600 font-semibold mt-3">Art&iacute;culos de Referencia:</p>
+                    <ul class="text-slate-600 space-y-2 mt-1 text-sm">
+                        <li>&bull; <a href="https://ibizai.io/explore/opinions/the-intelligence-transition" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">The Intelligence Transition</a> &mdash; iBIZai.io</li>
+                        <li>&bull; Felten, E., Raj, M. &amp; Seamans, R. (2021). &ldquo;Occupational, industry, and geographic exposure to artificial intelligence: A novel dataset and its potential uses.&rdquo; <em>Strategic Management Journal</em>, 42(12), 2195-2217. [<a href="https://sms.onlinelibrary.wiley.com/doi/full/10.1002/smj.3286" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">Wiley</a>] [<a href="https://www.researchgate.net/publication/351174628_Occupational_industry_and_geographic_exposure_to_artificial_intelligence_A_novel_dataset_and_its_potential_uses" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">ResearchGate</a>]</li>
+                    </ul>
+
+                    <h3 class="text-base font-bold text-slate-800 mt-6">Documentos de Trabajo y Planificaci&oacute;n Originales</h3>
+                    <p class="text-xs text-slate-500 mb-3">Estos documentos guiaron el dise&ntilde;o y desarrollo de este prototipo. La implementaci&oacute;n final puede haber cambiado y adaptado respecto a lo planificado originalmente.</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/ai-impact-methodology.md', 'Metodolog\u00eda Completa'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Metodolog&iacute;a Completa (ai-impact-methodology.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Documento &ldquo;as-built&rdquo;: f&oacute;rmulas, valores y decisiones tal como se implementaron</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/AI-Workforce-Impact-DR-Methodology-Review.md', 'Revisi\u00f3n Metodol\u00f3gica'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Revisi&oacute;n Metodol&oacute;gica (AI-Workforce-Impact-DR-Methodology-Review.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Evaluaci&oacute;n cr&iacute;tica del marco V/S/A y roadmap de mejoras para fases futuras</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/AI-Workforce-DR-Working-Tools.md', 'Herramientas de Trabajo'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Herramientas de Trabajo (AI-Workforce-DR-Working-Tools.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Top 35 ocupaciones prioritarias, plantillas de scoring, instrumento Delphi para TAF-RD</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/AI-Workforce-DR-Sprint-Plan.md', 'Plan de Sprint'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Plan de Sprint (AI-Workforce-DR-Sprint-Plan.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Plan de ejecuci&oacute;n de 2-3 semanas, entregables por fase, riesgos y mitigaciones</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="loadDocModal('../docs/AI-Impact-Prototype-Master-Prompt.md', 'Prompt de Prototipo'); return false;" class="text-blue-600 hover:text-blue-800 underline flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 shrink-0"></i>
+                                Prompt Maestro del Prototipo (AI-Impact-Prototype-Master-Prompt.md)
+                            </a>
+                            <p class="text-xs text-slate-400 ml-5">Especificaci&oacute;n t&eacute;cnica original para la construcci&oacute;n del prototipo con Claude Code</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
 
     </main>
 
+    <!-- ============ METHODOLOGY MODAL ============ -->
+    <div id="methodology-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeMethodologyModal()"></div>
+        <div class="absolute inset-4 sm:inset-8 md:inset-12 lg:inset-x-24 lg:inset-y-10 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 shrink-0">
+                <h2 class="text-lg font-bold text-slate-900">Metodolog&iacute;a Completa</h2>
+                <button onclick="closeMethodologyModal()" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="methodology-modal-body" class="flex-1 overflow-y-auto px-6 py-6">
+                <p class="text-slate-400 text-sm">Cargando...</p>
+            </div>
+        </div>
+    </div>
+
     <!-- ============ FOOTER ============ -->
     <footer class="border-t border-slate-200 bg-white mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-400">
             <p>Sanba Development &middot; 2026</p>
             <a href="https://github.com/Sanba-Development/rd-job-visualizer" target="_blank" rel="noopener" class="flex items-center gap-1.5 text-slate-500 hover:text-blue-600 transition-colors font-medium">
-                <i data-lucide="github" class="w-4 h-4"></i>
+                <i data-lucide="git-branch" class="w-4 h-4"></i>
                 GitHub
             </a>
         </div>
@@ -466,8 +887,8 @@
     Object.entries(SECTOR_KEY_TO_COLOR_ID).forEach(([k, v]) => COLOR_ID_TO_SECTOR_KEY[v] = k);
 
     const ZONE_COLORS = {
-        red: '#DC2626', orange: '#F59E0B', yellow: '#FBBF24',
-        green: '#10B981', amber: '#F97316'
+        red: '#DC2626', orange: '#F97316', yellow: '#EAB308',
+        green: '#10B981', amber: '#6366F1'
     };
     const ZONE_LABELS = {
         red: 'Zona Crítica', orange: 'Atención Urgente', yellow: 'Monitoreo Estratégico',
@@ -482,15 +903,22 @@
     let currentPeriod = 'short';
     let activeSectorFilter = null;
     let currentAdoption = 'average';
+    let currentIntensity = 'moderate';
     let searchQuery = '';
-    let playInterval = null;
     let radarSelections = [];
 
     // Adoption speed multipliers: [short, medium, long]
     const ADOPTION_SPEEDS = {
-        slow:    { short: 0.15, medium: 0.35, long: 0.60, label: 'Lenta', desc: 'Adopción lenta: solo grandes MNCs y gobierno' },
-        average: { short: 0.30, medium: 0.60, long: 0.90, label: 'Promedio', desc: 'Adopción promedio: tendencia actual proyectada' },
-        fast:    { short: 0.50, medium: 0.80, long: 0.95, label: 'Rápida', desc: 'Adopción rápida: incentivos fiscales + infraestructura digital' }
+        slow:    { short: 0.20, medium: 0.35, long: 0.55 },
+        average: { short: 0.35, medium: 0.55, long: 0.75 },
+        fast:    { short: 0.55, medium: 0.75, long: 0.90 }
+    };
+
+    // Adoption intensity multipliers
+    const ADOPTION_INTENSITY = {
+        light:    0.50,
+        moderate: 1.00,
+        strong:   1.25
     };
 
     // ---- REMAP SECTOR COLORS for computeAll ----
@@ -506,9 +934,10 @@
     // ---- RECOMPUTE with temporal period + adoption speed ----
     function recomputeForPeriod(data) {
         const speed = ADOPTION_SPEEDS[currentAdoption];
-        const multiplier = speed[currentPeriod];
+        const intensity = ADOPTION_INTENSITY[currentIntensity];
+        const multiplier = speed[currentPeriod] * intensity;
         const occupations = data.occupations.map(occ => {
-            const sVal = Math.round(occ.sScore * multiplier);
+            const sVal = Math.min(100, Math.round(occ.sScore * multiplier));
             const zone = classifyZone(occ.vScore, sVal, occ.aScore);
             return { ...occ, sDisplay: sVal, zoneDisplay: zone, zoneColorDisplay: ZONE_COLORS[zone], zoneNameDisplay: ZONE_LABELS[zone] };
         });
@@ -567,51 +996,29 @@
         return 'amber';
     }
 
-    // ---- GAUGES ----
-    function drawGauge(svgId, value, colorStops) {
-        const svg = d3.select(`#${svgId}`);
-        svg.selectAll('*').remove();
-        const w = 140, h = 80;
-        const cx = w / 2, cy = h - 5;
-        const r = 55;
-        const startAngle = -Math.PI;
-        const endAngle = 0;
+    // ---- GAUGES (ring indicators) ----
+    const RING_CIRCUMFERENCE = 2 * Math.PI * 36; // ~226.19
 
-        // Background arc
-        const bgArc = d3.arc().innerRadius(r - 10).outerRadius(r).startAngle(startAngle).endAngle(endAngle);
-        svg.append('path').attr('d', bgArc()).attr('transform', `translate(${cx},${cy})`).attr('fill', '#e2e8f0');
+    function scoreColor(value, invert) {
+        if (invert) { value = 100 - value; }
+        if (value <= 35) return '#10B981';
+        if (value < 70) return '#EAB308';
+        return '#DC2626';
+    }
 
-        // Gradient
-        const gradId = `grad-${svgId}`;
-        const defs = svg.append('defs');
-        const grad = defs.append('linearGradient').attr('id', gradId).attr('x1', '0%').attr('x2', '100%');
-        colorStops.forEach((c, i) => grad.append('stop').attr('offset', `${(i / (colorStops.length - 1)) * 100}%`).attr('stop-color', c));
-
-        // Value arc
-        const valAngle = startAngle + (endAngle - startAngle) * (Math.min(value, 100) / 100);
-        const valArc = d3.arc().innerRadius(r - 10).outerRadius(r).startAngle(startAngle).endAngle(startAngle);
-        const path = svg.append('path')
-            .attr('d', valArc())
-            .attr('transform', `translate(${cx},${cy})`)
-            .attr('fill', `url(#${gradId})`)
-            .attr('class', 'gauge-arc');
-
-        // Animate
-        path.transition().duration(800).attrTween('d', function () {
-            const interp = d3.interpolate(startAngle, valAngle);
-            return function (t) {
-                return d3.arc().innerRadius(r - 10).outerRadius(r).startAngle(startAngle).endAngle(interp(t))();
-            };
-        });
+    function updateRing(ringId, valueId, value, invert) {
+        const ring = document.getElementById(ringId);
+        const label = document.getElementById(valueId);
+        const offset = RING_CIRCUMFERENCE * (1 - Math.min(value, 100) / 100);
+        ring.style.strokeDashoffset = offset;
+        ring.style.stroke = scoreColor(value, invert);
+        label.textContent = value;
     }
 
     function updateGauges(global) {
-        drawGauge('gauge-v', global.avgV, ['#10B981', '#FBBF24', '#F59E0B', '#DC2626']);
-        drawGauge('gauge-s', global.avgS, ['#6366F1', '#8B5CF6', '#A855F7', '#C084FC']);
-        drawGauge('gauge-a', global.avgA, ['#DC2626', '#F59E0B', '#10B981', '#059669']);
-        document.getElementById('gauge-v-value').textContent = global.avgV;
-        document.getElementById('gauge-s-value').textContent = global.avgS;
-        document.getElementById('gauge-a-value').textContent = global.avgA;
+        updateRing('ring-v', 'gauge-v-value', global.avgV, false);
+        updateRing('ring-s', 'gauge-s-value', global.avgS, false);
+        updateRing('ring-a', 'gauge-a-value', global.avgA, true);
     }
 
     // ---- ZONE BAR ----
@@ -1384,37 +1791,27 @@
         });
     }
 
-    // ---- AUTO-PLAY ----
-    function startAutoPlay() {
-        const periods = ['short', 'medium', 'long'];
-        let idx = periods.indexOf(currentPeriod);
-        playInterval = setInterval(() => {
-            idx = (idx + 1) % 3;
-            currentPeriod = periods[idx];
-            document.querySelectorAll('.temporal-btn').forEach(b => {
-                b.classList.toggle('active', b.dataset.period === currentPeriod);
-            });
-            const computed = recomputeForPeriod(allData);
-            updateGauges(computed.global);
-            updateZoneBar(computed.global.zoneDistribution);
-            updateStats(computed);
-            updateScatterPositions(computed);
-            buildSectorTable(computed);
-            renderTop10(computed);
-            if (radarSelections.length > 0) renderRadar(computed);
-        }, 2000);
-        document.getElementById('play-btn').classList.add('playing');
-        document.getElementById('play-label').textContent = 'Detener';
-    }
-
-    function stopAutoPlay() {
-        clearInterval(playInterval);
-        playInterval = null;
-        document.getElementById('play-btn').classList.remove('playing');
-        document.getElementById('play-label').textContent = 'Animar';
-    }
-
     // ---- RENDER ALL ----
+    // ---- SCATTER SECTOR FILTER ----
+    function buildScatterFilter(computed) {
+        const container = document.getElementById('scatter-sector-filter');
+        let html = `<button class="scatter-filter-btn ${!activeSectorFilter ? 'active bg-slate-900 text-white' : 'text-slate-600'} rounded-full px-3 py-1 text-xs font-medium border border-slate-300 transition-all" data-sector="all">Todos</button>`;
+        for (const sec of computed.sectors) {
+            const active = activeSectorFilter === sec.key;
+            html += `<button class="scatter-filter-btn rounded-full px-3 py-1 text-xs font-medium border transition-all ${active ? 'text-white border-transparent' : 'text-slate-600 border-slate-300 hover:border-slate-400'}" data-sector="${sec.key}" style="${active ? 'background:' + sec.color : ''}">
+                <span class="inline-block w-2 h-2 rounded-full mr-1" style="background:${sec.color}"></span>${sec.shortName}
+            </button>`;
+        }
+        container.innerHTML = html;
+        container.querySelectorAll('.scatter-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const key = btn.dataset.sector;
+                activeSectorFilter = key === 'all' ? null : key;
+                renderAll(false);
+            });
+        });
+    }
+
     function renderAll(animate = true) {
         const computed = recomputeForPeriod(allData);
         updateStats(computed);
@@ -1427,6 +1824,7 @@
             buildScatter(computed, false);
         }
 
+        buildScatterFilter(computed);
         buildSectorTable(computed);
         renderSectorExplanations(computed);
         renderTop10(computed);
@@ -1442,13 +1840,13 @@
         updateScatterPositions(computed);
         buildSectorTable(computed);
         renderTop10(computed);
+        renderSectorExplanations(computed);
         if (radarSelections.length > 0) renderRadar(computed);
         setTimeout(applySearch, 100);
     }
 
     document.querySelectorAll('.temporal-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            stopAutoPlay();
             document.querySelectorAll('.temporal-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentPeriod = btn.dataset.period;
@@ -1466,10 +1864,17 @@
         });
     });
 
-    // ---- PLAY BUTTON ----
-    document.getElementById('play-btn').addEventListener('click', () => {
-        if (playInterval) { stopAutoPlay(); } else { startAutoPlay(); }
+    // ---- ADOPTION INTENSITY BUTTONS ----
+    document.querySelectorAll('.intensity-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.intensity-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentIntensity = btn.dataset.intensity;
+            refreshAfterControl();
+        });
     });
+
+    // ---- PLAY BUTTON ----
 
     // ---- SEARCH INPUT ----
     document.getElementById('occupation-search').addEventListener('input', (e) => {
@@ -1484,11 +1889,91 @@
     });
 
     // ---- METHODOLOGY TOGGLE ----
+    // ---- SYSTEMIC TOGGLE ----
+    document.getElementById('systemic-toggle').addEventListener('click', () => {
+        const content = document.getElementById('systemic-content');
+        const chevron = document.getElementById('systemic-chevron');
+        content.classList.toggle('hidden');
+        chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+
+    // ---- EXPLANATIONS TOGGLE ----
+    document.getElementById('explanations-toggle').addEventListener('click', () => {
+        const content = document.getElementById('explanations-content');
+        const chevron = document.getElementById('explanations-chevron');
+        content.classList.toggle('hidden');
+        chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+
+    // ---- RADAR TOGGLE ----
+    document.getElementById('radar-toggle').addEventListener('click', () => {
+        const content = document.getElementById('radar-collapsible-content');
+        const chevron = document.getElementById('radar-toggle-chevron');
+        content.classList.toggle('hidden');
+        chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+
+    // ---- RANKINGS TOGGLE ----
+    document.getElementById('rankings-toggle').addEventListener('click', () => {
+        const content = document.getElementById('rankings-content');
+        const chevron = document.getElementById('rankings-chevron');
+        content.classList.toggle('hidden');
+        chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+
+    // ---- DASHBOARD TOGGLE ----
+    document.getElementById('dashboard-toggle').addEventListener('click', () => {
+        const content = document.getElementById('dashboard-content');
+        const chevron = document.getElementById('dashboard-chevron');
+        content.classList.toggle('hidden');
+        chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+        // Re-render gauges and scatter when opening (SVGs don't render in hidden containers)
+        if (!content.classList.contains('hidden') && allData) {
+            const computed = recomputeForPeriod(allData);
+            updateGauges(computed.global);
+            buildScatter(computed, true);
+            buildScatterFilter(computed);
+        }
+    });
+
     document.getElementById('methodology-toggle').addEventListener('click', () => {
         const content = document.getElementById('methodology-content');
         const chevron = document.getElementById('methodology-chevron');
         content.classList.toggle('hidden');
         chevron.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+
+    // ---- DOCUMENT MODAL ----
+    const docCache = {};
+    function loadDocModal(url, title) {
+        const modal = document.getElementById('methodology-modal');
+        const titleEl = modal.querySelector('h2');
+        const body = document.getElementById('methodology-modal-body');
+        titleEl.textContent = title || 'Documento';
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        if (docCache[url]) {
+            body.innerHTML = docCache[url];
+        } else {
+            body.innerHTML = '<p class="text-slate-400 text-sm">Cargando...</p>';
+            fetch(url)
+                .then(r => r.ok ? r.text() : Promise.reject('No se pudo cargar'))
+                .then(md => {
+                    const html = marked.parse(md);
+                    docCache[url] = html;
+                    body.innerHTML = html;
+                })
+                .catch(err => {
+                    body.innerHTML = `<p class="text-red-500">${err}</p>`;
+                });
+        }
+    }
+    function closeMethodologyModal() {
+        document.getElementById('methodology-modal').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMethodologyModal();
     });
 
     // ---- RESIZE ----
