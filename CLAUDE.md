@@ -1,5 +1,17 @@
 # CLAUDE.md
 
+<!-- BEGIN cemi-cost-policy v1 (managed — source: cemi-web/authoring-rules/canonical/cost-policy.md) -->
+## ⛔ HARD RULE — never use external/paid services without asking (all CEMI repos)
+
+NEVER invoke any paid or third-party service outside Claude's own model without **asking, confirming, AND informing the user first — every single time.** The user pays for Claude Max 20x; do the work inside Claude. A documented "default" or convention does NOT override this. When in doubt, ask.
+
+- **Translation:** always translate with Claude's own capability — directly, or via Claude subagents on the user's subscription (Haiku / Sonnet / Opus as fits the content). NEVER Gemini or any external machine translation. Do NOT use any `scripts/translate-*.mjs` / `bulk-translate-*.mjs` helper that calls Gemini.
+- **Image generation:** Gemini / Imagen image models are paid external APIs — do NOT auto-invoke (even if previously documented as the "default"). Ask first.
+- **Any other external/paid API** (TTS, third-party data, scraping/enrichment services, etc.): ask first.
+
+Silent use of paid external services has caused real, unwanted cost. Treat this as a hard guardrail.
+<!-- END cemi-cost-policy v1 -->
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
