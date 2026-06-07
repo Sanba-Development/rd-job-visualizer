@@ -12,6 +12,31 @@ NEVER invoke any paid or third-party service outside Claude's own model without 
 Silent use of paid external services has caused real, unwanted cost. Treat this as a hard guardrail.
 <!-- END cemi-cost-policy v1 -->
 
+<!-- BEGIN cemi-i18n-quote-hygiene v1 (managed — source: cemi-web/authoring-rules/canonical/i18n-quote-hygiene.md) -->
+## 🈂 Translation hygiene — CJK / multibyte / quote-nesting (all CEMI repos)
+
+The most frequent i18n bug: a translation agent nests English `"…"` quotes inside a foreign-language string and silently breaks the JSON. When translating into JSON or any structured/code format:
+
+- **Never emit a raw ASCII `"` inside a JSON string value.** Use the locale's typographic quote pair (table below), or escape it as `\"`.
+- **Select/segment the text blocks carefully** so quotes and punctuation never cross or corrupt the surrounding structure — and with multibyte **CJK (Chinese / Japanese / Korean)** characters, never split mid-character when chunking or truncating.
+
+| Locale | Quote pair to use |
+|---|---|
+| DE | `„…"` (U+201E / U+201C) |
+| FR / IT / AR | `«…»` |
+| ZH | `「…」` (corner brackets) or full-width `"…"` |
+| JA | `「…」` |
+| ES / PT | `«…»` or curly `"…"` |
+
+**Always validate that every translated JSON file parses before applying it** (make it part of `/ship`). Example (adjust the path to your repo's i18n files):
+
+```bash
+for loc in en es fr de it zh ja pt ar; do
+  node -e "JSON.parse(require('fs').readFileSync('src/i18n/$loc.json','utf8'))" && echo "$loc OK" || echo "$loc FAIL"
+done
+```
+<!-- END cemi-i18n-quote-hygiene v1 -->
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
