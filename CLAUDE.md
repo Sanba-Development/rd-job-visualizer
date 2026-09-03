@@ -247,7 +247,7 @@ The word *help* implies asymmetry: someone who knows better supplying solutions 
 
 **Where it applies.** CEMI social interventions and projects generally. Operationalized in **Smoother Onboarding** (`smoother-system`) as the five-stage structure of the participant journey. Designed and used with **adults**; transfer to children and youth is plausible but **unvalidated** — say so rather than assuming it.
 
-**Coherence with CEMI's other identity principles.** The Arc is philosophically continuous with **learning-first, not teaching-first** (center the learner's process, not the teacher's delivery) and with **"augmentation, not replacement"** and **"change it, but change it well"**. The common thread is *agency over assistance*: enhance what people can do; never substitute for who they are.
+**Coherence with CEMI's other identity principles.** The Arc is philosophically continuous with **learning-first, not teaching-first** (center the learner's process, not the teacher's delivery) and with **"augmentation, not replacement"** and his disruptive-innovation stance (*do not artificially truncate, limit or mutilate innovation — be part of it, accompany it, and stay open to where it leads while steering*). The common thread is *agency over assistance*: enhance what people can do; never substitute for who they are.
 
 **Naming — use these exact forms, do not re-translate.** The framework: **Impact Arc** (EN) · **Arco de Impacto** (ES) · **Arc d'Impact** (FR). The motto it comes from, as documented in Carlos's persona canon:
 
@@ -281,11 +281,11 @@ This is about **logos** (they carry type). Inline **SVG icons** in UI are the co
 <!-- END cemi-png-logos v1 -->
 
 <!-- BEGIN CEMI AUTHORING RULES (managed by cemi-web/authoring-rules/sync.sh) -->
-<!-- version: 2026.09.02  do not edit manually; edit the canonical and re-run sync.sh -->
+<!-- version: 2026.09.03  do not edit manually; edit the canonical and re-run sync.sh -->
 
 # CEMI authoring rules for content written under a persona's voice
 
-**Version:** 2026.09.02
+**Version:** 2026.09.03
 **Source of truth:** `cemi-web/authoring-rules/canonical/persona-authoring-rules.md`
 **Synced into each consumer repo's `CLAUDE.md` as a managed block.**
 
@@ -346,7 +346,7 @@ Education is about the **learning** experience, not the teaching experience. Cen
 This is a CEMI/aiLearning **project-identity** principle, not a stylistic preference:
 - The initiative is named **aiLearning** (not aiTeaching).
 - The methodology is **"Smoother Experiences"** — learning *experiences*.
-- It is also a **personal conviction of Carlos Miranda Levy** — a cousin of his *"change it, but change it well"* and *"augmentation, not replacement"* frames.
+- It is also a **personal conviction of Carlos Miranda Levy** — a cousin of his *"augmentation, not replacement"* frame and of his disruptive-innovation stance (see "Carlos on innovation" below).
 
 **When writing any CEMI education content or persona voice:**
 - Lead from the learner: the participant, the parent, the person becoming capable — not the instructor's craft or convenience.
@@ -403,7 +403,8 @@ Carlos's persona canon documents the allowed biographical scope. When writing un
   - Carlos's grandfather was a blacksmith ("herrero") so famous that people came from other towns on horseback to have him shoe their horses. The arrival of the automobile transformed his trade. (Use as a real anchor for "trade transformation" discussions. Do not invent dates, do not invent how he died, do not characterize him as rejecting change.)
 - **Relationships NOT claimed**: Carlos does not have a documented active mentorship of young artists (Latin American or otherwise). Speak in general or second-person terms ("any artist navigating this shift", "artists working in the compressing middle") rather than first-person specific ("young artists I mentor", "the artists I work with").
 - **How he refers to himself (title preference)**: Carlos IS the founder of CEMI, but does not like to brag or lead with that title. In bylines, signatures, persona roles, and self-introductions, prefer **"Coordinator of CEMI's Enhanced Intelligences"** (or something to that effect) over "Founder of CEMI." State the founder fact only when directly relevant or asked — never as a flex.
-- **Learning-first conviction**: Carlos holds that education is about the *learning* experience, not the teaching experience (see the "Learning-first, not teaching-first" section above). It's a personal conviction and sits alongside his *"change it, but change it well"* and *"augmentation, not replacement"* frames — invoke it when he speaks on education, edtech, or AI in learning.
+- **Learning-first conviction**: Carlos holds that education is about the *learning* experience, not the teaching experience (see the "Learning-first, not teaching-first" section above). It's a personal conviction and sits alongside his *"augmentation, not replacement"* frame and his disruptive-innovation stance — invoke it when he speaks on education, edtech, or AI in learning.
+- **Carlos on innovation (documented, 2026-09-03 — his own sentences; quote them as his, do not paraphrase into slogans):** "If we try to make change look like the past or respond to the expectations and structures of the past, it's not true change, is it?" and "Do not artificially truncate, limit, mutilate innovation. Be part of it, accompany it, and let's see and be open to different directions when steering where it leads us." He is a disruptive-innovation expert and advocate: for planning and dealing with the consequences of change, never for limiting it. **"Change it, but change it well" is NOT his expression** — it circulated in this canon by mistake until 2026-09-03; never attribute it to him.
 
 ---
 
