@@ -458,22 +458,53 @@ Artículo de referencia: ibizai.io/explore/opinions/the-intelligence-transition
 
 Before running the master prompt, confirm:
 
-- [ ] You're in the jobs.sanba.dev repository root
-- [ ] The treemap data files are accessible (check src/ or data/ directories)
-- [ ] D3.js or an equivalent charting library is already available in the project
-- [ ] You know where the navigation/menu is defined (to add the link to the new page)
-- [ ] Git branch created for this feature (suggested: `feature/ai-impact-assessment`)
+- [x] You're in the jobs.sanba.dev repository root
+- [x] The treemap data files are accessible (check src/ or data/ directories)
+- [x] D3.js or an equivalent charting library is already available in the project
+- [x] You know where the navigation/menu is defined (to add the link to the new page)
+- [x] Git branch created for this feature (suggested: `feature/ai-impact-assessment`)
 
 ## POST-BUILD CHECKLIST
 
 After the prototype is built:
 
-- [ ] Scatter plot renders with real data from Sanba pipeline
-- [ ] Bubbles are colored by risk zone and sized by employment volume
-- [ ] Temporal slider changes the S-Score multiplier and re-renders
-- [ ] Hover tooltips show V/S/A breakdown
-- [ ] Sector summary table displays below the chart
-- [ ] Navigation works: treemap ↔ AI impact page
-- [ ] Mobile responsive
-- [ ] Methodology note is visible and accurate
-- [ ] No existing functionality broken
+- [x] Scatter plot renders with real data from Sanba pipeline (757K records, MAP + CKAN + TSS + CNZFE)
+- [x] Bubbles are colored by risk zone and sized by employment volume
+- [x] Temporal slider changes the S-Score multiplier and re-renders (3 horizons × 3 speeds × 3 intensities = 27 scenarios)
+- [x] Hover tooltips show V/S/A breakdown (+ ISCO-08 code)
+- [x] Sector summary table displays below the chart (with zone legend)
+- [x] Navigation works: treemap ↔ AI impact page
+- [x] Mobile responsive
+- [x] Methodology note is visible and accurate (inline + modal with full docs)
+- [x] No existing functionality broken
+
+## ADDITIONAL FEATURES BUILT (beyond original spec)
+
+- [x] ISCO-08 concordance table (4-digit, 60+ patterns) with sector-contextual "técnico" disambiguation
+- [x] Non-occupation filtering (salario mínimo, empleo zona franca, licencias turismo)
+- [x] Adoption intensity dimension (Leve/Moderada/Fuerte) multiplier
+- [x] Occupation search with highlight/dim
+- [x] Sector filter chips on scatter plot
+- [x] 6 paginated Top 10 ranking lists with cross-sector aggregation and gender-variant normalization
+- [x] Radar chart (unlimited sectors, 5 dimensions)
+- [x] CSS ring gauges with dynamic value-based colors
+- [x] All sections collapsible (Dashboard, Rankings, Radar, Análisis Sistémico, Análisis por Sector, Metodología)
+- [x] Sticky controls bar
+- [x] Análisis Sistémico section (Informality Paradox, Gender, BPO/Call Centers, DR adoption factors)
+- [x] MAP nómina pública integration (493K records, Dec 2025)
+- [x] Institution-to-sector mapping (Hacienda→Admin Pública, not Financiero)
+- [x] Salary proxy threshold (≥500 records for real data)
+- [x] DR-calibrated speed multipliers (~10-17% below developed economies)
+- [x] Methodology modal loading any docs/*.md with marked.js rendering
+- [x] Working documents section linking all planning docs
+
+## IMPLEMENTATION STATUS BY PHASE
+
+| Phase | Status | Notes |
+|---|---|---|
+| Phase 0: Data Foundation | ✅ Complete | 757K records, 14+ sources, 12 sectors |
+| Phase 1: V/S/A Assessment | ✅ Complete | Scoring engine, visualization, methodology |
+| Phase 2: Structural Overlays | 🟡 Partial | ✅ ISCO-08, ✅ exclusions, ✅ técnico disambiguation. ⬜ TAF-RD, ⬜ gender analysis, ⬜ informality model |
+| Phase 3: Scenarios & Validation | ⬜ Pending | Expert Delphi panel, calibrated scenarios |
+| Phase 4: Policy Recommendations | ⬜ Pending | Sector-specific policy briefs |
+| Phase 5: Continuous Monitoring | ⬜ Pending | Real-time dashboard, alerts |
