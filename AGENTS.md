@@ -108,7 +108,7 @@ done
 **Deeper protocol** (find/replace contract for subagent-produced translations, applier requirements, quality gates): see `mediamax-system/.claude/rules/translation-protocol.md`. The find/replace contract is mandatory whenever a translation agent emits structured pairs to apply against source HTML/JSON/ASS. Origin: 2026-06-17 batch where ~13% of pairs failed to match because agents retyped find strings.
 <!-- END cemi-i18n-quote-hygiene v7 -->
 
-<!-- BEGIN cemi-impact-arc v2 (managed — source: cemi-system/sync/impact-arc.md) -->
+<!-- BEGIN cemi-impact-arc v3 (managed — source: cemi-system/sync/impact-arc.md) -->
 ## 🌱 The Impact Arc — how CEMI intervenes (all CEMI repos)
 
 **Impact Arc** (ES: **Arco de Impacto** · FR: **Arc d'Impact**) is CEMI's five-stage frame for how we act on and with stakeholders:
@@ -135,7 +135,7 @@ The word *help* implies asymmetry: someone who knows better supplying solutions 
 
 - **EN** — "NEVER HELP: Engage, Enable, Inspire, Empower and Connect"
 - **ES** — «NUNCA AYUDAR: Involucrar, Habilitar, Inspirar, Empoderar y Conectar»
-- **FR** — « N'AIDEZ JAMAIS : Engager, Rendre possible, Inspirer, Autonomiser et Connecter »
+- **FR** — « N'AIDEZ JAMAIS : Engager, Rendre possible, Inspirer, Autonomiser et Connecter »
 
 Stage names per locale:
 
@@ -148,7 +148,7 @@ Stage names per locale:
 | Connect | Conectar | Connecter |
 
 Use the motto when quoting Carlos, the framework name when referring to the organizational canon. The stages are **fixed and ordered** — do not add, rename, drop, or reorder them, and do not coin new translations: the ES and FR forms above are canon (note FR *Rendre possible* for Enable and *Autonomiser* for Empower — neither is a literal cognate, and both are deliberate).
-<!-- END cemi-impact-arc v2 -->
+<!-- END cemi-impact-arc v3 -->
 
 <!-- BEGIN journalaism-article-canon v1 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
 ## Article writing and research canon (all CEMI repositories that publish text)
@@ -178,7 +178,7 @@ Anywhere a logo's **type is rendered** — hyperframe/video compositions, brand-
 This is about **logos** (they carry type). Inline **SVG icons** in UI are the correct choice and are unaffected by this rule.
 <!-- END cemi-png-logos v2 -->
 
-<!-- BEGIN cemi-persona-authoring v1 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
+<!-- BEGIN cemi-persona-authoring v2 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
 # CEMI authoring rules for content written under a persona's voice
 
 **Source of truth:** `personais-system/sync/persona-authoring-rules.md` — the managed block `cemi-persona-authoring`; an edit bumps the version in these markers and the `cemi-system/canon-sync` bundle.
@@ -222,7 +222,7 @@ Distinct from the fabrication rules above (which concern *verifiable* claims): e
 
 ---
 
-**Sibling principle — learning-first and the Impact Arc.** The learning-first rule, the «participante» vocabulary and the capacity rule are the `smoother-learning-first` managed block (source: `smoother-system/sync/learning-first.md`), and both that block and this one rest on the **Impact Arc** — *agency over assistance*, **created by Carlos Miranda Levy** and inherited by CEMI as a group — whose canonical entry is the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`).
+**Sibling principle — learning-first and the Impact Arc.** The learning-first rule, the «participante» vocabulary (cited *as a Spanish word*, which is the one case where a Spanish term belongs in English prose) and the capacity rule are the `smoother-learning-first` managed block (source: `smoother-system/sync/learning-first.md`). **Smoother’s terms are fully translated in every non-Spanish surface** (Carlos, 2026-09-19): a persona writing in English says **Learning Facilitator** for the support role — never "teacher", "instructor" or "trainer" as the role name — and **Learning Unit**, never "module"; a learning experience is never a "course". The frozen trilingual table is `smoother-system/protocol/smoother-glosario.md`; every consumer inherits from there and nobody coins a translation downstream. Both that block and this one rest on the **Impact Arc** — *agency over assistance*, **created by Carlos Miranda Levy** and inherited by CEMI as a group — whose canonical entry is the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`).
 
 ---
 
@@ -236,7 +236,7 @@ Carlos's persona canon documents the allowed biographical scope. When writing un
 - **Validated family anecdotes** (use only as documented, do not embellish):
   - Carlos's grandfather was a blacksmith ("herrero") so famous that people came from other towns on horseback to have him shoe their horses. The arrival of the automobile transformed his trade. (Use as a real anchor for "trade transformation" discussions. Do not invent dates, do not invent how he died, do not characterize him as rejecting change.)
 - **Relationships NOT claimed**: Carlos does not have a documented active mentorship of young artists (Latin American or otherwise). Speak in general or second-person terms ("any artist navigating this shift", "artists working in the compressing middle") rather than first-person specific ("young artists I mentor", "the artists I work with").
-- **How he refers to himself (title preference)**: Carlos IS the founder of CEMI, but does not like to brag or lead with that title. In bylines, signatures, persona roles, and self-introductions, prefer **"Coordinator of CEMI's Enhanced Intelligences"** (or something to that effect) over "Founder of CEMI." State the founder fact only when directly relevant or asked — never as a flex.
+- **How he refers to himself (title preference)**: Carlos IS the founder of CEMI, but does not like to brag or lead with that title. In bylines, signatures, persona roles, and self-introductions, prefer **"Coordinator of Impact, Innovation and Intelligence"** (ES «Coordinador de Impacto, Innovación e Inteligencia» · FR « Coordinateur de l’Impact, de l’Innovation et de l’Intelligence ») over "Founder of CEMI." State the founder fact only when directly relevant or asked — never as a flex. (Changed 2026-09-19; the former "Coordinator of CEMI's Enhanced Intelligences" — with its ES form, «Coordinador de las Inteligencias Aumentadas de CEMI» and the older «Mejoradas» variant, and its FR form, « Coordinateur des Intelligences Augmentées de CEMI » — is retired and must not appear as a byline.)
 - **Learning-first conviction**: Carlos holds that education is about the *learning* experience, not the teaching experience (see the "Learning-first, not teaching-first" section of the `smoother-learning-first` managed block). It's a personal conviction and sits alongside his *"augmentation, not replacement"* frame and his disruptive-innovation stance — invoke it when he speaks on education, edtech, or AI in learning.
 - **Carlos on innovation (documented, 2026-09-03 — his own sentences; quote them as his, do not paraphrase into slogans):** "If we try to make change look like the past or respond to the expectations and structures of the past, it's not true change, is it?" and "Do not artificially truncate, limit, mutilate innovation. Be part of it, accompany it, and let's see and be open to different directions when steering where it leads us." He is a disruptive-innovation expert and advocate: for planning and dealing with the consequences of change, never for limiting it. **"Change it, but change it well" is NOT his expression** — it circulated in this canon by mistake until 2026-09-03; never attribute it to him.
 
@@ -376,7 +376,7 @@ Brevity and honesty beat fluency. A short paragraph of true things is worth more
 > Fact-checking, the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test and the corrections rule are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` and are binding here. One copy, there; nothing carrying `[REQUIRES VERIFICATION]` ships.
 
 *(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
-<!-- END cemi-persona-authoring v1 -->
+<!-- END cemi-persona-authoring v2 -->
 
 <!-- BEGIN cemi-gemini-models v1 (managed — source: cemi-system/sync/gemini-models.md) -->
 ## 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos)
@@ -406,7 +406,7 @@ Rules, in order of preference:
 5. In HyperFrames STORYBOARD/frame specs, titles are written with their intended line breaks (`|`), and the composition honours them with `<br>` or balance; the QC pass checks orphans explicitly.
 <!-- END cemi-typographic-orphans v1 -->
 
-<!-- BEGIN smoother-learning-first v2 (managed — source: smoother-system/sync/learning-first.md) -->
+<!-- BEGIN smoother-learning-first v3 (managed — source: smoother-system/sync/learning-first.md) -->
 ## Learning-first, not teaching-first
 
 Education is about the **learning** experience, not the teaching experience. Center the **learner's process** — never the teacher's. Even when the topic *is* teaching, approach it from the learner's side: what does the learner experience, understand, retain, and become able to do?
@@ -426,7 +426,9 @@ This is a CEMI/aiLearning **project-identity** principle, not a stylistic prefer
 
 ### Terminology in Smoother's own voice — «participante», never «estudiante»
 
-Use **Sujeto de Aprendizaje / participante / aprendiz**. Never «estudiante», never «alumno», never "trainee". The support role is the **Orientador de Aprendizaje** (never «docente»/«profesor»); a learning experience is never called a «curso».
+In Spanish, use **Sujeto de Aprendizaje / participante / aprendiz**. Never «estudiante», never «alumno», never "trainee". The support role is the **Learning Facilitator** (ES *Orientador de Aprendizaje* · FR *Facilitateur·rice d'apprentissage*) — never "teacher", "instructor" or "trainer", and never «docente»/«profesor»/« enseignant ». A learning experience is never called a "course", never «curso», never « cours ».
+
+**The terms are fully translated in every non-Spanish surface** (Carlos, 2026-09-19). English and French texts carry **Learning Subject, participant, Learning Facilitator, Learning Object, Learning Unit** — not the Spanish names as proper nouns. A Spanish term appears in an EN or FR text only when the Spanish word itself is the subject (as it is in this very section, where «participante» and «estudiante» are being weighed *as Spanish words*), or once in parentheses at first mention. The frozen trilingual table and the rules that travel with it are `smoother-system/protocol/smoother-glosario.md`; every consumer inherits from there and nobody coins a translation downstream.
 
 **Why these words are refused.** The objection is not connotation — it is that each refused term defines the person by their **position relative to an institution**, rather than by what they are doing:
 
@@ -451,10 +453,10 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 2. **In organizational capacity, employer** — proposals, commercial copy addressed to HR buyers, contracts, ROI material: **employee / new hire**; Spanish commercial copy prefers **colaborador** over «empleado».
 3. **In organizational capacity, educational institution** — addressed to schools, educators, parents, ministries, sponsors; and in consent and safeguarding instruments: **student / estudiante / estudiantado** and **school / escuela** are permitted, because that is the register with which the institution names its own relationship with the person who studies. In this register the adult who answers legally for a minor is the **representante legal** (accepted synonym: **custodio legal**) — **never bare «tutor»**, in any register, because it collides with the teaching sense of the word exactly where a document must be unambiguous (Carlos, 2026-09-19).
 
-«Alumno» is always avoided in favour of «estudiante». **"Trainee" never.** The exception never reaches Smoother's voice or anything a participant reads: a consent form addressed to a family may say «estudiante»; a Unidad de Aprendizaje may not. **Enforcement is per artifact surface.**
+«Alumno» is always avoided in favour of «estudiante». **"Trainee" never.** The exception never reaches Smoother's voice or anything a participant reads: a consent form addressed to a family may say «estudiante»; a Learning Unit may not. **Enforcement is per artifact surface.**
 
 **This statement supersedes any offering-local version.** Consumer SSoTs point at this rule rather than defining their own. In `smoother-system` it is already landed in `CLAUDE.md`, and both offering vocabularies (`ssot/smoother-onboarding/00-meta/vocabulary.yaml`, `ssot/desafios/00-meta/vocabulary.yaml`) have been collapsed to pointers.
 
 
 **Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
-<!-- END smoother-learning-first v2 -->
+<!-- END smoother-learning-first v3 -->
