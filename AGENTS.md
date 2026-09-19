@@ -406,7 +406,7 @@ Rules, in order of preference:
 5. In HyperFrames STORYBOARD/frame specs, titles are written with their intended line breaks (`|`), and the composition honours them with `<br>` or balance; the QC pass checks orphans explicitly.
 <!-- END cemi-typographic-orphans v1 -->
 
-<!-- BEGIN smoother-learning-first v1 (managed — source: smoother-system/sync/learning-first.md) -->
+<!-- BEGIN smoother-learning-first v2 (managed — source: smoother-system/sync/learning-first.md) -->
 ## Learning-first, not teaching-first
 
 Education is about the **learning** experience, not the teaching experience. Center the **learner's process** — never the teacher's. Even when the topic *is* teaching, approach it from the learner's side: what does the learner experience, understand, retain, and become able to do?
@@ -449,7 +449,7 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 
 1. **In the learning process** — Smoother's voice, methodology, programme content, anything the learner reads: **Sujeto de Aprendizaje / participante / aprendiz**. Never «estudiante», never «alumno».
 2. **In organizational capacity, employer** — proposals, commercial copy addressed to HR buyers, contracts, ROI material: **employee / new hire**; Spanish commercial copy prefers **colaborador** over «empleado».
-3. **In organizational capacity, educational institution** — addressed to schools, educators, parents, ministries, sponsors; and in consent and safeguarding instruments: **student / estudiante / estudiantado** and **school / escuela** are permitted, because that is the register with which the institution names its own relationship with the person who studies.
+3. **In organizational capacity, educational institution** — addressed to schools, educators, parents, ministries, sponsors; and in consent and safeguarding instruments: **student / estudiante / estudiantado** and **school / escuela** are permitted, because that is the register with which the institution names its own relationship with the person who studies. In this register the adult who answers legally for a minor is the **representante legal** (accepted synonym: **custodio legal**) — **never bare «tutor»**, in any register, because it collides with the teaching sense of the word exactly where a document must be unambiguous (Carlos, 2026-09-19).
 
 «Alumno» is always avoided in favour of «estudiante». **"Trainee" never.** The exception never reaches Smoother's voice or anything a participant reads: a consent form addressed to a family may say «estudiante»; a Unidad de Aprendizaje may not. **Enforcement is per artifact surface.**
 
@@ -457,4 +457,4 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 
 
 **Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
-<!-- END smoother-learning-first v1 -->
+<!-- END smoother-learning-first v2 -->
