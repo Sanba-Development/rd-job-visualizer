@@ -406,7 +406,7 @@ Rules, in order of preference:
 5. In HyperFrames STORYBOARD/frame specs, titles are written with their intended line breaks (`|`), and the composition honours them with `<br>` or balance; the QC pass checks orphans explicitly.
 <!-- END cemi-typographic-orphans v1 -->
 
-<!-- BEGIN smoother-learning-first v3 (managed — source: smoother-system/sync/learning-first.md) -->
+<!-- BEGIN smoother-learning-first v4 (managed — source: smoother-system/sync/learning-first.md) -->
 ## Learning-first, not teaching-first
 
 Education is about the **learning** experience, not the teaching experience. Center the **learner's process** — never the teacher's. Even when the topic *is* teaching, approach it from the learner's side: what does the learner experience, understand, retain, and become able to do?
@@ -428,7 +428,7 @@ This is a CEMI/aiLearning **project-identity** principle, not a stylistic prefer
 
 In Spanish, use **Sujeto de Aprendizaje / participante / aprendiz**. Never «estudiante», never «alumno», never "trainee". The support role is the **Learning Facilitator** (ES *Orientador de Aprendizaje* · FR *Facilitateur·rice d'apprentissage*) — never "teacher", "instructor" or "trainer", and never «docente»/«profesor»/« enseignant ». A learning experience is never called a "course", never «curso», never « cours ».
 
-**The terms are fully translated in every non-Spanish surface** (Carlos, 2026-09-19). English and French texts carry **Learning Subject, participant, Learning Facilitator, Learning Object, Learning Unit** — not the Spanish names as proper nouns. A Spanish term appears in an EN or FR text only when the Spanish word itself is the subject (as it is in this very section, where «participante» and «estudiante» are being weighed *as Spanish words*), or once in parentheses at first mention. The frozen trilingual table and the rules that travel with it are `smoother-system/protocol/smoother-glosario.md`; every consumer inherits from there and nobody coins a translation downstream.
+**The terms are fully translated in every non-Spanish surface** (Carlos, 2026-09-19). English and French texts carry **Learning Subject, participant, Learning Facilitator, Learning Object, Learning Unit** — not the Spanish names as proper nouns. A Spanish term appears in an EN or FR text only when the Spanish word itself is the subject (as it is in this very section, where «participante» and «estudiante» are being weighed *as Spanish words*) — never as a parenthetical after the translated term (Carlos, 2026-09-21). The frozen trilingual table and the rules that travel with it are `smoother-system/protocol/smoother-glosario.md`; every consumer inherits from there and nobody coins a translation downstream.
 
 **Why these words are refused.** The objection is not connotation — it is that each refused term defines the person by their **position relative to an institution**, rather than by what they are doing:
 
@@ -459,4 +459,4 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 
 
 **Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
-<!-- END smoother-learning-first v3 -->
+<!-- END smoother-learning-first v4 -->
