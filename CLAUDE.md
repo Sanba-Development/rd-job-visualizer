@@ -497,7 +497,7 @@ Brevity and honesty beat fluency. A short paragraph of true things is worth more
 *(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
 <!-- END cemi-persona-authoring v2 -->
 
-<!-- BEGIN journalaism-article-canon v1 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
+<!-- BEGIN journalaism-article-canon v2 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
 ## Article writing and research canon (all CEMI repositories that publish text)
 
 The canon for writing articles and researching topics lives in `../journalaism-system/canon/` and is binding here. One copy, there; this block points.
@@ -508,10 +508,10 @@ The canon for writing articles and researching topics lives in `../journalaism-s
 - **Voice, style and disclosure** (`04`): the voice brief (style and perspective, from the personAI roster or supplied in the request), what reads as generated and the fix, no exact small counts in public copy, typography per language, disclosure of method without naming tools where the reader's confidence is the point.
 - **Anti-hallucination for text** (`05`): the hierarchy (verified cited fact, documented canon, silence; never fabrication), the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test, corrections published visibly. **Nothing carrying `[REQUIRES VERIFICATION]` ships.**
 - **Quality audit** (`06`): `node ../journalaism-system/tools/audit-opinion-content.mjs <path>` before every publish; category 7 (unresolved markers) is a hard gate; every match is triaged by a human.
-- **Article types and structures** (`07`): opinion, take, dialogue, factual, explainer, consultation to an authority, foundations document, gaps register, incident log, handoff; the structure catalogue and the structure register, so no two consecutive pieces share a shape.
+- **Article types and structures** (`07`): opinion, take, dialogue, factual, explainer, consultation to an authority, foundations document, gaps register, incident log, handoff; the structure catalogue and the structure register, so no two consecutive pieces share a shape. Every content unit declares its canon-07 `type` at the source; §10 "Declaring the type at the source".
 
 Templates: `../journalaism-system/templates/`. Worked examples: `../journalaism-system/examples/`.
-<!-- END journalaism-article-canon v1 -->
+<!-- END journalaism-article-canon v2 -->
 
 <!-- BEGIN cemi-gemini-models v2 (managed — source: cemi-system/sync/gemini-models.md) -->
 ## 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos)

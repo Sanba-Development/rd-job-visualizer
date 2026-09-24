@@ -150,7 +150,7 @@ Stage names per locale:
 Use the motto when quoting Carlos, the framework name when referring to the organizational canon. The stages are **fixed and ordered** — do not add, rename, drop, or reorder them, and do not coin new translations: the ES and FR forms above are canon (note FR *Rendre possible* for Enable and *Autonomiser* for Empower — neither is a literal cognate, and both are deliberate).
 <!-- END cemi-impact-arc v3 -->
 
-<!-- BEGIN journalaism-article-canon v1 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
+<!-- BEGIN journalaism-article-canon v2 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
 ## Article writing and research canon (all CEMI repositories that publish text)
 
 The canon for writing articles and researching topics lives in `../journalaism-system/canon/` and is binding here. One copy, there; this block points.
@@ -161,10 +161,10 @@ The canon for writing articles and researching topics lives in `../journalaism-s
 - **Voice, style and disclosure** (`04`): the voice brief (style and perspective, from the personAI roster or supplied in the request), what reads as generated and the fix, no exact small counts in public copy, typography per language, disclosure of method without naming tools where the reader's confidence is the point.
 - **Anti-hallucination for text** (`05`): the hierarchy (verified cited fact, documented canon, silence; never fabrication), the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test, corrections published visibly. **Nothing carrying `[REQUIRES VERIFICATION]` ships.**
 - **Quality audit** (`06`): `node ../journalaism-system/tools/audit-opinion-content.mjs <path>` before every publish; category 7 (unresolved markers) is a hard gate; every match is triaged by a human.
-- **Article types and structures** (`07`): opinion, take, dialogue, factual, explainer, consultation to an authority, foundations document, gaps register, incident log, handoff; the structure catalogue and the structure register, so no two consecutive pieces share a shape.
+- **Article types and structures** (`07`): opinion, take, dialogue, factual, explainer, consultation to an authority, foundations document, gaps register, incident log, handoff; the structure catalogue and the structure register, so no two consecutive pieces share a shape. Every content unit declares its canon-07 `type` at the source; §10 "Declaring the type at the source".
 
 Templates: `../journalaism-system/templates/`. Worked examples: `../journalaism-system/examples/`.
-<!-- END journalaism-article-canon v1 -->
+<!-- END journalaism-article-canon v2 -->
 
 <!-- BEGIN cemi-png-logos v2 (managed — source: mediamax-system/sync/png-logos.md) -->
 ## 🖼️ HARD RULE — logos are PNG, never SVG (all CEMI media/video repos)
