@@ -460,3 +460,19 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 
 **Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
 <!-- END smoother-learning-first v4 -->
+
+<!-- BEGIN cemi-business-case v1 (managed — source: cemi-system/sync/business-case.md) -->
+## 💰 The business case — how the client earns more, spends less and stops risking (all CEMI repos)
+
+Every client-facing proposal, quote, deck, one-page summary, dossier, brief and explainer video answers three questions **before the price**, in one place the reader cannot miss (Carlos, 2026-09-27):
+
+1. **How you earn more** — revenue levers: more of the business already won, business no longer lost, new lines.
+2. **How you spend less** — cost levers: hours freed, rework and errors avoided, penalties and write-offs avoided, tools consolidated.
+3. **What you stop risking** — money exposed to one person, one missed date, one unread inbox, one contractual or regulatory failure.
+
+Each lever states its **mechanism** (the chain from what we do to money, one sentence), its **formula** (named inputs), its **baseline** (source, owner, date — usually the client's finance function) and its **reading** (when it is measured again, who approves). Add **sensitivity** where the size matters.
+
+**Figures: scenarios, never promises.** No savings, return, uplift or payback figure appears unless it comes from the client's own baseline or is a labelled scenario (conservative / base / pessimistic, assumptions stated next to the number). Industry figures only as verified cited facts (`journalaism-system/canon/05`), never as a promise about this client. An unverified input is written as a question with an owner and a date, not as a saving. Return = (measured benefit − cost) ÷ cost; what was not measured is said, not estimated.
+
+**The same levers, with the same names, on every surface of a proposal set** — document, quote (page 1, before «Inversión»), deck (one slide before the price), one-page summary (one panel), video (one segment before the close). Long form: `cemi-system/canon/06-business-case.md`. Layouts per document type: `sitecraft-system/protocol/proposals-and-dossiers.md`. Lever catalogues live in each service's canon.
+<!-- END cemi-business-case v1 -->
