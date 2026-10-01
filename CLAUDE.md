@@ -243,10 +243,10 @@ Any content rendered into the DOM as raw HTML — `{@html}` (Svelte), `set:html`
 Origin: a 2026-07-22 audit of `experience` found its content `{@html}` sinks (content bodies, program/experience overviews, user-contributed community resources) injected UNSANITIZED with no sanitizer in the repo — the live XSS gap that prompted this rule. `experience` has since **addressed it on its own** — a single centralized DOMPurify sanitizer (`src/lib/utils/sanitize-html.ts`) with a shared allowlist, applied at its content sinks — and is the **reference implementation** for this rule. This block is documentation: syncing it into a repo records the rule and does **NOT** modify that repo's existing sanitization code — never overwrite or override a repo's own working handling to match the prose here; if a repo already satisfies the rule, the block just documents it. When adopting the sitecraft §6.4 markdown pipeline, sanitize as part of the render step, not after.
 <!-- END cemi-html-sanitization v2 -->
 
-<!-- BEGIN cemi-impact-arc v3 (managed — source: cemi-system/sync/impact-arc.md) -->
+<!-- BEGIN cemi-impact-arc v4 (managed — source: cemi-system/sync/impact-arc.md) -->
 ## 🌱 The Impact Arc — how CEMI intervenes (all CEMI repos)
 
-**Impact Arc** (ES: **Arco de Impacto** · FR: **Arc d'Impact**) is CEMI's five-stage frame for how we act on and with stakeholders:
+**Impact Arc** (ES: **Arco de Impacto** · FR: **Arc d'Impact** · PT: **Arco de Impacto**) is CEMI's five-stage frame for how we act on and with stakeholders:
 
 **Engage → Enable → Inspire → Empower → Connect**
 
@@ -266,24 +266,25 @@ The word *help* implies asymmetry: someone who knows better supplying solutions 
 
 **Coherence with CEMI's other identity principles.** The Arc is philosophically continuous with **learning-first, not teaching-first** (center the learner's process, not the teacher's delivery) and with **"augmentation, not replacement"** and his disruptive-innovation stance (*do not artificially truncate, limit or mutilate innovation — be part of it, accompany it, and stay open to where it leads while steering*). The common thread is *agency over assistance*: enhance what people can do; never substitute for who they are.
 
-**Naming — use these exact forms, do not re-translate.** The framework: **Impact Arc** (EN) · **Arco de Impacto** (ES) · **Arc d'Impact** (FR). The motto it comes from, as documented in Carlos's persona canon:
+**Naming — use these exact forms, do not re-translate.** The framework: **Impact Arc** (EN) · **Arco de Impacto** (ES) · **Arc d'Impact** (FR) · **Arco de Impacto** (PT). The motto it comes from, as documented in Carlos's persona canon:
 
 - **EN** — "NEVER HELP: Engage, Enable, Inspire, Empower and Connect"
 - **ES** — «NUNCA AYUDAR: Involucrar, Habilitar, Inspirar, Empoderar y Conectar»
 - **FR** — « N'AIDEZ JAMAIS : Engager, Rendre possible, Inspirer, Autonomiser et Connecter »
+- **PT** — «NUNCA AJUDAR: Engajar, Viabilizar, Inspirar, Empoderar e Conectar»
 
 Stage names per locale:
 
-| EN | ES | FR |
-|---|---|---|
-| Engage | Involucrar | Engager |
-| Enable | Habilitar | Rendre possible |
-| Inspire | Inspirar | Inspirer |
-| Empower | Empoderar | Autonomiser |
-| Connect | Conectar | Connecter |
+| EN | ES | FR | PT |
+|---|---|---|---|
+| Engage | Involucrar | Engager | Engajar |
+| Enable | Habilitar | Rendre possible | Viabilizar |
+| Inspire | Inspirar | Inspirer | Inspirar |
+| Empower | Empoderar | Autonomiser | Empoderar |
+| Connect | Conectar | Connecter | Conectar |
 
-Use the motto when quoting Carlos, the framework name when referring to the organizational canon. The stages are **fixed and ordered** — do not add, rename, drop, or reorder them, and do not coin new translations: the ES and FR forms above are canon (note FR *Rendre possible* for Enable and *Autonomiser* for Empower — neither is a literal cognate, and both are deliberate).
-<!-- END cemi-impact-arc v3 -->
+Use the motto when quoting Carlos, the framework name when referring to the organizational canon. The stages are **fixed and ordered** — do not add, rename, drop, or reorder them, and do not coin new translations: the ES, FR and PT forms above are canon (note FR *Rendre possible* for Enable and *Autonomiser* for Empower, and PT *Viabilizar* for Enable — none is a literal cognate, and all are deliberate). The Portuguese forms were set by Carlos on 2026-10-01; in every language the motto is «never help» followed by the five stages, so a language without canon forms here has no motto either — ask, do not translate.
+<!-- END cemi-impact-arc v4 -->
 
 <!-- BEGIN cemi-png-logos v2 (managed — source: mediamax-system/sync/png-logos.md) -->
 ## 🖼️ HARD RULE — logos are PNG, never SVG (all CEMI media/video repos)
