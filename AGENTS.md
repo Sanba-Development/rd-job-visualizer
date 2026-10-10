@@ -512,3 +512,33 @@ A session may use a different model for each task and is expected to pick the mo
 
 **Limits.** This rule is about the models *inside the harness the session already runs on*. It never authorises a paid or external service: `cemi-cost-policy` stands unchanged, and translation is always Claude. A repository's own rule that names a model for a task wins for that task. It governs sessions and their agents, not the models a product serves to its users — chatbot tiers are `sitecraft-system/protocol/chatbot-and-personas.md`.
 <!-- END cemi-model-choice v1 -->
+
+<!-- BEGIN cemi-quality-gates v1 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
+
+Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
+
+- **Checks block the deploy.** Content validators, drift guards, the no-secrets-in-client check, unit tests and security rules tests (on the emulator) run in CI **before** the deploy job, which `needs:` them. A check that only warns is not a gate. Only checks that need production credentials, write live data or cost money stay manual, and the workflow says which and why.
+- **Rules tests must fail on the ruleset they replace.** Run new tests against the previous rules once and record how many fail.
+- **Generated, never hand-copied.** Code shared between packages, or between a catalog and the rules, comes from one source through a generator with a `--check` mode in CI.
+- **Deploy order:** functions, then hosting, then backfills, then security rules **last**.
+- **Live data changes are scripts that default to a dry run** and write only with `--apply`. Scan the staged diff for secrets before every commit, and stage files by name.
+- **After every deploy, run the site's fixed live journeys**, signed out and signed in. Signed-in journeys use the site's QA identity: `qa-<app>@cemi.test`, created through xAId's API, in its own QA organization, never a platform tier, with credentials outside the repository (`sitecraft-system/protocol/niche-sites/test-identities-guidelines.md`). It never touches a client organization, and it cleans up what it creates.
+- **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
+
+No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
+<!-- END cemi-quality-gates v1 -->
+
+<!-- BEGIN cemi-canonical-urls v1 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
+## 🔗 One host per site, a static canonical on every indexable page (all CEMI sites)
+
+Every CEMI site answers on its custom domain **and** on `<site>.web.app` / `<site>.firebaseapp.com`, which cannot be switched off. Without a canonical, search engines may index the copies or split ranking between them (Carlos, 2026-10-10).
+
+1. **One primary host.** Every alias and `www.` domain **301-redirects** to it — set in the Firebase console (Hosting → the domain → redirect); `firebase.json` redirects match paths, never hosts.
+2. **A static `<link rel="canonical" href="https://<primary>/<path>">` in the `<head>` of every indexable page**, in the served HTML, built from a **fixed site address** — never from `location.host` or the request host, and never added only by runtime JavaScript.
+3. **The sitemap is the arbiter:** each sitemap URL's page carries a canonical equal to that URL, on the primary host.
+4. **Noindex pages carry no canonical** and stay out of the sitemap. An indexable page outside the sitemap is **Carlos's decision** — list it, don't choose.
+5. **A guard runs before every deploy** — a build step, or for a static site a named pre-deploy command recorded in `CLAUDE.md` — and fails on a missing or wrong canonical or a canonical on another host.
+
+Long form, per-stack how-to and launch checklist: `sitecraft-system/protocol/canonical-urls.md`. Reference implementation: `media-web/scripts/add-canonical.mjs` (`npm run check:canonical`). The fleet sweep is tracked in `cemi-system/docs/handoff-2026-10-10-canonical-sweep.md`.
+<!-- END cemi-canonical-urls v1 -->
