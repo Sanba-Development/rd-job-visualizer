@@ -603,7 +603,7 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 **Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
 <!-- END smoother-learning-first v4 -->
 
-<!-- BEGIN cemi-business-case v1 (managed — source: cemi-system/sync/business-case.md) -->
+<!-- BEGIN cemi-business-case v2 (managed — source: cemi-system/sync/business-case.md) -->
 ## 💰 The business case — how the client earns more, spends less and stops risking (all CEMI repos)
 
 Every client-facing proposal, quote, deck, one-page summary, dossier, brief and explainer video answers three questions **before the price**, in one place the reader cannot miss (Carlos, 2026-09-27):
@@ -616,8 +616,10 @@ Each lever states its **mechanism** (the chain from what we do to money, one sen
 
 **Figures: scenarios, never promises.** No savings, return, uplift or payback figure appears unless it comes from the client's own baseline or is a labelled scenario (conservative / base / pessimistic, assumptions stated next to the number). Industry figures only as verified cited facts (`journalaism-system/canon/05`), never as a promise about this client. An unverified input is written as a question with an owner and a date, not as a saving. Return = (measured benefit − cost) ÷ cost; what was not measured is said, not estimated.
 
+**A proposal opens with a one-page letter, signed on page 1** (Carlos, 2026-10-13): the summary of the proposal and its main details, the business-case block and «Inversión» in brief, then the signature; the detail of the proposal follows from page 2. The Markdown source is tracked in `docs/` (excluded from hosting), the generated PDF and Word go in `output/`, never `scratch/`. Layout and the page-1 audit: `sitecraft-system/protocol/proposals-and-dossiers.md` §2 and `signed-documents.md`.
+
 **The same levers, with the same names, on every surface of a proposal set** — document, quote (page 1, before «Inversión»), deck (one slide before the price), one-page summary (one panel), video (one segment before the close). Long form: `cemi-system/canon/06-business-case.md`. Layouts per document type: `sitecraft-system/protocol/proposals-and-dossiers.md`. Lever catalogues live in each service's canon.
-<!-- END cemi-business-case v1 -->
+<!-- END cemi-business-case v2 -->
 
 <!-- BEGIN cemi-svg-icons v1 (managed — source: sitecraft-system/sync/svg-icons.md) -->
 ## ✳️ Icons are SVG line icons — Lucide preferred, never emoji (all CEMI repos)
