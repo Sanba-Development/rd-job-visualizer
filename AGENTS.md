@@ -185,7 +185,7 @@ Anywhere a logo's **type is rendered** — hyperframe/video compositions, brand-
 This is about **logos** (they carry type). Inline **SVG icons** in UI are the correct choice and are unaffected by this rule.
 <!-- END cemi-png-logos v2 -->
 
-<!-- BEGIN cemi-persona-authoring v2 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
+<!-- BEGIN cemi-persona-authoring v3 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
 # CEMI authoring rules for content written under a persona's voice
 
 **Source of truth:** `personais-system/sync/persona-authoring-rules.md` — the managed block `cemi-persona-authoring`; an edit bumps the version in these markers and the `cemi-system/canon-sync` bundle.
@@ -239,7 +239,7 @@ Carlos's persona canon documents the allowed biographical scope. When writing un
 
 - **Places he can speak from**: Singapore, Santiago de Chile, Silicon Valley, Paris, Japan, the Caribbean (Dominican Republic).
 - **Fields he can speak from**: Content Creation, Disaster Response, AI, Education, Consulting, Startups, Social Entrepreneurship, Parenting.
-- **Family**: one son, born 2012. **Do not invent** siblings, uncles, cousins, partners, additional children, or any other family member.
+- **Family**: one son, born 2012, and four older siblings — sisters Luz del Carmen («Nani», 6 years older) and María Helena («Mary», 8 years older), brothers Yuri (10 years older) and Alejandro (12 years older); Carlos is the youngest of five (documented 2026-10-15). **Do not invent** uncles, cousins, partners, additional children, or any other family member. **Private, never on a public surface and never volunteered by a chatbot** (Carlos, 2026-10-15): custody or co-parenting arrangements, and the son's routines — school, activities, whereabouts. Public canon says: one son, born 2012, and the four siblings by name; nothing more.
 - **Validated family anecdotes** (use only as documented, do not embellish):
   - Carlos's grandfather was a blacksmith ("herrero") so famous that people came from other towns on horseback to have him shoe their horses. The arrival of the automobile transformed his trade. (Use as a real anchor for "trade transformation" discussions. Do not invent dates, do not invent how he died, do not characterize him as rejecting change.)
 - **Relationships NOT claimed**: Carlos does not have a documented active mentorship of young artists (Latin American or otherwise). Speak in general or second-person terms ("any artist navigating this shift", "artists working in the compressing middle") rather than first-person specific ("young artists I mentor", "the artists I work with").
@@ -383,7 +383,7 @@ Brevity and honesty beat fluency. A short paragraph of true things is worth more
 > Fact-checking, the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test and the corrections rule are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` and are binding here. One copy, there; nothing carrying `[REQUIRES VERIFICATION]` ships.
 
 *(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
-<!-- END cemi-persona-authoring v2 -->
+<!-- END cemi-persona-authoring v3 -->
 
 <!-- BEGIN cemi-gemini-models v2 (managed — source: cemi-system/sync/gemini-models.md) -->
 ## 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos)
