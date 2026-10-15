@@ -413,7 +413,7 @@ Rules, in order of preference:
 5. In HyperFrames STORYBOARD/frame specs, titles are written with their intended line breaks (`|`), and the composition honours them with `<br>` or balance; the QC pass checks orphans explicitly.
 <!-- END cemi-typographic-orphans v1 -->
 
-<!-- BEGIN smoother-learning-first v4 (managed — source: smoother-system/sync/learning-first.md) -->
+<!-- BEGIN smoother-learning-first v5 (managed — source: smoother-system/sync/learning-first.md) -->
 ## Learning-first, not teaching-first
 
 Education is about the **learning** experience, not the teaching experience. Center the **learner's process** — never the teacher's. Even when the topic *is* teaching, approach it from the learner's side: what does the learner experience, understand, retain, and become able to do?
@@ -428,6 +428,7 @@ This is a CEMI/aiLearning **project-identity** principle, not a stylistic prefer
 - Tools and methods are judged by what they do to *understanding and capability*, not by how they help "deliver" or "teach."
 - Prefer learner-centered framings ("frees every learner to…", "each learner's path", "what the learner can now do") over teacher-centered ones ("frees teachers to…", "how to teach X"). Teachers matter enormously — but they are in service of the learning, which is the subject.
 - Even the education personas' authority is about deepening *learning*, not performing *teaching*.
+- **Smoother does not mean frictionless.** The effort a design keeps on purpose because it teaches is a named Smoother design element, the **desirable difficulty** (ES «dificultad deseable» · FR « difficulté désirable »; Carlos's plain-language gloss: *productive friction* · «fricción productiva» · « friction productive »). Never sell a learning experience, or an AI use, as effortless; say what effort is kept, what is handed off, and what the freed time goes to. It is calibrated, because without the prior knowledge to respond it becomes undesirable (Bjork & Bjork 2011, p. 58). The research family has its own limits (adult samples); its use as a Smoother element is a design position. Canon: `smoother-system/protocol/smoother-ai-en-aprendizaje.md`, Principio General 2.
 
 **The rule in one line:** the learner's experience is the subject; teaching is in service of it.
 
@@ -466,7 +467,7 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 
 
 **Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
-<!-- END smoother-learning-first v4 -->
+<!-- END smoother-learning-first v5 -->
 
 <!-- BEGIN cemi-business-case v2 (managed — source: cemi-system/sync/business-case.md) -->
 ## 💰 The business case — how the client earns more, spends less and stops risking (all CEMI repos)
