@@ -684,3 +684,32 @@ Every CEMI site answers on its custom domain **and** on `<site>.web.app` / `<sit
 
 Long form, per-stack how-to and launch checklist: `sitecraft-system/protocol/canonical-urls.md`. Reference implementation: `media-web/scripts/add-canonical.mjs` (`npm run check:canonical`). The fleet sweep is tracked in `cemi-system/docs/handoff-2026-10-10-canonical-sweep.md`.
 <!-- END cemi-canonical-urls v1 -->
+
+<!-- BEGIN cemi-operational-alerts v1 (managed — source: cemi-system/sync/operational-alerts.md) -->
+## 🔔 Operational alerts go to registry.cemi.ai (all CEMI repos)
+
+Every operational alert a CEMI repository raises goes to **one place**: the Notifications & Monitoring section of registry.cemi.ai (`/admin/notifications`), which Carlos visits daily (Carlos, 2026-10-16). That covers a failing scheduled check, a cost cap nearing its limit, a model or price that changed, a deploy guard that tripped, or a dead address. Do not invent a separate e-mail, Slack or log-only channel for it.
+
+- **How:** `POST https://us-central1-cemi-ai.cloudfunctions.net/notifications` with header `X-Notify-Token: <this source's token>` and a JSON body `{source, kind, severity, title, body, metric?, link?, dedupeKey}`. The contract is `registry-web/docs/notifications.md`, and it is the only copy. Read its «Writing a good notification» section before writing one.
+- **Token:** one per repository (the `source`), minted by Carlos's session with `registry-web/scripts/mint-notify-token.mjs <source>` and kept as a secret, never committed or printed. Without a token, skip the post and log it; never block on the channel.
+- **Severity:** `critical` only when something is broken for users or money is at risk now; `warning` for what needs action this week; `info` for the rest.
+- **Write it for a reader who has not seen the log.** Say where the notification comes from, what the check looks at, what the finding means and what to do, then list the findings. Bodies are plain text, at most 2000 characters. Volatile values (dates, counts per run) go in `metric`, not in the body, so an unchanged finding does not reopen an acknowledged item.
+- **One stable `dedupeKey` per finding class.** A repeat updates the item; changed content reopens it.
+
+Reference implementation: `cemi-system/schedules/notify-drift.mjs`. Cloud apps post from their functions with the token in a secret (ailearning-web's AI-spend cap is the first).
+<!-- END cemi-operational-alerts v1 -->
+
+<!-- BEGIN cemi-session-notes v1 (managed — source: cemi-system/sync/session-notes.md) -->
+## 🗒️ Sessions say what they are working on (all CEMI repos)
+
+Carlos keeps many sessions open at once, and a crash or a full context can lose track of them. Every session therefore records what it is doing in the **Sessions registry** (registry.cemi.ai `/admin/sessions`), which `restore` also prints when it reopens the tabs after a crash (Carlos, 2026-10-16).
+
+- **When:** at the start of a piece of work, when its direction changes, and before stopping with something left open. One line each time; no more than that.
+- **How**, from the repository's root:
+  ```bash
+  node ../cemi-system/tools/sessions.mjs note "<what this session is doing, and what is waiting on whom>"
+  ```
+  It appends to this folder's latest session and syncs to the registry. If the command is missing or fails, carry on; the note is a convenience, never a blocker.
+- **What to write:** the task in plain words, the state (in progress, waiting on Carlos for X, handed to session Y), and anything a fresh session would need to pick it up. Never secrets, tokens or personal data.
+- Status (open, committed/pushed/deployed, ahead/behind, closed) is derived automatically from git and the session hooks. The note is the part only the session knows.
+<!-- END cemi-session-notes v1 -->
