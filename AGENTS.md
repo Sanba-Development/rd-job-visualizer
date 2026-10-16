@@ -49,7 +49,7 @@ Any content rendered into the DOM as raw HTML — `{@html}` (Svelte), `set:html`
 Origin: a 2026-07-22 audit of `experience` found its content `{@html}` sinks (content bodies, program/experience overviews, user-contributed community resources) injected UNSANITIZED with no sanitizer in the repo — the live XSS gap that prompted this rule. `experience` has since **addressed it on its own** — a single centralized DOMPurify sanitizer (`src/lib/utils/sanitize-html.ts`) with a shared allowlist, applied at its content sinks — and is the **reference implementation** for this rule. This block is documentation: syncing it into a repo records the rule and does **NOT** modify that repo's existing sanitization code — never overwrite or override a repo's own working handling to match the prose here; if a repo already satisfies the rule, the block just documents it. When adopting the sitecraft §6.4 markdown pipeline, sanitize as part of the render step, not after.
 <!-- END cemi-html-sanitization v2 -->
 
-<!-- BEGIN cemi-i18n-quote-hygiene v7 (managed — source: sitecraft-system/sync/i18n-quote-hygiene.md) -->
+<!-- BEGIN cemi-i18n-quote-hygiene v8 (managed — source: sitecraft-system/sync/i18n-quote-hygiene.md) -->
 ## 🈂 Localized-text hygiene — quotes, multibyte, significant spaces (all CEMI repos)
 
 **Scope: any operation over localized text — translating it, DERIVING from it, or reformatting it.** Excerpt and meta-description generators, subtitle and cue splitters, chunkers, word wrappers, search indexers and TTS segmenters are all covered, and most of them involve no translation step at all. The rules below were originally written for translation; the hazards are not limited to it.
@@ -70,6 +70,8 @@ The most frequent one: a translation agent nests English `"…"` quotes inside a
 | ES / PT | `«…»` or curly `"…"` |
 
 - **Put the French spaces there when you write the French.** The rule above keeps them alive once they exist; this one puts them there in the first place. French requires a **narrow no-break space (U+202F)** before `: ; ? !`, inside `« … »`, **and before `%`** (an ordinary space there is also a legal line break, so «9 %» can wrap with the sign alone on the next line — found 2026-09-13 in journalaism-web, 55 cases). Text authored with an ordinary space is wrong before any pipeline touches it, and no build fails on it — 76 such defects sat in CEMI's own published investor dossier from its first draft until 2026-09-11, because every rule on the subject was about *preserving* the spaces rather than *writing* them. This applies to anything a reader sees in French: page copy, i18n values, PDF and deck text, subtitles, email and letter bodies, social posts.
+
+  **Decide it's French from the text, not from the page.** Generated text, a persona's chat answer above all, comes in the reader's language, which is not always the page's. A French answer on an English page still takes U+202F. Never apply French spacing to text whose language is undecided: Spanish also uses `« »`, without inner spaces. Streaming detail: `sitecraft-system/protocol/chatbot-and-personas.md`, *French typography follows the answer's language*.
 
   Audit any French file — HTML, JSON or markdown — with a text-node-aware pass, never a blind global replace (an ordinary space before a colon is correct inside a URL, a code block or an attribute):
 
@@ -112,7 +114,7 @@ done
 ```
 
 **Deeper protocol** (find/replace contract for subagent-produced translations, applier requirements, quality gates): see `mediamax-system/.claude/rules/translation-protocol.md`. The find/replace contract is mandatory whenever a translation agent emits structured pairs to apply against source HTML/JSON/ASS. Origin: 2026-06-17 batch where ~13% of pairs failed to match because agents retyped find strings.
-<!-- END cemi-i18n-quote-hygiene v7 -->
+<!-- END cemi-i18n-quote-hygiene v8 -->
 
 <!-- BEGIN cemi-impact-arc v4 (managed — source: cemi-system/sync/impact-arc.md) -->
 ## 🌱 The Impact Arc — how CEMI intervenes (all CEMI repos)
