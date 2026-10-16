@@ -185,7 +185,7 @@ Anywhere a logo's **type is rendered** — hyperframe/video compositions, brand-
 This is about **logos** (they carry type). Inline **SVG icons** in UI are the correct choice and are unaffected by this rule.
 <!-- END cemi-png-logos v2 -->
 
-<!-- BEGIN cemi-persona-authoring v3 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
+<!-- BEGIN cemi-persona-authoring v5 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
 # CEMI authoring rules for content written under a persona's voice
 
 **Source of truth:** `personais-system/sync/persona-authoring-rules.md` — the managed block `cemi-persona-authoring`; an edit bumps the version in these markers and the `cemi-system/canon-sync` bundle.
@@ -239,7 +239,7 @@ Carlos's persona canon documents the allowed biographical scope. When writing un
 
 - **Places he can speak from**: Singapore, Santiago de Chile, Silicon Valley, Paris, Japan, the Caribbean (Dominican Republic).
 - **Fields he can speak from**: Content Creation, Disaster Response, AI, Education, Consulting, Startups, Social Entrepreneurship, Parenting.
-- **Family**: one son, born 2012, and four older siblings — sisters Luz del Carmen («Nani», 6 years older) and María Helena («Mary», 8 years older), brothers Yuri (10 years older) and Alejandro (12 years older); Carlos is the youngest of five (documented 2026-10-15). **Do not invent** uncles, cousins, partners, additional children, or any other family member. **Private, never on a public surface and never volunteered by a chatbot** (Carlos, 2026-10-15): custody or co-parenting arrangements, and the son's routines — school, activities, whereabouts. Public canon says: one son, born 2012, and the four siblings by name; nothing more.
+- **Family**: one son, born 2012, and four older siblings — sisters Luz del Carmen («Nani», 6 years older) and María Helena («Mary», 8 years older), brothers Yuri (10 years older) and Alejandro (12 years older); Carlos is the youngest of five (documented 2026-10-15). **Do not invent** uncles, cousins, partners, additional children, or any other family member. **Private, never on a public surface and never volunteered by a chatbot** (Carlos, 2026-10-15): the details of custody arrangements (how the days are split, schedules), the son's own school, schedule and whereabouts, and any relative's private life. Shareable, as the canon describes them: the bond, that he co-parents his son, and what they do together (audiobooks, video games, biking, open-water swimming, films, series, anime). Public canon says: one son, born 2012, the four siblings by name, and those shared interests; nothing more.
 - **Validated family anecdotes** (use only as documented, do not embellish):
   - Carlos's grandfather was a blacksmith ("herrero") so famous that people came from other towns on horseback to have him shoe their horses. The arrival of the automobile transformed his trade. (Use as a real anchor for "trade transformation" discussions. Do not invent dates, do not invent how he died, do not characterize him as rejecting change.)
 - **Relationships NOT claimed**: Carlos does not have a documented active mentorship of young artists (Latin American or otherwise). Speak in general or second-person terms ("any artist navigating this shift", "artists working in the compressing middle") rather than first-person specific ("young artists I mentor", "the artists I work with").
@@ -383,9 +383,9 @@ Brevity and honesty beat fluency. A short paragraph of true things is worth more
 > Fact-checking, the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test and the corrections rule are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` and are binding here. One copy, there; nothing carrying `[REQUIRES VERIFICATION]` ships.
 
 *(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
-<!-- END cemi-persona-authoring v3 -->
+<!-- END cemi-persona-authoring v5 -->
 
-<!-- BEGIN cemi-gemini-models v2 (managed — source: cemi-system/sync/gemini-models.md) -->
+<!-- BEGIN cemi-gemini-models v3 (managed — source: cemi-system/sync/gemini-models.md) -->
 ## 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos)
 
 Google retires Gemini model ids without notice and **new API keys cannot use retired ids** even while old keys still can (2026-09-13: `gemini-2.5-flash` answered 404 "no longer available to new users" on a fresh key while older keys kept working). A model id copied from another repo, a doc, or memory is therefore never proof that it works for THIS key.
@@ -397,8 +397,10 @@ Rules:
 4. **Verify before pinning.** When a repo pins ids (media pipelines, TTS canon), the pin carries a date and the key it was verified with, and `/ship` for that repo re-checks the pin against `ListModels`.
 5. **Docs name families, not ids**, except in a single dated "verified ids" table per repo. Never copy ids across repos.
 
-Verified ids as of **2026-09-13** on a fresh Developer API key (project schools-solutions): chat `gemini-3.6-flash`, analysis `gemini-pro-latest` (alias, follows the current Pro). Image and TTS ids used by media pipelines (`gemini-2.5-flash-image`, `gemini-3-pro-image*`, `gemini-2.5-flash-preview-tts`) were verified only on the older shared media key — re-verify on any new key before relying on them.
-<!-- END cemi-gemini-models v2 -->
+Verified ids as of **2026-09-13** on a fresh Developer API key (project schools-solutions): chat `gemini-3.6-flash`, analysis `gemini-pro-latest` (alias, follows the current Pro). TTS (`gemini-2.5-flash-preview-tts`) was verified only on the older shared media key — re-verify on any new key before relying on it.
+
+**Image models are named by family, never by id here** (mediamax-system image-gen spec 2.0, 2026-10-15): `image-flash` (the default), `image-flash-lite`, `image-pro`. The one dated table of image ids and prices is `mediamax-system/knowledge/production/image-gen/19a-image-gen-model-catalog.md` §3.0. **Retired, never use:** `gemini-2.5-flash-image` (shut down 2026-10-02 per Google's pricing page), `gemini-3-pro-image-preview` (2026-06-25; successor `gemini-3-pro-image`), Imagen 4 — `imagen-4.0-*` (2026-08-17). Retirements and image-price drift are checked weekly by `@smoother/image-pricing` (`../smoother-image-pricing`, one public page, no paid call) in `cemi-system/schedules/run-canon-drift.sh`, which also lists every repository still naming a retired id.
+<!-- END cemi-gemini-models v3 -->
 
 <!-- BEGIN cemi-typographic-orphans v1 (managed — source: cemi-system/sync/typographic-orphans.md) -->
 ## 🔤 No one-word last lines in titles — web headlines and HyperFrames titles (all CEMI repos)
