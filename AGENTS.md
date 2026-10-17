@@ -603,15 +603,20 @@ When the harness refuses or auto mode blocks a step (a production change, a secr
 The permanent route for a step Carlos wants to allow routinely is an allow rule in his own settings, which he adds himself.
 <!-- END cemi-blocked-steps v1 -->
 
-<!-- BEGIN cemi-commit-attribution v1 (managed — source: cemi-system/sync/commit-attribution.md) -->
+<!-- BEGIN cemi-commit-attribution v2 (managed — source: cemi-system/sync/commit-attribution.md) -->
 ## ✍️ Commits: Carlos is the author, every change stays traceable (all CEMI repos)
 
 The code, content and documents in CEMI repositories are CEMI's and Carlos Miranda Levy's. Nothing in their history may suggest that an AI is an author or co-owner of them, which is a claim someone could try to use against that ownership later (Carlos, 2026-10-17). Traceability, on the other hand, is wanted in full.
 
 - **No `Co-Authored-By` line, ever,** naming Claude, any other AI or any tool, in commits or pull requests. The author is Carlos Miranda Levy, the identity git already uses on this machine.
-- **Keep the `Claude-Session:` line** at the end of the commit message, and the session link at the end of a pull request description, in the form the harness gives. It is a pointer to the conversation that made the change, like a ticket number, not a credit. It is how a change is traced back to the session that made it, which untangling work across repositories depends on.
+- **End every commit with two lines, a name for people and a link for the record:**
+  ```
+  Session: cemi-system-db (cemi-system)
+  Claude-Session: https://claude.ai/code/session_…
+  ```
+  `Session:` is the session's own name, as ListAgents prints it ("This session is …"), followed by the repository it runs in. When the name is unknown, the repository alone. `Claude-Session:` is the link the harness gives. Pull request descriptions end with the same two lines. Together they are a pointer to the conversation that made the change, like a ticket number, not a credit. It is how a change is traced back to the session that made it, which untangling work across repositories depends on (Carlos, 2026-10-17).
 - **Detailed commit messages:** what changed, why, and what was verified. Keep `CHANGELOG.md` current where the repository has one.
 - **Commits made by a tool for a session** (canon-sync receipts) name the tool in the subject line.
 
-From 2026-10-16 to 2026-10-17, by mistake, commits were made without the `Claude-Session:` line. Leave those commits as they are; never rewrite pushed history to add it.
-<!-- END cemi-commit-attribution v1 -->
+From 2026-10-16 to 2026-10-17, by mistake, commits were made without these lines. Leave those commits as they are; never rewrite pushed history to add them.
+<!-- END cemi-commit-attribution v2 -->
