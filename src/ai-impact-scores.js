@@ -113,16 +113,52 @@
       .trim();
   }
 
-  function matchAIOE(title, sectorKey) {
+  // ISCO-08 concordance data (injected by computeAll)
+  var concordanceData = null;
+
+  function shouldExclude(title) {
+    if (!concordanceData) return false;
     var normalized = normalizeText(title);
-    var keys = Object.keys(AIOE_OCCUPATION_OVERRIDES);
-    for (var i = 0; i < keys.length; i++) {
-      if (normalized.indexOf(keys[i]) !== -1) {
-        return { score: AIOE_OCCUPATION_OVERRIDES[keys[i]], source: "keyword" };
+    var patterns = concordanceData.excluded_patterns || [];
+    for (var i = 0; i < patterns.length; i++) {
+      if (normalized.indexOf(patterns[i].pattern) !== -1) return true;
+    }
+    return false;
+  }
+
+  function matchOccupation(title, sectorKey) {
+    var normalized = normalizeText(title);
+
+    // 1. Try ISCO-08 concordance table (most specific first)
+    if (concordanceData) {
+      var occs = concordanceData.occupations || [];
+      for (var i = 0; i < occs.length; i++) {
+        if (normalized.indexOf(occs[i].pattern) !== -1) {
+          return { score: occs[i].aioe, source: "concordance", isco4: occs[i].isco4, isco2: occs[i].isco2, iscoLabel: occs[i].label_es };
+        }
+      }
+
+      // 2. Sector-contextual "técnico" fallback
+      if (normalized.indexOf("tecnico") !== -1 || normalized.indexOf("tecnica") !== -1) {
+        var ctx = concordanceData.sector_context_tecnico || {};
+        var match = ctx[sectorKey] || ctx._default;
+        if (match) {
+          return { score: match.aioe, source: "concordance_sector", isco4: match.isco4, isco2: match.isco2, iscoLabel: match.label_es };
+        }
       }
     }
+
+    // 3. Legacy keyword matching (fallback)
+    var keys = Object.keys(AIOE_OCCUPATION_OVERRIDES);
+    for (var k = 0; k < keys.length; k++) {
+      if (normalized.indexOf(keys[k]) !== -1) {
+        return { score: AIOE_OCCUPATION_OVERRIDES[keys[k]], source: "keyword", isco4: null, isco2: null, iscoLabel: null };
+      }
+    }
+
+    // 4. Sector default
     var fallback = SECTOR_AIOE_DEFAULTS[sectorKey];
-    return { score: fallback != null ? fallback : 42, source: "sector_default" };
+    return { score: fallback != null ? fallback : 42, source: "sector_default", isco4: null, isco2: null, iscoLabel: null };
   }
 
   function computeVScore(salary, sectorKey, aioe) {
@@ -225,9 +261,11 @@
    *
    * @param {Object} metricsData - Data from data/processed/metrics.json
    * @param {Array}  sectorColorsData - Data from src/sector-colors.json
+   * @param {Object} [iscoData] - Optional ISCO-08 concordance from src/isco-08-concordance.json
    * @returns {Object} { occupations, sectors, global }
    */
-  function computeAll(metricsData, sectorColorsData) {
+  function computeAll(metricsData, sectorColorsData, iscoData) {
+    concordanceData = iscoData || null;
     var sectorLookup = buildSectorLookup(sectorColorsData);
     var globalMetrics = metricsData.global || {};
     var sectorsData = metricsData.sectors || {};
@@ -262,9 +300,12 @@
         var count = entry.count || 0;
         var salary = sectorSalary;
 
-        var aioeResult = matchAIOE(title, sectorKey);
-        var aioe = aioeResult.score;
-        var aioeSource = aioeResult.source;
+        // Skip non-occupation entries
+        if (shouldExclude(title)) continue;
+
+        var occResult = matchOccupation(title, sectorKey);
+        var aioe = occResult.score;
+        var aioeSource = occResult.source;
 
         var vScore = computeVScore(salary, sectorKey, aioe);
         var sResult = computeSScore(aioe);
@@ -289,6 +330,9 @@
           zoneName: ZONE_LABELS[zone],
           zoneColor: ZONE_COLORS[zone],
           aioeSource: aioeSource,
+          isco4: occResult.isco4,
+          isco2: occResult.isco2,
+          iscoLabel: occResult.iscoLabel,
           estimated: estimated,
         };
 
