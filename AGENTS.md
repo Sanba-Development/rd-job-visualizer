@@ -187,7 +187,7 @@ Anywhere a logo's **type is rendered** — hyperframe/video compositions, brand-
 This is about **logos** (they carry type). Inline **SVG icons** in UI are the correct choice and are unaffected by this rule.
 <!-- END cemi-png-logos v2 -->
 
-<!-- BEGIN cemi-persona-authoring v5 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
+<!-- BEGIN cemi-persona-authoring v7 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
 # CEMI authoring rules for content written under a persona's voice
 
 **Source of truth:** `personais-system/sync/persona-authoring-rules.md` — the managed block `cemi-persona-authoring`; an edit bumps the version in these markers and the `cemi-system/canon-sync` bundle.
@@ -248,6 +248,9 @@ Carlos's persona canon documents the allowed biographical scope. When writing un
 - **How he refers to himself (title preference)**: Carlos IS the founder of CEMI, but does not like to brag or lead with that title. In bylines, signatures, persona roles, and self-introductions, prefer **"Coordinator of Impact, Innovation and Intelligence"** (ES «Coordinador de Impacto, Innovación e Inteligencia» · FR « Coordinateur de l’Impact, de l’Innovation et de l’Intelligence ») over "Founder of CEMI." State the founder fact only when directly relevant or asked — never as a flex. (Changed 2026-09-19; the former "Coordinator of CEMI's Enhanced Intelligences" — with its ES form, «Coordinador de las Inteligencias Aumentadas de CEMI» and the older «Mejoradas» variant, and its FR form, « Coordinateur des Intelligences Augmentées de CEMI » — is retired and must not appear as a byline.)
 - **Learning-first conviction**: Carlos holds that education is about the *learning* experience, not the teaching experience (see the "Learning-first, not teaching-first" section of the `smoother-learning-first` managed block). It's a personal conviction and sits alongside his *"augmentation, not replacement"* frame and his disruptive-innovation stance — invoke it when he speaks on education, edtech, or AI in learning.
 - **Carlos on innovation (documented, 2026-09-03 — his own sentences; quote them as his, do not paraphrase into slogans):** "If we try to make change look like the past or respond to the expectations and structures of the past, it's not true change, is it?" and "Do not artificially truncate, limit, mutilate innovation. Be part of it, accompany it, and let's see and be open to different directions when steering where it leads us." He is a disruptive-innovation expert and advocate: for planning and dealing with the consequences of change, never for limiting it. **"Change it, but change it well" is NOT his expression** — it circulated in this canon by mistake until 2026-09-03; never attribute it to him.
+- **Style — provocative first, evidence last (Carlos, 2026-10-19, his own words):** "My style is creative, provocative, non-conventional, I question everything and everyone, but at the end land any assertion with evidence based research or practical experience and field actions." Open with the provocative question or the challenge to the status quo; close every claim on a verified, cited fact or on something he has built, run or done in the field. A provocation that never lands on evidence is not his style; neither is evidence without the challenge.
+- **Positive framing, never veiled criticism (Carlos, 2026-10-19, his own words):** "It is not my style to criticize even in a veiled way others, but to rather highlight our virtues and advantages. We don't claim that other talks are empty or suck, we just prove and highlight that ours are better." No negative comparisons, explicit or implied — not «sin teoría vacía», not «esta no es una charla de teoría», not «a diferencia de otros»; state the positive («una charla hecha de experiencias reales», «esto ya está funcionando») and prove it. Provocation targets ideas and the status quo, never people or peers. Audit his copy for the implied comparison, not only the explicit one.
+- **Likeness in images (Carlos, 2026-10-19):** "I look younger than my age. You can always refer to my likeness as 45 yr old, not 55." Every image-generation prompt for him describes a man in his mid-forties (apparent age 45) and takes every other feature from his realistic photo, image-to-image; his real age, born 1971, stays as fact in text and is never the age in a prompt. His record's `identity.ageRange` and `identity.appearance` say so, and that is where the rule lives: it is an instruction for image prompts, never a line in his public bio, which the chatbots read to visitors (removed from bioLong 2026-10-19, same day).
 
 ---
 
@@ -385,7 +388,7 @@ Brevity and honesty beat fluency. A short paragraph of true things is worth more
 > Fact-checking, the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test and the corrections rule are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` and are binding here. One copy, there; nothing carrying `[REQUIRES VERIFICATION]` ships.
 
 *(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
-<!-- END cemi-persona-authoring v5 -->
+<!-- END cemi-persona-authoring v7 -->
 
 <!-- BEGIN cemi-gemini-models v3 (managed — source: cemi-system/sync/gemini-models.md) -->
 ## 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos)
@@ -603,7 +606,7 @@ When the harness refuses or auto mode blocks a step (a production change, a secr
 The permanent route for a step Carlos wants to allow routinely is an allow rule in his own settings, which he adds himself.
 <!-- END cemi-blocked-steps v1 -->
 
-<!-- BEGIN cemi-commit-attribution v2 (managed — source: cemi-system/sync/commit-attribution.md) -->
+<!-- BEGIN cemi-commit-attribution v3 (managed — source: cemi-system/sync/commit-attribution.md) -->
 ## ✍️ Commits: Carlos is the author, every change stays traceable (all CEMI repos)
 
 The code, content and documents in CEMI repositories are CEMI's and Carlos Miranda Levy's. Nothing in their history may suggest that an AI is an author or co-owner of them, which is a claim someone could try to use against that ownership later (Carlos, 2026-10-17). Traceability, on the other hand, is wanted in full.
@@ -612,11 +615,11 @@ The code, content and documents in CEMI repositories are CEMI's and Carlos Miran
 - **End every commit with two lines, a name for people and a link for the record:**
   ```
   Session: cemi-system-db (cemi-system)
-  Claude-Session: https://claude.ai/code/session_…
+  Claude-Session: https://claude.ai/code/session_…      (or: Claude-Session: local <id>)
   ```
-  `Session:` is the session's own name, as ListAgents prints it ("This session is …"), followed by the repository it runs in. When the name is unknown, the repository alone. `Claude-Session:` is the link the harness gives. Pull request descriptions end with the same two lines. Together they are a pointer to the conversation that made the change, like a ticket number, not a credit. It is how a change is traced back to the session that made it, which untangling work across repositories depends on (Carlos, 2026-10-17).
+  `Session:` is the session's own name, as ListAgents prints it ("This session is …"), followed by the repository it runs in. When the name is unknown, the repository alone. `Claude-Session:` is the conversation's claude.ai link when the session has one (a session connected to Remote Control receives `https://claude.ai/code/session_…`). A local session without that link writes `Claude-Session: local <id>`, where `<id>` is the value of `$CLAUDE_CODE_SESSION_ID`, the ID of its transcript at `~/.claude/projects/<repository folder>/<id>.jsonl`. Never copy another session's link, and never write a link the harness did not give. Pull request descriptions end with the same two lines. Together they are a pointer to the conversation that made the change, like a ticket number, not a credit. It is how a change is traced back to the session that made it, which untangling work across repositories depends on (Carlos, 2026-10-17). (Carlos, 2026-10-20: all work runs locally in Claude Code on WSL; a link exists only when a session is connected to Remote Control.)
 - **Detailed commit messages:** what changed, why, and what was verified. Keep `CHANGELOG.md` current where the repository has one.
 - **Commits made by a tool for a session** (canon-sync receipts) name the tool in the subject line.
 
 From 2026-10-16 to 2026-10-17, by mistake, commits were made without these lines. Leave those commits as they are; never rewrite pushed history to add them.
-<!-- END cemi-commit-attribution v2 -->
+<!-- END cemi-commit-attribution v3 -->
