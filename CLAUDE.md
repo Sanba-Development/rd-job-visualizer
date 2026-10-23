@@ -668,7 +668,7 @@ Carlos, 2026-10-16: «Split the work into multiple agents, as long as they don't
 **Limits.** This rule is about the models *inside the harness the session already runs on*. It never authorises a paid or external service: `cemi-cost-policy` stands unchanged, and translation is always Claude. A repository's own rule that names a model for a task wins for that task. It governs sessions and their agents, not the models a product serves to its users — chatbot tiers are `sitecraft-system/protocol/chatbot-and-personas.md`.
 <!-- END cemi-model-choice v2 -->
 
-<!-- BEGIN cemi-quality-gates v2 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v3 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
@@ -679,13 +679,15 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Deploy order:** functions, then hosting, then backfills, then security rules **last**.
 - **The live rules equal the committed file.** A CI check reads the live Firestore and Storage releases through the Rules API, for the right database and bucket, and fails on any difference: a stale checkout must never revert a fix made live (`quality-gates.md` §4.13).
 - **Only the site is served.** Hosting serves a build folder, never `"."`. Every `firebase.json` carries the minimum `hosting.ignore` (dotfiles, `.git`, `functions/`, `scripts/`, `docs/`, `*.md`, `*.map`, logs and rules files), production builds emit no source maps, and a check enforces it. After deploy, `/.git/HEAD` answers 404 (§4.14).
-- **Security headers on every host:** HSTS, `nosniff`, a strict referrer policy, no framing (`frame-ancestors`), and a closed permissions policy. Each site's own CSP starts as report-only (§4.15).
+- **Security headers on every host:** HSTS, `nosniff`, a strict referrer policy, no framing (`frame-ancestors`), and a closed permissions policy. Each site's own CSP starts as report-only. A framing exception names the embedding hosts in `frame-ancestors`, and never drops the header. Ask Carlos about off-repository embeds (decks, LMS) before closing framing (§4.15).
+- **A send a stranger can trigger is capped.** Any endpoint a visitor can trigger without signing in (an anonymous session counts as not signed in) that sends an e-mail, an SMS or another metered message carries a site-wide daily cap in code. The cap fails closed, posts to registry.cemi.ai at 80 % and 100 %, and past it the page offers a path that sends nothing. Per-IP limits and App Check do not bound a flood (§4.17).
+- **Lockfiles are tracked** at the root and in `functions/`. CI and deploys use `npm ci`, and a security fix is committed with its lockfile (§4.16).
 - **Live data changes are scripts that default to a dry run** and write only with `--apply`. Scan the staged diff for secrets before every commit, and stage files by name.
 - **After every deploy, run the site's fixed live journeys**, signed out and signed in. Signed-in journeys use the site's QA identity: `qa-<app>@cemi.test`, created through xAId's API, in its own QA organization, never a platform tier, with credentials outside the repository (`sitecraft-system/protocol/niche-sites/test-identities-guidelines.md`). It never touches a client organization, and it cleans up what it creates.
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v2 -->
+<!-- END cemi-quality-gates v3 -->
 
 <!-- BEGIN cemi-canonical-urls v1 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
 ## 🔗 One host per site, a static canonical on every indexable page (all CEMI sites)
@@ -762,7 +764,7 @@ The code, content and documents in CEMI repositories are CEMI's and Carlos Miran
 From 2026-10-16 to 2026-10-17, by mistake, commits were made without these lines. Leave those commits as they are; never rewrite pushed history to add them.
 <!-- END cemi-commit-attribution v3 -->
 
-<!-- BEGIN cemi-paid-api-keys v2 (managed — source: cemi-system/sync/paid-api-keys.md) -->
+<!-- BEGIN cemi-paid-api-keys v3 (managed — source: cemi-system/sync/paid-api-keys.md) -->
 ## 🔑 Paid-API keys and AI calls: never in a browser, always behind a capped function (all CEMI repos)
 
 On 2026-10-20 one Gemini key compiled into a public web bundle (a `VITE_` variable, no referrer restriction, no cap in code) cost about US$1,000 in a morning and took every CEMI site's AI down when Google's account-wide cap tripped (`cemi-system/docs/incidents/2026-10-20-social-cemi-gemini-key-abuse.md`). The audit that followed found the same pattern in eight more projects. These rules are the standing answer.
@@ -775,5 +777,9 @@ On 2026-10-20 one Gemini key compiled into a public web bundle (a `VITE_` variab
 6. **«Signed in» is never «trusted».** Anonymous and self-registered sessions get no privilege beyond their own documents. Admin rights come only from **server-written documents or custom claims**, never from a field a user can write or a role picked at first login. Open sign-up and anonymous sign-in stay enabled only where the app genuinely needs them, per the inventory of the audit (L); everywhere else they are off. Rules tests must fail on the ruleset they replace (`cemi-quality-gates`).
 7. **When a key leaks, in this order:** **delete** the key (`--no-check-existing-usage` if Google refuses on recent usage); **disable** the API in that project; **check Monitoring** confirms the traffic stopped; **rotate** into Secret Manager; then **rebuild and redeploy without the key** and re-enable the API only behind a function that satisfies rule 2. Record the incident in `cemi-system/docs/incidents/`. **Never undelete a leaked key**, whatever it breaks.
 
+8. **Metered sends are capped like paid calls.** Any endpoint a visitor can trigger without signing in (an anonymous session counts as not signed in) that causes an outbound e-mail, SMS or other metered send carries, in code, a site-wide daily cap that fails closed and posts to registry.cemi.ai at 80 % and 100 %; past the cap the page offers a path that sends nothing. Per-IP limits and App Check reduce abuse but do not bound it. Standard and reference implementation (humanos5's sign-in links): `sitecraft-system/protocol/quality-gates.md` §4.17.
+
+**How-to and naming.** The lifecycle of every credential (the four classes, placeholder `unset`, rotation, retirement, the leak order, what each repository records in its `CLAUDE.md` «Credentials» list, the checks, the move to the gateway) is `sitecraft-system/protocol/api-credentials.md`; this block is the rule, that file is the procedure. **Every new secret is named `<PROVIDER>_API_KEY_<SITE>`** (Carlos, 2026-10-23); an existing constant name such as `RESEND_API_KEY` or `GEMINI_API_KEY` is renamed at its next rotation, never in a sweep.
+
 A local session that calls a paid API still follows `cemi-cost-policy`: ask first. This block is about where keys live and how calls are protected; it never authorizes a call.
-<!-- END cemi-paid-api-keys v2 -->
+<!-- END cemi-paid-api-keys v3 -->
