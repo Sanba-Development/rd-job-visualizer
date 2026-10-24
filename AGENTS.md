@@ -18,6 +18,7 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `smoother-learning-first` (*read on demand*): Learning-first, not teaching-first — `.agents/rules/canon-smoother-learning-first.md`
 - `cemi-gemini-models` (*read on demand*): 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos) — `.agents/rules/canon-cemi-gemini-models.md`
 - `cemi-typographic-orphans` (*read on demand*): 🔤 No one-word last lines in titles — web headlines and HyperFrames titles (all CEMI repos) — `.agents/rules/canon-cemi-typographic-orphans.md`
+- `cemi-portuguese-br` (*read on demand*): 🇧🇷 Portuguese is Brazilian Portuguese on every CEMI surface (all CEMI repos) — `.agents/rules/canon-cemi-portuguese-br.md`
 - `cemi-business-case` (*read on demand*): 💰 The business case — how the client earns more, spends less and stops risking (all CEMI repos) — `.agents/rules/canon-cemi-business-case.md`
 - `cemi-svg-icons` (*read on demand*): ✳️ Icons are SVG line icons — Lucide preferred, never emoji (all CEMI repos) — `.agents/rules/canon-cemi-svg-icons.md`
 - `cemi-model-choice` (*read on demand*): 🧭 The session picks the model for each task (all CEMI repos) — `.agents/rules/canon-cemi-model-choice.md`
@@ -32,7 +33,7 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 **Read before, whatever is inline above:**
 
 - writing anything under a persona's voice, or any education or learning content: `.agents/rules/canon-cemi-persona-authoring.md`, `.agents/rules/canon-smoother-learning-first.md`, `.agents/rules/canon-cemi-impact-arc.md`
-- translating, deriving from or reformatting localized text (French above all): `.agents/rules/canon-cemi-i18n-quote-hygiene.md`
+- translating, deriving from or reformatting localized text (French above all), or writing any Portuguese: `.agents/rules/canon-cemi-i18n-quote-hygiene.md`, `.agents/rules/canon-cemi-portuguese-br.md`
 - an article, a factual claim, a quote or a citation that will be published: `.agents/rules/canon-journalaism-article-canon.md`
 - a proposal, quote, deck, one-pager or dossier for a client: `.agents/rules/canon-cemi-business-case.md`
 - a deploy, a hosting or rules change, a new site or page: `.agents/rules/canon-cemi-quality-gates.md`, `.agents/rules/canon-cemi-canonical-urls.md`
