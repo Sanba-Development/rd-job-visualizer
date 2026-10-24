@@ -28,6 +28,21 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `cemi-blocked-steps` (*inline below*): 🚧 A blocked step goes to Carlos, once, in this tab (all CEMI repos) — `.agents/rules/canon-cemi-blocked-steps.md`
 - `cemi-commit-attribution` (*inline below*): ✍️ Commits: Carlos is the author, every change stays traceable (all CEMI repos) — `.agents/rules/canon-cemi-commit-attribution.md`
 - `cemi-paid-api-keys` (*inline below*): 🔑 Paid-API keys and AI calls: never in a browser, always behind a capped function (all CEMI repos) — `.agents/rules/canon-cemi-paid-api-keys.md`
+
+**Read before, whatever is inline above:**
+
+- writing anything under a persona's voice, or any education or learning content: `.agents/rules/canon-cemi-persona-authoring.md`, `.agents/rules/canon-smoother-learning-first.md`, `.agents/rules/canon-cemi-impact-arc.md`
+- translating, deriving from or reformatting localized text (French above all): `.agents/rules/canon-cemi-i18n-quote-hygiene.md`
+- an article, a factual claim, a quote or a citation that will be published: `.agents/rules/canon-journalaism-article-canon.md`
+- a proposal, quote, deck, one-pager or dossier for a client: `.agents/rules/canon-cemi-business-case.md`
+- a deploy, a hosting or rules change, a new site or page: `.agents/rules/canon-cemi-quality-gates.md`, `.agents/rules/canon-cemi-canonical-urls.md`
+- any call to a Gemini model, or pinning a model id: `.agents/rules/canon-cemi-gemini-models.md`
+- delegating work to agents or choosing a model for a task: `.agents/rules/canon-cemi-model-choice.md`
+- a video, image, infographic, logo or icon: `.agents/rules/canon-cemi-png-logos.md`, `.agents/rules/canon-cemi-svg-icons.md`, `.agents/rules/canon-cemi-typographic-orphans.md`
+- rendering user-contributed or fetched HTML: `.agents/rules/canon-cemi-html-sanitization.md`
+- raising an alert, a failing check or a cost warning: `.agents/rules/canon-cemi-operational-alerts.md`
+- the start of a piece of work, or stopping with something open: `.agents/rules/canon-cemi-session-notes.md`
+- a contact address in copy, a footer or a form: `.agents/rules/canon-cemi-contact-emails.md`
 <!-- END canon-agents-index v1 -->
 
 <!-- BEGIN cemi-cost-policy v3 (managed — source: cemi-system/sync/cost-policy.md) -->
