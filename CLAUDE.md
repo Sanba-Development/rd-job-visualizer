@@ -668,7 +668,7 @@ Carlos, 2026-10-16: «Split the work into multiple agents, as long as they don't
 **Limits.** This rule is about the models *inside the harness the session already runs on*. It never authorises a paid or external service: `cemi-cost-policy` stands unchanged, and translation is always Claude. A repository's own rule that names a model for a task wins for that task. It governs sessions and their agents, not the models a product serves to its users — chatbot tiers are `sitecraft-system/protocol/chatbot-and-personas.md`.
 <!-- END cemi-model-choice v2 -->
 
-<!-- BEGIN cemi-quality-gates v4 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v5 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
@@ -679,7 +679,7 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Deploy order:** functions, then hosting, then backfills, then security rules **last**.
 - **The live rules equal the committed file.** A CI check reads the live Firestore and Storage releases through the Rules API, for the right database and bucket, and fails on any difference: a stale checkout must never revert a fix made live (`quality-gates.md` §4.13).
 - **Only the site is served.** Hosting serves a build folder, never `"."`. Every `firebase.json` carries the minimum `hosting.ignore` (dotfiles, `.git`, `functions/`, `scripts/`, `docs/`, `*.md`, `*.map`, logs and rules files), production builds emit no source maps, and a check enforces it. After deploy, `/.git/HEAD` answers 404 (§4.14).
-- **Security headers on every host:** HSTS, `nosniff`, a strict referrer policy, no framing (`frame-ancestors`), and a closed permissions policy. Each site's own CSP starts as report-only. A framing exception names the embedding hosts in `frame-ancestors`, and never drops the header. Ask Carlos about off-repository embeds (decks, LMS) before closing framing (§4.15).
+- **Security headers on every host:** HSTS, `nosniff`, a strict referrer policy, no framing (`frame-ancestors`), and a closed permissions policy. Each site's own CSP starts as report-only. **Embedding is denied by default** (`DENY`, `frame-ancestors 'none'`). An exception is one site and one embedding host, approved by Carlos and recorded in the registry ledger first (`set-embed-exception.mjs`, `/admin/embeds`). The header then names only that host, and is never dropped. The weekly drift run checks live headers against the ledger (§4.15).
 - **A send a stranger can trigger is capped.** Any endpoint a visitor can trigger without signing in (an anonymous session counts as not signed in) that sends an e-mail, an SMS or another metered message carries a site-wide daily cap in code. The cap fails closed, posts to registry.cemi.ai at 80 % and 100 %, and past it the page offers a path that sends nothing. Per-IP limits and App Check do not bound a flood (§4.17).
 - **Served CSS keeps the browser floor.** Astro sites set `vite.build.cssTarget` to `['chrome87', 'edge88', 'firefox78', 'safari14']`, and a build gate fails on range media queries (`(width<=…)`) in `dist/` CSS **and** HTML. Vite 8 writes them by default, and Safari before 16.4 ignores them, so older phones get the desktop layout without any error (§4.18).
 - **Lockfiles are tracked** at the root and in `functions/`. CI and deploys use `npm ci`, and a security fix is committed with its lockfile (§4.16).
@@ -688,7 +688,7 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v4 -->
+<!-- END cemi-quality-gates v5 -->
 
 <!-- BEGIN cemi-canonical-urls v1 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
 ## 🔗 One host per site, a static canonical on every indexable page (all CEMI sites)
