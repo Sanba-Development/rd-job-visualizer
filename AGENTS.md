@@ -18,6 +18,7 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `smoother-learning-first` (*read on demand*): Learning-first, not teaching-first — `.agents/rules/canon-smoother-learning-first.md`
 - `cemi-gemini-models` (*read on demand*): 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos) — `.agents/rules/canon-cemi-gemini-models.md`
 - `cemi-typographic-orphans` (*read on demand*): 🔤 No one-word last lines in titles — web headlines and HyperFrames titles (all CEMI repos) — `.agents/rules/canon-cemi-typographic-orphans.md`
+- `cemi-paste-blocks` (*read on demand*): ✂️ Anything meant to be copied is fenced with scissors (all CEMI repos) — `.agents/rules/canon-cemi-paste-blocks.md`
 - `cemi-unindexed-documents` (*read on demand*): 🔒 Per-recipient documents are public by link and never indexed (all CEMI sites) — `.agents/rules/canon-cemi-unindexed-documents.md`
 - `cemi-portuguese-br` (*read on demand*): 🇧🇷 Portuguese is Brazilian Portuguese on every CEMI surface (all CEMI repos) — `.agents/rules/canon-cemi-portuguese-br.md`
 - `cemi-business-case` (*read on demand*): 💰 The business case — how the client earns more, spends less and stops risking (all CEMI repos) — `.agents/rules/canon-cemi-business-case.md`
