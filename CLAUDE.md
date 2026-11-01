@@ -843,3 +843,55 @@ The shape, exactly:
 
 A reply that asks Carlos to copy something without the scissors lines is a defect; fix it in the same reply.
 <!-- END cemi-paste-blocks v1 -->
+
+<!-- BEGIN cemi-work-tracking v1 (managed — source: cemi-system/sync/work-tracking.md) -->
+## 🧭 Work is tracked as items, shipped through pull requests where a deploy follows (all CEMI repos)
+
+CEMI runs many repositories with many sessions and one person deciding. Prose lists did the tracking until 2026-11-01; a crash or a full context then cost a session the time to find its place again, and «waiting on Carlos» was scattered across documents. From now on work is tracked as **items**, in a lean shape: what Agile and Lean offer that fits a one-person, many-session operation, and nothing that does not (Carlos, 2026-11-01). No sprints, no story points, no velocity.
+
+**1. One item per piece of work.** An item has an **id** (`<repo>-<n>`), a **type** (feature, fix, security, canon, chore), a **state** (backlog → ready → in progress → review → done; or blocked), the **session** holding it, **who or what it waits on** when blocked, a **milestone**, and the commits or pull request that close it. The register is the Work section of registry.cemi.ai (`/admin/work`), written from any repository with `node ../cemi-system/tools/work.mjs` (Phase 1 of `cemi-system/docs/dev-process-2026-11-01.md`); until that command exists, the same line goes in `cemi-system/docs/pending-ecosystem.md` under the repository's heading, in the same fields and order. A session opens or claims its item when it starts, moves it when its state changes, and leaves it in a resumable state before stopping: the item, not the conversation, is what a fresh session reads after a crash.
+
+**2. Lean limits.** One item in progress per session. A blocked item names who unblocks it; «waiting on Carlos» items are the first thing he sees, and the first thing a session reports. An item untouched for 30 days is closed or re-scoped, never carried silently.
+
+**3. Milestones, not sprints.** Work is grouped by milestone (an initiative with a date and a done-list: «security audit closed», «HUMANOS 5.0 live»), never by a fixed cadence. The review is weekly, on Monday, over the register; the daily check is the Notifications page.
+
+**4. Pull requests where a deploy follows.** Any change that will be deployed (functions, hosting, rules, data scripts, a new feature or integration) goes on a branch named `<type>/<item-id>-<slug>` and reaches `main` through a pull request written from the template canon-sync delivers (`.github/pull_request_template.md`): the item, what changed, why, what was verified, the **security assessment** of `cemi-feature-security-assessment`, and the deploy plan. CI gates run on the pull request (`cemi-quality-gates`); the review is by a session on a model tier at least as capable as the author's (`cemi-model-choice`); Carlos merges, or says «merge» in the repository's tab. **Direct commits to `main` stay allowed** for documentation, canon receipts, handoffs, registers and other changes that deploy nothing; a pull request for prose would bury Carlos.
+
+**5. Releases are tagged and logged.** Every deploy is a release: `/ship` tags it (`v<YYYY.MM.DD>[.<n>]`), adds its CHANGELOG entry, and records it in the repository's release log (`docs/qa/releases.md`, ibizai-web's shape) with what shipped, the checks run, and the item ids closed. Rollback is a redeploy of the previous tag.
+
+**6. Definition of done.** An item is done when its change is merged, deployed where a deploy follows, verified live (the fixed journeys of `cemi-quality-gates`), its security assessment is recorded, its docs and register row are current, and nothing of it waits on anyone. «Committed» is not done.
+
+**Limits.** This block shapes how work is tracked and merged; it changes no permission: pushes, deploys, paid calls and rules releases still follow `cemi-blocked-steps` and `cemi-cost-policy`. Long form, phases and what was deliberately left out: `cemi-system/docs/dev-process-2026-11-01.md`.
+<!-- END cemi-work-tracking v1 -->
+
+<!-- BEGIN cemi-feature-security-assessment v1 (managed — source: cemi-system/sync/feature-security-assessment.md) -->
+## 🛡️ Every new feature ships with a security assessment (all CEMI repos)
+
+A feature is not done until someone has asked what it exposes. On 2026-10-20 a key compiled into a browser bundle cost about US$1,000 in a morning; the first question below would have caught it before the deploy. From 2026-11-01 (Carlos) every new feature, function, endpoint, integration or data flow carries a recorded security assessment, scaled to its risk, before it is deployed.
+
+**The sheet, six questions answered in one line each:**
+1. **Who can call it?** Anyone on the internet, an anonymous session, a signed-in user, an admin by server-written claim, only another server?
+2. **What does one call cost?** A paid API, an e-mail or SMS, storage, compute; and what bounds a flood: cap in code, quota, budget, kill switch.
+3. **What data does it read or write?** Personal data, credentials, payments, documents; whose; where it goes.
+4. **What can a stranger trigger?** Anything reachable without sign-in that sends, spends, writes or reveals.
+5. **What does it trust?** Request parameters, a role in a user-writable field, a referrer, content rendered as HTML, a third-party script or embed.
+6. **What is new to the fleet?** A provider, a library, a service account, a secret, a public endpoint.
+
+**The tier follows the answers.**
+- **Light** (most features): the sheet, the checks below, and the harness's security review skill (`/security-review`) run on the diff; about fifteen minutes. Recorded in the pull request's «Security assessment» section (template delivered by canon-sync), or in the commit message when the change rightly has no pull request.
+- **Deep** (any «yes» to: sign-in or authorization changes, money or metered sends, Firestore or Storage rules, personal or financial data, a new external service or provider, a public endpoint): a written review before the deploy, by a session on a model tier at least as capable as the author's (`cemi-model-choice`), covering the sheet in full, the abuse cases, and the checks with evidence; filed under the repository's `docs/security/` and linked from the pull request. Carlos reads it before saying «deploy».
+
+**The checks map to canon already in force;** the sheet decides which apply:
+- Paid calls behind a capped function, no key in a browser or repository, brakes outside the code (`cemi-paid-api-keys` 1–4, 7).
+- A send a stranger can trigger is capped in code (`cemi-paid-api-keys` 8; `cemi-quality-gates` §4.17).
+- «Signed in» is never «trusted»: rights from server-written documents or claims only (`cemi-paid-api-keys` 6); rules tests that fail on the ruleset they replace, live rules equal the file (`cemi-quality-gates`).
+- Untrusted HTML sanitized at every sink (`cemi-html-sanitization`).
+- Per-recipient documents noindexed and unguessable (`cemi-unindexed-documents`).
+- Only the site is served; headers on every host; embedding denied by default (`cemi-quality-gates` §4.14, §4.15).
+- Secrets in Secret Manager under `<PROVIDER>_API_KEY_<SITE>`, listed in the repository's «Credentials» (`cemi-paid-api-keys`, `sitecraft-system/protocol/api-credentials.md`).
+- Rate limits per user and per IP from the last `X-Forwarded-For` hop; `maxInstances` on every function.
+
+**Gate.** `/ship` and the pull request review refuse a deploy whose change adds or alters a callable surface, a data flow or a dependency on an external service without a recorded assessment. A finding that cannot be fixed before the deploy is an **item of type security** with an owner and a date, never a note. Findings that reveal a fleet pattern are reported to cemi-system, which records them in the current audit (`docs/security-audit-2026-10-20/`) and sweeps the fleet.
+
+**Limits.** The assessment is a judgement recorded by the session that built the feature and checked by another; it is not a penetration test and never claims to be one. Dependency alerts follow their own policy (`O-dependency-upgrades.md` §7). Nothing here authorizes a paid or external scanning service (`cemi-cost-policy`).
+<!-- END cemi-feature-security-assessment v1 -->

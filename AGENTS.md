@@ -31,6 +31,8 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `cemi-blocked-steps` (*inline below*): 🚧 A blocked step goes to Carlos, once, in this tab (all CEMI repos) — `.agents/rules/canon-cemi-blocked-steps.md`
 - `cemi-commit-attribution` (*read on demand*): ✍️ Commits: Carlos is the author, every change stays traceable (all CEMI repos) — `.agents/rules/canon-cemi-commit-attribution.md`
 - `cemi-paid-api-keys` (*inline below*): 🔑 Paid-API keys and AI calls: never in a browser, always behind a capped function (all CEMI repos) — `.agents/rules/canon-cemi-paid-api-keys.md`
+- `cemi-work-tracking` (*read on demand*): 🧭 Work is tracked as items, shipped through pull requests where a deploy follows (all CEMI repos) — `.agents/rules/canon-cemi-work-tracking.md`
+- `cemi-feature-security-assessment` (*read on demand*): 🛡️ Every new feature ships with a security assessment (all CEMI repos) — `.agents/rules/canon-cemi-feature-security-assessment.md`
 
 **Read before, whatever is inline above:**
 
