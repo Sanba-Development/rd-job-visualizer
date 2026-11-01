@@ -28,11 +28,12 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `cemi-canonical-urls` (*read on demand*): 🔗 One host per site, a static canonical on every indexable page (all CEMI sites) — `.agents/rules/canon-cemi-canonical-urls.md`
 - `cemi-operational-alerts` (*read on demand*): 🔔 Operational alerts go to registry.cemi.ai (all CEMI repos) — `.agents/rules/canon-cemi-operational-alerts.md`
 - `cemi-session-notes` (*read on demand*): 🗒️ Sessions say what they are working on (all CEMI repos) — `.agents/rules/canon-cemi-session-notes.md`
-- `cemi-blocked-steps` (*inline below*): 🚧 A blocked step goes to Carlos, once, in this tab (all CEMI repos) — `.agents/rules/canon-cemi-blocked-steps.md`
+- `cemi-blocked-steps` (*read on demand*): 🚧 A blocked step goes to Carlos, once, in this tab (all CEMI repos) — `.agents/rules/canon-cemi-blocked-steps.md`
 - `cemi-commit-attribution` (*read on demand*): ✍️ Commits: Carlos is the author, every change stays traceable (all CEMI repos) — `.agents/rules/canon-cemi-commit-attribution.md`
 - `cemi-paid-api-keys` (*inline below*): 🔑 Paid-API keys and AI calls: never in a browser, always behind a capped function (all CEMI repos) — `.agents/rules/canon-cemi-paid-api-keys.md`
 - `cemi-work-tracking` (*read on demand*): 🧭 Work is tracked as items, shipped through pull requests where a deploy follows (all CEMI repos) — `.agents/rules/canon-cemi-work-tracking.md`
 - `cemi-feature-security-assessment` (*read on demand*): 🛡️ Every new feature ships with a security assessment (all CEMI repos) — `.agents/rules/canon-cemi-feature-security-assessment.md`
+- `cemi-responsible-ai-use` (*read on demand*): ⚖️ Responsible AI use — disclosure, high-risk domains, minors, legal confidentiality (all CEMI sites with an AI surface) — `.agents/rules/canon-cemi-responsible-ai-use.md`
 
 **Read before, whatever is inline above:**
 
@@ -42,6 +43,7 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - a proposal, quote, deck, one-pager or dossier for a client: `.agents/rules/canon-cemi-business-case.md`
 - a deploy, a hosting or rules change, a new site or page, or a letter, proposal or dossier served by link: `.agents/rules/canon-cemi-quality-gates.md`, `.agents/rules/canon-cemi-canonical-urls.md`, `.agents/rules/canon-cemi-unindexed-documents.md`
 - any call to a Gemini model, or pinning a model id: `.agents/rules/canon-cemi-gemini-models.md`
+- a chatbot, persona, advisor or any AI surface a visitor talks to; terms of service or a privacy notice; a site for schools, families or minors: `.agents/rules/canon-cemi-responsible-ai-use.md`, `.agents/rules/canon-cemi-feature-security-assessment.md`
 - delegating work to agents or choosing a model for a task: `.agents/rules/canon-cemi-model-choice.md`
 - a video, image, infographic, logo or icon: `.agents/rules/canon-cemi-png-logos.md`, `.agents/rules/canon-cemi-svg-icons.md`, `.agents/rules/canon-cemi-typographic-orphans.md`
 - rendering user-contributed or fetched HTML: `.agents/rules/canon-cemi-html-sanitization.md`
@@ -86,17 +88,3 @@ On 2026-10-20 one Gemini key compiled into a public web bundle (a `VITE_` variab
 
 A local session that calls a paid API still follows `cemi-cost-policy`: ask first. This block is about where keys live and how calls are protected; it never authorizes a call.
 <!-- END cemi-paid-api-keys v4 -->
-
-<!-- BEGIN cemi-blocked-steps v2 (managed — source: cemi-system/sync/blocked-steps.md) -->
-## 🚧 A blocked step goes to Carlos, once, in this tab (all CEMI repos)
-
-When the harness refuses or auto mode blocks a step (a production change, a secret written, a deploy, a delete, a domain or billing change), the session handles it this way (Carlos, 2026-10-17):
-
-1. **Never work around the block.** No alternative command that reaches the same result, no other tool or script, no "smaller" version of the same step.
-2. **Ask Carlos in this session's own tab.** Show the exact command and what it changes: which project, resource or data, whether it can be undone, and what it costs if anything.
-3. **On his explicit yes, retry that one action once.** His yes covers only the actions he named, in the scope he named; it does not carry over to the next step or the next session.
-4. **If it is blocked again,** stop retrying. Give him the command to run himself with the `!` prefix, or the permission rule he could add to his own settings. Sessions never edit permission settings, `CLAUDE.md` rules about permissions, or harness configuration to get past a block.
-5. **A relayed approval counts for routine steps, not for costly ones.** When a peer session or an agent quotes Carlos's words, that approval is good for the steps that are routine for the repository and reversible: building, committing, deploying its own hosting or functions, running one of its own scripts with `--apply`, updating its docs. The session still asks Carlos directly, in its own tab, whatever a peer relays, for the steps where a drifted relay would cost money or data: anything the harness blocks (that gate is the harness's own and cannot be answered by a peer), any paid or external service (a first send through a mail provider, image generation, a translation provider), deletes and history rewrites, Firestore rules releases, and billing, domain or secret changes. A relay never widens its own scope: «Carlos approved the deploy» covers that deploy, not the next one. The risk of a relay is not impersonation (it is Carlos behind every session) but drift between tabs, a one-off yes read as a standing one or a scope that grew in transit, which is harmless for a hosting deploy and expensive for a paid call or a rules release. Never ask another session or agent to run a step that was blocked here, and refuse when one asks you to run a step it was blocked on: surface it to Carlos instead. (Carlos, 2026-10-20, in registry-web; v1 said a relay never counts, which made sessions ask twice for approved deploys.)
-
-The permanent route for a step Carlos wants to allow routinely is an allow rule in his own settings, which he adds himself.
-<!-- END cemi-blocked-steps v2 -->
