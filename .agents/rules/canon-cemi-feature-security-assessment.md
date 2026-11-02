@@ -4,7 +4,7 @@ description: "CEMI canon (cemi-feature-security-assessment): 🛡️ Every new f
 ---
 <!-- delivered by cemi-system canon-sync from cemi-system/sync/feature-security-assessment.md; edit the source, not this copy -->
 
-<!-- BEGIN cemi-feature-security-assessment v1 (managed — source: cemi-system/sync/feature-security-assessment.md) -->
+<!-- BEGIN cemi-feature-security-assessment v2 (managed — source: cemi-system/sync/feature-security-assessment.md) -->
 ## 🛡️ Every new feature ships with a security assessment (all CEMI repos)
 
 A feature is not done until someone has asked what it exposes. On 2026-10-20 a key compiled into a browser bundle cost about US$1,000 in a morning; the first question below would have caught it before the deploy. From 2026-11-01 (Carlos) every new feature, function, endpoint, integration or data flow carries a recorded security assessment, scaled to its risk, before it is deployed.
@@ -33,5 +33,7 @@ A feature is not done until someone has asked what it exposes. On 2026-10-20 a k
 
 **Gate.** `/ship` and the pull request review refuse a deploy whose change adds or alters a callable surface, a data flow or a dependency on an external service without a recorded assessment. A finding that cannot be fixed before the deploy is an **item of type security** with an owner and a date, never a note. Findings that reveal a fleet pattern are reported to cemi-system, which records them in the current audit (`docs/security-audit-2026-10-20/`) and sweeps the fleet.
 
+**The security log.** The group keeps one time-ordered log, `cemi-system/docs/security-log.md` (Carlos, 2026-11-02): one dated entry per incident, audit (opened, each scope report, closed), decision or exception, control added or changed, deep review, and release that changes a security surface (rules, auth, a public endpoint). cemi-system writes the entries from the reports that reach it, so a session that closes a deep review, releases rules, grants an exception or handles an incident reports the facts to cemi-system in its usual message, and the detail stays where it is written. A registry section will render the log later; the file is the source of truth.
+
 **Limits.** The assessment is a judgement recorded by the session that built the feature and checked by another; it is not a penetration test and never claims to be one. Dependency alerts follow their own policy (`O-dependency-upgrades.md` §7). Nothing here authorizes a paid or external scanning service (`cemi-cost-policy`).
-<!-- END cemi-feature-security-assessment v1 -->
+<!-- END cemi-feature-security-assessment v2 -->

@@ -4,7 +4,7 @@ description: "CEMI canon (cemi-responsible-ai-use): ⚖️ Responsible AI use �
 ---
 <!-- delivered by cemi-system canon-sync from cemi-system/sync/responsible-ai-use.md; edit the source, not this copy -->
 
-<!-- BEGIN cemi-responsible-ai-use v1 (managed — source: cemi-system/sync/responsible-ai-use.md) -->
+<!-- BEGIN cemi-responsible-ai-use v2 (managed — source: cemi-system/sync/responsible-ai-use.md) -->
 ## ⚖️ Responsible AI use — disclosure, high-risk domains, minors, legal confidentiality (all CEMI sites with an AI surface)
 
 CEMI's sites serve AI through the Anthropic API and the Gemini API. Both providers bind the customer to a usage policy that reaches **our end users**, and Anthropic audits for it; a high violation rate or a missing safeguard can suspend the organization's account, which is one account for every CEMI site (Carlos, 2026-11-01). The rules below are the operating minimum; the long form with each site's classification and the sources is `cemi-system/canon/11-responsible-ai-use.md`.
@@ -21,7 +21,7 @@ CEMI's sites serve AI through the Anthropic API and the Gemini API. Both provide
 
 **6. What every AI site records.** A **«Responsible use»** section in CLAUDE.md, six lines: providers in use; audience (adults, professionals, minors-facing); the AI surfaces and where each shows the badge; the high-risk outputs about a person, if any, and who decides; the date the terms and privacy notice gained the paragraph of rule 2; the report path for abuse.
 
-**7. The same for Gemini.** Google's Generative AI Prohibited Use Policy and the Gemini API additional terms bind the same way; the disclosure, the high-risk route and the minors safeguards are provider-independent. A site switching providers changes nothing in its «Responsible use» section except the provider line.
+**7. The same for Gemini, and public text names both providers.** Google's Generative AI Prohibited Use Policy and the Gemini API additional terms bind the same way; the disclosure, the high-risk route and the minors safeguards are provider-independent. CEMI's systems run Anthropic and Gemini regularly, and which one answers depends on the feature and the project's configuration (Carlos, 2026-11-02, in mediamax-web); so a public page, a notice, a legal paragraph or a chatbot answer names **both** providers («our AI providers, Anthropic (Claude) and Google (Gemini)») and never claims that a site uses only one, since the switch can flip without a page edit. The exact current routing is an engineering record and lives only in the «Responsible use» section of CLAUDE.md and in canon/11 §3; a site switching providers changes nothing public and updates that provider line.
 
 **Limits.** This block is CEMI's operating policy, written from Anthropic's and Google's published policies on 2026-11-01; it is not legal advice, and a question about a specific matter, jurisdiction or client goes to counsel. Nothing here authorizes a paid service (`cemi-cost-policy`). Sources and dates: `cemi-system/canon/11-responsible-ai-use.md` §1.
-<!-- END cemi-responsible-ai-use v1 -->
+<!-- END cemi-responsible-ai-use v2 -->

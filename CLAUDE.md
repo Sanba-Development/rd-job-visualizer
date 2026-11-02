@@ -864,7 +864,7 @@ CEMI runs many repositories with many sessions and one person deciding. Prose li
 **Limits.** This block shapes how work is tracked and merged; it changes no permission: pushes, deploys, paid calls and rules releases still follow `cemi-blocked-steps` and `cemi-cost-policy`. Long form, phases and what was deliberately left out: `cemi-system/docs/dev-process-2026-11-01.md`.
 <!-- END cemi-work-tracking v2 -->
 
-<!-- BEGIN cemi-feature-security-assessment v1 (managed — source: cemi-system/sync/feature-security-assessment.md) -->
+<!-- BEGIN cemi-feature-security-assessment v2 (managed — source: cemi-system/sync/feature-security-assessment.md) -->
 ## 🛡️ Every new feature ships with a security assessment (all CEMI repos)
 
 A feature is not done until someone has asked what it exposes. On 2026-10-20 a key compiled into a browser bundle cost about US$1,000 in a morning; the first question below would have caught it before the deploy. From 2026-11-01 (Carlos) every new feature, function, endpoint, integration or data flow carries a recorded security assessment, scaled to its risk, before it is deployed.
@@ -893,10 +893,12 @@ A feature is not done until someone has asked what it exposes. On 2026-10-20 a k
 
 **Gate.** `/ship` and the pull request review refuse a deploy whose change adds or alters a callable surface, a data flow or a dependency on an external service without a recorded assessment. A finding that cannot be fixed before the deploy is an **item of type security** with an owner and a date, never a note. Findings that reveal a fleet pattern are reported to cemi-system, which records them in the current audit (`docs/security-audit-2026-10-20/`) and sweeps the fleet.
 
-**Limits.** The assessment is a judgement recorded by the session that built the feature and checked by another; it is not a penetration test and never claims to be one. Dependency alerts follow their own policy (`O-dependency-upgrades.md` §7). Nothing here authorizes a paid or external scanning service (`cemi-cost-policy`).
-<!-- END cemi-feature-security-assessment v1 -->
+**The security log.** The group keeps one time-ordered log, `cemi-system/docs/security-log.md` (Carlos, 2026-11-02): one dated entry per incident, audit (opened, each scope report, closed), decision or exception, control added or changed, deep review, and release that changes a security surface (rules, auth, a public endpoint). cemi-system writes the entries from the reports that reach it, so a session that closes a deep review, releases rules, grants an exception or handles an incident reports the facts to cemi-system in its usual message, and the detail stays where it is written. A registry section will render the log later; the file is the source of truth.
 
-<!-- BEGIN cemi-responsible-ai-use v1 (managed — source: cemi-system/sync/responsible-ai-use.md) -->
+**Limits.** The assessment is a judgement recorded by the session that built the feature and checked by another; it is not a penetration test and never claims to be one. Dependency alerts follow their own policy (`O-dependency-upgrades.md` §7). Nothing here authorizes a paid or external scanning service (`cemi-cost-policy`).
+<!-- END cemi-feature-security-assessment v2 -->
+
+<!-- BEGIN cemi-responsible-ai-use v2 (managed — source: cemi-system/sync/responsible-ai-use.md) -->
 ## ⚖️ Responsible AI use — disclosure, high-risk domains, minors, legal confidentiality (all CEMI sites with an AI surface)
 
 CEMI's sites serve AI through the Anthropic API and the Gemini API. Both providers bind the customer to a usage policy that reaches **our end users**, and Anthropic audits for it; a high violation rate or a missing safeguard can suspend the organization's account, which is one account for every CEMI site (Carlos, 2026-11-01). The rules below are the operating minimum; the long form with each site's classification and the sources is `cemi-system/canon/11-responsible-ai-use.md`.
@@ -913,7 +915,7 @@ CEMI's sites serve AI through the Anthropic API and the Gemini API. Both provide
 
 **6. What every AI site records.** A **«Responsible use»** section in CLAUDE.md, six lines: providers in use; audience (adults, professionals, minors-facing); the AI surfaces and where each shows the badge; the high-risk outputs about a person, if any, and who decides; the date the terms and privacy notice gained the paragraph of rule 2; the report path for abuse.
 
-**7. The same for Gemini.** Google's Generative AI Prohibited Use Policy and the Gemini API additional terms bind the same way; the disclosure, the high-risk route and the minors safeguards are provider-independent. A site switching providers changes nothing in its «Responsible use» section except the provider line.
+**7. The same for Gemini, and public text names both providers.** Google's Generative AI Prohibited Use Policy and the Gemini API additional terms bind the same way; the disclosure, the high-risk route and the minors safeguards are provider-independent. CEMI's systems run Anthropic and Gemini regularly, and which one answers depends on the feature and the project's configuration (Carlos, 2026-11-02, in mediamax-web); so a public page, a notice, a legal paragraph or a chatbot answer names **both** providers («our AI providers, Anthropic (Claude) and Google (Gemini)») and never claims that a site uses only one, since the switch can flip without a page edit. The exact current routing is an engineering record and lives only in the «Responsible use» section of CLAUDE.md and in canon/11 §3; a site switching providers changes nothing public and updates that provider line.
 
 **Limits.** This block is CEMI's operating policy, written from Anthropic's and Google's published policies on 2026-11-01; it is not legal advice, and a question about a specific matter, jurisdiction or client goes to counsel. Nothing here authorizes a paid service (`cemi-cost-policy`). Sources and dates: `cemi-system/canon/11-responsible-ai-use.md` §1.
-<!-- END cemi-responsible-ai-use v1 -->
+<!-- END cemi-responsible-ai-use v2 -->
