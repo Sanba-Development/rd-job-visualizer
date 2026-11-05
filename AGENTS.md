@@ -33,6 +33,7 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `cemi-paid-api-keys` (*read on demand*): 🔑 Paid-API keys and AI calls: never in a browser, always behind a capped function (all CEMI repos) — `.agents/rules/canon-cemi-paid-api-keys.md`
 - `cemi-work-tracking` (*read on demand*): 🧭 Work is tracked as items, shipped through pull requests where a deploy follows (all CEMI repos) — `.agents/rules/canon-cemi-work-tracking.md`
 - `cemi-feature-security-assessment` (*read on demand*): 🛡️ Every new feature ships with a security assessment (all CEMI repos) — `.agents/rules/canon-cemi-feature-security-assessment.md`
+- `cemi-repo-documents` (*read on demand*): 📄 Repository documents — the same five at every root, plus the session's memory (all CEMI repos) — `.agents/rules/canon-cemi-repo-documents.md`
 - `cemi-responsible-ai-use` (*read on demand*): ⚖️ Responsible AI use — disclosure, high-risk domains, minors, legal confidentiality (all CEMI sites with an AI surface) — `.agents/rules/canon-cemi-responsible-ai-use.md`
 
 **Read before, whatever is inline above:**

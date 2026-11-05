@@ -808,7 +808,7 @@ A local session that calls a paid API still follows `cemi-cost-policy`: ask firs
 **Why one variety.** CEMI's Portuguese-speaking audience and partners are in Brazil; a mixed corpus reads as careless in both countries, and a translation agent given no variety drifts toward European forms. Reference conversions: `media-web` (guide and order page, ae8e01a), `mediamax-web` (Studio UI), `mediamax-system` manifest 0.9.1.
 <!-- END cemi-portuguese-br v4 -->
 
-<!-- BEGIN cemi-unindexed-documents v1 (managed — source: cemi-system/sync/unindexed-documents.md) -->
+<!-- BEGIN cemi-unindexed-documents v2 (managed — source: cemi-system/sync/unindexed-documents.md) -->
 ## 🔒 Per-recipient documents are public by link and never indexed (all CEMI sites)
 
 A letter, proposal, quote, dossier or report addressed to one recipient and reachable by an unguessable link is **public by link and never indexed** (Carlos, 2026-10-25: «make sure the letters are not indexed … although they are publicly accessible, they are not meant to be indexed»). The rule covers the page and every file it serves (PDF, DOCX, images), on every host.
@@ -818,12 +818,13 @@ A letter, proposal, quote, dossier or report addressed to one recipient and reac
 3. **Never `Disallow` the path in `robots.txt`.** A blocked crawler never reads the `noindex` and may still list the bare URL from a link elsewhere; the header is what removes it.
 4. **Links are unguessable:** a token of at least 128 bits generated server-side, never a name, a date or a counter; an unknown or revoked token answers the same 404 as a wrong one, with no hint.
 5. **A public link endpoint that sends nothing** (serves the document) still carries a per-IP limit and `maxInstances`; one that sends or costs per call (mail, generation) carries the site-wide cap of `cemi-paid-api-keys` rule 8.
-6. **Hosting that cannot send headers** (GitHub Pages, a plain bucket) must not serve these documents: move them to Firebase Hosting or a function in the site's project, where rule 1 applies.
+6. **Where they live: Firebase Hosting in the site's own project** (Carlos, 2026-11-05), with the `X-Robots-Tag` in `firebase.json`; a function only when the document must be protected. **Never the project's Storage bucket** (an object can set only Cache-Control, Content-Disposition, Content-Encoding, Content-Language and Content-Type, so no `X-Robots-Tag`, and a PDF has no meta robots) and **never GitHub Pages**, which cannot send headers. When moving documents to Hosting, link the Hosting site to a web app, deploy, then run `post-deploy-keys.mjs` (`cemi-paid-api-keys` rule 3).
+7. **The default Firebase bucket is always mixed and is never made public.** `gs://<project>.firebasestorage.app` and `.appspot.com` hold uploads, client work and private paths side by side in every project (ailearning-web, 2026-11-05: 30 prefixes, a client's full proposal, two paths named private); an `allUsers` grant on it, the one-line «fix» for a broken download link, publishes all of it. The fix for a broken public link is rule 6; «sign in again» cannot fix an anonymous Storage GET either. The weekly drift run checks every default bucket for `allUsers` and `allAuthenticatedUsers`.
 
 **Check:** `curl -sI https://<host>/<a letter path>` shows the `x-robots-tag`; `robots.txt` has no `Disallow` on those paths; the sitemap does not list them. The weekly drift run in `cemi-system` samples the registered letter paths per site and posts a finding when a header is missing or a path is disallowed.
 
-Origin: estrategia's audit of 2026-10-25 (estrategia `/c/**` compliant; cemi-web FinLab PDFs and DOCX without the header and disallowed in robots.txt; one media-web proposal PDF; ailearning-web letters on GitHub Pages, which cannot send headers). Standard and examples: `sitecraft-system/protocol/quality-gates.md` §4.19 and `proposals-and-dossiers.md`.
-<!-- END cemi-unindexed-documents v1 -->
+Origin: estrategia's audit of 2026-10-25 (estrategia `/c/**` compliant; cemi-web FinLab PDFs and DOCX without the header and disallowed in robots.txt; one media-web proposal PDF; ailearning-web letters on GitHub Pages, which cannot send headers). Standard and examples: `sitecraft-system/protocol/quality-gates.md` §4.19 (written 2026-11-05, sitecraft 3fc9612) and `proposals-and-dossiers.md`.
+<!-- END cemi-unindexed-documents v2 -->
 
 <!-- BEGIN cemi-paste-blocks v1 (managed — source: cemi-system/sync/paste-blocks.md) -->
 ## ✂️ Anything meant to be copied is fenced with scissors (all CEMI repos)
@@ -923,3 +924,24 @@ CEMI's sites serve AI through the Anthropic API and the Gemini API. Both provide
 
 **Limits.** This block is CEMI's operating policy, written from Anthropic's and Google's published policies on 2026-11-01; it is not legal advice, and a question about a specific matter, jurisdiction or client goes to counsel. Nothing here authorizes a paid service (`cemi-cost-policy`). Sources and dates: `cemi-system/canon/11-responsible-ai-use.md` §1.
 <!-- END cemi-responsible-ai-use v2 -->
+
+<!-- BEGIN cemi-repo-documents v3 (managed — source: sitecraft-system/sync/repo-documents.md) -->
+## 📄 Repository documents — the same five at every root, plus the session's memory (all CEMI repos)
+
+Every CEMI repository carries five root documents, each with one job (Carlos, 2026-10-17). Documents cross-reference each other and never duplicate one another.
+
+| File | Its one job |
+| :---- | :---- |
+| `README.md` | What this is, who it is for, and where everything else lives: a router, not a manual |
+| `INSTALL.md` | Requirements and stack versions, environment variables, build and run steps, how it is deployed |
+| `CLAUDE.md` | How to work here: conventions, invariants, hard rules, and the managed blocks (their only home) |
+| `CHANGELOG.md` | What changed, when and why, updated on every ship |
+| `AGENTS.md` | The same instructions for Antigravity. canon-sync writes it, and it is never edited by hand |
+
+- **MEMORY.md is not in the repository.** It is Claude Code's memory at `~/.claude/projects/<folder>/memory/`, and it is backed up nightly by cemi-system. **Every session keeps it current, and every `/ship` brings it up to date.** When a memory becomes a lasting rule for everyone, promote it: a rule goes to `CLAUDE.md`, a fact and its reason to `docs/decisions.md`. Never commit a `MEMORY.md`.
+- **Both harnesses, always.** Claude Code reads `CLAUDE.md` and `.claude/`; Antigravity reads `AGENTS.md` (or `GEMINI.md`) and `.agents/`. canon-sync mirrors one into the other, so a local skill or rule is written under `.claude/` only. **Antigravity truncates a rule file at 24,000 bytes, silently.** A rule an Antigravity session must follow has to sit inside that limit.
+- **Shared tools live once, in their system repository,** and are called by relative path from the sibling checkout (`node ../cemi-system/tools/…`). They are never copied, never packaged, and never delivered by canon-sync (Carlos, 2026-10-24). First case: `mediamax-system/tools/tts-checker`. **CI checks out one repository only**: what a sibling tool generates is committed in the consumer, and a step that regenerates it skips cleanly (exit 0, one line) when the sibling is absent. A build never depends on a sibling.
+- **`/ship`** keeps these documents current, runs the gates, commits, pushes and deploys. Its source is `sitecraft-system/skills/ship/SKILL.md`; a per-repository variant is drift.
+
+Long form: `sitecraft-system/protocol/cemi-sitecraft.md`, *Standard Repository Documents*, and the Working-Folder Policy just above it.
+<!-- END cemi-repo-documents v3 -->
