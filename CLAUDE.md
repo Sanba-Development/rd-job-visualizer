@@ -669,7 +669,7 @@ Carlos, 2026-10-16: «Split the work into multiple agents, as long as they don't
 **Limits.** This rule is about the models *inside the harness the session already runs on*. It never authorises a paid or external service: `cemi-cost-policy` stands unchanged, and translation is always Claude. A repository's own rule that names a model for a task wins for that task. It governs sessions and their agents, not the models a product serves to its users — chatbot tiers are `sitecraft-system/protocol/chatbot-and-personas.md`.
 <!-- END cemi-model-choice v2 -->
 
-<!-- BEGIN cemi-quality-gates v6 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v7 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
@@ -684,12 +684,13 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **A send a stranger can trigger is capped.** Any endpoint a visitor can trigger without signing in (an anonymous session counts as not signed in) that sends an e-mail, an SMS or another metered message carries a site-wide daily cap in code. The cap fails closed, posts to registry.cemi.ai at 80 % and 100 %, and past it the page offers a path that sends nothing. Per-IP limits and App Check do not bound a flood (§4.17).
 - **Served CSS keeps the browser floor.** Astro sites set `vite.build.cssTarget` to `['chrome87', 'edge88', 'firefox78', 'safari14']`, and a build gate fails on range media queries (`(width<=…)`) in `dist/` CSS **and** HTML. Vite 8 writes them by default, and Safari before 16.4 ignores them, so older phones get the desktop layout without any error (§4.18).
 - **Lockfiles are tracked** at the root and in `functions/`. CI and deploys use `npm ci`, and a security fix is committed with its lockfile (§4.16).
+- **Prose reaches a command through a quoted heredoc or a file, never a quoted argument.** Double quotes run backticks as commands, and single quotes end at the first apostrophe («l'IA»). Both lose text with exit 0, and the second prints nothing at all. Use `NOTE=$(cat <<'EOF' … EOF)` with the delimiter quoted, then `--note "$NOTE"`; or `git commit -F -`, `gh … --body-file`. Read the stored text back (§4.19b).
 - **Live data changes are scripts that default to a dry run** and write only with `--apply`. Scan the staged diff for secrets before every commit, and stage files by name.
 - **After every deploy, run the site's fixed live journeys**, signed out and signed in. Signed-in journeys use the site's QA identity: `qa-<app>@cemi.test`, created through xAId's API, in its own QA organization, never a platform tier, with credentials outside the repository (`sitecraft-system/protocol/niche-sites/test-identities-guidelines.md`). It never touches a client organization, and it cleans up what it creates.
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v6 -->
+<!-- END cemi-quality-gates v7 -->
 
 <!-- BEGIN cemi-canonical-urls v1 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
 ## 🔗 One host per site, a static canonical on every indexable page (all CEMI sites)
