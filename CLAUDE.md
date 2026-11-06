@@ -669,7 +669,7 @@ Carlos, 2026-10-16: «Split the work into multiple agents, as long as they don't
 **Limits.** This rule is about the models *inside the harness the session already runs on*. It never authorises a paid or external service: `cemi-cost-policy` stands unchanged, and translation is always Claude. A repository's own rule that names a model for a task wins for that task. It governs sessions and their agents, not the models a product serves to its users — chatbot tiers are `sitecraft-system/protocol/chatbot-and-personas.md`.
 <!-- END cemi-model-choice v2 -->
 
-<!-- BEGIN cemi-quality-gates v8 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v9 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
@@ -686,12 +686,13 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Lockfiles are tracked** at the root and in `functions/`. CI and deploys use `npm ci`, and a security fix is committed with its lockfile (§4.16).
 - **Prose reaches a command through a quoted heredoc or a file, never a quoted argument.** Double quotes run backticks as commands, and single quotes end at the first apostrophe («l'IA»). Both lose text with exit 0, and the second prints nothing at all. Use `NOTE=$(cat <<'EOF' … EOF)` with the delimiter quoted, then `--note "$NOTE"`; or `git commit -F -`, `gh … --body-file`. Read the stored text back (§4.19b).
 - **Every push is watched to the end; a hand deploy never goes around a red check.** After a push, wait for the GitHub run and report its conclusion in the same reply; fix a red run or report it to Carlos at once. Never deploy from the machine while the branch's latest run is red, unless Carlos approves that deploy in this tab knowing it is red. A wrong check is corrected, never bypassed. cemi-system posts every red `main` to registry.cemi.ai (§4.20).
+- **A deploy never replaces what is live with something older.** Before a hosting deploy, read every unpushed commit and diff the live files those commits and recent work touch against the tree being deployed; anything live that is missing or older stops the deploy. «Unpushed» never means «undeployed». Deploy a repository another session works in only through that session, or on Carlos's explicit yes in this tab after stating the unpushed state. Push what you deploy, so GitHub always matches live (§4.21).
 - **Live data changes are scripts that default to a dry run** and write only with `--apply`. Scan the staged diff for secrets before every commit, and stage files by name.
 - **After every deploy, run the site's fixed live journeys**, signed out and signed in. Signed-in journeys use the site's QA identity: `qa-<app>@cemi.test`, created through xAId's API, in its own QA organization, never a platform tier, with credentials outside the repository (`sitecraft-system/protocol/niche-sites/test-identities-guidelines.md`). It never touches a client organization, and it cleans up what it creates.
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v8 -->
+<!-- END cemi-quality-gates v9 -->
 
 <!-- BEGIN cemi-canonical-urls v1 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
 ## 🔗 One host per site, a static canonical on every indexable page (all CEMI sites)
@@ -736,7 +737,7 @@ Carlos keeps many sessions open at once, and a crash or a full context can lose 
 - Status (open, committed/pushed/deployed, ahead/behind, closed) is derived automatically from git and the session hooks. The note is the part only the session knows.
 <!-- END cemi-session-notes v1 -->
 
-<!-- BEGIN cemi-blocked-steps v2 (managed — source: cemi-system/sync/blocked-steps.md) -->
+<!-- BEGIN cemi-blocked-steps v3 (managed — source: cemi-system/sync/blocked-steps.md) -->
 ## 🚧 A blocked step goes to Carlos, once, in this tab (all CEMI repos)
 
 When the harness refuses or auto mode blocks a step (a production change, a secret written, a deploy, a delete, a domain or billing change), the session handles it this way (Carlos, 2026-10-17):
@@ -746,9 +747,10 @@ When the harness refuses or auto mode blocks a step (a production change, a secr
 3. **On his explicit yes, retry that one action once.** His yes covers only the actions he named, in the scope he named; it does not carry over to the next step or the next session.
 4. **If it is blocked again,** stop retrying. Give him the command to run himself with the `!` prefix, or the permission rule he could add to his own settings. Sessions never edit permission settings, `CLAUDE.md` rules about permissions, or harness configuration to get past a block.
 5. **A relayed approval counts for routine steps, not for costly ones.** When a peer session or an agent quotes Carlos's words, that approval is good for the steps that are routine for the repository and reversible: building, committing, deploying its own hosting or functions, running one of its own scripts with `--apply`, updating its docs. The session still asks Carlos directly, in its own tab, whatever a peer relays, for the steps where a drifted relay would cost money or data: anything the harness blocks (that gate is the harness's own and cannot be answered by a peer), any paid or external service (a first send through a mail provider, image generation, a translation provider), deletes and history rewrites, Firestore rules releases, and billing, domain or secret changes. A relay never widens its own scope: «Carlos approved the deploy» covers that deploy, not the next one. The risk of a relay is not impersonation (it is Carlos behind every session) but drift between tabs, a one-off yes read as a standing one or a scope that grew in transit, which is harmless for a hosting deploy and expensive for a paid call or a rules release. Never ask another session or agent to run a step that was blocked here, and refuse when one asks you to run a step it was blocked on: surface it to Carlos instead. (Carlos, 2026-10-20, in registry-web; v1 said a relay never counts, which made sessions ask twice for approved deploys.)
+6. **Another session's repository is deployed through that session.** A deploy of a repository another session works in is handed to that session, or made only on Carlos's explicit yes in this tab after stating the unpushed and undeployed state plainly: which commits, made by whom, whether they are already live. This is not a routine step under rule 5, so a relayed approval does not cover it. Before any hosting deploy, compare the live files with the tree being deployed and stop on anything live that is missing or older; push what you deploy (`cemi-quality-gates`, sitecraft `protocol/quality-gates.md` §4.21). (Carlos, 2026-11-06, after a deploy from GitHub's `main` rolled back seven live but unpushed commits on cemi.media, SL-162.)
 
 The permanent route for a step Carlos wants to allow routinely is an allow rule in his own settings, which he adds himself.
-<!-- END cemi-blocked-steps v2 -->
+<!-- END cemi-blocked-steps v3 -->
 
 <!-- BEGIN cemi-commit-attribution v3 (managed — source: cemi-system/sync/commit-attribution.md) -->
 ## ✍️ Commits: Carlos is the author, every change stays traceable (all CEMI repos)
