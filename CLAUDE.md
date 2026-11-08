@@ -221,7 +221,7 @@ See `CONTRIBUTING.md` for full details. Key rules:
 
 All UI and content is in **Spanish**. Comments and code may mix Spanish and English.
 
-<!-- BEGIN cemi-contact-emails v4 (managed — source: cemi-system/sync/contact-emails.md) -->
+<!-- BEGIN cemi-contact-emails v5 (managed — source: cemi-system/sync/contact-emails.md) -->
 ## 📧 Contact emails (all CEMI repos)
 
 Valid, working contact addresses for CEMI — real and monitored. Safe to use in site copy, footers, contact forms, persona contact routing, press kits, proposals, and any outward-facing material.
@@ -232,8 +232,10 @@ Valid, working contact addresses for CEMI — real and monitored. Safe to use in
 
 **Retired — never publish:** `@ibizai.io`. The domain was retired on 2026-10-05 and redirects to ibizai.ai. It was advertised here while its addresses bounced; it has since been re-attached so that old mail still arrives, but it is no longer a domain CEMI publishes. Replace any `…@ibizai.io` still in copy with the same address `@ibizai.ai`.
 
+**Project addresses (one site each, not role addresses):** `podcast@cemi.ai`, published only by the podcast «Inteligencia de Negocios 20/20» (podcast-web: footer, About, the feeds' owner e-mail); confirmed by Carlos 2026-11-08 and checked weekly by the same alias run. Other sites keep to the role addresses.
+
 Default to `contact@cemi.ai`; route by purpose where a specific address fits (legal → `legal@`, security → `security@`, investment → `invest@`, partnerships/alliances → `partners@`, sales/commercial → `business@`, privacy/GDPR → `privacy@`). Do **not** invent addresses outside this list. Consultable at `/admin/emails`.
-<!-- END cemi-contact-emails v4 -->
+<!-- END cemi-contact-emails v5 -->
 
 <!-- BEGIN cemi-html-sanitization v2 (managed — source: sitecraft-system/sync/html-sanitization.md) -->
 ## 🛡️ HTML sanitization — never inject untrusted HTML unsanitized (all CEMI repos)
