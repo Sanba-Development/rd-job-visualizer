@@ -309,7 +309,7 @@ Anywhere a logo's **type is rendered** — hyperframe/video compositions, brand-
 This is about **logos** (they carry type). Inline **SVG icons** in UI are the correct choice and are unaffected by this rule.
 <!-- END cemi-png-logos v2 -->
 
-<!-- BEGIN cemi-persona-authoring v11 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
+<!-- BEGIN cemi-persona-authoring v12 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
 # CEMI authoring rules for content written under a persona's voice
 
 **Source of truth:** `personais-system/sync/persona-authoring-rules.md` — the managed block `cemi-persona-authoring`; an edit bumps the version in these markers and the `cemi-system/canon-sync` bundle.
@@ -357,7 +357,9 @@ Distinct from the fabrication rules above (which concern *verifiable* claims): e
 
 A persona of a real, living person (`identity.kind: real`, `provenance.kind: digital-twin`) exists only with that person's **written approval** of its record and of its **position matrix**, recorded in the record (`consent: true`, `consentRef`: who approved, when, by what document, where the document is kept). Until then the record stays `status: wip`, `visibility: internal`, and no public surface uses it: no chat, no generated text, no avatar line in that persona's voice. Each statement in the matrix is **confirmed** (by the person, in writing), **inferred** (from their documents or a colleague's description) or **not-established**. Confirmed statements may be voiced as theirs; inferred ones only as the persona's reading of their approach; not-established ones never. A wording is quoted as theirs only when the matrix marks the wording itself as confirmed. A change to a confirmed statement, or a new one, goes back to the person. Withdrawal of approval sets `consent: false` and takes the persona off every surface at the next snapshot, and at once through each site's `disabledPersonas`. Carlos's own record follows the same rule, with Carlos as the approver.
 
-The persona's name ends in «AI» («Mite Nishio AI»), and the runtime guardrails (`guardrails/persona-guardrails.ts`, section «If you represent a real person») make it say so in its first answer and whenever asked. Approval is enforced in code, not by convention: a consumer serves a digital twin only when the record is `status: live`, `visibility: public` and `consent: true`. First record under this rule: `mite-nishio` (2026-11-08), whose position matrix is `profile.values.positions`.
+The persona's name ends in «AI» («Mite Nishio AI»), and the runtime guardrails (`guardrails/persona-guardrails.ts`, section «If you represent a real person») make it say so in its first answer and whenever asked. **Approval is enforced in code, at the source first and again at every consumer:** the personas endpoint and the snapshots serve a digital twin only when the record is `status: live`, `visibility: public` and `consent: true` (personais-web, since 2026-11-08; the check applies to `provenance.kind: digital-twin` only, so Carlos's record and the historical educators, `identity.kind: real` without a consent field, are unaffected), and each chat function checks the same three fields again before composing a prompt, because a snapshot can be stale or hand-made, and reads its site's `disabledPersonas` list. Neither check is the only guard. First records under this rule: `mite-nishio` and `fabiola-herrera` (2026-11-08), whose position matrices are `profile.values.positions`.
+
+**Twins made for clients are private** (Carlos, 2026-11-08). A digital twin built for a client, a client organization or a project is never exposed on the public catalog or the public endpoint, whatever its status: it is available only through that project's or organization's own tools, under their own access. The client, and the person represented, can still review and approve it (its record and its position matrix) even when the twin is only for their internal use; the approval record (`consent`, `consentRef`) is kept the same way. As of 2026-11-08 the per-project access path and the client approval screen do not exist yet: until personais-web builds them, a client twin stays `visibility: internal`, is reviewed from the admin by Carlos with the client, and is served to the project only by that project's own credentials, never through the public feed.
 
 ---
 
@@ -526,7 +528,7 @@ Brevity and honesty beat fluency. A short paragraph of true things is worth more
 > Fact-checking, the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test and the corrections rule are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` and are binding here. One copy, there; nothing carrying `[REQUIRES VERIFICATION]` ships.
 
 *(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
-<!-- END cemi-persona-authoring v11 -->
+<!-- END cemi-persona-authoring v12 -->
 
 <!-- BEGIN journalaism-article-canon v2 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
 ## Article writing and research canon (all CEMI repositories that publish text)
