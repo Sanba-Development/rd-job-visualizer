@@ -4,7 +4,7 @@ description: "CEMI canon (cemi-quality-gates): ✅ Quality gates — content, se
 ---
 <!-- delivered by cemi-system canon-sync from sitecraft-system/sync/quality-gates.md; edit the source, not this copy -->
 
-<!-- BEGIN cemi-quality-gates v10 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v11 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
@@ -23,9 +23,10 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Prose reaches a command through a quoted heredoc or a file, never a quoted argument.** Double quotes run backticks as commands, and single quotes end at the first apostrophe («l'IA»). Both lose text with exit 0, and the second prints nothing at all. Use `NOTE=$(cat <<'EOF' … EOF)` with the delimiter quoted, then `--note "$NOTE"`; or `git commit -F -`, `gh … --body-file`. Read the stored text back (§4.19b).
 - **Every push is watched to the end; a hand deploy never goes around a red check.** After a push, wait for the GitHub run and report its conclusion in the same reply; fix a red run or report it to Carlos at once. Never deploy from the machine while the branch's latest run is red, unless Carlos approves that deploy in this tab knowing it is red. A wrong check is corrected, never bypassed. cemi-system posts every red `main` to registry.cemi.ai (§4.20).
 - **A deploy never replaces what is live with something older.** Before a hosting deploy, read every unpushed commit and diff the live files those commits and recent work touch against the tree being deployed; anything live that is missing or older stops the deploy. «Unpushed» never means «undeployed». Deploy a repository another session works in only through that session, or on Carlos's explicit yes in this tab after stating the unpushed state. Push what you deploy, so GitHub always matches live (§4.21).
+- **A public AI chat carries its abuse tests in CI:** refusals for client prompts, unsigned history, unapproved personas and missing caps, each asserting that no provider call was made (§4.23).
 - **Live data changes are scripts that default to a dry run** and write only with `--apply`. Scan the staged diff for secrets before every commit, and stage files by name.
 - **After every deploy, run the site's fixed live journeys**, signed out and signed in. Signed-in journeys use the site's QA identity: `qa-<app>@cemi.test`, created through xAId's API, in its own QA organization, never a platform tier, with credentials outside the repository (`sitecraft-system/protocol/niche-sites/test-identities-guidelines.md`). It never touches a client organization, and it cleans up what it creates.
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v10 -->
+<!-- END cemi-quality-gates v11 -->
