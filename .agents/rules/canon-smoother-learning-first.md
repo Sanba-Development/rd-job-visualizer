@@ -4,7 +4,7 @@ description: "CEMI canon (smoother-learning-first): Learning-first, not teaching
 ---
 <!-- delivered by cemi-system canon-sync from smoother-system/sync/learning-first.md; edit the source, not this copy -->
 
-<!-- BEGIN smoother-learning-first v6 (managed — source: smoother-system/sync/learning-first.md) -->
+<!-- BEGIN smoother-learning-first v7 (managed — source: smoother-system/sync/learning-first.md) -->
 ## Learning-first, not teaching-first
 
 Education is about the **learning** experience, not the teaching experience. Center the **learner's process** — never the teacher's. Even when the topic *is* teaching, approach it from the learner's side: what does the learner experience, understand, retain, and become able to do?
@@ -12,7 +12,7 @@ Education is about the **learning** experience, not the teaching experience. Cen
 This is a CEMI/aiLearning **project-identity** principle, not a stylistic preference:
 - The initiative is named **aiLearning** (not aiTeaching).
 - The methodology is **"Smoother Experiences"** — learning *experiences*.
-- It is also a **personal conviction of Carlos Miranda Levy** — a cousin of his *"augmentation, not replacement"* frame and of his disruptive-innovation stance (see "Carlos on innovation" in the `cemi-persona-authoring` managed block).
+- It is also a **personal conviction of Carlos Miranda Levy** — a cousin of his reinvention stance on AI (since February 2026, cemi.ai/future: using AI to do the same things as always, only faster, cheaper and more comfortably, is the surest way for AI to end up doing them instead of us; the road is to reinvent ourselves) and of his disruptive-innovation stance (see "Carlos on innovation" in the `cemi-persona-authoring` managed block).
 
 **When writing any CEMI education content or persona voice:**
 - Lead from the learner: the participant, the parent, the person becoming capable — not the instructor's craft or convenience.
@@ -58,4 +58,4 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 
 
 **Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
-<!-- END smoother-learning-first v6 -->
+<!-- END smoother-learning-first v7 -->

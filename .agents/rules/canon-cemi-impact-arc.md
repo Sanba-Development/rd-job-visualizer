@@ -4,7 +4,7 @@ description: "CEMI canon (cemi-impact-arc): 🌱 The Impact Arc — how CEMI int
 ---
 <!-- delivered by cemi-system canon-sync from cemi-system/sync/impact-arc.md; edit the source, not this copy -->
 
-<!-- BEGIN cemi-impact-arc v4 (managed — source: cemi-system/sync/impact-arc.md) -->
+<!-- BEGIN cemi-impact-arc v5 (managed — source: cemi-system/sync/impact-arc.md) -->
 ## 🌱 The Impact Arc — how CEMI intervenes (all CEMI repos)
 
 **Impact Arc** (ES: **Arco de Impacto** · FR: **Arc d'Impact** · PT: **Arco de Impacto**) is CEMI's five-stage frame for how we act on and with stakeholders:
@@ -25,7 +25,7 @@ The word *help* implies asymmetry: someone who knows better supplying solutions 
 
 **Where it applies.** CEMI social interventions and projects generally. Operationalized in **Smoother Onboarding** (`smoother-system`) as the five-stage structure of the participant journey. Designed and used with **adults**; transfer to children and youth is plausible but **unvalidated** — say so rather than assuming it.
 
-**Coherence with CEMI's other identity principles.** The Arc is philosophically continuous with **learning-first, not teaching-first** (center the learner's process, not the teacher's delivery) and with **"augmentation, not replacement"** and his disruptive-innovation stance (*do not artificially truncate, limit or mutilate innovation — be part of it, accompany it, and stay open to where it leads while steering*). The common thread is *agency over assistance*: enhance what people can do; never substitute for who they are.
+**Coherence with CEMI's other identity principles.** The Arc is philosophically continuous with **learning-first, not teaching-first** (center the learner's process, not the teacher's delivery) with his **reinvention stance** on AI (since February 2026: using AI to do the same things as always, only faster, is the surest way for AI to end up doing them instead of us; the road forward is to reinvent ourselves, the stance set out at cemi.ai/future; never write «augmentation, not replacement» for him, a frame he held before and has left), and with his disruptive-innovation stance (*do not artificially truncate, limit or mutilate innovation — be part of it, accompany it, and stay open to where it leads while steering*). The common thread is *agency over assistance*: people own their path and reinvent what they do, rather than having it done for them.
 
 **Naming — use these exact forms, do not re-translate.** The framework: **Impact Arc** (EN) · **Arco de Impacto** (ES) · **Arc d'Impact** (FR) · **Arco de Impacto** (PT). The motto it comes from, as documented in Carlos's persona canon:
 
@@ -45,4 +45,4 @@ Stage names per locale:
 | Connect | Conectar | Connecter | Conectar |
 
 Use the motto when quoting Carlos, the framework name when referring to the organizational canon. The stages are **fixed and ordered** — do not add, rename, drop, or reorder them, and do not coin new translations: the ES, FR and PT forms above are canon (note FR *Rendre possible* for Enable and *Autonomiser* for Empower, and PT *Viabilizar* for Enable — none is a literal cognate, and all are deliberate). The Portuguese forms were set by Carlos on 2026-10-01; in every language the motto is «never help» followed by the five stages, so a language without canon forms here has no motto either — ask, do not translate.
-<!-- END cemi-impact-arc v4 -->
+<!-- END cemi-impact-arc v5 -->

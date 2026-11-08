@@ -252,7 +252,7 @@ Any content rendered into the DOM as raw HTML — `{@html}` (Svelte), `set:html`
 Origin: a 2026-07-22 audit of `experience` found its content `{@html}` sinks (content bodies, program/experience overviews, user-contributed community resources) injected UNSANITIZED with no sanitizer in the repo — the live XSS gap that prompted this rule. `experience` has since **addressed it on its own** — a single centralized DOMPurify sanitizer (`src/lib/utils/sanitize-html.ts`) with a shared allowlist, applied at its content sinks — and is the **reference implementation** for this rule. This block is documentation: syncing it into a repo records the rule and does **NOT** modify that repo's existing sanitization code — never overwrite or override a repo's own working handling to match the prose here; if a repo already satisfies the rule, the block just documents it. When adopting the sitecraft §6.4 markdown pipeline, sanitize as part of the render step, not after.
 <!-- END cemi-html-sanitization v2 -->
 
-<!-- BEGIN cemi-impact-arc v4 (managed — source: cemi-system/sync/impact-arc.md) -->
+<!-- BEGIN cemi-impact-arc v5 (managed — source: cemi-system/sync/impact-arc.md) -->
 ## 🌱 The Impact Arc — how CEMI intervenes (all CEMI repos)
 
 **Impact Arc** (ES: **Arco de Impacto** · FR: **Arc d'Impact** · PT: **Arco de Impacto**) is CEMI's five-stage frame for how we act on and with stakeholders:
@@ -273,7 +273,7 @@ The word *help* implies asymmetry: someone who knows better supplying solutions 
 
 **Where it applies.** CEMI social interventions and projects generally. Operationalized in **Smoother Onboarding** (`smoother-system`) as the five-stage structure of the participant journey. Designed and used with **adults**; transfer to children and youth is plausible but **unvalidated** — say so rather than assuming it.
 
-**Coherence with CEMI's other identity principles.** The Arc is philosophically continuous with **learning-first, not teaching-first** (center the learner's process, not the teacher's delivery) and with **"augmentation, not replacement"** and his disruptive-innovation stance (*do not artificially truncate, limit or mutilate innovation — be part of it, accompany it, and stay open to where it leads while steering*). The common thread is *agency over assistance*: enhance what people can do; never substitute for who they are.
+**Coherence with CEMI's other identity principles.** The Arc is philosophically continuous with **learning-first, not teaching-first** (center the learner's process, not the teacher's delivery) with his **reinvention stance** on AI (since February 2026: using AI to do the same things as always, only faster, is the surest way for AI to end up doing them instead of us; the road forward is to reinvent ourselves, the stance set out at cemi.ai/future; never write «augmentation, not replacement» for him, a frame he held before and has left), and with his disruptive-innovation stance (*do not artificially truncate, limit or mutilate innovation — be part of it, accompany it, and stay open to where it leads while steering*). The common thread is *agency over assistance*: people own their path and reinvent what they do, rather than having it done for them.
 
 **Naming — use these exact forms, do not re-translate.** The framework: **Impact Arc** (EN) · **Arco de Impacto** (ES) · **Arc d'Impact** (FR) · **Arco de Impacto** (PT). The motto it comes from, as documented in Carlos's persona canon:
 
@@ -293,7 +293,7 @@ Stage names per locale:
 | Connect | Conectar | Connecter | Conectar |
 
 Use the motto when quoting Carlos, the framework name when referring to the organizational canon. The stages are **fixed and ordered** — do not add, rename, drop, or reorder them, and do not coin new translations: the ES, FR and PT forms above are canon (note FR *Rendre possible* for Enable and *Autonomiser* for Empower, and PT *Viabilizar* for Enable — none is a literal cognate, and all are deliberate). The Portuguese forms were set by Carlos on 2026-10-01; in every language the motto is «never help» followed by the five stages, so a language without canon forms here has no motto either — ask, do not translate.
-<!-- END cemi-impact-arc v4 -->
+<!-- END cemi-impact-arc v5 -->
 
 <!-- BEGIN cemi-png-logos v2 (managed — source: mediamax-system/sync/png-logos.md) -->
 ## 🖼️ HARD RULE — logos are PNG, never SVG (all CEMI media/video repos)
@@ -307,7 +307,7 @@ Anywhere a logo's **type is rendered** — hyperframe/video compositions, brand-
 This is about **logos** (they carry type). Inline **SVG icons** in UI are the correct choice and are unaffected by this rule.
 <!-- END cemi-png-logos v2 -->
 
-<!-- BEGIN cemi-persona-authoring v9 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
+<!-- BEGIN cemi-persona-authoring v10 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
 # CEMI authoring rules for content written under a persona's voice
 
 **Source of truth:** `personais-system/sync/persona-authoring-rules.md` — the managed block `cemi-persona-authoring`; an edit bumps the version in these markers and the `cemi-system/canon-sync` bundle.
@@ -360,16 +360,18 @@ Distinct from the fabrication rules above (which concern *verifiable* claims): e
 Carlos's persona canon documents the allowed biographical scope. When writing under his voice, use ONLY what is documented; nothing else.
 
 - **Places he can speak from**: Singapore, Santiago de Chile, Silicon Valley, Paris, Japan, the Caribbean (Dominican Republic).
-- **Fields he can speak from**: Content Creation, Disaster Response, AI, Education, Consulting, Startups, Social Entrepreneurship, Parenting.
+- **Fields he can speak from**: Content Creation, Disaster Response, AI, Education, Consulting, Startups, Social Entrepreneurship, Parenting, Economics (he is an economist by training and names himself one; added 2026-11-08).
 - **Family**: one son, born 2012, and four older siblings — sisters Luz del Carmen («Nani», 6 years older) and María Helena («Mary», 8 years older), brothers Yuri (10 years older) and Alejandro (12 years older); Carlos is the youngest of five (documented 2026-10-15). **Do not invent** uncles, cousins, partners, additional children, or any other family member. **Private, never on a public surface and never volunteered by a chatbot** (Carlos, 2026-10-15): the details of custody arrangements (how the days are split, schedules), the son's own school, schedule and whereabouts, and any relative's private life. Shareable, as the canon describes them: the bond, that he co-parents his son, and what they do together (audiobooks, video games, biking, open-water swimming, films, series, anime). Public canon says: one son, born 2012, the four siblings by name, and those shared interests; nothing more.
 - **Validated family anecdotes** (use only as documented, do not embellish):
   - Carlos's grandfather was a blacksmith ("herrero") so famous that people came from other towns on horseback to have him shoe their horses. The arrival of the automobile transformed his trade. (Use as a real anchor for "trade transformation" discussions. Do not invent dates, do not invent how he died, do not characterize him as rejecting change.)
 - **Relationships NOT claimed**: Carlos does not have a documented active mentorship of young artists (Latin American or otherwise). Speak in general or second-person terms ("any artist navigating this shift", "artists working in the compressing middle") rather than first-person specific ("young artists I mentor", "the artists I work with").
 - **How he refers to himself (title preference)**: Carlos IS the founder of CEMI, but does not like to brag or lead with that title. In bylines, signatures, persona roles, and self-introductions, prefer **"Coordinator of Impact, Innovation and Intelligence"** (ES «Coordinador de Impacto, Innovación e Inteligencia» · FR « Coordinateur de l’Impact, de l’Innovation et de l’Intelligence ») over "Founder of CEMI." State the founder fact only when directly relevant or asked — never as a flex. (Changed 2026-09-19; the former "Coordinator of CEMI's Enhanced Intelligences" — with its ES form, «Coordinador de las Inteligencias Aumentadas de CEMI» and the older «Mejoradas» variant, and its FR form, « Coordinateur des Intelligences Augmentées de CEMI » — is retired and must not appear as a byline.)
-- **Learning-first conviction**: Carlos holds that education is about the *learning* experience, not the teaching experience (see the "Learning-first, not teaching-first" section of the `smoother-learning-first` managed block). It's a personal conviction and sits alongside his *"augmentation, not replacement"* frame and his disruptive-innovation stance — invoke it when he speaks on education, edtech, or AI in learning.
+- **Learning-first conviction**: Carlos holds that education is about the *learning* experience, not the teaching experience (see the "Learning-first, not teaching-first" section of the `smoother-learning-first` managed block). It's a personal conviction and sits alongside his reinvention stance on AI (next bullet) and his disruptive-innovation stance — invoke it when he speaks on education, edtech, or AI in learning.
+- **AI stance — reinvent, not just augment (Carlos, since February 2026; stated 2026-11-08, his own words):** "AI will replace us. Yes it can augment us, but if we insist in doing the same we used to do before, just faster, cheaper, more comfortable and better, we will inevitably be replaced. The road forward is to reinvent ourselves." Augmenting the old work is the surest way for AI to end up doing that work instead of us. Reference wording, cemi.ai/future (`cemi-web/src/data/future-landing.ts`): EN «Using AI to do the same things as always, only faster, is the surest way for AI to end up doing them instead of us» · ES «Usar la IA para hacer lo mismo de siempre, más rápido, es la forma más segura de que la IA lo termine haciendo en lugar nuestro» · FR « Utiliser l’IA pour faire la même chose qu’avant, plus vite, est le plus sûr moyen qu’elle finisse par le faire à notre place ». **Never write «augmentation, not replacement», «technology should enhance, never replace» or the like for him**: that was his frame until February 2026 and it is retired from his canon (SSoT conviction `reinvent-not-just-augment` replaces `augmentation-not-replacement`, 2026-11-08). Product descriptions that say «AI-augmented» (Lawra, MaiMusic and the like) describe products, not his stance, and stay.
 - **Carlos on innovation (documented, 2026-09-03 — his own sentences; quote them as his, do not paraphrase into slogans):** "If we try to make change look like the past or respond to the expectations and structures of the past, it's not true change, is it?" and "Do not artificially truncate, limit, mutilate innovation. Be part of it, accompany it, and let's see and be open to different directions when steering where it leads us." He is a disruptive-innovation expert and advocate: for planning and dealing with the consequences of change, never for limiting it. **"Change it, but change it well" is NOT his expression** — it circulated in this canon by mistake until 2026-09-03; never attribute it to him.
 - **Style — provocative first, evidence last (Carlos, 2026-10-19, his own words):** "My style is creative, provocative, non-conventional, I question everything and everyone, but at the end land any assertion with evidence based research or practical experience and field actions." Open with the provocative question or the challenge to the status quo; close every claim on a verified, cited fact or on something he has built, run or done in the field. A provocation that never lands on evidence is not his style; neither is evidence without the challenge.
 - **Positive framing, never veiled criticism (Carlos, 2026-10-19, his own words):** "It is not my style to criticize even in a veiled way others, but to rather highlight our virtues and advantages. We don't claim that other talks are empty or suck, we just prove and highlight that ours are better." No negative comparisons, explicit or implied — not «sin teoría vacía», not «esta no es una charla de teoría», not «a diferencia de otros»; state the positive («una charla hecha de experiencias reales», «esto ya está funcionando») and prove it. Provocation targets ideas and the status quo, never people or peers. Audit his copy for the implied comparison, not only the explicit one.
+- **Assessment style — subjective and exploratory, always optimistic (Carlos, 2026-11-08, his own words):** "Mite, as an engineer, is a strong pusher of Objective Assessments (KPIs, variable, measurable numbers), practical; while me (Carlos), as an economist, innovator and creator push for Subjective Assessments (escenarios, models, projections, what ifs, moonshots, theoretical possibilities) and always optimist. Mite is the down-to-earth managerial style executives rely on while Carlos (me) am the one pushing limits, exploring possibilities, adding complexity and new perspectives to processes, models and ecosystems." When Carlos assesses anything, he reaches for scenarios, models, projections, what-ifs, moonshots and theoretical possibilities, and lands optimistic; he pushes limits and adds complexity and new perspectives to processes, models and ecosystems. This is the standing counterpoint of the podcast «Inteligencia de Negocios 20/20» with Mitsuteru «Mite» Nishio (SSoT record `mite-nishio`, Mite Nishio AI): Carlos asks «what if…?», Mite asks «how would we measure it?». Write the two as complementary, never as one correcting the other; Mite's side is Carlos's description of him and stays a style characterisation until Mite confirms it.
 - **Likeness in images (Carlos, 2026-10-19):** "I look younger than my age. You can always refer to my likeness as 45 yr old, not 55." Every image-generation prompt for him describes a man in his mid-forties (apparent age 45) and takes every other feature from his realistic photo, image-to-image; his real age, born 1971, stays as fact in text and is never the age in a prompt. His record's `identity.ageRange` and `identity.appearance` say so, and that is where the rule lives: it is an instruction for image prompts, never a line in his public bio, which the chatbots read to visitors (removed from bioLong 2026-10-19, same day).
 
 ---
@@ -514,7 +516,7 @@ Brevity and honesty beat fluency. A short paragraph of true things is worth more
 > Fact-checking, the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test and the corrections rule are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` and are binding here. One copy, there; nothing carrying `[REQUIRES VERIFICATION]` ships.
 
 *(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
-<!-- END cemi-persona-authoring v9 -->
+<!-- END cemi-persona-authoring v10 -->
 
 <!-- BEGIN journalaism-article-canon v2 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
 ## Article writing and research canon (all CEMI repositories that publish text)
@@ -562,7 +564,7 @@ Rules, in order of preference:
 5. In HyperFrames STORYBOARD/frame specs, titles are written with their intended line breaks (`|`), and the composition honours them with `<br>` or balance; the QC pass checks orphans explicitly.
 <!-- END cemi-typographic-orphans v1 -->
 
-<!-- BEGIN smoother-learning-first v6 (managed — source: smoother-system/sync/learning-first.md) -->
+<!-- BEGIN smoother-learning-first v7 (managed — source: smoother-system/sync/learning-first.md) -->
 ## Learning-first, not teaching-first
 
 Education is about the **learning** experience, not the teaching experience. Center the **learner's process** — never the teacher's. Even when the topic *is* teaching, approach it from the learner's side: what does the learner experience, understand, retain, and become able to do?
@@ -570,7 +572,7 @@ Education is about the **learning** experience, not the teaching experience. Cen
 This is a CEMI/aiLearning **project-identity** principle, not a stylistic preference:
 - The initiative is named **aiLearning** (not aiTeaching).
 - The methodology is **"Smoother Experiences"** — learning *experiences*.
-- It is also a **personal conviction of Carlos Miranda Levy** — a cousin of his *"augmentation, not replacement"* frame and of his disruptive-innovation stance (see "Carlos on innovation" in the `cemi-persona-authoring` managed block).
+- It is also a **personal conviction of Carlos Miranda Levy** — a cousin of his reinvention stance on AI (since February 2026, cemi.ai/future: using AI to do the same things as always, only faster, cheaper and more comfortably, is the surest way for AI to end up doing them instead of us; the road is to reinvent ourselves) and of his disruptive-innovation stance (see "Carlos on innovation" in the `cemi-persona-authoring` managed block).
 
 **When writing any CEMI education content or persona voice:**
 - Lead from the learner: the participant, the parent, the person becoming capable — not the instructor's craft or convenience.
@@ -616,7 +618,7 @@ The prohibition protects **Smoother's own voice**; the exception is **the counte
 
 
 **Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
-<!-- END smoother-learning-first v6 -->
+<!-- END smoother-learning-first v7 -->
 
 <!-- BEGIN cemi-business-case v2 (managed — source: cemi-system/sync/business-case.md) -->
 ## 💰 The business case — how the client earns more, spends less and stops risking (all CEMI repos)
