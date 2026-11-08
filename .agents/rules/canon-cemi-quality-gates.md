@@ -4,7 +4,7 @@ description: "CEMI canon (cemi-quality-gates): ✅ Quality gates — content, se
 ---
 <!-- delivered by cemi-system canon-sync from sitecraft-system/sync/quality-gates.md; edit the source, not this copy -->
 
-<!-- BEGIN cemi-quality-gates v9 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v10 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
@@ -14,6 +14,7 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Generated, never hand-copied.** Code shared between packages, or between a catalog and the rules, comes from one source through a generator with a `--check` mode in CI.
 - **Deploy order:** functions, then hosting, then backfills, then security rules **last**. A trigger type's first use in a project (the first `onSchedule`, an Eventarc trigger, a Cloud Tasks queue) needs its API enabled once by Carlos before the deploy; deploy service accounts cannot enable APIs, so the deploy otherwise fails late with «Permissions denied enabling cloudscheduler.googleapis.com» after every check has passed. Check with `gcloud services list --enabled --project <id> | grep cloudscheduler` before merging; never enable ahead of need (§4.6).
 - **The live rules equal the committed file.** A CI check reads the live Firestore and Storage releases through the Rules API, for the right database and bucket, and fails on any difference: a stale checkout must never revert a fix made live (`quality-gates.md` §4.13).
+- **Never GitHub Pages for a site.** Every CEMI website is served by Firebase Hosting, from a build folder, in its own project. A legacy Pages build of a private repository publishes the whole repository root (CLAUDE.md, rules and function source were public on 18 sites); Pages sends no security headers and no `X-Robots-Tag`; and it stops building when the organization drops to GitHub Free. To move a site, follow `cemi-system/docs/handoffs/2026-11-07-pages-to-firebase-migration-brief.md`, then disable Pages (§4.22).
 - **Only the site is served.** Hosting serves a build folder, never `"."`. Every `firebase.json` carries the minimum `hosting.ignore` (dotfiles, `.git`, `functions/`, `scripts/`, `docs/`, `*.md`, `*.map`, logs and rules files), production builds emit no source maps, and a check enforces it. After deploy, `/.git/HEAD` answers 404 (§4.14).
 - **Security headers on every host:** HSTS, `nosniff`, a strict referrer policy, no framing (`frame-ancestors`), and a closed permissions policy. Each site's own CSP starts as report-only. **Embedding is denied by default** (`DENY`, `frame-ancestors 'none'`). An exception is one site and one embedding host, approved by Carlos and recorded in the registry ledger first (`set-embed-exception.mjs`, `/admin/embeds`). The header then names only that host, and is never dropped. The weekly drift run checks live headers against the ledger (§4.15).
 - **A send a stranger can trigger is capped.** Any endpoint a visitor can trigger without signing in (an anonymous session counts as not signed in) that sends an e-mail, an SMS or another metered message carries a site-wide daily cap in code. The cap fails closed, posts to registry.cemi.ai at 80 % and 100 %, and past it the page offers a path that sends nothing. Per-IP limits and App Check do not bound a flood (§4.17).
@@ -27,4 +28,4 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v9 -->
+<!-- END cemi-quality-gates v10 -->

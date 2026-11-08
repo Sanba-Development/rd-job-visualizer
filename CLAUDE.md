@@ -307,7 +307,7 @@ Anywhere a logo's **type is rendered** — hyperframe/video compositions, brand-
 This is about **logos** (they carry type). Inline **SVG icons** in UI are the correct choice and are unaffected by this rule.
 <!-- END cemi-png-logos v2 -->
 
-<!-- BEGIN cemi-persona-authoring v8 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
+<!-- BEGIN cemi-persona-authoring v9 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
 # CEMI authoring rules for content written under a persona's voice
 
 **Source of truth:** `personais-system/sync/persona-authoring-rules.md` — the managed block `cemi-persona-authoring`; an edit bumps the version in these markers and the `cemi-system/canon-sync` bundle.
@@ -379,6 +379,12 @@ Carlos's persona canon documents the allowed biographical scope. When writing un
 Same rule structure applies to every other persona — Aurelius, Saya, Marcus, Zara, Mira, Paletta, Pixelle, Eva, Mateo, Sol, and the rest. Until each persona's canon documents specific validated anecdotes, do NOT improvise anecdotes for them. Use real public/historical references or speak in general terms.
 
 When in doubt: pull up the persona's record in the personas admin (`https://cemi.ai/admin/personas` today; `https://personais.cemi.ai/admin` once personais-web deploys, phase 5 of the split) — or read the canon from the personas endpoint `https://us-central1-cemi-ai.cloudfunctions.net/personas`, served by personais-web and snapshotted into each consumer's `src/data/personas-snapshot.json`, or from the synced markdown in each consumer repo — and use only what is documented.
+
+---
+
+## People who are not personas — clients' employees and contacts
+
+**Always name a client's employee or contact by first and last name** (Carlos, 2026-11-06, his own words: «always name client employees by first and last name»). In every document, handoff, message, record, side note and seat grant that names a person at a client or partner organization, write the full name, never the first name alone, and never a first name plus a role in place of the surname. The reason is concrete: on 2026-11-06 xAId granted organization-manager seats to the wrong Ramón because a side note said only «Ramón». Ramón Rodríguez is Xolutiva's sales analyst and Ramón Cáceres is its owner. A first name identifies nobody once two people share it, and the record that caused the error looked complete when it was written. Where the surname is not yet known, write that it is unknown and get it before the record is acted on; never fill the gap from memory.
 
 ---
 
@@ -508,7 +514,7 @@ Brevity and honesty beat fluency. A short paragraph of true things is worth more
 > Fact-checking, the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test and the corrections rule are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` and are binding here. One copy, there; nothing carrying `[REQUIRES VERIFICATION]` ships.
 
 *(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
-<!-- END cemi-persona-authoring v8 -->
+<!-- END cemi-persona-authoring v9 -->
 
 <!-- BEGIN journalaism-article-canon v2 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
 ## Article writing and research canon (all CEMI repositories that publish text)
@@ -669,7 +675,7 @@ Carlos, 2026-10-16: «Split the work into multiple agents, as long as they don't
 **Limits.** This rule is about the models *inside the harness the session already runs on*. It never authorises a paid or external service: `cemi-cost-policy` stands unchanged, and translation is always Claude. A repository's own rule that names a model for a task wins for that task. It governs sessions and their agents, not the models a product serves to its users — chatbot tiers are `sitecraft-system/protocol/chatbot-and-personas.md`.
 <!-- END cemi-model-choice v2 -->
 
-<!-- BEGIN cemi-quality-gates v9 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v10 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
@@ -679,6 +685,7 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Generated, never hand-copied.** Code shared between packages, or between a catalog and the rules, comes from one source through a generator with a `--check` mode in CI.
 - **Deploy order:** functions, then hosting, then backfills, then security rules **last**. A trigger type's first use in a project (the first `onSchedule`, an Eventarc trigger, a Cloud Tasks queue) needs its API enabled once by Carlos before the deploy; deploy service accounts cannot enable APIs, so the deploy otherwise fails late with «Permissions denied enabling cloudscheduler.googleapis.com» after every check has passed. Check with `gcloud services list --enabled --project <id> | grep cloudscheduler` before merging; never enable ahead of need (§4.6).
 - **The live rules equal the committed file.** A CI check reads the live Firestore and Storage releases through the Rules API, for the right database and bucket, and fails on any difference: a stale checkout must never revert a fix made live (`quality-gates.md` §4.13).
+- **Never GitHub Pages for a site.** Every CEMI website is served by Firebase Hosting, from a build folder, in its own project. A legacy Pages build of a private repository publishes the whole repository root (CLAUDE.md, rules and function source were public on 18 sites); Pages sends no security headers and no `X-Robots-Tag`; and it stops building when the organization drops to GitHub Free. To move a site, follow `cemi-system/docs/handoffs/2026-11-07-pages-to-firebase-migration-brief.md`, then disable Pages (§4.22).
 - **Only the site is served.** Hosting serves a build folder, never `"."`. Every `firebase.json` carries the minimum `hosting.ignore` (dotfiles, `.git`, `functions/`, `scripts/`, `docs/`, `*.md`, `*.map`, logs and rules files), production builds emit no source maps, and a check enforces it. After deploy, `/.git/HEAD` answers 404 (§4.14).
 - **Security headers on every host:** HSTS, `nosniff`, a strict referrer policy, no framing (`frame-ancestors`), and a closed permissions policy. Each site's own CSP starts as report-only. **Embedding is denied by default** (`DENY`, `frame-ancestors 'none'`). An exception is one site and one embedding host, approved by Carlos and recorded in the registry ledger first (`set-embed-exception.mjs`, `/admin/embeds`). The header then names only that host, and is never dropped. The weekly drift run checks live headers against the ledger (§4.15).
 - **A send a stranger can trigger is capped.** Any endpoint a visitor can trigger without signing in (an anonymous session counts as not signed in) that sends an e-mail, an SMS or another metered message carries a site-wide daily cap in code. The cap fails closed, posts to registry.cemi.ai at 80 % and 100 %, and past it the page offers a path that sends nothing. Per-IP limits and App Check do not bound a flood (§4.17).
@@ -692,9 +699,9 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v9 -->
+<!-- END cemi-quality-gates v10 -->
 
-<!-- BEGIN cemi-canonical-urls v1 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
+<!-- BEGIN cemi-canonical-urls v2 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
 ## 🔗 One host per site, a static canonical on every indexable page (all CEMI sites)
 
 Every CEMI site answers on its custom domain **and** on `<site>.web.app` / `<site>.firebaseapp.com`, which cannot be switched off. Without a canonical, search engines may index the copies or split ranking between them (Carlos, 2026-10-10).
@@ -704,9 +711,10 @@ Every CEMI site answers on its custom domain **and** on `<site>.web.app` / `<sit
 3. **The sitemap is the arbiter:** each sitemap URL's page carries a canonical equal to that URL, on the primary host.
 4. **Noindex pages carry no canonical** and stay out of the sitemap. An indexable page outside the sitemap is **Carlos's decision** — list it, don't choose.
 5. **A guard runs before every deploy** — a build step, or for a static site a named pre-deploy command recorded in `CLAUDE.md` — and fails on a missing or wrong canonical or a canonical on another host.
+6. **Which host** (Carlos, 2026-11-07): CEMI's own sites on `<name>.cemi.ai` (or the initiative's domain), client work on `<name>.cemifactory.com`, and media sites under `cemi.media`. `xperto.media` and `xperto.solutions` are retired. A moved site keeps its old host as a Firebase custom domain that redirects to the new one, and its canonicals, `hreflang` and `og:url` name the new host.
 
 Long form, per-stack how-to and launch checklist: `sitecraft-system/protocol/canonical-urls.md`. Reference implementation: `media-web/scripts/add-canonical.mjs` (`npm run check:canonical`). The fleet sweep is tracked in `cemi-system/docs/handoff-2026-10-10-canonical-sweep.md`.
-<!-- END cemi-canonical-urls v1 -->
+<!-- END cemi-canonical-urls v2 -->
 
 <!-- BEGIN cemi-operational-alerts v1 (managed — source: cemi-system/sync/operational-alerts.md) -->
 ## 🔔 Operational alerts go to registry.cemi.ai (all CEMI repos)
