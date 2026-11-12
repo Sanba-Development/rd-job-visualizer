@@ -689,13 +689,14 @@ Carlos, 2026-10-16: «Split the work into multiple agents, as long as they don't
 **Limits.** This rule is about the models *inside the harness the session already runs on*. It never authorises a paid or external service: `cemi-cost-policy` stands unchanged, and translation is always Claude. A repository's own rule that names a model for a task wins for that task. It governs sessions and their agents, not the models a product serves to its users — chatbot tiers are `sitecraft-system/protocol/chatbot-and-personas.md`.
 <!-- END cemi-model-choice v2 -->
 
-<!-- BEGIN cemi-quality-gates v12 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v13 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
 
 - **Checks block the deploy.** Content validators, drift guards, the no-secrets-in-client check, unit tests and security rules tests (on the emulator) run in CI **before** the deploy job, which `needs:` them. A check that only warns is not a gate. Only checks that need production credentials, write live data or cost money stay manual, and the workflow says which and why.
 - **Rules tests must fail on the ruleset they replace.** Run new tests against the previous rules once and record how many fail.
+- **Every deployed function has emulator tests** (Carlos, 2026-11-12): the built handler under `firebase emulators:exec`, refusing to run without the emulator host; who can call it, what each caller gets, the sensitive headers; each test shown to fail on the code it guards; the suite blocks the deploy, and no `firebase-admin`, `firebase-functions` or `express` major is deployed until it passes (§3.3b; reference personais-web).
 - **Generated, never hand-copied.** Code shared between packages, or between a catalog and the rules, comes from one source through a generator with a `--check` mode in CI.
 - **Deploy order:** functions, then hosting, then backfills, then security rules **last**. A trigger type's first use in a project (the first `onSchedule`, an Eventarc trigger, a Cloud Tasks queue) needs its API enabled once by Carlos before the deploy; deploy service accounts cannot enable APIs, so the deploy otherwise fails late with «Permissions denied enabling cloudscheduler.googleapis.com» after every check has passed. Check with `gcloud services list --enabled --project <id> | grep cloudscheduler` before merging; never enable ahead of need (§4.6).
 - **The live rules equal the committed file.** A CI check reads the live Firestore and Storage releases through the Rules API, for the right database and bucket, and fails on any difference: a stale checkout must never revert a fix made live (`quality-gates.md` §4.13).
@@ -714,7 +715,7 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v12 -->
+<!-- END cemi-quality-gates v13 -->
 
 <!-- BEGIN cemi-canonical-urls v2 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
 ## 🔗 One host per site, a static canonical on every indexable page (all CEMI sites)
