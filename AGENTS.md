@@ -14,14 +14,11 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `cemi-impact-arc` (*read on demand*): 🌱 The Impact Arc — how CEMI intervenes (all CEMI repos) — `.agents/rules/canon-cemi-impact-arc.md`
 - `journalaism-article-canon` (*read on demand*): Article writing and research canon (all CEMI repositories that publish text) — `.agents/rules/canon-journalaism-article-canon.md`
 - `cemi-png-logos` (*read on demand*): 🖼️ HARD RULE — logos are PNG, never SVG (all CEMI media/video repos) — `.agents/rules/canon-cemi-png-logos.md`
-- `cemi-persona-authoring` (*too long for a rule file; its stub points to CLAUDE.md*): CEMI authoring rules for content written under a persona's voice — `.agents/rules/canon-cemi-persona-authoring.md`
-- `smoother-learning-first` (*read on demand*): Learning-first, not teaching-first — `.agents/rules/canon-smoother-learning-first.md`
+- `cemi-human-presence` (*read on demand*): 🧍 People in the frame, no clichés: the canon lives in mediamax-system (all CEMI repos that make images or video) — `.agents/rules/canon-cemi-human-presence.md`
 - `cemi-gemini-models` (*read on demand*): 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos) — `.agents/rules/canon-cemi-gemini-models.md`
 - `cemi-typographic-orphans` (*read on demand*): 🔤 No one-word last lines in titles — web headlines and HyperFrames titles (all CEMI repos) — `.agents/rules/canon-cemi-typographic-orphans.md`
 - `cemi-paste-blocks` (*read on demand*): ✂️ Anything meant to be copied is fenced with scissors (all CEMI repos) — `.agents/rules/canon-cemi-paste-blocks.md`
 - `cemi-unindexed-documents` (*read on demand*): 🔒 Per-recipient documents are public by link and never indexed (all CEMI sites) — `.agents/rules/canon-cemi-unindexed-documents.md`
-- `cemi-portuguese-br` (*read on demand*): 🇧🇷 Portuguese is Brazilian Portuguese on every CEMI surface (all CEMI repos) — `.agents/rules/canon-cemi-portuguese-br.md`
-- `cemi-business-case` (*read on demand*): 💰 The business case — how the client earns more, spends less and stops risking (all CEMI repos) — `.agents/rules/canon-cemi-business-case.md`
 - `cemi-svg-icons` (*read on demand*): ✳️ Icons are SVG line icons — Lucide preferred, never emoji (all CEMI repos) — `.agents/rules/canon-cemi-svg-icons.md`
 - `cemi-model-choice` (*read on demand*): 🧭 The session picks the model for each task (all CEMI repos) — `.agents/rules/canon-cemi-model-choice.md`
 - `cemi-quality-gates` (*read on demand*): ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps) — `.agents/rules/canon-cemi-quality-gates.md`
@@ -38,28 +35,27 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 
 **Read before, whatever is inline above:**
 
-- writing anything under a persona's voice, or any education or learning content: `.agents/rules/canon-cemi-persona-authoring.md`, `.agents/rules/canon-smoother-learning-first.md`, `.agents/rules/canon-cemi-impact-arc.md`
-- translating, deriving from or reformatting localized text (French above all), or writing any Portuguese: `.agents/rules/canon-cemi-i18n-quote-hygiene.md`, `.agents/rules/canon-cemi-portuguese-br.md`
+- writing anything under a persona's voice, or any education or learning content: `.agents/rules/canon-cemi-impact-arc.md`
+- translating, deriving from or reformatting localized text (French above all), or writing any Portuguese: `.agents/rules/canon-cemi-i18n-quote-hygiene.md`
 - an article, a factual claim, a quote or a citation that will be published: `.agents/rules/canon-journalaism-article-canon.md`
-- a proposal, quote, deck, one-pager or dossier for a client: `.agents/rules/canon-cemi-business-case.md`
 - a deploy, a hosting or rules change, a new site or page, or a letter, proposal or dossier served by link: `.agents/rules/canon-cemi-quality-gates.md`, `.agents/rules/canon-cemi-canonical-urls.md`, `.agents/rules/canon-cemi-unindexed-documents.md`
 - any call to a Gemini model, or pinning a model id: `.agents/rules/canon-cemi-gemini-models.md`
 - a chatbot, persona, advisor or any AI surface a visitor talks to; terms of service or a privacy notice; a site for schools, families or minors: `.agents/rules/canon-cemi-responsible-ai-use.md`, `.agents/rules/canon-cemi-feature-security-assessment.md`
 - delegating work to agents or choosing a model for a task: `.agents/rules/canon-cemi-model-choice.md`
-- a video, image, infographic, logo or icon: `.agents/rules/canon-cemi-png-logos.md`, `.agents/rules/canon-cemi-svg-icons.md`, `.agents/rules/canon-cemi-typographic-orphans.md`
+- a video, image, infographic, logo or icon: `.agents/rules/canon-cemi-human-presence.md`, `.agents/rules/canon-cemi-png-logos.md`, `.agents/rules/canon-cemi-svg-icons.md`, `.agents/rules/canon-cemi-typographic-orphans.md`
 - rendering user-contributed or fetched HTML: `.agents/rules/canon-cemi-html-sanitization.md`
 - raising an alert, a failing check or a cost warning: `.agents/rules/canon-cemi-operational-alerts.md`
 - the start of a piece of work, or stopping with something open: `.agents/rules/canon-cemi-session-notes.md`
 - a contact address in copy, a footer or a form: `.agents/rules/canon-cemi-contact-emails.md`
 <!-- END canon-agents-index v1 -->
 
-<!-- BEGIN cemi-cost-policy v4 (managed — source: cemi-system/sync/cost-policy.md) -->
+<!-- BEGIN cemi-cost-policy v5 (managed — source: cemi-system/sync/cost-policy.md) -->
 ## ⛔ HARD RULE — never use external/paid services without asking (all CEMI repos)
 
 NEVER invoke any paid or third-party service outside Claude's own model without **asking, confirming, AND informing the user first — every single time.** The user pays for Claude Max 20x; do the work inside Claude. A documented "default" or convention does NOT override this. When in doubt, ask.
 
 - **Translation:** translation is done **inline by the session's own model, on Carlos's own subscription**: Claude in Claude Code (Max), **Gemini in an Antigravity CLI session (Google AI Ultra)**, or Claude subagents / the Anthropic API (Haiku default, Sonnet for tone-critical fields, Opus as the content warrants). Carlos, 2026-10-27: «There is no problem with Gemini translating text in the Antigravity CLI gemini session. What it can not do is invoke a paid translation service.» **NEVER a translation service or API:** Google Cloud Translation, Google Translate, DeepL, Amazon Translate, Microsoft / Azure Translator, the Gemini API called from a script, or ANY other external machine-translation service. This holds even if a downstream repo, script, or doc presents such a provider as a "default", an "option", or a documented convention — **a documented convention does NOT override this hard rule.** Do NOT use any `scripts/translate-*.mjs` / `bulk-translate-*.mjs` helper that calls an external MT provider. The language rules travel with every translation, whoever writes it (`cemi-i18n-quote-hygiene`, `cemi-portuguese-br`, the Smoother glossary).
-- **Subscription tools driven by hand are not API calls** (Carlos, 2026-10-27): still images in **Google Flow** and voices in **AI Studio's speech page** (`https://aistudio.google.com/u/3/generate-speech`), both driven by **Claude Cowork** in Carlos's browser on his own plan, and avatar videos in **HeyGen**, which also produces the avatar's voice. A session never opens them itself: it writes the prompt (`cemi-system/docs/cowork-flow-image-prompts.md`), Carlos runs it, and the files land in the repository's `scratch/`. Flow and HeyGen spend plan credits, so the prompt states the count first.
+- **Subscription tools driven by hand are not API calls** (Carlos, 2026-10-27): still images in **Google Flow** and voices in **AI Studio's speech page** (`https://aistudio.google.com/u/3/generate-speech`), both driven by **Claude Cowork** in Carlos's browser on his own plan, and avatar videos in **HeyGen**, which also produces the avatar's voice. A session never opens them itself: it writes the prompt (`cemi-system/docs/cowork-flow-image-prompts.md`), Carlos runs it, and the files land in the repository's `scratch/`. Still images in Google Flow are free (Carlos, 2026-11-13: «Image generation in Google Flow is free»), so a Flow image prompt sheet states «0 Flow credits»; video in Flow and avatar videos in HeyGen spend plan credits, so their prompts state the count first.
 - **Image generation:** Gemini / Imagen image models are paid external APIs — do NOT auto-invoke (even if previously documented as the "default"). Ask first.
 - **Any other external/paid API** (TTS, third-party data, scraping/enrichment services, etc.): ask first.
 
@@ -68,4 +64,4 @@ Silent use of paid external services has caused real, unwanted cost. Treat this 
 **Scope (Carlos, 2026-10-02).** These restrictions bind the **AI processes that run locally**: Claude Code and Antigravity sessions, their agents, and the scripts they run on the machine. They do **not** restrict the online services and apps running in the cloud — Cloud Functions and deployed features (e.g. Experience's Translate button, content generator and Learning Designer) — which use the AI provider set in the app's own configuration (Experience: `settings/ai`, edited at `/admin/settings`): Gemini, OpenAI, Claude or another provider, Gemini by default, so that costs and billing stay in one place. A local session that calls a paid service, even one the platform also uses, still follows this policy. Companion rule, already in force in `experience`: every paid generation call, local or cloud, is recorded in a paid-call ledger (Firestore `paidCallLogs`, admin report at `/admin/reports/generation-costs`) — adopt the same where a repository makes paid calls.
 
 **Known trap — HyperFrames snapshots (found 2026-10-05).** The HyperFrames CLI `snapshot` command describes frames with Gemini vision by default whenever a Gemini key is reachable, and it reads the project's `.env`, so a local session can make an unrequested paid call just by taking a snapshot. Every local run passes `--describe=false` and runs without `GEMINI_API_KEY` / `GOOGLE_API_KEY` in its environment; the long form belongs in the HyperFrames canon (`mediamax-system`).
-<!-- END cemi-cost-policy v4 -->
+<!-- END cemi-cost-policy v5 -->

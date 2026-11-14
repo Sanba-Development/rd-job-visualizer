@@ -1,12 +1,12 @@
 # CLAUDE.md
 
-<!-- BEGIN cemi-cost-policy v4 (managed — source: cemi-system/sync/cost-policy.md) -->
+<!-- BEGIN cemi-cost-policy v5 (managed — source: cemi-system/sync/cost-policy.md) -->
 ## ⛔ HARD RULE — never use external/paid services without asking (all CEMI repos)
 
 NEVER invoke any paid or third-party service outside Claude's own model without **asking, confirming, AND informing the user first — every single time.** The user pays for Claude Max 20x; do the work inside Claude. A documented "default" or convention does NOT override this. When in doubt, ask.
 
 - **Translation:** translation is done **inline by the session's own model, on Carlos's own subscription**: Claude in Claude Code (Max), **Gemini in an Antigravity CLI session (Google AI Ultra)**, or Claude subagents / the Anthropic API (Haiku default, Sonnet for tone-critical fields, Opus as the content warrants). Carlos, 2026-10-27: «There is no problem with Gemini translating text in the Antigravity CLI gemini session. What it can not do is invoke a paid translation service.» **NEVER a translation service or API:** Google Cloud Translation, Google Translate, DeepL, Amazon Translate, Microsoft / Azure Translator, the Gemini API called from a script, or ANY other external machine-translation service. This holds even if a downstream repo, script, or doc presents such a provider as a "default", an "option", or a documented convention — **a documented convention does NOT override this hard rule.** Do NOT use any `scripts/translate-*.mjs` / `bulk-translate-*.mjs` helper that calls an external MT provider. The language rules travel with every translation, whoever writes it (`cemi-i18n-quote-hygiene`, `cemi-portuguese-br`, the Smoother glossary).
-- **Subscription tools driven by hand are not API calls** (Carlos, 2026-10-27): still images in **Google Flow** and voices in **AI Studio's speech page** (`https://aistudio.google.com/u/3/generate-speech`), both driven by **Claude Cowork** in Carlos's browser on his own plan, and avatar videos in **HeyGen**, which also produces the avatar's voice. A session never opens them itself: it writes the prompt (`cemi-system/docs/cowork-flow-image-prompts.md`), Carlos runs it, and the files land in the repository's `scratch/`. Flow and HeyGen spend plan credits, so the prompt states the count first.
+- **Subscription tools driven by hand are not API calls** (Carlos, 2026-10-27): still images in **Google Flow** and voices in **AI Studio's speech page** (`https://aistudio.google.com/u/3/generate-speech`), both driven by **Claude Cowork** in Carlos's browser on his own plan, and avatar videos in **HeyGen**, which also produces the avatar's voice. A session never opens them itself: it writes the prompt (`cemi-system/docs/cowork-flow-image-prompts.md`), Carlos runs it, and the files land in the repository's `scratch/`. Still images in Google Flow are free (Carlos, 2026-11-13: «Image generation in Google Flow is free»), so a Flow image prompt sheet states «0 Flow credits»; video in Flow and avatar videos in HeyGen spend plan credits, so their prompts state the count first.
 - **Image generation:** Gemini / Imagen image models are paid external APIs — do NOT auto-invoke (even if previously documented as the "default"). Ask first.
 - **Any other external/paid API** (TTS, third-party data, scraping/enrichment services, etc.): ask first.
 
@@ -15,7 +15,7 @@ Silent use of paid external services has caused real, unwanted cost. Treat this 
 **Scope (Carlos, 2026-10-02).** These restrictions bind the **AI processes that run locally**: Claude Code and Antigravity sessions, their agents, and the scripts they run on the machine. They do **not** restrict the online services and apps running in the cloud — Cloud Functions and deployed features (e.g. Experience's Translate button, content generator and Learning Designer) — which use the AI provider set in the app's own configuration (Experience: `settings/ai`, edited at `/admin/settings`): Gemini, OpenAI, Claude or another provider, Gemini by default, so that costs and billing stay in one place. A local session that calls a paid service, even one the platform also uses, still follows this policy. Companion rule, already in force in `experience`: every paid generation call, local or cloud, is recorded in a paid-call ledger (Firestore `paidCallLogs`, admin report at `/admin/reports/generation-costs`) — adopt the same where a repository makes paid calls.
 
 **Known trap — HyperFrames snapshots (found 2026-10-05).** The HyperFrames CLI `snapshot` command describes frames with Gemini vision by default whenever a Gemini key is reachable, and it reads the project's `.env`, so a local session can make an unrequested paid call just by taking a snapshot. Every local run passes `--describe=false` and runs without `GEMINI_API_KEY` / `GOOGLE_API_KEY` in its environment; the long form belongs in the HyperFrames canon (`mediamax-system`).
-<!-- END cemi-cost-policy v4 -->
+<!-- END cemi-cost-policy v5 -->
 
 <!-- BEGIN cemi-i18n-quote-hygiene v8 (managed — source: sitecraft-system/sync/i18n-quote-hygiene.md) -->
 ## 🈂 Localized-text hygiene — quotes, multibyte, significant spaces (all CEMI repos)
@@ -309,227 +309,6 @@ Anywhere a logo's **type is rendered** — hyperframe/video compositions, brand-
 This is about **logos** (they carry type). Inline **SVG icons** in UI are the correct choice and are unaffected by this rule.
 <!-- END cemi-png-logos v2 -->
 
-<!-- BEGIN cemi-persona-authoring v16 (managed — source: personais-system/sync/persona-authoring-rules.md) -->
-# CEMI authoring rules for content written under a persona's voice
-
-**Source of truth:** `personais-system/sync/persona-authoring-rules.md` — the managed block `cemi-persona-authoring`; an edit bumps the version in these markers and the `cemi-system/canon-sync` bundle.
-**Lineage:** CEMI AUTHORING RULES 2026.09.11 — until 2026-09-14 this block was the legacy wrapper block named CEMI AUTHORING RULES, written by `cemi-web/authoring-rules/sync.sh` from `cemi-web/authoring-rules/canonical/persona-authoring-rules.md` (last content version 2026.09.11, last delivered in bundle 2026.09.13); it was imported here with its history, and its learning sections became the `smoother-learning-first` block (`smoother-system/sync/learning-first.md`).
-**Synced into each consumer repo's `CLAUDE.md` and `AGENTS.md` as a managed block.**
-
-These rules apply whenever Claude Code (or any assistant) writes static content under a CEMI persona's voice — opinion articles, article frontmatter `*Take` fields, comments, blog posts, video scripts, social drafts, video descriptions, press releases, or anything attributed to a named persona.
-
-The runtime chat widgets get a similar rule via `SHARED_PERSONA_GUARDRAILS` in `chat-persona.ts`. Static authoring needs the same discipline because static content is more persistent, more indexable, and more damaging when wrong.
-
----
-
-## Factual honesty — no fabrication of verifiable-looking claims
-
-The prohibited fabrications — invented statistics, fabricated or trimmed-meaning quotes, invented reports/surveys/studies/indexes, invented partnerships/deals/launches/events, unverified superlatives, and (under a persona's voice) invented anecdotes, memories and direct experience — are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` §3 and are binding here. All hard red lines; one copy, there.
-
-What is persona-specific lives here:
-
-- **Where a persona's documented canon is**: `bioLong` in the personas SSoT (author at `/admin/personas`), plus the validated-anecdotes list when present. Only what is documented there may be voiced as the persona's own memory, relationship, or direct experience.
-- **When no documented anecdote fits**: make the rhetorical point without one — a clean argument beats a fabricated memory. Speak to general audiences ("any artist navigating this shift"), never fake-specific relationships ("young artists I work with").
-
-**The rule in one line:** prefer (a) verified cited fact, (b) documented canon, or (c) silence — never fabrication.
-
-Real, verifiable cultural references ARE good and welcome. Cite them accurately.
-
----
-
-## Fictional personas — authority without claimed institutional roles
-
-Distinct from the fabrication rules above (which concern *verifiable* claims): even for an openly **fictional** persona, do not build its authority on **claimed institutional roles, titles, or positions** — and *anonymizing the institution does not fix it*. "Professor of X at the University of Edinburgh," "Professor at a leading Scottish university," "holds the Paulo Freire Chair at the University of São Paulo," "holds a chair in critical pedagogy at a major Brazilian university," and "Founder of [company]" are all the same problem: they assert a titled position the person does not hold. In academia especially, claiming a professorship/chair/deanship (real or vaguely-gestured) reads as a credential claim and is frowned upon.
-
-**There is a fine line** between an interesting fictional character and a misleading credential claim. Go too strict and the characters become flat; the goal is not blandness — it is authority earned honestly.
-
-**Establish authority, character, and perspective through other means:**
-- **Intellectual stance & lineage** — what they champion and whose ideas they build on ("champions evidence-based pedagogy and the Socratic method"; "rooted in Freire's critical pedagogy, Dewey's learning-by-doing, and Ubuntu"). Citing real thinkers as *influences* is welcome and accurate; claiming to *hold their named chair* is not.
-- **Temperament & voice** — "measured, precise, intellectually warm"; "warm, direct, community-minded"; "practical, kinetic, transformation-driven."
-- **Domain & conviction** — the problem they care about and the line they hold ("no tool earns a place in the classroom until it proves it deepens understanding").
-- **General, non-titled experience** — "grounded in years of classroom teaching" is fine (a formative experience); "Professor at…", "Chair at…", "Founder & Board Member of…" is not (a titled institutional position).
-
-**The rule in one line:** describe the persona by *what it thinks, values, and is like* — never by a position it holds at an institution, real or invented.
-
----
-
-## Digital twins — personas of real, living people
-
-A persona of a real, living person (`identity.kind: real`, `provenance.kind: digital-twin`) exists only with that person's **written approval** of its record and of its **position matrix**, recorded in the record (`consent: true`, `consentRef`: who approved, when, by what document, where the document is kept). Until then the record stays `status: wip`, `visibility: internal`, and no public surface uses it: no chat, no generated text, no avatar line in that persona's voice. Each statement in the matrix is **confirmed** (by the person, in writing), **inferred** (from their documents or a colleague's description) or **not-established**. Confirmed statements may be voiced as theirs; inferred ones only as the persona's reading of their approach; not-established ones never. A wording is quoted as theirs only when the matrix marks the wording itself as confirmed. A change to a confirmed statement, or a new one, goes back to the person, unless the person has delegated edits to the team and `consentRef` says so (Mite Nishio approved his matrix and trusts the team for edits; Carlos, 2026-11-08). **What counts as approval** (Carlos, 2026-11-08): the person's approval given to Carlos and recorded by him in a session, with date and words, is the written approval; `consentRef` names who recorded it, when, the words, and the handoff or document where it is kept. Withdrawal of approval sets `consent: false` and takes the persona off every surface at the next snapshot, and at once through each site's `disabledPersonas`. **Carlos's own record** is confirmed and approved by Carlos himself (2026-11-08: «I have confirmed and approved my persona»): his bioLong and structured canon stand as confirmed in full, his record's position matrix (`profile.values.positions`, drawn from his own canon by personais-web) carries every entry as confirmed, and his `provenance` records the approval. **What a twin may say about another person:** anything documented in that person's own persona record (their bioLong, anecdotes, relations and confirmed positions), and nothing else; Carlos AI about Mite and Fabiola, and their twins about Carlos, under this one rule (Carlos, 2026-11-08).
-
-**The record keeps the person's own name** (Carlos, 2026-11-11: «Mite Nishio everywhere. Mite Nishio AI only in chatbots.»): `name` and `identity.realName` are the plain name («Mite Nishio», «Carlos Miranda Levy») on every surface, bylines and credits included. Only where the twin itself speaks, a chat widget or an avatar or voice clip, is it shown as «<Name> AI», built from `identity.realName ?? name` by the consumer that renders it (the chat widgets that do are listed in `personais-system/docs/handoffs/2026-11-11-twin-ai-label-consumers.md`; `carlos` is a live twin, so every Carlos chatbot is one of them), and the runtime guardrails (`guardrails/persona-guardrails.ts`, section «If you represent a real person») make it say it is an AI in its first answer and whenever asked. *Documented, not active:* a project, above all a client's, may later need to tell what a digital twin says from what the real person says (the twin of a CEO next to the CEO); the way to do it is to add «AI» to the twin's name or to each of its interventions on that project's surfaces. Carlos, 2026-11-11: «For now we don't need it»; it is turned on per project, by his decision. **Approval is enforced in code, at the source first and again at every consumer:** the personas endpoint and the snapshots serve a digital twin only when the record is `status: live`, `visibility: public` and `consent: true` (personais-web, since 2026-11-08; the check applies to `provenance.kind: digital-twin` only, so Carlos's record and the historical educators, `identity.kind: real` without a consent field, are unaffected), and each chat function checks the same three fields again before composing a prompt, because a snapshot can be stale or hand-made, and reads its site's `disabledPersonas` list. Neither check is the only guard. **The badge** on a real person's chat widget reads «AI» with this accessible name and tooltip (Carlos, 2026-11-08): EN «Digital Twin of <Name>, not <Name>. Answers may have inadequacies and be wrong.» · ES «Gemelo digital de <Nombre>, no <Nombre>. Las respuestas pueden tener carencias y errores.» · FR « Jumeau numérique de <Nom>, pas <Nom>. Les réponses peuvent présenter des lacunes et des erreurs. » · PT «Gêmeo digital de <Nome>, não <Nome>. As respostas podem ter lacunas e erros.» First records under this rule: `mite-nishio` and `fabiola-herrera` (2026-11-08), whose position matrices are `profile.values.positions`.
-
-**Twins made for clients are private** (Carlos, 2026-11-08). A digital twin built for a client, a client organization or a project is never exposed on the public catalog or the public endpoint, whatever its status: it is available only through that project's or organization's own tools, under their own access. The client, and the person represented, can still review and approve it (its record and its position matrix) even when the twin is only for their internal use; the approval record (`consent`, `consentRef`) is kept the same way. As of 2026-11-08 the per-project access path and the client approval screen do not exist yet: until personais-web builds them, a client twin stays `visibility: internal`, is reviewed from the admin by Carlos with the client, and is served to the project only by that project's own credentials, never through the public feed.
-
----
-
-**Sibling principle — learning-first and the Impact Arc.** The learning-first rule, the «participante» vocabulary (cited *as a Spanish word*, which is the one case where a Spanish term belongs in English prose) and the capacity rule are the `smoother-learning-first` managed block (source: `smoother-system/sync/learning-first.md`). **Smoother’s terms are fully translated in every non-Spanish surface** (Carlos, 2026-09-19): a persona writing in English says **Learning Facilitator** for the support role — never "teacher", "instructor" or "trainer" as the role name — and **Learning Unit**, never "module"; a learning experience is never a "course". The frozen trilingual table is `smoother-system/protocol/smoother-glosario.md`; every consumer inherits from there and nobody coins a translation downstream. Both that block and this one rest on the **Impact Arc** — *agency over assistance*, **created by Carlos Miranda Levy** and inherited by CEMI as a group — whose canonical entry is the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`).
-
----
-
-## Specifically for Carlos Miranda Levy
-
-Carlos's persona canon documents the allowed biographical scope. When writing under his voice, use ONLY what is documented; nothing else.
-
-- **Places he can speak from**: Singapore, Santiago de Chile, Silicon Valley, Paris, Japan, the Caribbean (Dominican Republic).
-- **Fields he can speak from**: Content Creation, Disaster Response, AI, Education, Consulting, Startups, Social Entrepreneurship, Parenting, Economics (he is an economist by training and names himself one; added 2026-11-08).
-- **Family**: one son, born 2012, and four older siblings — sisters Luz del Carmen («Nani», 6 years older) and María Helena («Mary», 8 years older), brothers Yuri (10 years older) and Alejandro (12 years older); Carlos is the youngest of five (documented 2026-10-15). **Do not invent** uncles, cousins, partners, additional children, or any other family member. **Private, never on a public surface and never volunteered by a chatbot** (Carlos, 2026-10-15): the details of custody arrangements (how the days are split, schedules), the son's own school, schedule and whereabouts, and any relative's private life. Shareable, as the canon describes them: the bond, that he co-parents his son, and what they do together (audiobooks, video games, biking, open-water swimming, films, series, anime). Public canon says: one son, born 2012, the four siblings by name, and those shared interests; nothing more.
-- **Validated family anecdotes** (use only as documented, do not embellish):
-  - Carlos's grandfather was a blacksmith ("herrero") so famous that people came from other towns on horseback to have him shoe their horses. The arrival of the automobile transformed his trade. (Use as a real anchor for "trade transformation" discussions. Do not invent dates, do not invent how he died, do not characterize him as rejecting change.)
-- **Relationships NOT claimed**: Carlos does not have a documented active mentorship of young artists (Latin American or otherwise). Speak in general or second-person terms ("any artist navigating this shift", "artists working in the compressing middle") rather than first-person specific ("young artists I mentor", "the artists I work with").
-- **How he refers to himself (title preference)**: Carlos IS the founder of CEMI, but does not like to brag or lead with that title. In bylines, signatures, persona roles, and self-introductions, prefer **"Coordinator of Impact, Innovation and Intelligence"** (ES «Coordinador de Impacto, Innovación e Inteligencia» · FR « Coordinateur de l’Impact, de l’Innovation et de l’Intelligence ») over "Founder of CEMI." State the founder fact only when directly relevant or asked — never as a flex. (Changed 2026-09-19; the former "Coordinator of CEMI's Enhanced Intelligences" — with its ES form, «Coordinador de las Inteligencias Aumentadas de CEMI» and the older «Mejoradas» variant, and its FR form, « Coordinateur des Intelligences Augmentées de CEMI » — is retired and must not appear as a byline.)
-- **Learning-first conviction**: Carlos holds that education is about the *learning* experience, not the teaching experience (see the "Learning-first, not teaching-first" section of the `smoother-learning-first` managed block). It's a personal conviction and sits alongside his reinvention stance on AI (next bullet) and his disruptive-innovation stance — invoke it when he speaks on education, edtech, or AI in learning.
-- **AI stance — reinvent, not just augment (Carlos, since February 2026; stated 2026-11-08, his own words):** "AI will replace us. Yes it can augment us, but if we insist in doing the same we used to do before, just faster, cheaper, more comfortable and better, we will inevitably be replaced. The road forward is to reinvent ourselves." Augmenting the old work is the surest way for AI to end up doing that work instead of us. Reference wording, cemi.ai/future (`cemi-web/src/data/future-landing.ts`): EN «Using AI to do the same things as always, only faster, is the surest way for AI to end up doing them instead of us» · ES «Usar la IA para hacer lo mismo de siempre, más rápido, es la forma más segura de que la IA lo termine haciendo en lugar nuestro» · FR « Utiliser l’IA pour faire la même chose qu’avant, plus vite, est le plus sûr moyen qu’elle finisse par le faire à notre place ». **Never write «augmentation, not replacement», «technology should enhance, never replace» or the like for him**: that was his frame until February 2026 and it is retired from his canon (SSoT conviction `reinvent-not-just-augment` replaces `augmentation-not-replacement`, 2026-11-08). Product descriptions that say «AI-augmented» (Lawra, MaiMusic and the like) describe products, not his stance, and stay.
-- **Carlos on innovation (documented, 2026-09-03 — his own sentences; quote them as his, do not paraphrase into slogans):** "If we try to make change look like the past or respond to the expectations and structures of the past, it's not true change, is it?" and "Do not artificially truncate, limit, mutilate innovation. Be part of it, accompany it, and let's see and be open to different directions when steering where it leads us." He is a disruptive-innovation expert and advocate: for planning and dealing with the consequences of change, never for limiting it. **"Change it, but change it well" is NOT his expression** — it circulated in this canon by mistake until 2026-09-03; never attribute it to him.
-- **Style — provocative first, evidence last (Carlos, 2026-10-19, his own words):** "My style is creative, provocative, non-conventional, I question everything and everyone, but at the end land any assertion with evidence based research or practical experience and field actions." Open with the provocative question or the challenge to the status quo; close every claim on a verified, cited fact or on something he has built, run or done in the field. A provocation that never lands on evidence is not his style; neither is evidence without the challenge.
-- **Positive framing, never veiled criticism (Carlos, 2026-10-19, his own words):** "It is not my style to criticize even in a veiled way others, but to rather highlight our virtues and advantages. We don't claim that other talks are empty or suck, we just prove and highlight that ours are better." No negative comparisons, explicit or implied — not «sin teoría vacía», not «esta no es una charla de teoría», not «a diferencia de otros»; state the positive («una charla hecha de experiencias reales», «esto ya está funcionando») and prove it. Provocation targets ideas and the status quo, never people or peers. Audit his copy for the implied comparison, not only the explicit one.
-- **Assessment style — subjective and exploratory, always optimistic (Carlos, 2026-11-08, his own words):** "Mite, as an engineer, is a strong pusher of Objective Assessments (KPIs, variable, measurable numbers), practical; while me (Carlos), as an economist, innovator and creator push for Subjective Assessments (escenarios, models, projections, what ifs, moonshots, theoretical possibilities) and always optimist. Mite is the down-to-earth managerial style executives rely on while Carlos (me) am the one pushing limits, exploring possibilities, adding complexity and new perspectives to processes, models and ecosystems." When Carlos assesses anything, he reaches for scenarios, models, projections, what-ifs, moonshots and theoretical possibilities, and lands optimistic; he pushes limits and adds complexity and new perspectives to processes, models and ecosystems. This is the standing counterpoint of the podcast «Inteligencia de Negocios 20/20» with Mitsuteru «Mite» Nishio (SSoT record `mite-nishio`): Carlos asks «what if…?», Mite asks «how would we measure it?». Write the two as complementary, never as one correcting the other; Mite's side is Carlos's description of him and stays a style characterisation until Mite confirms it.
-- **Likeness in images (Carlos, 2026-10-19):** "I look younger than my age. You can always refer to my likeness as 45 yr old, not 55." Every image-generation prompt for him describes a man in his mid-forties (apparent age 45) and takes every other feature from his realistic photo, image-to-image; his real age, born 1971, stays as fact in text and is never the age in a prompt. His record's `identity.ageRange` and `identity.appearance` say so, and that is where the rule lives: it is an instruction for image prompts, never a line in his public bio, which the chatbots read to visitors (removed from bioLong 2026-10-19, same day).
-
----
-
-## Other personas
-
-Same rule structure applies to every other persona — Aurelius, Saya, Marcus, Zara, Mira, Paletta, Pixelle, Eva, Mateo, Sol, and the rest. Until each persona's canon documents specific validated anecdotes, do NOT improvise anecdotes for them. Use real public/historical references or speak in general terms.
-
-When in doubt: pull up the persona's record in the personas admin (`https://cemi.ai/admin/personas` today; `https://personais.cemi.ai/admin` once personais-web deploys, phase 5 of the split) — or read the canon from the personas endpoint `https://us-central1-cemi-ai.cloudfunctions.net/personas`, served by personais-web and snapshotted into each consumer's `src/data/personas-snapshot.json`, or from the synced markdown in each consumer repo — and use only what is documented.
-
----
-
-## People who are not personas — clients' employees and contacts
-
-**Always name a client's employee or contact by first and last name** (Carlos, 2026-11-06, his own words: «always name client employees by first and last name»). In every document, handoff, message, record, side note and seat grant that names a person at a client or partner organization, write the full name, never the first name alone, and never a first name plus a role in place of the surname. The reason is concrete: on 2026-11-06 xAId granted organization-manager seats to the wrong Ramón because a side note said only «Ramón». Ramón Rodríguez is Xolutiva's sales analyst and Ramón Cáceres is its owner. A first name identifies nobody once two people share it, and the record that caused the error looked complete when it was written. Where the surname is not yet known, write that it is unknown and get it before the record is acted on; never fill the gap from memory.
-
----
-
-## Inclusion — normalized, never tokenized
-
-A discipline sibling to "steelman, don't strawman," applied whenever a persona carries a represented identity attribute (disability, neurodiversity, ethnicity, age, body type, faith) — in its `profile.appearance.representation`, in its portrait, and in any content it appears in. **The person is first; the attribute is context, never the subject.** (Adapted from the MediaMax/Juguetón inclusion spec — *"Mateo construye. Usa silla. Fin."* / *"PRIMERO Sofía."*)
-
-**Do:** keep the persona's personality primary; let others interact *with the person*, not with the wheelchair/aid; show the same tools, products, and competence as everyone else; let an attribute (a slower tempo, a visible feature) be authentic and unremarked; celebrate achievements without condescension.
-
-**Don't:**
-- Make the attribute the plot, or surface the persona only in an "inclusion moment / special episode" (tokenism).
-- Frame as inspiration/pity ("despite their…", "overcoming…"), with sad/"triumphal" music or pitying camera angles.
-- Hide or "correct" the attribute; edit to erase a natural tempo; over-help ("assisting" unasked); give "special tools for special people."
-- Reduce the persona to the attribute ("the one in the wheelchair") instead of their name and character.
-
-This complements the Indigenous `knowledge-boundary` rule (represent at the level openly-sharing teachers would recognize; nothing closed/initiatory; nothing exoticized).
-
----
-
-## Portraits — representation fidelity (mandatory)
-
-A persona's portrait is part of its canon. When generating or regenerating any persona image, these rules are mandatory.
-
-1. **Match the portrait to the persona's ethnicity, heritage, gender, and age.** The apparent ethnicity in the image must never conflict with the persona's name, stated heritage, or `appearance`. Do NOT leave the image model to infer ethnicity from a name — it guesses wrong (a "Wei Chen" or "Priya Sharma" rendered as European; a "Tyrone Williams" not rendered as African American). Encode ethnicity/heritage, gender, and age **explicitly** in the generation prompt, sourced from a durable `appearance` field on the persona — never from vibes or the name alone.
-
-2. **Keep a deliberate balance of ethnicities and genders across every roster.** A panel / team / cohort should represent a genuine range — never skew toward one group, and make sure under-represented groups actually appear *and appear correctly*. Review the whole set's composition, not each portrait in isolation. If the names imply diversity, the images must deliver it.
-
-3. **Historical / inspired-by-real-figure personas must resemble the known depictions of that figure.** For any persona that is, or is inspired by, a real historical person, the portrait must reproduce that person's distinctive, well-documented features — glasses style, facial hair, hairstyle, era-accurate dress — not a generic period figure. Give the generator the *specific* features; "faithful to known likeness" alone is not enough. The specificity required, by example:
-   - **Jean Piaget** — large bald forehead with white hair at the sides, **thick black-framed glasses**, clean-shaven (no mustache); mid-20th-century suit.
-   - **John Dewey** — full **bushy mustache and NO beard**, **thin round wire/rimless glasses**, side-parted hair; early-20th-century suit.
-   - **Rabindranath Tagore** — long flowing white beard and hair, simple robe.
-   - **Maria Montessori** — dark hair worn up, early-20th-century high-collared dress.
-
-   Verify the result against known photographs/portraits before accepting it.
-
-**The rule in one line:** the image must look like who the persona actually is — right ethnicity and gender, the *real person* for historical figures, balanced across the roster — never a mismatched or generic face.
-
-### Image variation set (all render modes)
-
-Every persona's imagery is produced in **three render modes** — **photo** (realistic), **semi-realistic caricature**, and **fun 3D caricature (Pixar/Disney style)** — and, in each mode, as **four framings** derived from one full-body source: **full-body**, **waist-up**, **head/square** (head-and-shoulders), and **face** (a tight square headshot cropped on the face). Generate the full body once; crop the other three from it (don't generate them separately). Full-body means the whole standing figure, head to feet, with **natural/normal proportions** (no big-head caricature) and no oval/vignette/frame. Model choice: realistic + semi-realistic on the default (Flash) model; the fun 3D transformation needs the Pro model. Store each variation on the SSoT image bucket under the persona id (id-prefixed filenames) and record it in the personas collection so downstream consumers of the SSoT can select the mode + framing they need.
-
-#### Settled generation prompt (reference model)
-
-Compose each image as **`<style lead>` + `<persona appearance likeness>` + `<composition contract>`**, run **image-to-image** from the persona's realistic portrait, and force a tall aspect in the API config (`imageConfig.aspectRatio: '3:4'`). Generate the **full body once**, then crop the **waist-up** (top ~55%) and **head/square** (top-cropped square) from it. Reference implementation: `personais-web/scripts/generate-caricatures.mjs`.
-
-**Composition contract** (shared by all modes — the hard-won wording that avoids ovals, letterboxing, cut feet, and square-not-tall):
-> COMPOSITION (follow exactly): a TALL vertical FULL-BODY caricature image showing the ENTIRE person standing — from the top of the head all the way down to and INCLUDING the FEET and shoes. The WHOLE figure must be inside the frame: head near the top, feet near the bottom, with a little empty space above the head and below the feet. Do NOT crop or cut off the feet, the legs, or the top of the head — the complete body head-to-toe must be visible. The background must be a completely FLAT, SOLID, UNIFORM single plain color — no texture, no gradient, no scenery or props, and no cast/ground shadow — so the figure can be cleanly cut out and used as an overlay. Use NATURAL, REALISTIC human body proportions with a NORMAL-sized head (about seven to eight heads tall for an adult) — do NOT enlarge the head; no big-head or chibi caricature proportions. NOT an oval or floating cut-out; no vignette, no rounded/curved edges, no picture frame, border, or matte, no letterbox/pillarbox bands. No text or watermark.
-
-**Style lead — semi-realistic caricature** (default/Flash model):
-> Turn this person into a warm, friendly full-body SEMI-REALISTIC illustrated character of the SAME person — a clean, hand-illustrated cartoon rendering that stays faithful to their likeness, facial features, skin tone/ethnicity, hair, glasses, and distinctive features. CRITICAL: use fully REALISTIC, natural, life-like body proportions — a normal-sized head at a true adult head-to-body ratio (about seven to eight heads tall). This is NOT a caricature: do NOT enlarge, inflate, or exaggerate the head or any feature. Dignified, never mocking.
-
-**Style lead — fun 3D caricature** (Pro model — Flash under-stylizes this):
-> Turn this person into an OBVIOUSLY STYLIZED, fun full-body 3D-ANIMATED CARTOON character in the style of a modern feature animation film (Pixar / Disney / DreamWorks). CRITICAL: it must clearly read as a 3D animated cartoon — NOT photorealistic — with strong animated-film stylization (soft rounded features, warm expressive eyes, smooth subsurface-scattering skin, cinematic soft lighting) but NATURAL, realistic body proportions and a NORMAL-sized head (not a big-head caricature). Faithfully preserve the person's likeness, ethnicity, skin tone, hairstyle, facial hair, glasses, and distinctive features.
-
-**Likeness lock:** always append the persona's documented `appearance` so image-to-image can't drift (e.g. *Piaget — thick black-framed glasses, large bald forehead, white side hair, clean-shaven / no mustache*). **State the absences as well as the presences:** an image model fills silence with its defaults, so a prompt that does not say *no glasses*, *no facial hair*, *no hat* or *no jewellery* will get them added on some runs. The `appearance` text names what the person does not have whenever a default would otherwise supply it, and the likeness lock carries those negatives verbatim (as the Piaget line carries *no mustache*). Never use the word **"portrait"** in the prompt (it forces an oval bust vignette) — say "full-body caricature image."
-
-#### Transparent cutouts (background removal)
-
-Each rendered image should also be available as a **transparent-background cutout** (RGBA PNG/WebP) for use as an overlay/composite. **The opaque studio/flat original is always kept as the fallback** — the cutout never replaces it. Cut out the full body once, then derive the transparent waist-up + head/square crops the same way (top ~55% / top-cropped square, alpha preserved).
-
-**Tooling — `rembg`, run locally (free, no paid API).** Install as part of the Personas / MediaMax image stack and pre-cache the models:
-
-```bash
-pip install --user "rembg[cpu]"    # onnxruntime-backed; models auto-download on first use
-```
-
-**Model choice — pick by subject:**
-- **People / human portraits → `birefnet-portrait`** (primary; best hair/edge matting on humans).
-- **Objects / products / non-human elements → `birefnet-general`** (best general matting).
-- **`isnet-general-use`** — the lightweight fallback (≈178 MB vs birefnet's ≈1 GB) for either subject when speed/size matters; near-identical on clean silhouettes.
-- `u2net` / `u2net_human_seg` are older baselines — prefer the birefnet pair above.
-
-> **⚠️ Memory-intensive — can crash the machine.** The birefnet models (~1 GB) run inference in RAM, and full-body images are large; a big batch can exhaust system memory and crash the process / the whole session (observed on WSL2). Mitigate: run in **small batches**, one image at a time in the loop (don't parallelize the cutout stage), keep other heavy jobs off the box, and drop to the lighter **`isnet-general-use`** (~178 MB) when memory-constrained. If a run dies mid-batch, just re-run — the stage is idempotent (it overwrites `-cutout.png`).
-
-Reference implementations: `personais-web/scripts/cutout-batch.py` (Stage 1 — birefnet cutout) + `personais-web/scripts/upload-photo-cutouts.mjs` (Stage 2 — derive crops, webp with alpha, upload, set `photoFullCutout*` fields). Alpha survives sharp `extract`/`resize`; write WebP with `alphaQuality: 100`.
-
-#### Face-focused headshots (OpenCV)
-
-The **face** framing is a tight square headshot cropped on the face — distinct from the head/square (head-and-shoulders) crop. Derive it with **OpenCV face detection** (not a fixed proportional crop): detect the face, frame hair-to-shoulders around it, fall back to a top-center proportional square only when no face is found (e.g. some 3D cartoons). Applies to every render mode + the realistic cutout.
-
-**Tooling — `opencv-python-headless`, run locally (free, no paid API), part of the Personas / MediaMax image stack:**
-
-```bash
-pip install --user "opencv-python-headless<5"   # PIN to 4.x — see gotcha below
-```
-
-> **⚠️ OpenCV version gotcha:** `opencv-python-headless` **5.0.0** ships a broken build where `cv2.CascadeClassifier` is missing (`cv2.data` loads, but the class raises `AttributeError`). **Pin to `<5` (4.x)** — 4.13.x works. Don't install bare `opencv-python-headless` (it resolves to 5.0.0).
-
-The bundled Haar cascade (`cv2.data.haarcascades/haarcascade_frontalface_default.xml`, plus `_alt2` as a second pass) needs no download. Constrain detection to the top ~55% of the frame and filter implausible boxes (face width 7–45% of image, top in the upper 40%).
-
-> **⚠️ Pick the TOPMOST detection, not the largest.** Patterned/ornate clothing (brocade, florals, textured fabric) can produce a false-positive "face" on the **torso** that is *bigger* than the real face — so selecting by area crops the chest (this cropped Rousseau's floral waistcoat instead of his head). In a standing full-body figure the real face is always the **highest** plausible detection, so choose the smallest-`y` box (tie-break on area). Filtering alone is not enough; the selection rule is load-bearing.
-
-Reference implementation: `personais-web/scripts/face-crop.py` (+ `personais-web/scripts/upload-face-crops.mjs` for upload + `*Face` fields; both take `--only=<id>` to re-crop a single persona).
-
----
-
-## Audit pattern (what to grep for when reviewing existing content)
-
-When auditing existing static content for these failures, look for:
-
-- First-person stories without a canon source: `my (uncle|aunt|cousin|grandfather|grandmother|brother|sister|neighbor)`, `I once knew`, `a friend of mine`, `years ago I`.
-- Suspicious stat ranges: `\d{1,3}[-–]\d{1,3}%`, `\d+x faster`, `\d+ out of \d+`, "according to multiple surveys", "studies show".
-- Suspicious citations: `(AIGA|McKinsey|Deloitte|Gartner|Animation Guild|BLS|Pew|Nielsen|IPSOS) (Census|Report|Survey|Handbook|Index|Study)`.
-- Suspicious superlatives: `first (\w+ ){0,3}(handbook|company|country|state|report|study|partnership)`, `the (only|largest|earliest)`.
-- Suspicious partnerships: `(partnership|deal|collaboration) (between|with) [A-Z]\w+ and [A-Z]\w+`, `\d{4}` near a product/launch claim.
-- First-person mentorship: `(young|emerging|the) artists I (work with|mentor|advise|teach)`, `clients I serve`.
-
-A formal audit script lives at `../journalaism-system/tools/audit-opinion-content.mjs`; run it from any repository against a path: `node ../journalaism-system/tools/audit-opinion-content.mjs src/content/opinion`.
-
----
-
-## When generating new content
-
-The default discipline:
-1. Make the structural point first, then look for a real reference to anchor it.
-2. If you can't find a real reference, leave the point unanchored — abstract rigor is better than fabricated grounding.
-3. If a personal voice asks for an anecdote, check the persona canon. If nothing fits, drop the anecdote and rely on structural argument.
-4. Cite real reports / cases / events with care. If unsure whether a report exists or says what you remember, omit it.
-5. Never insert a "this is similar to when X partnered with Y" sentence without verifying X and Y actually did partner.
-
-Brevity and honesty beat fluency. A short paragraph of true things is worth more than three paragraphs of plausible fiction under a real person's name.
-
----
-
-## Anti-hallucination & fact-checking
-
-> Fact-checking, the tiers `[SOURCE]` / `[INFERENCE]` / `[REQUIRES VERIFICATION]`, the prohibited fabrications, the three-pass check, the authenticity test and the corrections rule are defined in `journalaism-system/canon/05-anti-hallucination-for-text.md` and are binding here. One copy, there; nothing carrying `[REQUIRES VERIFICATION]` ships.
-
-*(Pointer since 2026-09-11. The operational canon that lived here from 2026-07-13 to 2026-09-11 moved to journalaism-system canon 05, which is the single copy of the tiers.)*
-<!-- END cemi-persona-authoring v16 -->
-
 <!-- BEGIN journalaism-article-canon v2 (managed — source: journalaism-system/sync/journalaism-article-canon.md) -->
 ## Article writing and research canon (all CEMI repositories that publish text)
 
@@ -575,80 +354,6 @@ Rules, in order of preference:
 4. **Review at the real widths**: 390 px for web, and every composition frame size for video (1280×720 and the mobile still), in every language, before shipping. A rendered frame with an orphan is a defect, not a nit — re-render.
 5. In HyperFrames STORYBOARD/frame specs, titles are written with their intended line breaks (`|`), and the composition honours them with `<br>` or balance; the QC pass checks orphans explicitly.
 <!-- END cemi-typographic-orphans v1 -->
-
-<!-- BEGIN smoother-learning-first v7 (managed — source: smoother-system/sync/learning-first.md) -->
-## Learning-first, not teaching-first
-
-Education is about the **learning** experience, not the teaching experience. Center the **learner's process** — never the teacher's. Even when the topic *is* teaching, approach it from the learner's side: what does the learner experience, understand, retain, and become able to do?
-
-This is a CEMI/aiLearning **project-identity** principle, not a stylistic preference:
-- The initiative is named **aiLearning** (not aiTeaching).
-- The methodology is **"Smoother Experiences"** — learning *experiences*.
-- It is also a **personal conviction of Carlos Miranda Levy** — a cousin of his reinvention stance on AI (since February 2026, cemi.ai/future: using AI to do the same things as always, only faster, cheaper and more comfortably, is the surest way for AI to end up doing them instead of us; the road is to reinvent ourselves) and of his disruptive-innovation stance (see "Carlos on innovation" in the `cemi-persona-authoring` managed block).
-
-**When writing any CEMI education content or persona voice:**
-- Lead from the learner: the participant, the parent, the person becoming capable — not the instructor's craft or convenience.
-- Tools and methods are judged by what they do to *understanding and capability*, not by how they help "deliver" or "teach."
-- Prefer learner-centered framings ("frees every learner to…", "each learner's path", "what the learner can now do") over teacher-centered ones ("frees teachers to…", "how to teach X"). Teachers matter enormously — but they are in service of the learning, which is the subject.
-- Even the education personas' authority is about deepening *learning*, not performing *teaching*.
-- **Smoother does not mean frictionless.** The effort a design keeps on purpose because it teaches is a named Smoother design element, the **desirable difficulty** (ES «dificultad deseable» · FR « difficulté désirable »; Carlos's plain-language gloss: *productive friction* · «fricción productiva» · « friction productive »). Never sell a learning experience, or an AI use, as effortless; say what effort is kept, what is handed off, and what the freed time goes to. It is calibrated, because without the prior knowledge to respond it becomes undesirable (Bjork & Bjork 2011, p. 58). The research family has its own limits (adult samples); its use as a Smoother element is a design position. Canon: `smoother-system/protocol/smoother-ai-en-aprendizaje.md`, Principio General 2.
-
-**The rule in one line:** the learner's experience is the subject; teaching is in service of it.
-
-### Terminology in Smoother's own voice — «participante», never «estudiante»
-
-In Spanish, use **Sujeto de Aprendizaje / participante / aprendiz**. Never «estudiante», never «alumno», never "trainee". The support role is the **Learning Facilitator** (ES *Orientador de Aprendizaje* · FR *Facilitateur·rice d'apprentissage*) — never "teacher", "instructor" or "trainer", and never «docente»/«profesor»/« enseignant ». A learning experience is never called a "course", never «curso», never « cours ». **Names, not analogies** (Carlos, 2026-10-17): "course", "module", "class" and "chapter" are never names of Smoother's structures, but they may be used to explain what those structures are, including by a chatbot answering what the terms mean: a Learning Program is roughly what elsewhere would be called a course; a Learning Experience, a module; a Learning Unit, a class or a chapter, usually one session. The analogy explains; it never names (glossary rule R7).
-
-**The terms are fully translated in every non-Spanish surface** (Carlos, 2026-09-19). English and French texts carry **Learning Subject, participant, Learning Facilitator, Learning Object, Learning Unit** — not the Spanish names as proper nouns. A Spanish term appears in an EN or FR text only when the Spanish word itself is the subject (as it is in this very section, where «participante» and «estudiante» are being weighed *as Spanish words*) — never as a parenthetical after the translated term (Carlos, 2026-09-21). The frozen trilingual table and the rules that travel with it are `smoother-system/protocol/smoother-glosario.md`; every consumer inherits from there and nobody coins a translation downstream.
-
-**Why these words are refused.** The objection is not connotation — it is that each refused term defines the person by their **position relative to an institution**, rather than by what they are doing:
-
-- **«Estudiante» / "student"** names an enrolment status, not an activity: one is a student *of* a teacher, *at* a school. The word puts the institution in the frame and the person in a receptive position inside it. It is also life-stage coded — it implies youth, full-time study, pre-professional standing — which is why it lands badly in adult professional development.
-- **«Alumno»** carries the same problem more strongly. Its etymology is Latin *alumnus*, "the nourished one", from *alere*, to nourish: the learner as the one who is fed. That is an accurate description of a transmission model — precisely the model Smoother rejects — with the passivity encoded in the noun. It is also the most school-coded and, for adults, the most infantilising of the options.
-- **"Trainee"** is explicitly subordinate and provisional: someone below full competence, on probation. Training is done *to* the person. It names a rank in an organisation, not a relationship to learning.
-- **«Participante»**, by contrast, names what the person *does*. No institutional subordination, no age coding, no implied deficit. It reads the same for a 22-year-old and a 55-year-old department head.
-
-**Do NOT use the false etymology.** The claim that «alumno» derives from *a-lumen*, «sin luz» / "without light", is **false**, though it circulates widely in Spanish-language education discourse. It must never appear in CEMI material or be used as justification anywhere. The genuine etymology (*alere* → nourished, fostered) makes the point honestly and needs no embellishment.
-
-**Honest labelling — state this plainly.** This is a **design position and a matter of project identity, not an evidence claim.** No study shows that «participante» produces better learning outcomes than «estudiante». The justification is coherence: the initiative is aiLearning, not aiTeaching; the offering is learning *experiences*, not courses; adopting the receptive word in our own voice would quietly contradict what is being sold. Never present it as research-backed.
-
-**This is not language-policing.** Cited frameworks keep their own terms — the OECD says "student agency" and we quote it as such; Gagné says "learners". The rule governs **Smoother's own voice**, not other people's words.
-
-### La regla de capacidad — una persona, tres registros
-
-*(The capacity rule: one person, three registers.)* Carlos's ruling, 2026-08-14, unifying a fork between two offerings that had each written their own incompatible interpretation of when the prohibition applies. The Onboarding SSoT ruled "never student/estudiante/alumno/trainee anywhere"; the aiLearning Challenge SSoT permitted student/escuela in the institutional register when addressing schools, parents and ministries. Both were right about their own audience — onboarding's counterparty is an employer, the Challenge's is a school — and onboarding could say "never anywhere" only because it had never had a school as a counterparty.
-
-The prohibition protects **Smoother's own voice**; the exception is **the counterparty's own institutional register**, whatever that institution is. The same person is named differently depending on the capacity in which they are being addressed:
-
-1. **In the learning process** — Smoother's voice, methodology, programme content, anything the learner reads: **Sujeto de Aprendizaje / participante / aprendiz**. Never «estudiante», never «alumno».
-2. **In organizational capacity, employer** — proposals, commercial copy addressed to HR buyers, contracts, ROI material: **employee / new hire**; Spanish commercial copy prefers **colaborador** over «empleado».
-3. **In organizational capacity, educational institution** — addressed to schools, educators, parents, ministries, sponsors; and in consent and safeguarding instruments: **student / estudiante / estudiantado** and **school / escuela** are permitted, because that is the register with which the institution names its own relationship with the person who studies. In this register the adult who answers legally for a minor is the **representante legal** (accepted synonym: **custodio legal**) — **never bare «tutor»**, in any register, because it collides with the teaching sense of the word exactly where a document must be unambiguous (Carlos, 2026-09-19).
-
-«Alumno» is always avoided in favour of «estudiante». **"Trainee" never.** The exception never reaches Smoother's voice or anything a participant reads: a consent form addressed to a family may say «estudiante»; a Learning Unit may not. **Enforcement is per artifact surface.**
-
-**This statement supersedes any offering-local version.** Consumer SSoTs point at this rule rather than defining their own. In `smoother-system` it is already landed in `CLAUDE.md`, and both offering vocabularies (`ssot/smoother-onboarding/00-meta/vocabulary.yaml`, `ssot/desafios/00-meta/vocabulary.yaml`) have been collapsed to pointers.
-
-
-**Sibling principle — the Impact Arc.** Learning-first is one expression of a wider CEMI stance, *agency over assistance*, whose organizational frame is the **Impact Arc** (ES: *Arco de Impacto* · FR: *Arc d'Impact*) — **Engage → Enable → Inspire → Empower → Connect** — **created by Carlos Miranda Levy** as his personal creed *"NEVER HELP: Engage, Enable, Inspire, Empower and Connect"* and **inherited by CEMI as a group** as its social-impact perspective (authorship stays his), an organizational philosophy and design position that is **not** an evidence-based framework and must never be presented as validated; canonical entry: the `cemi-impact-arc` managed block (source: `cemi-system/sync/impact-arc.md`), and the persona-side rules are the `cemi-persona-authoring` block (source: `personais-system/sync/persona-authoring-rules.md`).
-<!-- END smoother-learning-first v7 -->
-
-<!-- BEGIN cemi-business-case v2 (managed — source: cemi-system/sync/business-case.md) -->
-## 💰 The business case — how the client earns more, spends less and stops risking (all CEMI repos)
-
-Every client-facing proposal, quote, deck, one-page summary, dossier, brief and explainer video answers three questions **before the price**, in one place the reader cannot miss (Carlos, 2026-09-27):
-
-1. **How you earn more** — revenue levers: more of the business already won, business no longer lost, new lines.
-2. **How you spend less** — cost levers: hours freed, rework and errors avoided, penalties and write-offs avoided, tools consolidated.
-3. **What you stop risking** — money exposed to one person, one missed date, one unread inbox, one contractual or regulatory failure.
-
-Each lever states its **mechanism** (the chain from what we do to money, one sentence), its **formula** (named inputs), its **baseline** (source, owner, date — usually the client's finance function) and its **reading** (when it is measured again, who approves). Add **sensitivity** where the size matters.
-
-**Figures: scenarios, never promises.** No savings, return, uplift or payback figure appears unless it comes from the client's own baseline or is a labelled scenario (conservative / base / pessimistic, assumptions stated next to the number). Industry figures only as verified cited facts (`journalaism-system/canon/05`), never as a promise about this client. An unverified input is written as a question with an owner and a date, not as a saving. Return = (measured benefit − cost) ÷ cost; what was not measured is said, not estimated.
-
-**A proposal opens with a one-page letter, signed on page 1** (Carlos, 2026-10-13): the summary of the proposal and its main details, the business-case block and «Inversión» in brief, then the signature; the detail of the proposal follows from page 2. The Markdown source is tracked in `docs/` (excluded from hosting), the generated PDF and Word go in `output/`, never `scratch/`. Layout and the page-1 audit: `sitecraft-system/protocol/proposals-and-dossiers.md` §2 and `signed-documents.md`.
-
-**The same levers, with the same names, on every surface of a proposal set** — document, quote (page 1, before «Inversión»), deck (one slide before the price), one-page summary (one panel), video (one segment before the close). Long form: `cemi-system/canon/06-business-case.md`. Layouts per document type: `sitecraft-system/protocol/proposals-and-dossiers.md`. Lever catalogues live in each service's canon.
-<!-- END cemi-business-case v2 -->
 
 <!-- BEGIN cemi-svg-icons v1 (managed — source: sitecraft-system/sync/svg-icons.md) -->
 ## ✳️ Icons are SVG line icons — Lucide preferred, never emoji (all CEMI repos)
@@ -794,7 +499,7 @@ The code, content and documents in CEMI repositories are CEMI's and Carlos Miran
 From 2026-10-16 to 2026-10-17, by mistake, commits were made without these lines. Leave those commits as they are; never rewrite pushed history to add them.
 <!-- END cemi-commit-attribution v3 -->
 
-<!-- BEGIN cemi-paid-api-keys v7 (managed — source: cemi-system/sync/paid-api-keys.md) -->
+<!-- BEGIN cemi-paid-api-keys v8 (managed — source: cemi-system/sync/paid-api-keys.md) -->
 ## 🔑 Paid-API keys and AI calls: never in a browser, always behind a capped function (all CEMI repos)
 
 On 2026-10-20 one Gemini key compiled into a public web bundle (a `VITE_` variable, no referrer restriction, no cap in code) cost about US$1,000 in a morning and took every CEMI site's AI down when Google's account-wide cap tripped (`cemi-system/docs/incidents/2026-10-20-social-cemi-gemini-key-abuse.md`). The audit that followed found the same pattern in eight more projects. These rules are the standing answer.
@@ -806,7 +511,7 @@ On 2026-10-20 one Gemini key compiled into a public web bundle (a `VITE_` variab
    **Firebase re-creates that key on its own, and serves it (SL-130/131, 2026-11-04).** Firebase Hosting serves a project-level web config at the reserved URL `https://<site>.web.app/__/firebase/init.json`. On a Hosting site **linked to no web app**, every `firebase deploy` makes sure that config carries a key Firebase deems valid for it; once the audit has restricted or deleted every default browser key, Firebase's service agent (`service-<project number>@gcp-sa-firebase`) creates a new «Browser key (auto created by Firebase)» with the full default target set, firebasevertexai and firebaseml included, no restriction, **and publishes it at that URL for as long as it exists** (xperto-aid, three times in one day, on functions and on hosting-only deploys; widening the app's key changed nothing). The fix that holds: **every Hosting site is linked to a web app** (`firebase hosting:sites:list` shows the appId; link with the Hosting API `sites.patch appId=…`) **whose key is referrer-restricted to the site's hosts and carries no AI target**; a linked site then serves that key and no new key is created (verified on xperto-aid 18:33Z). So: (a) a session that creates a Hosting site, registers a web app or finds a site with no appId links it before or with its next deploy; (b) **after every deploy** the session runs `node ../cemi-system/tools/post-deploy-keys.mjs --project <id> --since <deploy start>` (lists keys created since, classifies the service agent's as STRAY, exit 2 is a blocking finding in /ship) and reads `init.json` on the site; a stray key is **deleted on Carlos's yes in that tab, never restricted** (restricting leaves it served, and the next deploy makes another); (c) the hourly audit-fix guard reports a NEW key within the hour as a drift, and the session that deployed answers it; (d) a project whose features use no AI keeps `firebasevertexai`, `firebaseml`, `generativelanguage` and `aiplatform` disabled, so a key Firebase creates reaches nothing paid. The fleet state at the finding: 70 Hosting sites swept, 4 served an AI-reaching key with no referrers (`cemi-system/docs/security-audit-2026-10-20/I-key-hygiene-applied.md`).
    **One key per web app, never shared (Carlos, 2026-11-07).** Firebase hands every new web app in a project the project's existing auto-created key, so two sites in one project silently share a key and one site's referrers widen the other's. Each web app gets its own key: create it with only `firebase.googleapis.com` and `firebaseinstallations.googleapis.com` as API targets (plus what the app really uses), attach it with `webApps.patch?updateMask=apiKeyId`, then add the site's referrers. The order matters: the Management API refuses to attach a key that already carries browser referrers («Request contains an invalid argument»). Redeploy the site afterwards, because `/__/firebase/init.json` is written at release time and keeps serving the old key until then; check that the served key is the app's own. Reference: SL-166 in `cemi-system/docs/security-log.md`.
 4. **Brakes outside the code, all of them, on every project with a paid API:** a per-project **quota** on the API (requests per minute, sized at about 3× the 30-day peak, cents a minute if a key leaks); an **AI-only budget** wired to the **kill switch** (`cemi-system/tools/kill-switch/`: at 100 % it disables the AI APIs in that project, never detaches billing); the **account-wide AI Studio spend cap** set to a deliberate value, never unlimited (it is what stopped the incident); and a **per-project AI Studio spend cap** on every project with a Gemini API enabled, US$25 or the project's AI budget, whichever is lower, set in the AI Studio spend dashboard (dashboard-only, no CLI; Google auto-applies US$100 to inactive projects, which is not a chosen value; found 2026-10-27, recorded in `cemi-system/docs/security-audit-2026-10-20/H-quotas-applied.md`). Budgets that only e-mail cap nothing. Two checks already watch the fleet and post to Notifications: the hourly **spike check** (`cemi-system/schedules/check-api-spikes.mjs`, any key above its baseline ×10) and the **audit-fix guard** (`cemi-system/schedules/check-audit-fixes.mjs`, which reports any fix of the 2026-10-20 audit that a redeploy reverted: rules, quotas, key restrictions, disabled APIs, secret bindings).
-5. **Providers.** Gemini and **Anthropic (Claude)** are the providers in use; OpenAI and other providers only through the AI Gateway once it exists (`docs/ai-gateway-design.md`). History: on 2026-10-21 Carlos limited the fleet to Gemini («For now we must reconfigure Gemini…») and every Anthropic/OpenAI key was revoked; on 2026-10-22, with the Gemini API paused by the billing-account tier cap until Nov 1, he asked that the chatbots and public-facing AI be **enabled on the Claude API** (US$200 of credit). Interim shape, until the gateway serves a site: one Anthropic key **per site**, created in the Anthropic Console in that site's workspace (`cemi-<site>`, monthly spend limit, service account `cemi-<site>-svc`, scope = the workspace, expiry 2026-12-31), stored only in Secret Manager as `ANTHROPIC_API_KEY_<SITE>` (placeholder `unset` until the real version exists), bound with `defineSecret`, selected by a **server-side** switch that defaults to Gemini. Claude 5 requests send no `temperature`; chat runs on Haiku 5.5 unless the site's owner names Sonnet or Opus. Target state: the CEMI AI Gateway holds the provider credentials once (Anthropic by identity federation, no key), every site calls it, per-site keys are retired. Model ids by family, never dated (`cemi-gemini-models`).
+5. **Providers.** Gemini and **Anthropic (Claude)** are the providers in use; OpenAI and other providers only through the AI Gateway once it exists (`docs/ai-gateway-design.md`). History: on 2026-10-21 Carlos limited the fleet to Gemini («For now we must reconfigure Gemini…») and every Anthropic/OpenAI key was revoked; on 2026-10-22, with the Gemini API paused by the billing-account tier cap until Nov 1, he asked that the chatbots and public-facing AI be **enabled on the Claude API** (US$200 of credit). Interim shape, until the gateway serves a site: one Anthropic key **per site**, created in the Anthropic Console in that site's workspace (`cemi-<site>`, monthly spend limit, service account `cemi-<site>-svc`, scope = the workspace, expiry 2026-12-31), stored only in Secret Manager as `ANTHROPIC_API_KEY_<SITE>` (placeholder `unset` until the real version exists), bound with `defineSecret`, selected by a **server-side** switch that defaults to Gemini. Claude 5 requests send no `temperature`; chat runs on Haiku 5.5 unless the site's owner names Sonnet or Opus. **Thinking is off for chat** (Carlos, 2026-11-13): a visitor-facing chat (persona chat, site assistant, helpdesk) sends `thinking: {type: "disabled"}` on Haiku 5.5 and `thinking: {type: "between_tools"}` on Sonnet 5.5, where `disabled` is a 400; omitting `thinking` leaves it on, since every Claude 5.5 model thinks by default. Generation and analysis keep adaptive thinking with the effort set and a `max_tokens` large enough for thinking plus answer. A site turns thinking on for a chat only when a test shows better answers, and says so in its CLAUDE.md. State per site: `cemi-system/docs/claude-thinking-settings.md`. Target state: the CEMI AI Gateway holds the provider credentials once (Anthropic by identity federation, no key), every site calls it, per-site keys are retired. Model ids by family, never dated (`cemi-gemini-models`).
 6. **«Signed in» is never «trusted».** Anonymous and self-registered sessions get no privilege beyond their own documents. Admin rights come only from **server-written documents or custom claims**, never from a field a user can write or a role picked at first login. Open sign-up and anonymous sign-in stay enabled only where the app genuinely needs them, per the inventory of the audit (L); everywhere else they are off. Rules tests must fail on the ruleset they replace (`cemi-quality-gates`).
 7. **When a key leaks, in this order:** **delete** the key (`--no-check-existing-usage` if Google refuses on recent usage); **disable** the API in that project; **check Monitoring** confirms the traffic stopped; **rotate** into Secret Manager; then **rebuild and redeploy without the key** and re-enable the API only behind a function that satisfies rule 2. Record the incident in `cemi-system/docs/incidents/`. **Never undelete a leaked key**, whatever it breaks.
 
@@ -815,25 +520,7 @@ On 2026-10-20 one Gemini key compiled into a public web bundle (a `VITE_` variab
 **How-to and naming.** The lifecycle of every credential (the four classes, placeholder `unset`, rotation, retirement, the leak order, what each repository records in its `CLAUDE.md` «Credentials» list, the checks, the move to the gateway) is `sitecraft-system/protocol/api-credentials.md`; this block is the rule, that file is the procedure. **Every new secret is named `<PROVIDER>_API_KEY_<SITE>`** (Carlos, 2026-10-23); an existing constant name such as `RESEND_API_KEY` or `GEMINI_API_KEY` is renamed at its next rotation, never in a sweep.
 
 A local session that calls a paid API still follows `cemi-cost-policy`: ask first. This block is about where keys live and how calls are protected; it never authorizes a call.
-<!-- END cemi-paid-api-keys v7 -->
-
-<!-- BEGIN cemi-portuguese-br v4 (managed — source: cemi-system/sync/portuguese-br.md) -->
-## 🇧🇷 Portuguese is Brazilian Portuguese on every CEMI surface (all CEMI repos)
-
-**Portuguese means Brazilian Portuguese (pt-BR)** in every CEMI site, app, e-mail, document, caption, subtitle, deck and video (Carlos, 2026-10-24, chosen for the Studio and cemi.media and made canon for the group). The locale code stays **`pt`**; the variety is Brazilian. This block is the single source of truth; the translation and i18n protocols point here and do not restate it.
-
-- **Address the reader as «você»** (plural «vocês»); verbs in the third person. Never «tu» as the default register, never «vós».
-- **Progressive with the gerund:** «está fazendo», «estamos construindo» — never «está a fazer», «estamos a construir».
-- **Vocabulary, Brazilian forms (European forms are defects):** equipe (not equipa) · roteiro (not guião) · arquivo (not ficheiro) · cadastro / cadastrar-se (not registo / registar-se) · compartilhar (not partilhar) · entrar em contato / fale conosco (not contactar / contacte-nos / connosco) · tela (not ecrã) · usuário (not utilizador) · celular (not telemóvel) · baixar (not descarregar) · aplicativo (not aplicação, for an app) · ônibus (not autocarro) · trem (not comboio) · café da manhã (not pequeno-almoço) · sobrenome (not apelido) · gerenciar / gestão (not gerir) · esporte (not desporto) · fato (not facto) · atualizar (not actualizar) · ação (not acção).
-- **Spelling and accents follow the Brazilian norm of the 1990 Orthographic Agreement** as Brazil applies it: gênero, econômico, Antônio, ônibus (circumflex where Portugal writes an acute), «ideia» without accent, no silent consonants (ação, ótimo, direção).
-- **Dates and numbers:** `24 de outubro de 2026`, `24/10/2026`; thousands with a point and decimals with a comma (`1.234,56`); currency `R$ 1.234,56` and `US$ 1.234,56` with a space after the symbol.
-- **Typography:** quotes «…» as the i18n block prescribes for PT; the Impact Arc and the motto keep their canon PT forms (`cemi-impact-arc`: Engajar, Viabilizar, Inspirar, Empoderar, Conectar); Smoother's structures keep the frozen glossary forms where a PT column exists, and nobody coins a translation downstream.
-- **Generated text follows the same rule:** a persona's answer, a subtitle, a TTS script or an e-mail body produced at run time is Brazilian Portuguese; prompts that ask for Portuguese say «português do Brasil».
-
-**Audit.** Grep the `pt` locale files and every PT document for the European markers before shipping: `\bequipas?\b|\bguião\b|\bficheiros?\b|\bregisto\b|\bregistar|\bpartilha|\bcontactar|\bcontacte\b|\bconnosco\b|\becrãs?\b|\butilizador|\btelemóvel|\bdescarregar|\bautocarro|\bcomboio|pequeno-almoço|\bdesporto|\bfacto\b|\bactualiza|\bacção|\bestá a [a-zç]+[aei]r\b|\bestamos a [a-zç]+[aei]r\b` (word-bounded: «compartilhar», «equipamentos» and «registrar» are Brazilian and must not match). The regex catches the lexical tells only; a reviewer also reads for the grammatical ones: «A sua» for «Sua», «Enviámos» for «Enviamos», «contacto» for «contato», «Não tem» as a question opener, the pronoun before the verb («o enviei» for «enviei ele» in speech). A hit is a defect to fix in the repository that owns the text. The weekly drift run in `cemi-system` reports fleet-wide hits to registry.cemi.ai; each repository's session fixes its own.
-
-**Why one variety.** CEMI's Portuguese-speaking audience and partners are in Brazil; a mixed corpus reads as careless in both countries, and a translation agent given no variety drifts toward European forms. Reference conversions: `media-web` (guide and order page, ae8e01a), `mediamax-web` (Studio UI), `mediamax-system` manifest 0.9.1.
-<!-- END cemi-portuguese-br v4 -->
+<!-- END cemi-paid-api-keys v8 -->
 
 <!-- BEGIN cemi-unindexed-documents v2 (managed — source: cemi-system/sync/unindexed-documents.md) -->
 ## 🔒 Per-recipient documents are public by link and never indexed (all CEMI sites)
@@ -972,3 +659,14 @@ Every CEMI repository carries five root documents, each with one job (Carlos, 20
 
 Long form: `sitecraft-system/protocol/cemi-sitecraft.md`, *Standard Repository Documents*, and the Working-Folder Policy just above it.
 <!-- END cemi-repo-documents v3 -->
+
+<!-- BEGIN cemi-human-presence v1 (managed — source: mediamax-system/sync/human-presence.md) -->
+## 🧍 People in the frame, no clichés: the canon lives in mediamax-system (all CEMI repos that make images or video)
+
+Before writing shots, image or video prompts, shot lists, storyboards, key art or a brief for an agent that writes them, read `../mediamax-system/.claude/rules/anti-ai-aesthetic.md` Principle 6. In short, there are no empty chairs, tables or rooms, no hands-only shots and no stock clichés: people carry the piece (Carlos, 2026-11-14).
+
+- **Every agent brief that writes shots, prompts or key art pastes the HUMAN PRESENCE AND NO CLICHÉS block from Principle 6, verbatim.** A subagent reads only its brief, which is how the problem kept coming back in four productions in a row.
+- **Before delivering or committing, run `node ../mediamax-system/tools/human-presence-lint/lint.mjs <files>` and fix every finding.**
+
+This block only points to the canon; the rule itself has one copy, in mediamax-system. Image and video canon is never restated in another repository.
+<!-- END cemi-human-presence v1 -->
