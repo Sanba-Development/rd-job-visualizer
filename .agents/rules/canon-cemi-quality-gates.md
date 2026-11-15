@@ -4,15 +4,15 @@ description: "CEMI canon (cemi-quality-gates): ✅ Quality gates — content, se
 ---
 <!-- delivered by cemi-system canon-sync from sitecraft-system/sync/quality-gates.md; edit the source, not this copy -->
 
-<!-- BEGIN cemi-quality-gates v14 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v16 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
 
 - **Checks block the deploy.** Content validators, drift guards, the no-secrets-in-client check, unit tests and security rules tests (on the emulator) run in CI **before** the deploy job, which `needs:` them. A check that only warns is not a gate. Only checks that need production credentials, write live data or cost money stay manual, and the workflow says which and why.
 - **Rules tests must fail on the ruleset they replace.** Run new tests against the previous rules once and record how many fail.
-- **Every deployed function has emulator tests** (Carlos, 2026-11-12): the built handler under `firebase emulators:exec`, refusing to run without the emulator host; who can call it, what each caller gets, the sensitive headers; each test shown to fail on the code it guards; the suite blocks the deploy, and no `firebase-admin`, `firebase-functions` or `express` major is deployed until it passes (§3.3b; reference personais-web).
-- **Generated, never hand-copied.** Code shared between packages, or between a catalog and the rules, comes from one source through a generator with a `--check` mode in CI.
+- **Every deployed function has emulator tests** (Carlos, 2026-11-12): the built handler under `firebase emulators:exec`, refusing to run without the emulator host; who can call it, what each caller gets, the sensitive headers; each test shown to fail on the code it guards; the suite blocks the deploy, and no `firebase-admin`, `firebase-functions` or `express` major is deployed until it passes. A security fix is never held back: where no suite exists yet it deploys with the hand-run check recorded in the commit and a security item to add the suite within 30 days (Carlos, 2026-11-15) (§3.3b; reference personais-web).
+- **Generated, never hand-copied.** Code shared between packages, or between a catalog and the rules, comes from one source through a generator with a `--check` mode in CI. A generated file and the inputs it embeds are committed together, and a build that can regenerate the file deterministically regenerates it rather than refusing (§4.2).
 - **Deploy order:** functions, then hosting, then backfills, then security rules **last**. A trigger type's first use in a project (the first `onSchedule`, an Eventarc trigger, a Cloud Tasks queue) needs its API enabled once by Carlos before the deploy; deploy service accounts cannot enable APIs, so the deploy otherwise fails late with «Permissions denied enabling cloudscheduler.googleapis.com» after every check has passed. Check with `gcloud services list --enabled --project <id> | grep cloudscheduler` before merging; never enable ahead of need (§4.6).
 - **The live rules equal the committed file.** A CI check reads the live Firestore and Storage releases through the Rules API, for the right database and bucket, and fails when live matches no committed version of the file; live equal to an earlier committed version is a pending release, not a failure, since rules ship last. A stale checkout must never revert a fix made live. Pull-request checks use a read-only identity (`quality-gates.md` §4.13).
 - **Never GitHub Pages for a site.** Every CEMI website is served by Firebase Hosting, from a build folder, in its own project. A legacy Pages build of a private repository publishes the whole repository root (CLAUDE.md, rules and function source were public on 18 sites); Pages sends no security headers and no `X-Robots-Tag`; and it stops building when the organization drops to GitHub Free. To move a site, follow `cemi-system/docs/handoffs/2026-11-07-pages-to-firebase-migration-brief.md`, then disable Pages (§4.22).
@@ -30,4 +30,4 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v14 -->
+<!-- END cemi-quality-gates v16 -->
