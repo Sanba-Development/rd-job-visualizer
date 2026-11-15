@@ -14,6 +14,7 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `cemi-impact-arc` (*read on demand*): 🌱 The Impact Arc — how CEMI intervenes (all CEMI repos) — `.agents/rules/canon-cemi-impact-arc.md`
 - `journalaism-article-canon` (*read on demand*): Article writing and research canon (all CEMI repositories that publish text) — `.agents/rules/canon-journalaism-article-canon.md`
 - `cemi-png-logos` (*read on demand*): 🖼️ HARD RULE — logos are PNG, never SVG (all CEMI media/video repos) — `.agents/rules/canon-cemi-png-logos.md`
+- `cemi-chatbot-standard` (*read on demand*): 💬 One chatbot standard for every site (all CEMI repos with a chatbot, persona chat, assistant or advisor) — `.agents/rules/canon-cemi-chatbot-standard.md`
 - `cemi-human-presence` (*read on demand*): 🧍 People in the frame, no clichés: the canon lives in mediamax-system (all CEMI repos that make images or video) — `.agents/rules/canon-cemi-human-presence.md`
 - `cemi-gemini-models` (*read on demand*): 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos) — `.agents/rules/canon-cemi-gemini-models.md`
 - `cemi-typographic-orphans` (*read on demand*): 🔤 No one-word last lines in titles — web headlines and HyperFrames titles (all CEMI repos) — `.agents/rules/canon-cemi-typographic-orphans.md`
@@ -40,7 +41,7 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - an article, a factual claim, a quote or a citation that will be published: `.agents/rules/canon-journalaism-article-canon.md`
 - a deploy, a hosting or rules change, a new site or page, or a letter, proposal or dossier served by link: `.agents/rules/canon-cemi-quality-gates.md`, `.agents/rules/canon-cemi-canonical-urls.md`, `.agents/rules/canon-cemi-unindexed-documents.md`
 - any call to a Gemini model, or pinning a model id: `.agents/rules/canon-cemi-gemini-models.md`
-- a chatbot, persona, advisor or any AI surface a visitor talks to; terms of service or a privacy notice; a site for schools, families or minors: `.agents/rules/canon-cemi-responsible-ai-use.md`, `.agents/rules/canon-cemi-feature-security-assessment.md`
+- a chatbot, persona, advisor or any AI surface a visitor talks to; terms of service or a privacy notice; a site for schools, families or minors: `.agents/rules/canon-cemi-chatbot-standard.md`, `.agents/rules/canon-cemi-responsible-ai-use.md`, `.agents/rules/canon-cemi-feature-security-assessment.md`
 - delegating work to agents or choosing a model for a task: `.agents/rules/canon-cemi-model-choice.md`
 - a video, image, infographic, logo or icon: `.agents/rules/canon-cemi-human-presence.md`, `.agents/rules/canon-cemi-png-logos.md`, `.agents/rules/canon-cemi-svg-icons.md`, `.agents/rules/canon-cemi-typographic-orphans.md`
 - rendering user-contributed or fetched HTML: `.agents/rules/canon-cemi-html-sanitization.md`
