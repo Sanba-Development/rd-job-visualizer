@@ -394,7 +394,7 @@ Carlos, 2026-10-16: «Split the work into multiple agents, as long as they don't
 **Limits.** This rule is about the models *inside the harness the session already runs on*. It never authorises a paid or external service: `cemi-cost-policy` stands unchanged, and translation is always Claude. A repository's own rule that names a model for a task wins for that task. It governs sessions and their agents, not the models a product serves to its users — chatbot tiers are `sitecraft-system/protocol/chatbot-and-personas.md`.
 <!-- END cemi-model-choice v2 -->
 
-<!-- BEGIN cemi-quality-gates v16 (managed — source: sitecraft-system/sync/quality-gates.md) -->
+<!-- BEGIN cemi-quality-gates v17 (managed — source: sitecraft-system/sync/quality-gates.md) -->
 ## ✅ Quality gates — content, security and integrity, live QA (all CEMI sites and apps)
 
 Every CEMI site or app with content, sign-in or a database keeps three layers of checks. The standard, with reference implementations and each repository's adoption state, is `sitecraft-system/protocol/quality-gates.md`.
@@ -406,7 +406,7 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Deploy order:** functions, then hosting, then backfills, then security rules **last**. A trigger type's first use in a project (the first `onSchedule`, an Eventarc trigger, a Cloud Tasks queue) needs its API enabled once by Carlos before the deploy; deploy service accounts cannot enable APIs, so the deploy otherwise fails late with «Permissions denied enabling cloudscheduler.googleapis.com» after every check has passed. Check with `gcloud services list --enabled --project <id> | grep cloudscheduler` before merging; never enable ahead of need (§4.6).
 - **The live rules equal the committed file.** A CI check reads the live Firestore and Storage releases through the Rules API, for the right database and bucket, and fails when live matches no committed version of the file; live equal to an earlier committed version is a pending release, not a failure, since rules ship last. A stale checkout must never revert a fix made live. Pull-request checks use a read-only identity (`quality-gates.md` §4.13).
 - **Never GitHub Pages for a site.** Every CEMI website is served by Firebase Hosting, from a build folder, in its own project. A legacy Pages build of a private repository publishes the whole repository root (CLAUDE.md, rules and function source were public on 18 sites); Pages sends no security headers and no `X-Robots-Tag`; and it stops building when the organization drops to GitHub Free. To move a site, follow `cemi-system/docs/handoffs/2026-11-07-pages-to-firebase-migration-brief.md`, then disable Pages (§4.22).
-- **Only the site is served.** Hosting serves a build folder, never `"."`. Every `firebase.json` carries the minimum `hosting.ignore` (dotfiles, `.git`, `functions/`, `scripts/`, `docs/`, `*.md`, `*.map`, logs and rules files), production builds emit no source maps, and a check enforces it. After deploy, `/.git/HEAD` answers 404 (§4.14).
+- **Only the site is served.** Hosting serves a build folder, never `"."`. Every `firebase.json` carries the minimum `hosting.ignore` (dotfiles, `.git`, `functions/`, `scripts/`, `docs/`, `*.md`, `*.map`, logs and rules files), production builds emit no source maps, and a check enforces it. **Hosting uploads what is on disk, not what git tracks**, so a git-ignored file under the hosting root is published unless `hosting.ignore` excludes it: the shared check (`sitecraft-system/hostcheck`, vendored, run in CI and by `/ship` before every hosting deploy) walks the folder on disk with the CLI's own ignore semantics and fails on data, archive, secret, document and installer files and anything over 25 MB, unless `hostcheck.allow.json` lists it with a reason (SL-260). After deploy, `/.git/HEAD` answers 404 (§4.14).
 - **Security headers on every host:** HSTS, `nosniff`, a strict referrer policy, no framing (`frame-ancestors`), and a closed permissions policy. Each site's own CSP starts as report-only. **Embedding is denied by default** (`DENY`, `frame-ancestors 'none'`). An exception is one site and one embedding host, approved by Carlos and recorded in the registry ledger first (`set-embed-exception.mjs`, `/admin/embeds`). The header then names only that host, and is never dropped. The weekly drift run checks live headers against the ledger (§4.15).
 - **A send a stranger can trigger is capped.** Any endpoint a visitor can trigger without signing in (an anonymous session counts as not signed in) that sends an e-mail, an SMS or another metered message carries a site-wide daily cap in code. The cap fails closed, posts to registry.cemi.ai at 80 % and 100 %, and past it the page offers a path that sends nothing. Per-IP limits and App Check do not bound a flood (§4.17).
 - **Served CSS keeps the browser floor.** Astro sites set `vite.build.cssTarget` to `['chrome87', 'edge88', 'firefox78', 'safari14']`, and a build gate fails on range media queries (`(width<=…)`) in `dist/` CSS **and** HTML. Vite 8 writes them by default, and Safari before 16.4 ignores them, so older phones get the desktop layout without any error (§4.18).
@@ -420,7 +420,7 @@ Every CEMI site or app with content, sign-in or a database keeps three layers of
 - **Structure is validated by script; judgement by a second reader.** Fit, measurement validity, cultural load and vocabulary canon are reviewed by someone other than the author, working from a written checklist, on a model tier at least as capable as the author's (`cemi-model-choice`).
 
 No paid or hosted service is used for any check without asking (`cemi-cost-policy`).
-<!-- END cemi-quality-gates v16 -->
+<!-- END cemi-quality-gates v17 -->
 
 <!-- BEGIN cemi-canonical-urls v3 (managed — source: sitecraft-system/sync/canonical-urls.md) -->
 ## 🔗 One host per site, a static canonical on every indexable page (all CEMI sites)
@@ -682,3 +682,29 @@ Carlos, 2026-11-15: «Chatbot implementation, addressing its challenges and issu
 - **Every chat offers copy and save** (Carlos, 2026-11-15): a copy button on each answer, plus «Copy conversation» and «Save conversation» (a .txt file with speaker labels and the AI notice), done in the browser only, from the vendored page client.
 - **Never in the browser.** No site calls a model from the browser. Firebase AI Logic in a client is moved behind the shared function.
 <!-- END cemi-chatbot-standard v2 -->
+
+<!-- BEGIN cemi-xaid-sign-in v1 (managed — source: cemi-system/sync/xaid-sign-in.md) -->
+## 🔐 Signing in through xAId: claims age, access changes arrive, the app id is pinned (all CEMI sites that sign in through xAId)
+
+A site that signs people in through xAId mints its own Firebase session from xAId's answer. Without the three rules below, a role removed in xAId stays live on the site until the person signs in again, which can take weeks (Carlos, 2026-11-16: «I have asked this many times»; SL-248, SL-250, SL-253, SL-258).
+
+1. **Claims age.** The token bridge mints with the xAId uid and stamps `rolesAt` in milliseconds **before** it calls `/auth/verify`. The maximum claim age is **at most 24 hours for every role** (Carlos, 2026-11-17: «24 hours for all», no exception), plus xAId's `accessExpiresAt` when it is set. It is enforced in the rules (an `xaidClaimsCurrent` helper, with the rules suite and the live-rules check in CI) and on every server path. A token older than the user's mark or the app-wide mark is refused.
+2. **Access changes arrive.** The site vendors sitecraft's receiver (`sitecraft-system/xaid-hook/`), served at `https://<site>/__xaid/access-change` through a Hosting rewrite. It keeps `XAID_HOOK_SECRET_<APP>` in the site's own Secret Manager and registers the hook in xAId with its maximum age. On every change the receiver raises the mark before it answers 200, and revokes refresh tokens on every change that can narrow access. On a delete it keeps the mark and disables the uid.
+3. **The app id is pinned.** The bridge sends its own app id, never one taken from the request (SL-253).
+
+A site without the receiver yet keeps the maximum age and the deleted-user polling, and is listed as pending in `cemi-system/docs/plans/2026-11-16-xaid-access-change-receivers.md`. The contract is `xaid/docs/ACCESS-CHANGE-NOTIFICATIONS.md`; the module and its tests are `sitecraft-system/xaid-hook/`.
+<!-- END cemi-xaid-sign-in v1 -->
+
+<!-- BEGIN cemi-page-size v1 (managed — source: cemi-system/sync/page-size.md) -->
+## 📄 Printable output is US Letter unless told otherwise (all CEMI repos)
+
+Carlos, 2026-11-17: «Always assume Letter 8.5x11" unless the project, site or user says differently.»
+
+- **The default page is US Letter**, 8.5 × 11 in (215.9 × 279.4 mm), for everything printed or rendered to PDF or Word: one-pagers and infographics, guides and handouts, proposals, quotes, letters, dossiers and reports.
+- **European and Swiss audiences get A4** (210 × 297 mm), the paper they print on: fabriqueafetes.ch, the French pages of a site printed in France, a proposal to a European client (Carlos, 2026-11-17: «European and Swiss get A4»). The site or project records it in its `CLAUDE.md`, and a site that serves both picks the size by the reader's market, not by the language alone.
+- **Any other size only when the project, the site or the person asking says so.**
+- **Write the size out; never rely on a tool's default:** `@page { size: Letter }`, `page.pdf({ format: 'Letter' })`, Word sections set to 8.5 × 11 in. A landscape page is Letter turned (11 × 8.5 in), unless it is a 16:9 slide.
+- **A generator that writes A4 for a non-European audience switches to Letter at its next edit;** one that serves a European or Swiss audience keeps A4 and says why in the project's `CLAUDE.md`.
+
+How to apply it per tool, with pagination and margins: `sitecraft-system/protocol/signed-documents.md` §4.
+<!-- END cemi-page-size v1 -->

@@ -15,6 +15,8 @@ Antigravity truncates a rule file after 24,000 bytes, so this file stays under 2
 - `journalaism-article-canon` (*read on demand*): Article writing and research canon (all CEMI repositories that publish text) — `.agents/rules/canon-journalaism-article-canon.md`
 - `cemi-png-logos` (*read on demand*): 🖼️ HARD RULE — logos are PNG, never SVG (all CEMI media/video repos) — `.agents/rules/canon-cemi-png-logos.md`
 - `cemi-chatbot-standard` (*read on demand*): 💬 One chatbot standard for every site (all CEMI repos with a chatbot, persona chat, assistant or advisor) — `.agents/rules/canon-cemi-chatbot-standard.md`
+- `cemi-xaid-sign-in` (*read on demand*): 🔐 Signing in through xAId: claims age, access changes arrive, the app id is pinned (all CEMI sites that sign in through xAId) — `.agents/rules/canon-cemi-xaid-sign-in.md`
+- `cemi-page-size` (*read on demand*): 📄 Printable output is US Letter unless told otherwise (all CEMI repos) — `.agents/rules/canon-cemi-page-size.md`
 - `cemi-human-presence` (*read on demand*): 🧍 People in the frame, no clichés: the canon lives in mediamax-system (all CEMI repos that make images or video) — `.agents/rules/canon-cemi-human-presence.md`
 - `cemi-gemini-models` (*read on demand*): 🤖 Gemini model ids — never hard-code a dated id in application code (all CEMI repos) — `.agents/rules/canon-cemi-gemini-models.md`
 - `cemi-typographic-orphans` (*read on demand*): 🔤 No one-word last lines in titles — web headlines and HyperFrames titles (all CEMI repos) — `.agents/rules/canon-cemi-typographic-orphans.md`
