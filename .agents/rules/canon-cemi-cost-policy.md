@@ -1,0 +1,22 @@
+---
+trigger: model_decision
+description: "CEMI canon (cemi-cost-policy): ⛔ HARD RULE — never use external/paid services without asking (all CEMI repos)"
+---
+<!-- delivered by cemi-system canon-sync from cemi-system/sync/cost-policy.md; edit the source, not this copy -->
+
+<!-- BEGIN cemi-cost-policy v5 (managed — source: cemi-system/sync/cost-policy.md) -->
+## ⛔ HARD RULE — never use external/paid services without asking (all CEMI repos)
+
+NEVER invoke any paid or third-party service outside Claude's own model without **asking, confirming, AND informing the user first — every single time.** The user pays for Claude Max 20x; do the work inside Claude. A documented "default" or convention does NOT override this. When in doubt, ask.
+
+- **Translation:** translation is done **inline by the session's own model, on Carlos's own subscription**: Claude in Claude Code (Max), **Gemini in an Antigravity CLI session (Google AI Ultra)**, or Claude subagents / the Anthropic API (Haiku default, Sonnet for tone-critical fields, Opus as the content warrants). Carlos, 2026-10-27: «There is no problem with Gemini translating text in the Antigravity CLI gemini session. What it can not do is invoke a paid translation service.» **NEVER a translation service or API:** Google Cloud Translation, Google Translate, DeepL, Amazon Translate, Microsoft / Azure Translator, the Gemini API called from a script, or ANY other external machine-translation service. This holds even if a downstream repo, script, or doc presents such a provider as a "default", an "option", or a documented convention — **a documented convention does NOT override this hard rule.** Do NOT use any `scripts/translate-*.mjs` / `bulk-translate-*.mjs` helper that calls an external MT provider. The language rules travel with every translation, whoever writes it (`cemi-i18n-quote-hygiene`, `cemi-portuguese-br`, the Smoother glossary).
+- **Subscription tools driven by hand are not API calls** (Carlos, 2026-10-27): still images in **Google Flow** and voices in **AI Studio's speech page** (`https://aistudio.google.com/u/3/generate-speech`), both driven by **Claude Cowork** in Carlos's browser on his own plan, and avatar videos in **HeyGen**, which also produces the avatar's voice. A session never opens them itself: it writes the prompt (`cemi-system/docs/cowork-flow-image-prompts.md`), Carlos runs it, and the files land in the repository's `scratch/`. Still images in Google Flow are free (Carlos, 2026-11-13: «Image generation in Google Flow is free»), so a Flow image prompt sheet states «0 Flow credits»; video in Flow and avatar videos in HeyGen spend plan credits, so their prompts state the count first.
+- **Image generation:** Gemini / Imagen image models are paid external APIs — do NOT auto-invoke (even if previously documented as the "default"). Ask first.
+- **Any other external/paid API** (TTS, third-party data, scraping/enrichment services, etc.): ask first.
+
+Silent use of paid external services has caused real, unwanted cost. Treat this as a hard guardrail.
+
+**Scope (Carlos, 2026-10-02).** These restrictions bind the **AI processes that run locally**: Claude Code and Antigravity sessions, their agents, and the scripts they run on the machine. They do **not** restrict the online services and apps running in the cloud — Cloud Functions and deployed features (e.g. Experience's Translate button, content generator and Learning Designer) — which use the AI provider set in the app's own configuration (Experience: `settings/ai`, edited at `/admin/settings`): Gemini, OpenAI, Claude or another provider, Gemini by default, so that costs and billing stay in one place. A local session that calls a paid service, even one the platform also uses, still follows this policy. Companion rule, already in force in `experience`: every paid generation call, local or cloud, is recorded in a paid-call ledger (Firestore `paidCallLogs`, admin report at `/admin/reports/generation-costs`) — adopt the same where a repository makes paid calls.
+
+**Known trap — HyperFrames snapshots (found 2026-10-05).** The HyperFrames CLI `snapshot` command describes frames with Gemini vision by default whenever a Gemini key is reachable, and it reads the project's `.env`, so a local session can make an unrequested paid call just by taking a snapshot. Every local run passes `--describe=false` and runs without `GEMINI_API_KEY` / `GOOGLE_API_KEY` in its environment; the long form belongs in the HyperFrames canon (`mediamax-system`).
+<!-- END cemi-cost-policy v5 -->
